@@ -384,15 +384,16 @@ Arguments can be raw variable bindings:
 argument : <variable>
 ```
 
-Or arguments can bind an array and its dimensions (here number of
-bound dimensions must equal the rank of the array):
+Or arguments can bind an array and its dimensions:
 
 ```
 argument : <variable> [ <variable> , ... ]
 ```
 
-Only the outermost of a nested array can have its dimensions bound in
-this fashion (since nested arrays are not guaranteed to be rectangular).
+It is a compile-time error if the number of dimension variables does
+not equal the rank of the array. Also, only the outermost of a nested
+array can have its dimensions bound in this fashion (since nested
+arrays are not guaranteed to be rectangular).
 
 Lvalues can bind the parts of a tuple:
 
