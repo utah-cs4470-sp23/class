@@ -478,14 +478,23 @@ an error to introduce a function with the same name as a built-in
 function. It is not even legal to have a function-scoped variable with
 the same name as a global.
 
-JPL compilers must provide builtin functions including at least the
-math functions `exp`, `sin`, `cos`, `log`, `pow` and the conversion
-operators `float`, `int`. They can also provide builtin functions
-whose name contains a dot, which that compiler can use during
-compilation.
+JPL compilers must provide builtin functions including the following
+math functions:
+
++ Of one `float` argument, returning a `float`:
+  `sqrt`, `exp`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, and `log`
++ Of two `float` arguments, returning a `float`:
+  `pow` and `atan2`
++ Of three `float` arguments, returning a `float`:
+  `fma`
++ The `float` function, which converts an `int` to a `float`
++ The `int` function, which converts a `float` to an `int`
+
+They can also provide builtin functions whose name contains a dot,
+which the compiler can use during compilation.
 
 JPL must provide a global `args` variable of type `int[]` containing
-integers provided in the command line program's command line. and a
+integers provided in the command line program's command line, and a
 variable `argnum` of type `int` containing the number of arguments.
 The program name itself should not be part of that list or that count.
 
