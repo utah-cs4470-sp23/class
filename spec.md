@@ -471,6 +471,23 @@ rematerialize that info.
 Variable bindings are lexical, meaning that every time a function is
 invoked it introduces a new variable scope.
 
+It is always a compile-time error for a JPL program to refer to a name
+that has not yet been bound. So, for example, while this program looks
+like it should typecheck, it is not legal JPL because the body of f()
+refers to function g() which has not yet been bound:
+
+```
+fn f(x : int) {
+   return g(x)
+}
+
+let y = f(3)
+
+fn g(x : int) {
+   return y
+}
+```
+
 Shadowing is always illegal in JPL: it is a compile time error to bind
 a name that is already visible from the current scope. Thus, no JPL
 program can contain two functions with the same name, and it is always
