@@ -648,7 +648,7 @@ functions that take more than 64 arguments.  Basically, almost any
 occurrence of `...` in this specification only needs to be expanded 64
 times by a JPL compiler. The exception is the `...` indicating the
 repetition of statements in a function body: this should be limited
-only be the amount of memory on the machine running the JPL compiler.
+only by the amount of memory on the machine running the JPL compiler.
 
 
 Compilation
