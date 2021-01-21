@@ -25,9 +25,9 @@ much harder and subtler than you think! Use the C library function
 then the literal is legal, otherwise the JPL compiler must signal a
 compile-time error.
 
-Strings are a double quote, any sequence of characters except double
-quote and newline, and then another double quote. Character escapes
-like `\n` aren't supported (you're not going to need them).
+Strings are a double quote, any sequence of legal characters except
+double quote and newline, and then another double quote. Character
+escapes like `\n` aren't supported (you're not going to need them).
 
 Variables are a letter (upper case A-Z or lower case a-z) followed by
 any number of letters or digits, underscores, or dots, *except* when
