@@ -117,11 +117,15 @@ expr : { <expr> , ... }
      | [ <expr> , ... ]
 ```
 
-Note that both empty arrays and empty tuples are valid. For tuples,
-each expression can have its own type, but for array constructors,
-each expression must have the same type. Array constructors always
-produce rank-1 arrays, but of course they may be nested to produce
-arrays of arrays.
+For tuples, each expression can have its own type, but for array
+constructors, each expression must have the same type. Array
+constructors always produce rank-1 arrays, but of course they may be
+nested to produce arrays of arrays.
+
+Note that both empty arrays and empty tuples are valid. An empty array
+constructor is treated as creating an array of ints. So, for example,
+`let x = []` creates a rank-1 array of integers that contains zero
+elements.
 
 Parentheses can be used to override precedence:
 
