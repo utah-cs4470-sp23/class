@@ -76,14 +76,14 @@ Lexer requirements:
   this output format exactly.
 
 ```
-regehr@home:~/compiler-class/examples$ cat tiny.jpl
+regehr@home:~/compiler-class/jdr/build$ cat tiny.jpl 
 fn inc(n : int) : int {
   return 1 + n
 }
 
 print "hello!"
 show inc(33)
-regehr@home:~/compiler-class/examples$ ../jdr/build/jplc -l tiny.jpl
+regehr@home:~/compiler-class/jdr/build$ ./jplc -l tiny.jpl 
 FN 'fn'
 VARIABLE 'inc'
 LPAREN '('
@@ -94,31 +94,26 @@ RPAREN ')'
 COLON ':'
 VARIABLE 'int'
 LCURLY '{'
-NEWLINE '
-'
+NEWLINE
 RETURN 'return'
 INTVAL '1'
 BINOP '+'
 VARIABLE 'n'
-NEWLINE '
-'
+NEWLINE
 RCURLY '}'
-NEWLINE '
-
-'
+NEWLINE
 PRINT 'print'
 STRING '"hello!"'
-NEWLINE '
-'
+NEWLINE
 SHOW 'show'
 VARIABLE 'inc'
 LPAREN '('
 INTVAL '33'
 RPAREN ')'
-NEWLINE '
-'
-END_OF_FILE ''
+NEWLINE
+END_OF_FILE
 Compilation succeeded
+regehr@home:~/compiler-class/jdr/build$ 
 ```
 
 ## CHECKIN: Due Friday January 29
