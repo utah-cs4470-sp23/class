@@ -69,6 +69,58 @@ Lexer requirements:
   testing your code. Of course you do not yet need to support the
   other command line flags.
 
+- The "lex-only" mode of your compiler that is triggered by the `-l`
+  command line flag should dump tokens, one per line, in a format like
+  the one shown here. We are providing you with a test script that
+  checks your output against ours, so it is important that you match
+  this output format exactly.
+
+```
+regehr@home:~/compiler-class/examples$ cat tiny.jpl
+fn inc(n : int) : int {
+  return 1 + n
+}
+
+print "hello!"
+show inc(33)
+regehr@home:~/compiler-class/examples$ ../jdr/build/jplc -l tiny.jpl
+FN 'fn'
+VARIABLE 'inc'
+LPAREN '('
+VARIABLE 'n'
+COLON ':'
+VARIABLE 'int'
+RPAREN ')'
+COLON ':'
+VARIABLE 'int'
+LCURLY '{'
+NEWLINE '
+'
+RETURN 'return'
+INTVAL '1'
+BINOP '+'
+VARIABLE 'n'
+NEWLINE '
+'
+RCURLY '}'
+NEWLINE '
+
+'
+PRINT 'print'
+STRING '"hello!"'
+NEWLINE '
+'
+SHOW 'show'
+VARIABLE 'inc'
+LPAREN '('
+INTVAL '33'
+RPAREN ')'
+NEWLINE '
+'
+END_OF_FILE ''
+Compilation succeeded
+```
+
 ## CHECKIN: Due Friday January 29
 
 JPL has both trivial and non-trivial lexemes. A trivial lexeme, such
