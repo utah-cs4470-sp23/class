@@ -642,12 +642,12 @@ Implementation Limits
 
 A JPL compiler is not obligated to support a nesting depth (as
 measured by the height of the program AST following the grammar in
-this specification) larger than 64, nor is it reqiured to support
+this specification) larger than 64, nor is it required to support
 arrays of rank larger than 64, tuples wider than 64 elements, or
 functions that take more than 64 arguments.  Basically, almost any
 occurrence of `...` in this specification only needs to be expanded 64
 times by a JPL compiler. The exception is the `...` indicating the
-repetetion of statements in a function body: this should be limited
+repetition of statements in a function body: this should be limited
 only be the amount of memory on the machine running the JPL compiler.
 
 
