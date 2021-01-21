@@ -502,8 +502,6 @@ math functions:
   `sqrt`, `exp`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, and `log`
 + Of two `float` arguments, returning a `float`:
   `pow` and `atan2`
-+ Of three `float` arguments, returning a `float`:
-  `fma`
 + The `float` function, which converts an `int` to a `float`
 + The `int` function, which converts a `float` to an `int`
 
