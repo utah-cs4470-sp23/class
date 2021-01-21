@@ -63,9 +63,11 @@ Lexer requirements:
 - You must start to implement the [JPL command line
   interface](https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#jpl-compiler-command-line-interface).
   In particular, your implementation for this assignment should
-  support the `-l` flag. We will use then when testing your
-  code. Of course you do not yet need to support the other command
-  line flags.
+  support the `-l` flag and it must print (to STDOUT) `Compilation
+  successful` when lexing is successful and `Compilation failed` when
+  a lexer error is encountered. We will use these features when
+  testing your code. Of course you do not yet need to support the
+  other command line flags.
 
 ## CHECKIN: Due Friday January 29
 
