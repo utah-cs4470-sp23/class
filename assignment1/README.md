@@ -60,7 +60,12 @@ Lexer requirements:
   lexer. Be particularly careful to avoid emitting multiple
   consecutive NEWLINE tokens in the presence of comments in the input.
 
--
+- You must start to implement the [JPL command line
+  interface](https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#jpl-compiler-command-line-interface).
+  In particular, your implementation for this assignment should
+  support the `-l` flag. We will use then when testing your
+  code. Of course you do not yet need to support the other command
+  line flags.
 
 ## CHECKIN: Due Friday January 29
 
@@ -75,6 +80,11 @@ Be especially careful that your regular expressions reject illegal
 ASCII characters! This syntax `[\x00-\x7F]` can be used to refer to
 specific ASCII values.
 
+
+Your regular expressions should follow the POSIX extended regular
+expression format as described
+(here)[https://en.wikipedia.org/wiki/Regular_expression].
+
 Place these regular expressions into an ASCII text file called
 `assignment1.txt` which must live in the root directory of your repo.
 
@@ -88,13 +98,15 @@ directory of your repo and typing this:
 make run input.jpl
 ```
 
-This requirement is non-negotiable, so please take it into account and
-test it out early, and let us know early if you are running into any
-problems so we can see about solving them before the deadline. (This
-still has to work if you are using a language other than Python, Java,
-or C++.)
+Here `input.jpl` is a file that we will supply.
 
-test instructions
+The requirement that this works is non-negotiable, so please take it
+into account and test it out early, and let us know early if you are
+running into any problems so we can see about solving them before the
+deadline. (This still has to work if you are using a language other
+than Python, Java, or C++.)
 
-build requirements
+```
+FIXME instructions for running test scripts
+```
 
