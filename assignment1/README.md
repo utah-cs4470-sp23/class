@@ -263,3 +263,8 @@ lexing succeeds (because the input can be lexed) or fails (because the
 input does not meet the requirements for lexing that are described in
 the JPL specification).
 
+To be completely clear: you must make sure that your implementation
+passes these tests ON A CADE MACHINE because that is where we will run
+them. If tests pass on your own machine, or some other machine where
+you do your homework, but don't pass on a CADE Lab Linux box, then
+your work won't count.
