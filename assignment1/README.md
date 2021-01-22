@@ -175,7 +175,52 @@ running into any problems so we can see about solving them before the
 deadline. (This still has to work if you are using a language other
 than Python, Java, or C++.)
 
+We are providing two scripts that you can use to test your lexer is
+working properly. These are the same scripts that we will use to grade
+your lexer. (In future assignments, we might do grading using test
+cases that we have not given you, but we are not doing that yet.)
+
+The first script, `test-lexer1` compares the output of your compiler,
+in lexer mode, against a reference lexer. It complains if your output
+does not exactly match the reference output. It uses the `-l` flag
+mentioned in the JPL specification. Run it like this:
+
 ```
-FIXME instructions for running test scripts
+Johns-MacBook-Pro:tests johnregehr$ ./test-lexer1 ../jdr/build/jplc 
+/Users/johnregehr/compiler-class/tests/lexer-tests1
+/Users/johnregehr/compiler-class/tests/lexer-tests1/000.jpl : pass
+/Users/johnregehr/compiler-class/tests/lexer-tests1/001.jpl : pass
+/Users/johnregehr/compiler-class/tests/lexer-tests1/002.jpl : pass
+/Users/johnregehr/compiler-class/tests/lexer-tests1/003.jpl : pass
+/Users/johnregehr/compiler-class/tests/lexer-tests1/004.jpl : *** /Users/johnregehr/compiler-class/tests/lexer-tests1/004.jpl.my-output	2021-01-22 11:50:39.000000000 -0700
+--- /Users/johnregehr/compiler-class/tests/lexer-tests1/004.jpl.output	2021-01-22 11:43:08.000000000 -0700
+***************
+*** 2,8 ****
+  FN 'fn'
+  VARIABLE 'a'
+  LPAREN '('
+! VARIABLE 'b'
+  LSQUARE '['
+  VARIABLE 'c'
+  RSQUARE ']'
+--- 2,8 ----
+  FN 'fn'
+  VARIABLE 'a'
+  LPAREN '('
+! VARIABLE 'b '
+  LSQUARE '['
+  VARIABLE 'c'
+  RSQUARE ']'
+Johns-MacBook-Pro:tests johnregehr$ 
 ```
+
+In this example run, the output of my lexer matched the reference
+output for `000.jpl` through `003.jpl` but then did not match for
+`004.jpl`. The difference is shown with the correct output first and
+your output second.  In this case the bug is that the lexer
+accidentally captured an extra space character after the text for the
+variable `b`. You should fix any bugs found by this lexer test before
+this assignment is due.  The expected outputs are all
+
+The second test script
 
