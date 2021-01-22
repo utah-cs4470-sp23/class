@@ -1,5 +1,3 @@
-# STUDENTS: THIS IS A WORK IN PROGRESS DON'T READ IT YET PLEASE
-
 # Assignment 1: Lexing
 
 Your first assignment is to build a lexical analyzer (a "lexer" or a "tokenizer") for JPL. Its job
