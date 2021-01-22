@@ -183,7 +183,7 @@ from your chosen programming language:
 - [Java](https://docs.oracle.com/javase/tutorial/essential/regex/)
 - [Python](https://docs.python.org/3/library/re.html)
 
-There's also some good info [here](https://en.wikipedia.org/wiki/Regular_expression)..
+There's also some good info [here](https://en.wikipedia.org/wiki/Regular_expression).
 
 Place these regular expressions into an ASCII text file called
 `assignment1.txt` which must live in the root directory of your repo.
