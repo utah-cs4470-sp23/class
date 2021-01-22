@@ -33,7 +33,16 @@ where `tok` is an enumerated type, `line` is the line number of the
 input file where the lexeme was found, and `text` is the lexeme
 itself. Note that the `line` field is not required in your lexer, but
 retaining this kind of information will be very helpful in producing
-better error messages for users of your compiler (such as you).
+better error messages for users of your compiler (mainly you). It
+would also be easy and helpfiul to record that character position on
+its line where each token starts, but again this is not required.
+
+The full list of tokens you should support is: 
+NEWLINE, INTVAL, FLOATVAL, VAR, ARRAY, SUM, IF, THEN,
+ELSE, LET, RETURN, ASSERT, READ, WRITE, TO, PRINT, SHOW,
+TIME, FN, FLOAT3, FLOAT4, COLON, LCURLY, RCURLY, LPAREN,
+RPAREN, STRING, COMMA, LSQUARE, RSQUARE, EQUALS, BINOP,
+BOOLNOT, ERROR, ATTRIBUTE, END_OF_FILE.
 
 Lexer requirements:
 
@@ -42,10 +51,6 @@ Lexer requirements:
   text in the input file, but rather serves as a sentinel so that your
   parser will not have to keep checking for walking off the end of the
   list of lexemes.
-
-- Every JPL keyword should have its own token type.
-
-- Strings in the input are a token type.
 
 - Other than newlines, white space does not turn into tokens. Rather,
   whitespace is used by the lexer to divide the input stream into
