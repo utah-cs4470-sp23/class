@@ -2,15 +2,24 @@
 
 # Assignment 1: Lexing
 
-Your first assignment is to build a lexical analyzer for JPL. Its job
+Your first assignment is to build a lexical analyzer (a "lexer" or a "tokenizer") for JPL. Its job
 is to turn an arbitrary file into one of:
 
-- a list of tokens
-- a lexer error
+- A list of tokens
+- A lexical error
 
 The criteria for tokenization are found in the [lexical
 syntax](https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#lexical-syntax)
-part of the JPL specification.
+part of the JPL specification. The full list of tokens you should support is: 
+NEWLINE, INTVAL, FLOATVAL, VAR, ARRAY, SUM, IF, THEN,
+ELSE, LET, RETURN, ASSERT, READ, WRITE, TO, PRINT, SHOW,
+TIME, FN, FLOAT3, FLOAT4, COLON, LCURLY, RCURLY, LPAREN,
+RPAREN, STRING, COMMA, LSQUARE, RSQUARE, EQUALS, BINOP,
+BOOLNOT, ERROR, ATTRIBUTE, END_OF_FILE.
+
+Note that some tokens are trivial---they correspond to only one possible
+string (ATTRIBUTE, LCURLY)---while other tokens are non-trivial and
+correspond to multiple possible strings (INTVAL, BINOP).
 
 The list of tokens should use a suitable list or array data structure
 in your compiler implementation language. For example, in C++ it might be:
@@ -33,16 +42,9 @@ where `tok` is an enumerated type, `line` is the line number of the
 input file where the lexeme was found, and `text` is the lexeme
 itself. Note that the `line` field is not required in your lexer, but
 retaining this kind of information will be very helpful in producing
-better error messages for users of your compiler (mainly you). It
-would also be easy and helpfiul to record that character position on
-its line where each token starts, but again this is not required.
-
-The full list of tokens you should support is: 
-NEWLINE, INTVAL, FLOATVAL, VAR, ARRAY, SUM, IF, THEN,
-ELSE, LET, RETURN, ASSERT, READ, WRITE, TO, PRINT, SHOW,
-TIME, FN, FLOAT3, FLOAT4, COLON, LCURLY, RCURLY, LPAREN,
-RPAREN, STRING, COMMA, LSQUARE, RSQUARE, EQUALS, BINOP,
-BOOLNOT, ERROR, ATTRIBUTE, END_OF_FILE.
+better error messages for users of your compiler (mainly you). You
+might also want to record the character position within the line
+where each token starts, but again this is not required.
 
 Lexer requirements:
 
@@ -60,8 +62,12 @@ Lexer requirements:
   be collapsed into a single NEWLINE token. The list of tokens
   produced by your lexer must never contain more than one consecutive
   NEWLINE token.
+  
+- Line continuations (backslash at the end of a line) likewise do not
+  correspond to tokens. The lexer should just take them into account
+  when handling whitespace.
 
-- Comments do not turn into tokens, they are simply eaten by the
+- Comments also do not turn into tokens, they are simply eaten by the
   lexer. Be particularly careful to avoid emitting multiple
   consecutive NEWLINE tokens in the presence of comments in the input.
 
@@ -76,9 +82,10 @@ Lexer requirements:
 
 - The "lex-only" mode of your compiler that is triggered by the `-l`
   command line flag should dump tokens, one per line, in a format like
-  the one shown here. We are providing you with a test script that
-  checks your output against ours, so it is important that you match
-  this output format exactly.
+  the one shown here. Note that you must not print the content of NEWLINE
+  tokens, but must print the content for all other tokens types. We are
+  providing you with a test script that checks your output against ours,
+  so it is important that you match this output format exactly.
 
 ```
 regehr@home:~/compiler-class/jdr/build$ cat tiny.jpl 
@@ -125,15 +132,23 @@ regehr@home:~/compiler-class/jdr/build$
 
 JPL has both trivial and non-trivial lexemes. A trivial lexeme, such
 as `>=`, matches only a single string, whereas a non-trivial lexeme
-matches more than one string. For every non-trivial lexeme in JPL,
-write a regular expression that precisely matches this lexeme. A
-precise match means that your regular expression accepts all valid
-instances of the lexeme and rejects all other strings.
+matches more than one string. List all non-trivial lexemes.
+
+For every non-trivial lexeme in JPL, write a regular expression
+that precisely matches this lexeme. A precise match means that your
+regular expression accepts all valid instances of the lexeme and
+rejects all other strings.
+
+Write a regular expression that matches valid JPL whitespace. Recall
+that whitespace is not a token type---it separates tokens and is
+consumed by the lexer.
+
+Write a regular expression that matches comments. Recall that,
+like whitespace, comments aren't a token type.
 
 Be especially careful that your regular expressions reject illegal
-ASCII characters! This syntax `[\x00-\x7F]` can be used to refer to
+ASCII characters! The syntax `[\x00-\x7F]` can be used to refer to
 specific ASCII values.
-
 
 Your regular expressions should follow the POSIX extended regular
 expression format as described
@@ -149,7 +164,7 @@ able to run it on a CADE lab Linux machine by going to the top-level
 directory of your repo and typing this:
 
 ```
-make run input.jpl
+make run TEST=input.jpl
 ```
 
 Here `input.jpl` is a file that we will supply.
