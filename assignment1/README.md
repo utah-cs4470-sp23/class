@@ -9,11 +9,40 @@ is to turn an arbitrary file into one of:
 The criteria for tokenization are found in the [lexical
 syntax](https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#lexical-syntax)
 part of the JPL specification. The full list of tokens you should support is: 
-NEWLINE, INTVAL, FLOATVAL, VAR, ARRAY, SUM, IF, THEN,
-ELSE, LET, RETURN, ASSERT, READ, WRITE, TO, PRINT, SHOW,
-TIME, FN, FLOAT3, FLOAT4, COLON, LCURLY, RCURLY, LPAREN,
-RPAREN, STRING, COMMA, LSQUARE, RSQUARE, EQUALS, BINOP,
-BOOLNOT, ERROR, ATTRIBUTE, END_OF_FILE.
+NEWLINE
+INTVAL,
+FLOATVAL,
+VAR,
+ARRAY,
+SUM,
+IF,
+THEN,
+ELSE,
+LET,
+RETURN,
+ASSERT,
+READ,
+WRITE,
+TO,
+PRINT,
+SHOW,
+TIME,
+FN,
+COLON,
+LCURLY,
+RCURLY,
+LPAREN,
+RPAREN,
+STRING,
+COMMA,
+LSQUARE,
+RSQUARE,
+EQUALS,
+BINOP,
+BOOLNOT,
+ERROR,
+ATTRIBUTE, and
+END_OF_FILE.
 
 Note that some tokens are trivial---they correspond to only one possible
 string (ATTRIBUTE, LCURLY)---while other tokens are non-trivial and
