@@ -1,0 +1,4 @@
+// ERROR
+
+let z = 3.3
+assert !!!z, "hello!"

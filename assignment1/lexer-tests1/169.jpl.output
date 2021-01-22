@@ -1,0 +1,52 @@
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+LPAREN '('
+FLOATVAL '1.0'
+RPAREN ')'
+NEWLINE
+FN 'fn'
+VARIABLE 'f'
+LPAREN '('
+VARIABLE 'z'
+COLON ':'
+VARIABLE 'float'
+RPAREN ')'
+COLON ':'
+VARIABLE 'float'
+LCURLY '{'
+NEWLINE
+LET 'let'
+VARIABLE 'y'
+EQUALS '='
+LPAREN '('
+LPAREN '('
+LPAREN '('
+LPAREN '('
+VARIABLE 'z'
+RPAREN ')'
+RPAREN ')'
+RPAREN ')'
+RPAREN ')'
+NEWLINE
+RETURN 'return'
+VARIABLE 'y'
+NEWLINE
+RCURLY '}'
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+LPAREN '('
+LPAREN '('
+FLOATVAL '2.0'
+RPAREN ')'
+RPAREN ')'
+NEWLINE
+SHOW 'show'
+VARIABLE 'f'
+LPAREN '('
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

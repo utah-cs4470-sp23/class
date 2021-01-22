@@ -1,0 +1,16 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+ARRAY 'array'
+LSQUARE '['
+RSQUARE ']'
+FLOATVAL '7.243'
+NEWLINE
+SHOW 'show'
+FLOATVAL '3.3'
+BINOP '-'
+VARIABLE 'x'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

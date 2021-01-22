@@ -1,0 +1,22 @@
+NEWLINE
+FN 'fn'
+VARIABLE 'a'
+LPAREN '('
+VARIABLE 'b'
+LSQUARE '['
+VARIABLE 'c'
+RSQUARE ']'
+COLON ':'
+VARIABLE 'float'
+RPAREN ')'
+COLON ':'
+VARIABLE 'float'
+LCURLY '{'
+NEWLINE
+RETURN 'return'
+FLOATVAL '1.0'
+NEWLINE
+RCURLY '}'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

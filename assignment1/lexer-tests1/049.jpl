@@ -1,0 +1,14 @@
+// ERROR
+
+let M = 5
+let N = 7
+let O = 9
+
+let a = array[i : N, j : M, k : O] float(i+j+k)
+
+fn f(a : float[,,]) : float {
+   return a[3,2,2]
+}
+
+show a
+show f(a)

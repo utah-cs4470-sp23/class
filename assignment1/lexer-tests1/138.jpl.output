@@ -1,0 +1,11 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+INTVAL '12'
+NEWLINE
+ATTRIBUTE 'attribute'
+VARIABLE 'a'
+RCURLY '}'
+END_OF_FILE
+Compilation succeeded

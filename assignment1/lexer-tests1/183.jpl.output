@@ -1,0 +1,8 @@
+LET 'let'
+VARIABLE 'i'
+EQUALS '='
+LSQUARE '['
+RSQUARE ']'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

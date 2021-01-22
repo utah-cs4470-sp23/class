@@ -1,0 +1,21 @@
+NEWLINE
+LET 'let'
+VARIABLE 'a'
+EQUALS '='
+INTVAL '7'
+NEWLINE
+SHOW 'show'
+VARIABLE 'a'
+NEWLINE
+LET 'let'
+VARIABLE 'b'
+LSQUARE '['
+RSQUARE ']'
+EQUALS '='
+VARIABLE 'a'
+NEWLINE
+SHOW 'show'
+VARIABLE 'b'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

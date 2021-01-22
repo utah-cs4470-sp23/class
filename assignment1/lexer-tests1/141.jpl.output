@@ -1,0 +1,10 @@
+NEWLINE
+SHOW 'show'
+LSQUARE '['
+INTVAL '3'
+COMMA ','
+INTVAL '6'
+RSQUARE ']'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,17 @@
+NEWLINE
+SHOW 'show'
+VARIABLE 'int'
+LPAREN '('
+FLOATVAL '3.3'
+RPAREN ')'
+BINOP '+'
+VARIABLE 'int'
+LPAREN '('
+VARIABLE 'float'
+LPAREN '('
+INTVAL '10'
+RPAREN ')'
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,6 @@
+// ERROR
+
+let a = 8
+
+fn d(e[a, b] : float[,]) : {} {
+}

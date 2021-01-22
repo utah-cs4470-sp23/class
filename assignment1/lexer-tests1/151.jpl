@@ -1,0 +1,8 @@
+// ERROR
+
+fn gradient(i : int, j : int, W : int, H : int) : float
+  let j = 22
+  return 0.25 + j
+}
+
+show gradient(0, 0, 22, 0)

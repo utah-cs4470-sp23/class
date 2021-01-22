@@ -1,0 +1,15 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+INTVAL '1'
+NEWLINE
+LET 'let'
+VARIABLE 'y'
+EQUALS '='
+INTVAL '1'
+BINOP '+'
+VARIABLE 'x'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

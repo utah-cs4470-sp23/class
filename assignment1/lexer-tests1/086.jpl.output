@@ -1,0 +1,23 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+LCURLY '{'
+INTVAL '1'
+COMMA ','
+INTVAL '2'
+COMMA ','
+VARIABLE 'false'
+COMMA ','
+FLOATVAL '3.3'
+RCURLY '}'
+NEWLINE
+LET 'let'
+VARIABLE 'y'
+EQUALS '='
+INTVAL '1'
+BINOP '+'
+VARIABLE 'x'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

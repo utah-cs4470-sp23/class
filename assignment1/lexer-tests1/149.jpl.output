@@ -1,0 +1,21 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+LSQUARE '['
+INTVAL '6'
+LSQUARE '['
+INTVAL '3'
+COMMA ','
+INTVAL '3'
+BINOP '+'
+INTVAL '5'
+COMMA ','
+INTVAL '6'
+COMMA ','
+INTVAL '6'
+RSQUARE ']'
+RSQUARE ']'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

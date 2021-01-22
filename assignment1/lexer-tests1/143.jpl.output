@@ -1,0 +1,33 @@
+NEWLINE
+READ 'read'
+VARIABLE 'video'
+STRING '"blarg"'
+TO 'to'
+VARIABLE 'x'
+LSQUARE '['
+VARIABLE 't'
+RSQUARE ']'
+NEWLINE
+LET 'let'
+VARIABLE 'y'
+LSQUARE '['
+VARIABLE 'w'
+RSQUARE ']'
+EQUALS '='
+VARIABLE 'x'
+NEWLINE
+LET 'let'
+VARIABLE 'a'
+LSQUARE '['
+VARIABLE 'w'
+RSQUARE ']'
+LSQUARE '['
+VARIABLE 'i'
+COMMA ','
+VARIABLE 'h'
+RSQUARE ']'
+EQUALS '='
+VARIABLE 'x'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

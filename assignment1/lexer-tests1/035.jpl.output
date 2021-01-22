@@ -1,0 +1,10 @@
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'argnum'
+BINOP '>='
+INTVAL '1'
+COMMA ','
+STRING '"Please pass an argument"'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

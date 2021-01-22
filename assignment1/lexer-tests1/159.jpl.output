@@ -1,0 +1,45 @@
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+INTVAL '1'
+NEWLINE
+FN 'fn'
+VARIABLE 'f'
+LPAREN '('
+RPAREN ')'
+COLON ':'
+VARIABLE 'int'
+LCURLY '{'
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'y'
+COMMA ','
+STRING '"hello"'
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'z'
+COMMA ','
+STRING '"world"'
+NEWLINE
+RETURN 'return'
+VARIABLE 'x'
+NEWLINE
+RCURLY '}'
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+INTVAL '2'
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'z'
+COMMA ','
+STRING '"yo what"'
+NEWLINE
+SHOW 'show'
+VARIABLE 'f'
+LPAREN '('
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

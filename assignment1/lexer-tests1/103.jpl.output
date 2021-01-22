@@ -1,0 +1,28 @@
+NEWLINE
+LET 'let'
+VARIABLE 'z'
+EQUALS '='
+LCURLY '{'
+INTVAL '1'
+COMMA ','
+INTVAL '2'
+COMMA ','
+VARIABLE 'false'
+COMMA ','
+INTVAL '4'
+COMMA ','
+INTVAL '5'
+COMMA ','
+VARIABLE 'true'
+RCURLY '}'
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'z'
+LCURLY '{'
+INTVAL '6'
+RCURLY '}'
+COMMA ','
+STRING '"hello!"'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,17 @@
+NEWLINE
+LET 'let'
+VARIABLE 'N'
+EQUALS '='
+INTVAL '33'
+NEWLINE
+SHOW 'show'
+SUM 'sum'
+LSQUARE '['
+VARIABLE 'y'
+COLON ':'
+VARIABLE 'N'
+RSQUARE ']'
+FLOATVAL '4.3'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,3 @@
+// ERROR
+
+write vdeo "photo.png" to photo_image[W, H]

@@ -1,0 +1,56 @@
+/* Example 4: A basic edge detector for grayscale images. */
+
+fn clamp(i : int, min : int, max : int) : int {
+  assert min <= max, "clamp called with empty range"
+  return ( \
+    if i < min then min else \
+    if i > max then max else \
+    i \
+  )
+}
+
+fn conv1d(k[M] : float[], a[N] : float[]) : float[] {
+  assert M % 2 == 1, "conv1d called with even length kernel"
+  let m = M / 2
+  return array[i : N] ( \
+    sum[j : M] ( \
+      /* by using clamp here, we are "extending" the boundary pixels of `a` */ \
+      k[j] * a[clamp(i - m + j, 0, N - 1)] \
+    ) \
+  )
+}
+
+fn conv1by2_row(k[M] : float[], a[N, K] : float[,]) : float[,] {
+  let out = array[i : N] conv1d(k, array[j : K] a[i, j])
+  return array[i : N, j : K] out[i][j]
+}
+
+fn transpose(a[M, N] : float[,]) : float[,] {
+  return array[j : N, i : M] a[i, j]
+}
+
+fn conv1by2_col(k[M] : float[], a[N, K] : float[,]) : float[,] {
+  return transpose(conv1by2_row(k, transpose(a)))
+}
+
+/* https://en.wikipedia.org/wiki/Sobel_operator */
+fn sobel_edge_detector(a[N, M] : float[,]) : float[,] {
+  let Gx_1r = [1.0, 0.0, -1.0]
+  let Gx_2c = [1.0, 2.0, 1.0]
+  let Gy_1r = [1.0, 2.0, 1.0]
+  let Gy_2c = [1.0, 0.0, -1.0]
+
+  let Gx = conv1by2_col(Gx_2c, conv1by2_row(Gx_1r, a))
+  let Gy = conv1by2_col(Gy_2c, conv1by2_row(Gy_1r, a))
+  return array [i : N, j : M] \
+    sqrt(Gx[i,j] * Gx[i,j] + Gy[i,j] * Gy[i,j])
+}
+
+read image "photo.png" to photo_image[W, H]
+// assume the input is grayscale, so R = G = B
+// project out the G (which will give good best-effort results on non-grayscale images)
+let green = array[i : W, j : H] photo_image[i,j]{1}
+let green_edges = sobel_edge_detector(green)
+let gray_edges = array[i : W, j : H] \
+  {green_edges[i,j], green_edges[i,j], green_edges[i,j], 1.0}
+write image gray_edges to "photo_edges.png"

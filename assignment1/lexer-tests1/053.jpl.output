@@ -1,0 +1,16 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+ARRAY 'array'
+LSQUARE '['
+RSQUARE ']'
+INTVAL '1'
+NEWLINE
+SHOW 'show'
+INTVAL '1'
+BINOP '-'
+VARIABLE 'x'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

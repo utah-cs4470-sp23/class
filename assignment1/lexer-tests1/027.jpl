@@ -1,0 +1,10 @@
+// ERROR
+
+let z = 3
+
+fn f() : int {
+   let z = 1
+   return 4
+}
+
+show f()

@@ -1,0 +1,13 @@
+// ERROR
+
+let M = 5
+let N = 7
+
+let a = array[i : N] array[j : M] float(i+j)
+
+fn f(a : float[][]) : float {
+   return a[3][2]
+}
+
+show a
+show f(a)

@@ -1,0 +1,6 @@
+// ERROR
+
+let a = array[x : 10, y : 10, z :  10] x + y + z
+show a
+let b[i, j, k, l] = a
+show l

@@ -1,0 +1,19 @@
+NEWLINE
+LET 'let'
+VARIABLE 'x'
+EQUALS '='
+VARIABLE 'float'
+LPAREN '('
+INTVAL '3'
+RPAREN ')'
+NEWLINE
+LET 'let'
+VARIABLE 'y'
+EQUALS '='
+VARIABLE 'int'
+LPAREN '('
+FLOATVAL '3.32'
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

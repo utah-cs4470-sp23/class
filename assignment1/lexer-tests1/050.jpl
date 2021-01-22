@@ -1,0 +1,3 @@
+// ERROR
+
+assert BLARG, "hello!"

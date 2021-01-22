@@ -1,0 +1,8 @@
+NEWLINE
+RETURN 'return'
+LCURLY '{'
+INTVAL '3'
+RCURLY '}'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

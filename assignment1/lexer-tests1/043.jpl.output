@@ -1,0 +1,8 @@
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'true'
+COMMA ','
+STRING '"hello!"'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

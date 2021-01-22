@@ -1,0 +1,8 @@
+NEWLINE
+ASSERT 'assert'
+INTVAL '-4'
+COMMA ','
+STRING '"hello!"'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

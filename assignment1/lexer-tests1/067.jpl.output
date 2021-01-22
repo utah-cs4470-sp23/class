@@ -1,0 +1,23 @@
+NEWLINE
+FN 'fn'
+VARIABLE 'test'
+LPAREN '('
+RPAREN ')'
+COLON ':'
+LCURLY '{'
+RCURLY '}'
+LCURLY '{'
+NEWLINE
+RETURN 'return'
+LCURLY '{'
+RCURLY '}'
+NEWLINE
+RCURLY '}'
+NEWLINE
+SHOW 'show'
+VARIABLE 'test'
+LPAREN '('
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

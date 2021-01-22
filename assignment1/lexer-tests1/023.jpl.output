@@ -1,0 +1,26 @@
+NEWLINE
+SHOW 'show'
+LSQUARE '['
+LSQUARE '['
+INTVAL '2'
+RSQUARE ']'
+COMMA ','
+LSQUARE '['
+INTVAL '3'
+COMMA ','
+INTVAL '3'
+COMMA ','
+INTVAL '5'
+COMMA ','
+INTVAL '6'
+COMMA ','
+INTVAL '6'
+RSQUARE ']'
+COMMA ','
+LSQUARE '['
+INTVAL '5'
+RSQUARE ']'
+RSQUARE ']'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

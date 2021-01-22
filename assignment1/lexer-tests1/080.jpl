@@ -1,0 +1,7 @@
+// OK
+
+fn inc(i : int) : int {
+   return 1 + i
+}
+
+show inc(76)

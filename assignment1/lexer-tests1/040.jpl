@@ -1,0 +1,9 @@
+// OK
+
+let z = 3
+
+fn f() : int {
+   return 4
+}
+
+show f()

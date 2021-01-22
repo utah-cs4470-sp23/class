@@ -1,0 +1,37 @@
+NEWLINE
+READ 'read'
+VARIABLE 'image'
+STRING '"blarg"'
+TO 'to'
+VARIABLE 'x'
+NEWLINE
+LET 'let'
+VARIABLE 'y'
+LSQUARE '['
+VARIABLE 'w'
+COMMA ','
+VARIABLE 'h'
+RSQUARE ']'
+EQUALS '='
+VARIABLE 'x'
+NEWLINE
+LET 'let'
+VARIABLE 'red'
+EQUALS '='
+VARIABLE 'x'
+LSQUARE '['
+INTVAL '3'
+COMMA ','
+INTVAL '5'
+RSQUARE ']'
+LCURLY '{'
+INTVAL '0'
+RCURLY '}'
+NEWLINE
+SHOW 'show'
+VARIABLE 'red'
+BINOP '+'
+FLOATVAL '1.0'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

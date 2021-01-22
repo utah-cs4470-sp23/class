@@ -1,0 +1,14 @@
+NEWLINE
+READ 'read'
+VARIABLE 'image'
+STRING '"photo.png"'
+TO 'to'
+VARIABLE 'photo_image'
+LSQUARE '['
+VARIABLE 'W'
+COMMA ','
+VARIABLE 'H'
+RSQUARE ']'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,31 @@
+NEWLINE
+FN 'fn'
+VARIABLE 'f'
+LPAREN '('
+VARIABLE 'x'
+COLON ':'
+VARIABLE 'int'
+LSQUARE '['
+RSQUARE ']'
+RPAREN ')'
+COLON ':'
+LCURLY '{'
+RCURLY '}'
+LCURLY '{'
+NEWLINE
+RCURLY '}'
+NEWLINE
+LET 'let'
+VARIABLE 'a'
+EQUALS '='
+LSQUARE '['
+RSQUARE ']'
+NEWLINE
+SHOW 'show'
+VARIABLE 'f'
+LPAREN '('
+VARIABLE 'a'
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,29 @@
+fn cube1(n : int) : int {
+   let a = array[i:n,j:n,k:n] 1
+   return sum[i:n,j:n,k:n] a[i,j,k]
+}
+
+fn cube2(n : int) : int {
+   let x = array[a:n] array[b:n] array[c:n] 1
+   return sum[a:n] sum[b:n] sum[c:n] x[a][b][c]
+}
+
+fn cube(n : int) : int {
+   let a = cube1(n)
+   let b = cube2(n)
+   assert a == b, "just checking!!!!"
+   return a
+}
+
+show cube(0)
+show cube(1)
+show cube(2)
+show cube(3)
+show cube(4)
+show cube(5)
+show cube(6)
+show cube(7)
+show cube(8)
+show cube(9)
+show cube(10)
+show cube(11)

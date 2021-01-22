@@ -183,7 +183,9 @@ cases that we have not given you, but we are not doing that yet.)
 The first script, `test-lexer1` compares the output of your compiler,
 in lexer mode, against a reference lexer. It complains if your output
 does not exactly match the reference output. It uses the `-l` flag
-mentioned in the JPL specification. Run it like this:
+mentioned in the JPL specification. Run it like this, but instead of
+`../jdr/build/jplc` you should specify the location of your compiler
+executable:
 
 ```
 Johns-MacBook-Pro:tests johnregehr$ ./test-lexer1 ../jdr/build/jplc 
@@ -199,7 +201,7 @@ Johns-MacBook-Pro:tests johnregehr$ ./test-lexer1 ../jdr/build/jplc
   FN 'fn'
   VARIABLE 'a'
   LPAREN '('
-! VARIABLE 'b'
+! VARIABLE 'b '
   LSQUARE '['
   VARIABLE 'c'
   RSQUARE ']'
@@ -207,7 +209,7 @@ Johns-MacBook-Pro:tests johnregehr$ ./test-lexer1 ../jdr/build/jplc
   FN 'fn'
   VARIABLE 'a'
   LPAREN '('
-! VARIABLE 'b '
+! VARIABLE 'b'
   LSQUARE '['
   VARIABLE 'c'
   RSQUARE ']'
@@ -217,10 +219,16 @@ Johns-MacBook-Pro:tests johnregehr$
 In this example run, the output of my lexer matched the reference
 output for `000.jpl` through `003.jpl` but then did not match for
 `004.jpl`. The difference is shown with the correct output first and
-your output second.  In this case the bug is that the lexer
+your output second.  In this case the bug is that my lexer
 accidentally captured an extra space character after the text for the
 variable `b`. You should fix any bugs found by this lexer test before
-this assignment is due.  The expected outputs are all
+this assignment is due. The lexer inputs and expected outputs are all
+there for you to look at, the test script simply provides convenient
+automation.
 
-The second test script
+Run the second test script, `test-lexer2`, the same way. This one does
+not look at the actual lexer output, but rather simply checks if
+lexing succeeds (because the input can be lexed) or fails (because the
+input does not meet the requirements for lexing that are described in
+the JPL specification).
 

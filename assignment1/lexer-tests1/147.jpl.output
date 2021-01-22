@@ -1,0 +1,18 @@
+NEWLINE
+RETURN 'return'
+VARIABLE 'float'
+LPAREN '('
+VARIABLE 'i'
+BINOP '+'
+VARIABLE 'j'
+RPAREN ')'
+BINOP '/'
+VARIABLE 'float'
+LPAREN '('
+VARIABLE 'W'
+BINOP '+'
+VARIABLE 'H'
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

@@ -1,0 +1,17 @@
+NEWLINE
+LET 'let'
+VARIABLE 'a'
+EQUALS '='
+ARRAY 'array'
+LSQUARE '['
+VARIABLE 'x'
+COLON ':'
+INTVAL '10'
+RSQUARE ']'
+VARIABLE 'x'
+NEWLINE
+SHOW 'show'
+VARIABLE 'a'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

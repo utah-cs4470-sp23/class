@@ -1,0 +1,16 @@
+NEWLINE
+LET 'let'
+VARIABLE 'z'
+EQUALS '='
+FLOATVAL '3.3'
+NEWLINE
+ASSERT 'assert'
+BOOLNOT '!'
+BOOLNOT '!'
+BOOLNOT '!'
+VARIABLE 'z'
+COMMA ','
+STRING '"hello!"'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

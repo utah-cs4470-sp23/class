@@ -1,0 +1,13 @@
+NEWLINE
+LET 'let'
+VARIABLE 'blarg'
+EQUALS '='
+FLOATVAL '3.333'
+NEWLINE
+SHOW 'show'
+VARIABLE 'blarg'
+LPAREN '('
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

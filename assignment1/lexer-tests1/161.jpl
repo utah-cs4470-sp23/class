@@ -1,0 +1,7 @@
+let x = 1
+fn f() : int {
+  let y = x
+  return y
+}
+let x = 2
+show f()

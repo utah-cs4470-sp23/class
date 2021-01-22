@@ -1,0 +1,17 @@
+LET 'let'
+VARIABLE 'args2'
+LSQUARE '['
+VARIABLE 'argnum2'
+RSQUARE ']'
+EQUALS '='
+VARIABLE 'args'
+NEWLINE
+ASSERT 'assert'
+VARIABLE 'argnum2'
+BINOP '=='
+VARIABLE 'argnum'
+COMMA ','
+STRING '"argnum must be length of args array"'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

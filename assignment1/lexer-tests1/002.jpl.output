@@ -1,0 +1,18 @@
+NEWLINE
+LET 'let'
+LCURLY '{'
+VARIABLE 'W'
+COMMA ','
+VARIABLE 'H'
+COMMA ','
+VARIABLE 'D'
+RCURLY '}'
+EQUALS '='
+LCURLY '{'
+INTVAL '800'
+COMMA ','
+INTVAL '600'
+RCURLY '}'
+NEWLINE
+END_OF_FILE
+Compilation succeeded

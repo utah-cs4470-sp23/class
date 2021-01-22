@@ -1,0 +1,8 @@
+// ERROR
+
+fn prime(n : int) : bool {
+   let a = array[i:n] if ((i) && (n)) then (if ((n % i) == 0) then 1 else 0) else 0
+   return (sum[i:n] a[i]) == 0
+}
+
+show prime(2)

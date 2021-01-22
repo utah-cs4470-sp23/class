@@ -1,0 +1,8 @@
+NEWLINE
+SHOW 'show'
+VARIABLE 'blarg'
+LPAREN '('
+RPAREN ')'
+NEWLINE
+END_OF_FILE
+Compilation succeeded
