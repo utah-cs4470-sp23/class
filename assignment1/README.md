@@ -177,9 +177,13 @@ Be especially careful that your regular expressions reject illegal
 ASCII characters! The syntax `[\x00-\x7F]` can be used to refer to
 specific ASCII values.
 
-Your regular expressions should follow the POSIX extended regular
-expression format as described
-(here)[https://en.wikipedia.org/wiki/Regular_expression].
+Your regular expressions should follow the regular expression syntax
+from your chosen programming language:
+- [C++](http://www.cplusplus.com/reference/regex/ECMAScript/)
+- [Java](https://docs.oracle.com/javase/tutorial/essential/regex/)
+- [Python](https://docs.python.org/3/library/re.html)
+
+There's also some good info [here](https://en.wikipedia.org/wiki/Regular_expression)..
 
 Place these regular expressions into an ASCII text file called
 `assignment1.txt` which must live in the root directory of your repo.
