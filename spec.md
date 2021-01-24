@@ -321,8 +321,8 @@ and are the only way side effects occur. Commands deal largely with
 input and output.
 
 PNG images and MP4 videos are the main input/output format. PNG files
-read as `float4[W,H]` (in the RGBA color space) and MP4 as
-`float3[W,H][T]` (in the RGB color space). Color values should be
+read as `float4[H,W]` (in the RGBA color space) and MP4 as
+`float3[T,H,W]` (in the RGB color space). Color values should be
 between 0.0 and 1.0. Values below 0.0 are clipped to 0.0 and values
 above 1.0 are clipped to 1.0. Infinities, NaN, and negative zero map
 to 0.0.
