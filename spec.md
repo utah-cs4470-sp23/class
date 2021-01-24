@@ -6,7 +6,8 @@ Lexical Syntax
 
 Every byte of a valid JPL program has integer value 10 or 32-126
 inclusive. Note that this means that space (32) and newline (10) are
-the only valid whitespace characters (tabs are illegal).
+the only valid whitespace characters (tabs are illegal, and only Unix
+newlines are allowed).
 
 Integer literals are an optional sign (plus or minus) and a non-empty
 sequence of digits. An integer literal that does not map to a 64-bit
