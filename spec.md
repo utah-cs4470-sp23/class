@@ -67,8 +67,8 @@ allowed.
 
 # Type Syntax
 
-The base types are Booleans, 64-bit integers, and 32-bit floats, of
-which you can form arrays and tuples:
+The base types are Booleans, 64-bit signed integers, and 32-bit
+floats, of which you can form arrays and tuples:
 
 ```
 type : int
@@ -134,7 +134,9 @@ Parentheses can be used to override precedence:
 expr : ( <expr> )
 ```
 
-Mathematical operators, which apply to integers and floats only:
+Mathematical operators, which expect both operands to have the same
+type (either integer or float) and yield a result of the same type
+as the input:
 
 ```
 expr : <expr> + <expr>
@@ -147,7 +149,7 @@ expr : <expr> + <expr>
 
 Precedence is described below. Within a precedence class, evaluation
 is left to right. Integer overflows wrap around in two's complement
-fashion. There are not unsigned types or operators.
+fashion. There are no unsigned types or operators.
 
 Keep in mind that a number of interesting floating point values exist,
 such as -0, inf, and NaN. Operations on these values should follow
