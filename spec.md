@@ -9,26 +9,26 @@ inclusive. Note that this means that space (32) and newline (10) are
 the only valid whitespace characters (tabs are illegal, and only Unix
 newlines are allowed).
 
-Integer literals are an optional sign (plus or minus) and a non-empty
-sequence of digits. An integer literal that does not map to a 64-bit
-two's complement value (e.g. 9999999999999999999999) is a compile-time
-error; in other words the minimum integer value is `-2^63` and the
-maximum integer value is `2^63 - 1`.
+An integer literal is a sequence of one or more digits. An integer
+literal that does not map to a 64-bit two's complement value
+(e.g. 9999999999999999999999) is a compile-time error; in other words
+the minimum integer value is `-2^63` and the maximum integer value is
+`2^63 - 1`.
 
-Float literals are an optional sign (plus or minus), a sequence of
-digits, a dot, and another sequence of digits; one of the two
-sequences must be non-empty. Scientific notation is not supported.
-Literals mapping to infinity are not supported. Negative zero is. Do
-not write your own code to convert float syntax to float values. It is
-much harder and subtler than you think! Use the C library function
-`strtof` or its binding in your language of choice (ex. Python's
-`float`) to perform the conversion. If this conversion is error-free,
-then the literal is legal, otherwise the JPL compiler must signal a
-compile-time error.
+A float literal is a sequence of digits, a dot, and another sequence
+of digits; one of the two sequences must be non-empty. The dot is
+requird. Scientific notation is not supported. Literals mapping to
+infinity are not supported. Do not write your own code to convert
+float syntax to float values. It is much harder and subtler than you
+probably think! Use the C library function `strtof` or its binding in
+your language of choice (ex. Python's `float`) to perform the
+conversion. If this conversion is error-free, then the literal is
+legal, otherwise the JPL compiler must signal a compile-time error.
 
 Strings are a double quote, any sequence of legal characters except
 double quote and newline, and then another double quote. Character
 escapes like `\n` aren't supported (you're not going to need them).
+Multi-line string literals are not supported.
 
 Variables are a letter (upper case A-Z or lower case a-z) followed by
 any number of letters or digits, underscores, or dots, *except* when
@@ -46,7 +46,7 @@ escapes. Line comments are a `//`, followed by any sequence of
 non-newline characters, followed by but not including a newline or end
 of file. Block comments are a `/*`, followed by any sequence of
 characters not including `*/`, followed by `*/`). Newline escapes are
-a backslash followed by a newline.
+a backslash followed immediately by a newline.
 
 Syntax
 ------
@@ -142,11 +142,12 @@ expr : <expr> + <expr>
      | <expr> * <expr>
      | <expr> / <expr>
      | <expr> % <expr>
+     | - <expr>
 ```
 
-The multiplicative operators have higher precedence than the additive
-ones. Within a precedence class, evaluation is left to right. Integer
-overflows wrap around in two's complement fashion.
+Precedence is described below. Within a precedence class, evaluation
+is left to right. Integer overflows wrap around in two's complement
+fashion. There are not unsigned types or operators.
 
 Keep in mind that a number of interesting floating point values exist,
 such as -0, inf, and NaN. Operations on these values should follow
@@ -162,7 +163,8 @@ language's equivalent.[1]
     side and return `NaN` instead of throwing an exception.
 
 
-Comparisons, which yield Booleans:
+Comparisons, which take either two integer subexpressions or two
+float subexpressions, and yield Booleans:
 
 ```
 expr : <expr> < <expr>
@@ -226,8 +228,8 @@ Precedence is necessary to disambiguate certain constructs. The
 binding strength is:
 
 - Postfix `[]` and `{}` have the highest precedence
-- Prefix `!` has the next-highest precedence
-- Multiplicative operators `*`, `/`, and `%` have second highest
+- Prefix `!` and `-` have the next-highest precedence
+- Multiplicative operators `*`, `/`, and `%` have third highest
 - Additive operators `+` and `-` are next
 - Comparisons `<`, `>`, `<=`, `>=`, `==`, and `!=` are next
 - Boolean operators `&&` and `||` are next
@@ -596,13 +598,13 @@ A JPL implementation could implement error checks by inserting
 assertions into the program as it is being compiled. For example, a
 function like this:
 
-    fn example(i : int, j : int) {
+    fn example(i : int, j : int) : int {
       return i / j
     }
 
 can be transformed into:
 
-    fn example(i : int, j : int) {
+    fn example(i : int, j : int) : int {
         assert j != 0, "Error (example.jpl:2): Division by zero"
         return i / j
     }
