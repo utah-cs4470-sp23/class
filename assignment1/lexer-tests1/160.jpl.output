@@ -149,7 +149,7 @@ RPAREN ')'
 NEWLINE
 ASSERT 'assert'
 VARIABLE 'a'
-BINOP '=='
+OP '=='
 VARIABLE 'b'
 COMMA ','
 STRING '"just checking!!!!"'

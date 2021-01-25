@@ -8,7 +8,7 @@ LET 'let'
 VARIABLE 'y'
 EQUALS '='
 INTVAL '1'
-BINOP '+'
+OP '+'
 VARIABLE 'x'
 NEWLINE
 END_OF_FILE

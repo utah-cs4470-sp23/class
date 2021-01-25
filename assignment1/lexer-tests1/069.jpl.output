@@ -25,7 +25,7 @@ RSQUARE ']'
 VARIABLE 'float'
 LPAREN '('
 VARIABLE 'i'
-BINOP '+'
+OP '+'
 VARIABLE 'j'
 RPAREN ')'
 NEWLINE

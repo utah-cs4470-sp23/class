@@ -1,7 +1,7 @@
 NEWLINE
 ASSERT 'assert'
 VARIABLE 'argnum'
-BINOP '>='
+OP '>='
 INTVAL '1'
 COMMA ','
 STRING '"Please pass an argument"'

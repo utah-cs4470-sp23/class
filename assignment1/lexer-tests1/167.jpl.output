@@ -8,7 +8,7 @@ VARIABLE 'args'
 NEWLINE
 ASSERT 'assert'
 VARIABLE 'argnum2'
-BINOP '=='
+OP '=='
 VARIABLE 'argnum'
 COMMA ','
 STRING '"argnum must be length of args array"'

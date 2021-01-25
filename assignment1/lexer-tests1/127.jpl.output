@@ -1,6 +1,7 @@
 NEWLINE
 ASSERT 'assert'
-INTVAL '-4'
+OP '-'
+INTVAL '4'
 COMMA ','
 STRING '"hello!"'
 NEWLINE

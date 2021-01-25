@@ -15,7 +15,7 @@ COLON ':'
 INTVAL '10'
 RSQUARE ']'
 VARIABLE 'x'
-BINOP '+'
+OP '+'
 VARIABLE 'y'
 NEWLINE
 SHOW 'show'

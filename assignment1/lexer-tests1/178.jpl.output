@@ -11,7 +11,7 @@ LCURLY '{'
 NEWLINE
 RETURN 'return'
 INTVAL '1'
-BINOP '+'
+OP '+'
 VARIABLE 'n'
 NEWLINE
 RCURLY '}'

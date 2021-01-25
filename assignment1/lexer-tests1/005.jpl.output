@@ -27,7 +27,7 @@ RPAREN ')'
 NEWLINE
 ASSERT 'assert'
 VARIABLE 'N'
-BINOP '=='
+OP '=='
 INTVAL '0'
 COMMA ','
 STRING '"WAT"'

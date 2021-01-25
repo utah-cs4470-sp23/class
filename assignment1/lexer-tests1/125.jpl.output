@@ -22,14 +22,14 @@ VARIABLE 'x'
 NEWLINE
 ASSERT 'assert'
 VARIABLE 'w1'
-BINOP '=='
+OP '=='
 VARIABLE 'w'
 COMMA ','
 STRING '"bla"'
 NEWLINE
 ASSERT 'assert'
 VARIABLE 'h1'
-BINOP '=='
+OP '=='
 VARIABLE 'h'
 COMMA ','
 STRING '"bla2"'
@@ -49,7 +49,7 @@ RCURLY '}'
 NEWLINE
 SHOW 'show'
 VARIABLE 'red'
-BINOP '+'
+OP '+'
 FLOATVAL '1.0'
 NEWLINE
 END_OF_FILE
