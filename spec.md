@@ -17,7 +17,7 @@ the minimum integer value is `-2^63` and the maximum integer value is
 
 A float literal is a sequence of digits, a dot, and another sequence
 of digits; one of the two sequences must be non-empty. The dot is
-requird. Scientific notation is not supported. Literals mapping to
+required. Scientific notation is not supported. Literals mapping to
 infinity are not supported. Do not write your own code to convert
 float syntax to float values. It is much harder and subtler than you
 probably think! Use the C library function `strtof` or its binding in
