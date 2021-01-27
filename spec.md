@@ -67,8 +67,8 @@ allowed.
 
 # Type Syntax
 
-The base types are Booleans, 64-bit signed integers, and 32-bit
-floats, of which you can form arrays and tuples:
+The base types are Booleans, 64-bit signed integers, and 64-bit
+(double precision) floats, of which you can form arrays and tuples:
 
 ```
 type : int
@@ -461,7 +461,7 @@ detected and also a brief description of the problem.
 
 Integers are represented by 64-bit signed integers.
 
-Floats are represented by 32-bit IEEE-754 floating point values.
+Floats are represented by 64-bit IEEE-754 floating point values.
 
 Tuples are laid out contiguously in memory, with all values 32-bit
 aligned.
