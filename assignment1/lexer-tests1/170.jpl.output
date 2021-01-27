@@ -293,6 +293,7 @@ VARIABLE 'mi'
 RPAREN ')'
 OP '+'
 VARIABLE 'mi'
+NEWLINE
 RCURLY '}'
 NEWLINE
 FN 'fn'

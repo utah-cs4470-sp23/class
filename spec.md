@@ -17,7 +17,7 @@ the minimum integer value is `-2^63` and the maximum integer value is
 
 A float literal is a sequence of digits, a dot, and another sequence
 of digits; one of the two sequences must be non-empty. The dot is
-requird. Scientific notation is not supported. Literals mapping to
+required. Scientific notation is not supported. Literals mapping to
 infinity are not supported. Do not write your own code to convert
 float syntax to float values. It is much harder and subtler than you
 probably think! Use the C library function `strtof` or its binding in
@@ -67,8 +67,8 @@ allowed.
 
 # Type Syntax
 
-The base types are Booleans, 64-bit signed integers, and 32-bit
-floats, of which you can form arrays and tuples:
+The base types are Booleans, 64-bit signed integers, and 64-bit
+(double precision) floats, of which you can form arrays and tuples:
 
 ```
 type : int
@@ -294,7 +294,7 @@ in this case the type of the returned expression must match the
 function's return type. A return statement at the top level terminates
 execution of the JPL program. In this case, the returned value must be
 an integer, and it is used as the exit code for the process running
-the JPL program. In the absence of an implicit return statement,
+the JPL program. In the absence of an explicit return statement,
 functions return `{}` (the empty tuple, of type `{}`) and the
 top-level program returns `0`.
 
@@ -461,7 +461,7 @@ detected and also a brief description of the problem.
 
 Integers are represented by 64-bit signed integers.
 
-Floats are represented by 32-bit IEEE-754 floating point values.
+Floats are represented by 64-bit IEEE-754 floating point values.
 
 Tuples are laid out contiguously in memory, with all values 32-bit
 aligned.
