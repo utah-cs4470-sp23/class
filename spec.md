@@ -65,7 +65,7 @@ right parenthesis. Repetition always allows zero repetitions. Each
 comma must be followed by a repetend: a final trailing comma is not
 allowed.
 
-# Type Syntax
+### Type Syntax
 
 The base types are Booleans, 64-bit signed integers, and 32-bit
 floats, of which you can form arrays and tuples:
@@ -93,7 +93,7 @@ rectangular, while the second is not.
 
 JPL does not have any implicit conversions between types.
 
-# Expressions
+### Expressions
 
 The constructors for each basic type, where `true` and `false` are the
 two Boolean values:
@@ -246,7 +246,7 @@ binding strength is:
 >
 >    (array[i : N] (if (! (y[i])) then (0) else (1 + (2 * > (x[i])))))
 
-# Statements
+### Statements
 
 Statements begin with keywords so they cannot be confused with
 expressions. Statements are pure but not total.
@@ -318,7 +318,7 @@ implementations to communicate information between compiler passes.
 All tokens between the attribute keyword and the end of the line are
 considered to be part of the attribute statement.
 
-# Commands
+### Commands
 
 Commands are only available at the top level (not inside functions)
 and are the only way side effects occur. Commands deal largely with
@@ -379,7 +379,7 @@ Function definitions are interpreted in file order, and may not use
 the same name as either another function or a builtin. Recursive calls
 are allowed.
 
-# Arguments, Lvalues, and Bindings
+### Arguments, Lvalues, and Bindings
 
 Binding forms in JPL allow binding a single value, or simultaneously
 binding an array and its dimensions, or simultaneously binding
@@ -457,7 +457,7 @@ array sizes are not part of the type system. Compile-time error
 messages should mention the line number where the problem was first
 detected and also a brief description of the problem.
 
-# Values
+### Values
 
 Integers are represented by 64-bit signed integers.
 
@@ -475,7 +475,7 @@ list of dimension sizes) is copied.
 By splitting array sizes from their data, it makes it easy to
 rematerialize that info.
 
-# Binding
+### Binding
 
 Variable bindings are lexical, meaning that every time a function is
 invoked it introduces a new variable scope.
@@ -534,7 +534,7 @@ The program name itself should not be part of that list or that count.
 >
 > It must print `args = [1, 2, 3, 4]`.
 
-# Errors
+### Errors
 
 At run time, a JPL implementation must detect erroneous conditions. If
 any such condition occurs, the JPL program must be cleanly terminated
@@ -586,7 +586,7 @@ this is not hard because only the top-level commands have I/O effects.
 Elaboration
 -----------
 
-# Short-circuiting
+### Short-circuiting
 
 It is convenient to elaborate short-circuting `&&` and `||` via `if`
 statements:
@@ -594,7 +594,7 @@ statements:
     A && B -> if A then B else false
     A || B -> if A then true else B
 
-# Errors
+### Errors
 
 A JPL implementation could implement error checks by inserting
 assertions into the program as it is being compiled. For example, a
@@ -611,7 +611,7 @@ can be transformed into:
         return i / j
     }
 
-# Arrays
+### Arrays
 
 It's helpful to introduce a type, `data`, for a pointer to data.
 Then an array like `int[,]` can be represented in memory by the tuple
@@ -621,27 +621,31 @@ passed by reference or by value (though `data` should always be passed
 by reference!) and in many cases it won't need to be, since the array
 size going to be computable from other sources.
 
-# Commands
+### Commands
 
 It is convenient to convert commands into calls to builtin functions.
-For example, a JPL could convert the command
+
+Since commands often deal with strings it's convenient to convert
+strings to arrays of integers. For example, in the command
 
 ```
 read image "test.png" to a
 ```
 
-into the statements
+the string `"test.png"` could be converted to the array
 
 ```
-let { filename_length, filename_data } = \
-  [ 116, 101, 115, 116, 46, 112, 110, 103, 0 ]
-let a = read.image(filename_data)
+let filename = [ 116, 101, 115, 116, 46, 112, 110, 103, 0 ]
 ```
 
-Here the array of integers is the string `"test.png"` and the function
-`read.image` (which contains a dot, so is as a compiler internal) has
-type `(data) -> float4[,]`. Note the use of the `data` type described
-above when discussing arrays.
+where a null terminator is inserted for compatibility with C-style
+strings. Then the `read` statement itself might be converted to a call
+to a `read.image` function (note the dot, marking it as a compiler
+internal):
+
+```
+let a = read.image(filename)
+```
 
 Once all commands have been converted to builtin functions, the top
 level contains only statements and can be converted to a function.
