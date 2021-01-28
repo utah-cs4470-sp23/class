@@ -707,14 +707,11 @@ which may occur in any order:
     in this spec; otherwise, the compilation fails.
 
   - `-p`: Perform lexical analysis and parsing only, pretty-printing
-    the parsed program back to ASCII text. In this case, the
-    compilation is considered to be successful if the input program
-    corresponds to the grammar described in this spec; otherwise, the
-    compilation fails. The pretty-printed program is not required to
-    be syntactically identical to the original input program.
-    However, it must be semantically identical. Furthermore, if the
-    pretty-printed program is parsed and pretty-printed a second time,
-    the pretty-printed output must be identical to the input.
+    the parsed program back to ASCII text in a format based on
+    s-expressions that is described in your assignments.  In this
+    case, the compilation is considered to be successful if the input
+    program corresponds to the grammar described in your current
+    assignment; otherwise, the compilation fails.
 
   - `-t`: Perform lexical analysis, parsing, and type checking (but not
     code generation). In this case, the compilation is considered to be
