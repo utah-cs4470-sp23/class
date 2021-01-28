@@ -2,8 +2,8 @@
 
 # Assignment 2: Parsing Commands and Statements
 
-Your second assignment is to build a parser for a subset JPL. Its job
-is to turn an arbitrary sequence of tokens into:
+Your second assignment is to build a parser for a subset if JPL. Its
+job is to turn an arbitrary sequence of tokens into:
 
 - An abstract syntax tree
 - A parse error
@@ -31,10 +31,12 @@ lvalue : <argument>
 argument : <variable>
 ```
 
-This is a subset of the [full JPL grammar][full-grammar], in which you
-can manipulate images using built-in filters. At the same time, this
-subset avoids a lot of the trickier parts: complex lvalues, function
-definitions, types, or precedence.
+This is a subset of the [full JPL grammar][full-grammar] in which you
+can call functions, but you cannot define new functions.  Programs in
+this subset can manipulate images using built-in filters. At the same
+time, this subset avoids a lot of the trickier parts of JPL: complex
+lvalues, function definitions, types, and precedence. We will deal with
+these later.
 
 [full-grammar]: https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#syntax
 
@@ -50,11 +52,12 @@ Commands are separated by `NEWLINE` tokens, and the program itself is
 terminated by an `END_OF_FILE` token. Neither of those tokens are
 legal anywhere else.
 
-In C++, Java, and Python, we recommend defining an `ASTNode` class,
-then defining `Expr`, `Stmt`, `Cmd`, `Argument`, and `LValue` classes
-that inherit from it, and then classes for each possible node type
-inheriting from those. For example, you'd have an `TimeCmd` inheriting
-from `Cmd`, like so:
+In C++, Java, and Python, we recommend using the object oriented
+features of your compiler implementation language. For example, you
+could define an `ASTNode` class, then define `Expr`, `Stmt`, `Cmd`,
+`Argument`, and `LValue` classes that inherit from it, and then
+classes for each possible node type inheriting from those. For
+example, you'd have an `TimeCmd` inheriting from `Cmd`, like so:
 
 ``` {.java}
 public class TimeCmd extends Cmd {
@@ -66,11 +69,12 @@ public class TimeCmd extends Cmd {
 }
 ```
 
+We will talk about this more and look at example code in class.
 
 While it is not required, we strongly recommend having a field on all
 AST nodes containing that node's line number (usually the line number
 that node started on). Remember that you will be reading a lot of your
-own compiler's error messages.
+own compiler's error messages!
 
 Parser requirements:
 
@@ -89,13 +93,15 @@ Parser requirements:
   a parse error is encountered. We will use that output to test your code.
 
 - The "parse-only" mode that is triggered by the `-p` flag should dump
-  your program's AST, in a format like the one shown here. Each AST
-  node is printed like in Lisp, `(NodeName args ...)`. Strings must be
-  printed with double quotes while integers, floats, and variable
-  names are printed directly. Arguments should be printed in the same
-  order as in the grammar. You can use any kind of whitespace you want
-  between the node name and the arguments (or between arguments);
-  indentation and line breaking, like below, is optional.
+  your program's AST, in a format like the one shown here. AST nodes
+  are printed using
+  [s-expressions](https://en.wikipedia.org/wiki/S-expression) such as
+  `(NodeName args ...)`. Strings must be printed with double quotes
+  while integers, floats, and variable names are printed
+  directly. Arguments should be printed in the same order as in the
+  grammar. You can use any kind of whitespace you want between the
+  node name and the arguments (or between arguments); indentation and
+  line breaking, like below, is optional.
   
 [jpl-cmdline]: https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#jpl-compiler-command-line-interface
 
@@ -190,6 +196,8 @@ XXX
 
 In this example run XXX
 
-As before, even if the tests pass on your computer, or some other
-computer, it does not count unless those tests pass on a CADE Linux
-machine. Please test this before the deadline because this is a hard requirement.
+As always, even if the tests pass on your computer, or some other
+computer, it does not count unless those tests also pass on a CADE
+Linux machine. Since this is a hard requirement, please test it out
+well before the due date so you have time to resolve any problems that
+may come up.
