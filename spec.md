@@ -48,6 +48,8 @@ of file. Block comments are a `/*`, followed by any sequence of
 characters not including `*/`, followed by `*/`). Newline escapes are
 a backslash followed immediately by a newline.
 
+Multiple consecutive newline tokens must be squashed into one.
+
 Syntax
 ------
 
@@ -57,8 +59,9 @@ commands. A program is a newline-separated sequence of commands.
 There are also auxiliary syntax classes for lvalues, arguments, and
 bindings.
 
-In the grammar below, semicolons represent newline characters and
-ellipses represent repetition with a separator. For example, `( <expr>
+In the grammar below, semicolons represent newline tokens.
+
+Ellipses represent repetition with a separator. For example, `( <expr>
 , ... )`means any sequence of left parenthesis, expression, comma,
 expression, comma, and so on until a final expression, and then a
 right parenthesis. Repetition always allows zero repetitions. Each
@@ -250,12 +253,6 @@ binding strength is:
 
 Statements begin with keywords so they cannot be confused with
 expressions. Statements are pure but not total.
-
-Empty statements do nothing at all:
-
-```
-stmt : 
-```
 
 Let statements bind new variable names.
 
