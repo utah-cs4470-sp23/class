@@ -613,10 +613,10 @@ can be transformed into:
 
 where `JPL.divide` is provided by the JPL implementation and looks like:
 
-   fn JPL.divide(i : int, j : int) : int {
-       assert j != 0, "Error: Division by zero"
-       return i / j
-   }
+    fn JPL.divide(i : int, j : int) : int {
+        assert j != 0, "Error: Division by zero"
+        return i / j
+    }
 
 ### Arrays
 
