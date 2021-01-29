@@ -583,6 +583,10 @@ this is not hard because only the top-level commands have I/O effects.
 Elaboration
 -----------
 
+Compiler implementors may want to make their jobs easier by
+elaborating certain JPL constructs into other ones that need to be
+implemented anyway.
+
 ### Short-circuiting
 
 It is convenient to elaborate short-circuting `&&` and `||` via `if`
@@ -604,9 +608,15 @@ function like this:
 can be transformed into:
 
     fn example(i : int, j : int) : int {
-        assert j != 0, "Error (example.jpl:2): Division by zero"
-        return i / j
+        return JPL.divide(i / j)
     }
+
+where `JPL.divide` is provided by the JPL implementation and looks like:
+
+   fn JPL.divide(i : int, j : int) : int {
+       assert j != 0, "Error: Division by zero"
+       return i / j
+   }
 
 ### Arrays
 
