@@ -2,7 +2,7 @@
 
 # Assignment 2: Parsing Commands and Statements
 
-Your second assignment is to build a parser for a subset if JPL. Its
+Your second assignment is to build a parser for a subset of JPL. Its
 job is to turn an arbitrary sequence of tokens into:
 
 - An abstract syntax tree
@@ -132,6 +132,8 @@ following program:
 (for ([line (in-port read)])
   (pretty-print line (current-output-port) 1))
 ```
+
+This program pretty prints expressions with indentation.
 
 ## CHECKIN: Due Friday February 12
 
