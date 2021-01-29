@@ -608,7 +608,7 @@ function like this:
 can be transformed into:
 
     fn example(i : int, j : int) : int {
-        return JPL.divide(i / j)
+        return JPL.divide(i, j)
     }
 
 where `JPL.divide` is provided by the JPL implementation and looks like:
