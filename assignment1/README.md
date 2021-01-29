@@ -160,10 +160,13 @@ JPL has both trivial and non-trivial lexemes. A trivial lexeme, such
 as `>=`, matches only a single string, whereas a non-trivial lexeme
 matches more than one string. List all non-trivial lexemes.
 
-For every non-trivial lexeme in JPL, write a regular expression
-that precisely matches this lexeme. A precise match means that your
-regular expression accepts all valid instances of the lexeme and
-rejects all other strings.
+For every non-trivial lexeme in JPL, write a regular expression that
+precisely matches this lexeme. A precise match means that your regular
+expression accepts all valid instances of the lexeme and rejects all
+other strings. You are allowed to assume that your regexes fire in a
+certain order. Thus, your INTVAL regex does not need to reject
+patterns that would have been part of a FLOATVAL, and your VAR regex
+does not need to reject all of the JPL keywords.
 
 Write a regular expression that matches valid JPL whitespace. Recall
 that whitespace is not a token type---it separates tokens and is
