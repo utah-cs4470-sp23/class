@@ -113,6 +113,10 @@ Lexer requirements:
   providing you with a test script that checks your output against ours,
   so it is important that you match this output format exactly.
 
+- **Important note:** You should not try to enforce tricky properties,
+  such as integers or float values being out of range, in your lexer.
+  These properties are easy to enforce during parsing.
+
 ```
 regehr@home:~/compiler-class/jdr/build$ cat tiny.jpl 
 fn inc(n : int) : int {
@@ -189,6 +193,10 @@ There's also some good info [here](https://en.wikipedia.org/wiki/Regular_express
 
 Place these regular expressions into an ASCII text file called
 `assignment1.txt` which must live in the root directory of your repo.
+
+**Note:** Do not try to enforce the property that the VAR token should
+not match keywords in your regular expression. Rather, handle this in
+your lexer code by matching keywords first and then VAR second.
 
 ## HANDIN: Due Friday February 5
 
