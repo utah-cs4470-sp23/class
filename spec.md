@@ -484,13 +484,13 @@ like it should typecheck, it is not legal JPL because the body of f()
 refers to function g() which has not yet been bound:
 
 ```
-fn f(x : int) {
+fn f(x : int) : int {
    return g(x)
 }
 
 let y = f(3)
 
-fn g(x : int) {
+fn g(x : int) : int {
    return y
 }
 ```
