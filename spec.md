@@ -199,6 +199,7 @@ expr : <expr> { <integer> }
 ```
 
 A conditional operator, which only evaluates the relevant branch.
+Both branches have to yield the same type.
 
 ```
 expr : if <expr> then <expr> else <expr>
