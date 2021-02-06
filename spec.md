@@ -537,8 +537,8 @@ The program name itself should not be part of that list or that count.
 At run time, a JPL implementation must detect erroneous conditions. If
 any such condition occurs, the JPL program must be cleanly terminated
 (no segfaults or other OS-level traps!) and a brief, appropriate error
-message must be displayed. Run time errors can be *internal* errors,
-namely:
+message must be displayed that includes the text "Fatal
+error:". Run-time errors can be *internal* errors, namely:
 
 - an integer division or modulus operation whose right-hand argument
   is zero[^1]
