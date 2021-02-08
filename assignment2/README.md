@@ -112,14 +112,14 @@ Parser requirements:
 [jpl-cmdline]: https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#jpl-compiler-command-line-interface
 
 ```
-$ cat tiny.jpl
+$ cat sepia.jpl
 read image "photo.png" to photo
 assert has_width(photo, 800), "Photo must be 800 pixels wide"
 assert has_height(photo, 600), "Photo must be 600 pixels tall"
 let middle = cut_center(photo)
 write image sepia(middle) to "profile.png"
 
-$ ./jplc -p sepia.jpl | pp
+$ ./jplc -p sepia.jpl
 (ReadImageCmd "photo.png" (Argument photo))
 (StmtCmd
  (AssertStmt
@@ -133,7 +133,8 @@ $ ./jplc -p sepia.jpl | pp
 (WriteImageCmd (CallExpr sepia (VarExpr middle)) "profile.png")
 ```
 
-Where the `pp` command is this Racket program for pretty-printing:
+You should feel free to pretty-print your compiler's output using this
+Racket program:
 
 ``` {.racket}
 #lang racket
