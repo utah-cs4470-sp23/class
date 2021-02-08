@@ -105,7 +105,7 @@ Parser requirements:
   `(NodeName args ...)`. Strings must be printed with double quotes
   while integers, floats, and variable names are printed
   directly. Arguments should be printed in the same order as in the
-  grammar. You can use any kind of whitespace you want between the
+  grammar. You can put any number of spaces between the
   node name and the arguments (or between arguments); indentation and
   line breaking, like below, is optional.
 
