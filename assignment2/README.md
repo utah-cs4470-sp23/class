@@ -1,5 +1,3 @@
-# This assignment is not complete. Do not read it.
-
 # Assignment 2: Parsing Commands and Statements
 
 Your second assignment is to build a parser for a subset of JPL on top
@@ -120,16 +118,10 @@ let middle = cut_center(photo)
 write image sepia(middle) to "profile.png"
 
 $ ./jplc -p sepia.jpl
-(ReadImageCmd "photo.png" (Argument photo))
-(StmtCmd
- (AssertStmt
-  (CallExpr has_width (VarExpr photo) (IntExpr 800))
-  "Photo must be 800 pixels wide"))
-(StmtCmd
- (AssertStmt
-  (CallExpr has_height (VarExpr photo) (IntExpr 600))
-  "Photo must be 600 pixels tall"))
-(StmtCmd (LetStmt (Argument middle) (CallExpr cut_center (VarExpr photo))))
+(ReadImageCmd "photo.png" (VarArgument photo))
+(StmtCmd (AssertStmt (CallExpr has_width (VarExpr photo) (IntExpr 800)) "Photo must be 800 pixels wide"))
+(StmtCmd (AssertStmt (CallExpr has_height (VarExpr photo) (IntExpr 600)) "Photo must be 600 pixels tall"))
+(StmtCmd (LetStmt (ArgLValue (VarArgument middle) (CallExpr cut_center (VarExpr photo)))))
 (WriteImageCmd (CallExpr sepia (VarExpr middle)) "profile.png")
 ```
 
@@ -198,8 +190,10 @@ typing this:
 make run TEST=input.jpl
 ```
 
-Here `input.jpl` is a file that we will supply. As before, please test
-everything early so we can solve any problems before the deadline.
+Here `input.jpl` is a file that we will supply. For this assignment,
+your makefile should supply the `-p` flag itself. As before, please
+test everything early so we can solve any problems before the
+deadline.
 
 We are providing a script, `test-parser`, to test your parser, and we
 will use the same script to grade your parser. The script compares
