@@ -2,11 +2,12 @@
 
 # Assignment 2: Parsing Commands and Statements
 
-Your second assignment is to build a parser for a subset of JPL. Its
-job is to turn an arbitrary sequence of tokens into either:
+Your second assignment is to build a parser for a subset of JPL on top
+of the lexer you implemented for Assignment 1. This parser's job is to
+turn an arbitrary sequence of tokens into either:
 
-- An abstract syntax tree, or
-- A parse error
+- an abstract syntax tree, or
+- a parse error.
 
 Specifically, you will be parsing the following grammar:
 
@@ -47,12 +48,12 @@ Specifically, you must define the node types `IntExpr`, `FloatExpr`,
 `StmtCmd`; `ArgLValue`; and `VarArgument`.
 
 When parsing is successful, your parser should return a list of
-commands. Use a standard type like an array or vector for this.
+commands. Use a standard type like an array, list, or vector for this.
 Commands are separated by `NEWLINE` tokens, and the program itself is
-terminated by an `END_OF_FILE` token. Neither of those tokens are
-legal anywhere else.
+terminated by an `END_OF_FILE` token. Neither of those tokens is
+legal anywhere else in the program.
 
-In C++, Java, and Python, we recommend using the object oriented
+In C++, Java, and Python, you should use the object oriented
 features of your compiler implementation language. For example, you
 could define an `ASTNode` class, then define `Expr`, `Stmt`, `Cmd`,
 `Argument`, and `LValue` classes that inherit from it, and then
@@ -78,9 +79,14 @@ own compiler's error messages!
 
 Parser requirements:
 
+- Integer and floating point literals must be checked for validity.
+  For example, `let x = 99999999999999999999999999999999999999` cannot
+  be compiled because that number does not fit into a 64-bit signed
+  integer.
+
 - The AST node for function calls must have two children: a string
-  corresponding to the function name, and a list of expression objects
-  for each argument.
+  corresponding to the function name, and a list of expression
+  objects: one for each argument.
 
 - The AST node for `let` statements must have an lvalue object as a
   child, not the variable name directly. Likewise `read image`
@@ -102,7 +108,7 @@ Parser requirements:
   grammar. You can use any kind of whitespace you want between the
   node name and the arguments (or between arguments); indentation and
   line breaking, like below, is optional.
-  
+
 [jpl-cmdline]: https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#jpl-compiler-command-line-interface
 
 ```
@@ -135,6 +141,11 @@ following program:
 
 This program pretty prints expressions with indentation.
 
+Your compiler, when running in parse-only mode, **must not** implement
+checking that goes beyond matching the grammar. For example, you must
+not cause compilation to fail if the program being compiled passes the
+wrong number of arguments to a function.
+
 ## CHECKIN: Due Friday February 12
 
 Write class definitions for all four types of expression nodes, and
@@ -162,7 +173,7 @@ function must prefer the longer parse.
 Finally, implement `print` methods for each expression node, using the
 syntax described below. Each `print` method should take no arguments
 and return a string. For example, calling `parse_expression` on the
-tokens in `f ( )`, and then calling `print` on the resuting AST node,
+tokens in `f ( )`, and then calling `print` on the resulting AST node,
 should produce the string `(CallExpr f)`.
 
 Place all the class definitions, including the `parse_expression` and
