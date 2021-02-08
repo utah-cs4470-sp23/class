@@ -519,6 +519,8 @@ JPL must provide a global `args` variable of type `int[]` containing
 integers provided in the command line program's command line, and a
 variable `argnum` of type `int` containing the number of arguments.
 The program name itself should not be part of that list or that count.
+It is an error to invoke a JPL program with command-line arguments
+that are not 64-bit signed integer values.
 
 > Consider the following JPL program:
 >

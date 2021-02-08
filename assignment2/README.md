@@ -3,9 +3,9 @@
 # Assignment 2: Parsing Commands and Statements
 
 Your second assignment is to build a parser for a subset of JPL. Its
-job is to turn an arbitrary sequence of tokens into:
+job is to turn an arbitrary sequence of tokens into either:
 
-- An abstract syntax tree
+- An abstract syntax tree, or
 - A parse error
 
 Specifically, you will be parsing the following grammar:

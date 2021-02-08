@@ -15,6 +15,8 @@ int main(void) {
   // FIXME both ones below aren't right-- they correctly classify for
   // parsing but not lexing
 
+  // FIXME add weird characters in comments
+  
   for (int i = 0; i <= 255; i++) {
     char fn[256];
     const char *dir =
