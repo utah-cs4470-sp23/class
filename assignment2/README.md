@@ -119,19 +119,21 @@ assert has_height(photo, 600), "Photo must be 600 pixels tall"
 let middle = cut_center(photo)
 write image sepia(middle) to "profile.png"
 
-$ ./jplc -p tiny.jpl
-(ReadImageCmd "photo.png" (VarArgument photo))
-(StmtCmd (AssertStmt (CallExpr has_width (VarExpr photo) (IntExpr 800))
-                     "Photo must be 800 pixels wide"))
-(StmtCmd (AssertStmt (CallExpr has_height (VarExpr photo) (IntExpr 600))
-                     "Photo must be 800 pixels tall"))
-(StmtCmd (LetStmt (ArgLValue (VarArgument middle))
-                  (CallExpr cut_center (VarExpr photo))))
+$ ./jplc -p sepia.jpl | pp
+(ReadImageCmd "photo.png" (Argument photo))
+(StmtCmd
+ (AssertStmt
+  (CallExpr has_width (VarExpr photo) (IntExpr 800))
+  "Photo must be 800 pixels wide"))
+(StmtCmd
+ (AssertStmt
+  (CallExpr has_height (VarExpr photo) (IntExpr 600))
+  "Photo must be 600 pixels tall"))
+(StmtCmd (LetStmt (Argument middle) (CallExpr cut_center (VarExpr photo))))
 (WriteImageCmd (CallExpr sepia (VarExpr middle)) "profile.png")
 ```
 
-If you already have Racket installed, you can pipe it through the
-following program:
+Where the `pp` command is this Racket program for pretty-printing:
 
 ``` {.racket}
 #lang racket
@@ -139,17 +141,19 @@ following program:
   (pretty-print line (current-output-port) 1))
 ```
 
-This program pretty prints expressions with indentation.
+You can install Racket on your own machine and also it is already
+available on the CADE lab machines.
 
 Your compiler, when running in parse-only mode, **must not** implement
 checking that goes beyond matching the grammar. For example, you must
 not cause compilation to fail if the program being compiled passes the
 wrong number of arguments to a function.
 
+
 ## CHECKIN: Due Friday February 12
 
-Write class definitions for all four types of expression nodes, and
-any classes those definitions inherit from.
+Write class definitions for all major types of expression nodes,
+and any classes those definitions inherit from.
 
 Implement a `Parser` class, with two member variables: a list of
 tokens and an integer position into it.
@@ -170,11 +174,11 @@ given point; for example, in `f ( )` either `f` is a variable
 reference or `f ( )` is a function call. Your `parse_expression`
 function must prefer the longer parse.
 
-Finally, implement `print` methods for each expression node, using the
-syntax described below. Each `print` method should take no arguments
-and return a string. For example, calling `parse_expression` on the
-tokens in `f ( )`, and then calling `print` on the resulting AST node,
-should produce the string `(CallExpr f)`.
+Finally, implement `print` methods for each expression node. Each
+`print` method should take no arguments and return a string. For
+example, calling `parse_expression` on the tokens in `f ( )`, and then
+calling `print` on the resulting AST node, should produce the string
+`(CallExpr f)`.
 
 Place all the class definitions, including the `parse_expression` and
 `print` methods, in an `assignment2.txt` file in the root directory of
@@ -204,10 +208,7 @@ your compiler executable instead of `../pavpan/compiler.py`:
 
 ```
 $ ./test-parser ../pavpan/compiler.py
-XXX
 ```
-
-In this example run XXX
 
 As always, even if the tests pass on your computer, or some other
 computer, it does not count unless those tests also pass on a CADE
