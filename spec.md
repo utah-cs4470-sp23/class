@@ -20,7 +20,7 @@ of digits; one of the two sequences must be non-empty. The dot is
 required. Scientific notation is not supported. Literals mapping to
 infinity are not supported. Do not write your own code to convert
 float syntax to float values. It is much harder and subtler than you
-probably think! Use the C library function `strtof` or its binding in
+probably think! Use the C library function `strtod` or its binding in
 your language of choice (ex. Python's `float`) to perform the
 conversion. If this conversion is error-free, then the literal is
 legal, otherwise the JPL compiler must signal a compile-time error.
@@ -160,7 +160,7 @@ standard IEEE 754 semantics. For example, `inf + 1 = inf`, and `x / 0
 = NaN`. Floating point instructions should generally give you the
 desired behavior for free, it is built into the FP hardware unit.
 Don't implement your own version of the modulus operator on floats!
-Use the C standard library's `fmodf` operation, or your chosen
+Use the C standard library's `fmod` operation, or your chosen
 language's equivalent.[1]
 
 [1]: Python's modulus operator is different: do not use it! Python's
@@ -424,16 +424,16 @@ binding : <argument> : <type>
 > `x : int[]` takes an `int[]` argument
 > and binds `x : int[]`.
 > 
-> `x[W] : int[]` takes an `int[]` argument
-> and binds `x : int[]` and `W : int`.
+> `x[L] : int[]` takes an `int[]` argument
+> and binds `x : int[]` and `L : int`.
 > 
-> `x[W, H] : int[,]` takes an `int[,]` argument
+> `x[H, W] : int[,]` takes an `int[,]` argument
 > and binds `x : int[,]`, `W : int`, `H : int`.
 > 
-> `x[W, H] : {int, float}[][,]` takes an `{int, float}[][,]` argument
+> `x[H, W] : {int, float}[][,]` takes an `{int, float}[][,]` argument
 > and binds `x : {int, float}[][,]`, `W : int`, `H : int`.
 > 
-> `{ x[W, H] : int[,], {y : int, z[T] : float} }`
+> `{ x[H, W] : int[,], { y : int, z[T] : float[] } }`
 > takes an `{int[,], {int, float[]}}`
 > and binds `x : int[,]`, `W : int`, `H : int`,
 > `y : int`, `z : float[]`, `T : int`.

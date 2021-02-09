@@ -121,7 +121,7 @@ $ ./jplc -p sepia.jpl
 (ReadImageCmd "photo.png" (VarArgument photo))
 (StmtCmd (AssertStmt (CallExpr has_width (VarExpr photo) (IntExpr 800)) "Photo must be 800 pixels wide"))
 (StmtCmd (AssertStmt (CallExpr has_height (VarExpr photo) (IntExpr 600)) "Photo must be 600 pixels tall"))
-(StmtCmd (LetStmt (ArgLValue (VarArgument middle) (CallExpr cut_center (VarExpr photo)))))
+(StmtCmd (LetStmt (ArgLValue (VarArgument middle)) (CallExpr cut_center (VarExpr photo))))
 (WriteImageCmd (CallExpr sepia (VarExpr middle)) "profile.png")
 ```
 
