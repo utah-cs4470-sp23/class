@@ -156,7 +156,7 @@ arguments and return either an AST node (on success) or some null
 value like `nullptr`, `null`, or `None` on failure.
 
 The `parse_expression` method should succeed when the tokens in the
-token list, starting with the token pointed to by the positive
+token list, starting with the token pointed to by the position
 variable, form a valid expression, and fail otherwise. On success, the
 position variable should be updated to point to the first token
 _after_ the parsed expression. On failure, the position variable
