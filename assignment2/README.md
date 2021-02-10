@@ -96,16 +96,20 @@ Parser requirements:
   successful` when parsing is successful and `Compilation failed` when
   a parse error is encountered. We will use that output to test your code.
 
-- The "parse-only" mode that is triggered by the `-p` flag should dump
-  your program's AST, in a format like the one shown here. AST nodes
-  are printed using
-  [s-expressions](https://en.wikipedia.org/wiki/S-expression) such as
-  `(NodeName args ...)`. Strings must be printed with double quotes
-  while integers, floats, and variable names are printed
-  directly. Arguments should be printed in the same order as in the
-  grammar. You can put any number of spaces between the
-  node name and the arguments (or between arguments); indentation and
-  line breaking, like below, is optional.
+The "parse-only" mode that is triggered by the `-p` flag should dump
+your program's AST, in a format like the one shown here. AST nodes are
+printed using
+[s-expressions](https://en.wikipedia.org/wiki/S-expression) such as
+`(NodeName args ...)`. Print strings with double quotes, and print
+integers and variable names (*inside* their respective AST nodes)
+directly. Printing floats is difficult, and differs across langauges,
+so please cast any float arguments to 64-bit integers and print those.
+For example, the JPL expression `3.14159` would print as `(FloatExpr
+3)`. In C++ you can do that by printing with `%ld`; in Python with
+`{:d}`; in Java, cast to a `long` and print that. Arguments should be
+printed in the same order as in the grammar. You can put any number of
+spaces between the node name and the arguments (or between arguments);
+indentation and line breaking, like below, is optional.
 
 [jpl-cmdline]: https://github.com/utah-cs4470-sp21/jpl/blob/main/spec.md#jpl-compiler-command-line-interface
 
