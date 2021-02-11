@@ -234,11 +234,12 @@ Precedence is necessary to disambiguate certain constructs. The
 binding strength is:
 
 - Postfix `[]` and `{}` have the highest precedence
-- Prefix `!` and `-` have the next-highest precedence
-- Multiplicative operators `*`, `/`, and `%` have third highest
-- Additive operators `+` and `-` are next
-- Comparisons `<`, `>`, `<=`, `>=`, `==`, and `!=` are next
-- Boolean operators `&&` and `||` are next
+- Unary prefix `!` and `-` have the next-highest precedence
+- Multiplicative binary operators `*`, `/`, and `%` have third highest
+- Additive binary operators `+` and `-` are next
+- Ordered binary comparisons `<`, `>`, `<=`, `>=` are next
+- Unordered binary comparisons `==`, and `!=` are next
+- Boolean binary operators `&&` and `||` are next
 - Prefix `array`, `sum`, and `if` expressions have the lowest
   precedence
 
