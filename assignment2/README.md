@@ -199,15 +199,61 @@ your makefile should supply the `-p` flag itself. As before, please
 test everything early so we can solve any problems before the
 deadline.
 
-We are providing a script, `test-parser`, to test your parser, and we
-will use the same script to grade your parser. The script compares
-your output against reference output, and complains if they do not
-exactly match (except for whitespace). Run it like this, specifying
-your compiler executable instead of `../pavpan/compiler.py`:
+Assuming that you have checked out the `jpl` repository in your home
+directory, go to the directory containing your makefile, type this
+command, and make sure you get the correct output:
 
 ```
-$ ./test-parser ../pavpan/compiler.py
+$ make run TEST=$HOME/jpl/assignment2/parser-subset-tests/ok/040.jpl
+(StmtCmd (ReturnStmt (IntExpr 124)))
+
+Compilation succeeded
+$ 
 ```
+
+Once this works, the next step is to make sure you have Racket
+installed. It is already there on the CADE machines, you can verify
+that it works like this:
+
+```
+$ racket -v
+Welcome to Racket v7.4.
+$ 
+```
+
+If you are not on a CADE machine, you can [download and install Racket
+from their web site](https://racket-lang.org/).
+
+Now you are ready to run the automated test script. Go to the
+directory containing your makefile and (again assuming that the `jpl`
+repo was checked out in your home directory) run this:
+
+```
+$ $HOME/jpl/assignment2/test-subset-parser
+```
+
+The output that you see should start out something like this:
+
+```
+/home/regehr/jpl/assignment2/parser-subset-tests
+/home/regehr/jpl/assignment2/parser-subset-tests/ok/001.jpl : expect = 0, got = 0
+/home/regehr/jpl/assignment2/parser-subset-tests/ok/002.jpl : expect = 0, got = 0
+/home/regehr/jpl/assignment2/parser-subset-tests/ok/003.jpl : expect = 0, got = 0
+/home/regehr/jpl/assignment2/parser-subset-tests/ok/004.jpl : expect = 0, got = 0
+/home/regehr/jpl/assignment2/parser-subset-tests/ok/005.jpl : expect = 0, got = 0
+... lots of stuff ...
+/home/regehr/jpl/assignment2/parser-subset-tests/fail-fuzzer3/97.jpl : expect = 1, got = 1
+/home/regehr/jpl/assignment2/parser-subset-tests/fail-fuzzer3/98.jpl : expect = 1, got = 1
+/home/regehr/jpl/assignment2/parser-subset-tests/fail-fuzzer3/99.jpl : expect = 1, got = 1
+
+All tests pass.
+```
+
+Just like in Assignment 1, the test script will complain if your
+output does not match the reference output produced by John's and
+Pavel's compilers. Since matching output exactly is difficult, your
+output (and ours) is first run through the Racket-based pretty-printer
+described above.
 
 As always, even if the tests pass on your computer, or some other
 computer, it does not count unless those tests also pass on a CADE
