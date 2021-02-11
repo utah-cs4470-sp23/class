@@ -6,7 +6,7 @@
 (WriteImageCmd
  (CallExpr n1f_2I_ (VarExpr e8u_) (FloatExpr 0) (VarExpr M2l_) (IntExpr 54))
  "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "")))))
+(TimeCmd (TimeCmd (PrintCmd "")))
 (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument W9T.)) (IntExpr 97))))
 (ReadImageCmd "" (VarArgument s3K_))
 (WriteImageCmd (IntExpr 702) "")

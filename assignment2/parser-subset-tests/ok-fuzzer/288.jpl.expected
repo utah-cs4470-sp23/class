@@ -2,5 +2,5 @@
 (PrintCmd "#L")
 (StmtCmd
  (AssertStmt (CallExpr L3I_ (IntExpr 7) (IntExpr 4) (FloatExpr 0)) "x"))
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument k))))
+(TimeCmd (ReadImageCmd "" (VarArgument k)))
 (PrintCmd "r")

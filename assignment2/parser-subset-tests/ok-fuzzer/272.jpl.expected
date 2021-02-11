@@ -30,4 +30,4 @@
 (ReadImageCmd "" (VarArgument N))
 (StmtCmd (ReturnStmt (IntExpr 37)))
 (PrintCmd "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ShowCmd (VarExpr X2q_))))))
+(TimeCmd (TimeCmd (ShowCmd (VarExpr X2q_))))

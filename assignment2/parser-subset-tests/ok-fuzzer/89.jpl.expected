@@ -2,7 +2,7 @@
 (ShowCmd (FloatExpr 215))
 (StmtCmd (LetStmt (ArgLValue (VarArgument L)) (VarExpr z1D.2O_)))
 (ReadImageCmd "" (VarArgument M))
-(TimeCmd (StmtCmd (ReadImageCmd "}" (VarArgument Q))))
+(TimeCmd (ReadImageCmd "}" (VarArgument Q)))
 (ShowCmd (FloatExpr 0))
 (WriteImageCmd (IntExpr 14) "")
 (ShowCmd (CallExpr F))

@@ -8,5 +8,5 @@
 (ReadImageCmd "" (VarArgument R))
 (WriteImageCmd (IntExpr 1) "")
 (PrintCmd "")
-(TimeCmd (StmtCmd (ReadImageCmd "c" (VarArgument m))))
+(TimeCmd (ReadImageCmd "c" (VarArgument m)))
 (ReadImageCmd "" (VarArgument q))

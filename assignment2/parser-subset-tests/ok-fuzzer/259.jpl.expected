@@ -5,7 +5,7 @@
 (ShowCmd (CallExpr K))
 (WriteImageCmd (CallExpr f) "")
 (StmtCmd (ReturnStmt (FloatExpr 0)))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (AssertStmt (IntExpr 81) "y")))))
+(TimeCmd (TimeCmd (StmtCmd (AssertStmt (IntExpr 81) "y"))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument G)) (IntExpr 4768)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument d)) (IntExpr 1)))
 (ShowCmd (VarExpr U9D_))

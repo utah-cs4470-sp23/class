@@ -13,5 +13,5 @@
 (ShowCmd (CallExpr q4M.))
 (StmtCmd (ReturnStmt (FloatExpr 560)))
 (PrintCmd "p[")
-(TimeCmd (StmtCmd (ShowCmd (IntExpr 338))))
+(TimeCmd (ShowCmd (IntExpr 338)))
 (ShowCmd (FloatExpr 503543))

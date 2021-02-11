@@ -1,5 +1,3 @@
 (WriteImageCmd (CallExpr O) "L%")
-(TimeCmd
- (StmtCmd
-  (TimeCmd (StmtCmd (TimeCmd (StmtCmd (WriteImageCmd (IntExpr 3) "/?Q6")))))))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (WriteImageCmd (VarExpr f9L.) "")))))
+(TimeCmd (TimeCmd (TimeCmd (WriteImageCmd (IntExpr 3) "/?Q6"))))
+(TimeCmd (TimeCmd (WriteImageCmd (VarExpr f9L.) "")))

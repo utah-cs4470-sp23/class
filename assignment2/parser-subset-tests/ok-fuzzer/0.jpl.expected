@@ -192,5 +192,5 @@
   (IntExpr 3780)
   (FloatExpr 48)))
 (ShowCmd (IntExpr 3))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "XH" (VarArgument g3h.))))))
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument F))))
+(TimeCmd (TimeCmd (ReadImageCmd "XH" (VarArgument g3h.))))
+(TimeCmd (ReadImageCmd "" (VarArgument F)))

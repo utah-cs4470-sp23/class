@@ -1,7 +1,7 @@
 (ShowCmd (FloatExpr 547227800775))
 (PrintCmd "U0kI")
 (ShowCmd (VarExpr a6s.4I.6L_3D.))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "")))))
+(TimeCmd (TimeCmd (PrintCmd "")))
 (StmtCmd (AssertStmt (VarExpr m) "m{"))
 (PrintCmd "")
 (TimeCmd (StmtCmd (ReturnStmt (VarExpr S))))

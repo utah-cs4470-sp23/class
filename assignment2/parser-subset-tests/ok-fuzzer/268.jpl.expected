@@ -1,6 +1,6 @@
 (PrintCmd "H")
 (ReadImageCmd "@" (VarArgument l1h_0N_2O.3Q_8B.))
-(TimeCmd (StmtCmd (PrintCmd "dX")))
+(TimeCmd (PrintCmd "dX"))
 (ReadImageCmd "" (VarArgument s7n_))
 (WriteImageCmd
  (CallExpr

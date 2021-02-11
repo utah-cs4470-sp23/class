@@ -1,6 +1,6 @@
 (ReadImageCmd "a" (VarArgument V8R.8A_))
 (PrintCmd "")
 (WriteImageCmd (FloatExpr 9) "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument i))))))
+(TimeCmd (TimeCmd (ReadImageCmd "" (VarArgument i))))
 (PrintCmd "")
 (ReadImageCmd "" (VarArgument S))

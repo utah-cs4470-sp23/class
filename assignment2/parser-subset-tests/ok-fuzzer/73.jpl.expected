@@ -256,7 +256,7 @@
     (CallExpr Y7n_)
     (IntExpr 0)))
   "[X"))
-(TimeCmd (StmtCmd (WriteImageCmd (IntExpr 96) "")))
+(TimeCmd (WriteImageCmd (IntExpr 96) ""))
 (PrintCmd "v")
 (ReadImageCmd "" (VarArgument u))
 (ShowCmd (CallExpr s (FloatExpr 17) (FloatExpr 0) (CallExpr v1B_1J.)))

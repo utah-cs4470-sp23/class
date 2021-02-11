@@ -41,7 +41,7 @@
 (WriteImageCmd (VarExpr C0X_) "i")
 (ShowCmd (FloatExpr 0))
 (PrintCmd "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "")))))
+(TimeCmd (TimeCmd (PrintCmd "")))
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument s))

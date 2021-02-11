@@ -142,6 +142,6 @@
   (FloatExpr 0)
   (IntExpr 6)
   (CallExpr Z6A.)))
-(TimeCmd (StmtCmd (PrintCmd "")))
+(TimeCmd (PrintCmd ""))
 (ReadImageCmd "" (VarArgument O))
 (PrintCmd "")

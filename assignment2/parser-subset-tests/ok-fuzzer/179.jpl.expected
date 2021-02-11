@@ -1,10 +1,10 @@
-(TimeCmd (StmtCmd (PrintCmd "")))
-(TimeCmd (StmtCmd (ReadImageCmd "k" (VarArgument w8l_3y.0a.0k_))))
+(TimeCmd (PrintCmd ""))
+(TimeCmd (ReadImageCmd "k" (VarArgument w8l_3y.0a.0k_)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument e)) (FloatExpr 0)))
 (ReadImageCmd "" (VarArgument T))
 (PrintCmd "")
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
+(TimeCmd (ShowCmd (FloatExpr 0)))
+(TimeCmd (ShowCmd (FloatExpr 0)))
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument k))
@@ -635,10 +635,8 @@
    (IntExpr 18647)
    (CallExpr n))))
 (TimeCmd
- (StmtCmd
-  (TimeCmd
-   (StmtCmd
-    (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument b)) (CallExpr M))))))))
+ (TimeCmd
+  (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument b)) (CallExpr M))))))
 (ReadImageCmd "HH" (VarArgument M))
 (StmtCmd (AssertStmt (VarExpr G) "0"))
 (WriteImageCmd (VarExpr J1G.4C.) "")
@@ -647,5 +645,5 @@
 (StmtCmd (LetStmt (ArgLValue (VarArgument n)) (IntExpr 32)))
 (PrintCmd "")
 (PrintCmd "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "Zlz" (VarArgument m1X.))))))
+(TimeCmd (TimeCmd (ReadImageCmd "Zlz" (VarArgument m1X.))))
 (ShowCmd (VarExpr Q))

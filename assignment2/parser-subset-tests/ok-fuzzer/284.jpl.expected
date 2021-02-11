@@ -1,6 +1,6 @@
 (PrintCmd "")
 (ShowCmd (CallExpr s))
-(TimeCmd (StmtCmd (PrintCmd "")))
+(TimeCmd (PrintCmd ""))
 (WriteImageCmd
  (CallExpr
   F1I.

@@ -1,5 +1,5 @@
 (WriteImageCmd (IntExpr 65) "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "")))))))
+(TimeCmd (TimeCmd (TimeCmd (PrintCmd ""))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument S)) (VarExpr l)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument x1h.)) (FloatExpr 789)))
 (ReadImageCmd "" (VarArgument N))
@@ -7,4 +7,4 @@
 (PrintCmd "sK")
 (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument l)) (FloatExpr 0))))
 (ShowCmd (FloatExpr 0))
-(TimeCmd (StmtCmd (ShowCmd (IntExpr 4))))
+(TimeCmd (ShowCmd (IntExpr 4)))

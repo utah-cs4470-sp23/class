@@ -4,7 +4,7 @@
 (ShowCmd (FloatExpr 0))
 (StmtCmd (AssertStmt (FloatExpr 0) "!P"))
 (WriteImageCmd (IntExpr 5) "v")
-(TimeCmd (StmtCmd (PrintCmd "")))
+(TimeCmd (PrintCmd ""))
 (PrintCmd "")
 (PrintCmd "")
 (WriteImageCmd (IntExpr 4) "")

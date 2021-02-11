@@ -16,4 +16,4 @@
 (StmtCmd (ReturnStmt (IntExpr 1)))
 (ShowCmd (FloatExpr 0))
 (WriteImageCmd (VarExpr v) "n")
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument e))))
+(TimeCmd (ReadImageCmd "" (VarArgument e)))

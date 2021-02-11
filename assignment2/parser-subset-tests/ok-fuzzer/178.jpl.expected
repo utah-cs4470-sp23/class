@@ -5,7 +5,7 @@
 (ShowCmd (CallExpr I (VarExpr C)))
 (WriteImageCmd (IntExpr 349) "")
 (ReadImageCmd "V" (VarArgument H1c.))
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument i1E.))))
+(TimeCmd (ReadImageCmd "" (VarArgument i1E.)))
 (ReadImageCmd "zY" (VarArgument B))
 (TimeCmd
  (StmtCmd (AssertStmt (CallExpr Q0j. (IntExpr 59) (FloatExpr 3)) "wXc")))

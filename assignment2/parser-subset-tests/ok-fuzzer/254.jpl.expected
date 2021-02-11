@@ -1,2 +1,2 @@
 (ReadImageCmd "" (VarArgument F))
-(TimeCmd (StmtCmd (WriteImageCmd (CallExpr f0M.5V.) "mp+-j")))
+(TimeCmd (WriteImageCmd (CallExpr f0M.5V.) "mp+-j"))

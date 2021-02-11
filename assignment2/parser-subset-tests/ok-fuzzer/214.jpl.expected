@@ -1,3 +1,3 @@
 (ReadImageCmd "J" (VarArgument a))
 (PrintCmd "")
-(TimeCmd (StmtCmd (ShowCmd (IntExpr 329))))
+(TimeCmd (ShowCmd (IntExpr 329)))

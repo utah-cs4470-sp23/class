@@ -516,7 +516,7 @@
    (CallExpr m0D_4L.))
   (IntExpr 6)))
 (ShowCmd (CallExpr s8c_ (CallExpr u)))
-(TimeCmd (StmtCmd (PrintCmd "a")))
+(TimeCmd (PrintCmd "a"))
 (PrintCmd "")
 (ReadImageCmd "" (VarArgument u))
 (PrintCmd "xK")

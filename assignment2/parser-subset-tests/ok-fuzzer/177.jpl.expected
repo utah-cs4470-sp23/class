@@ -12,7 +12,7 @@
   (IntExpr 4342))
  "IV")
 (ReadImageCmd "qtokF`" (VarArgument l))
-(TimeCmd (StmtCmd (ShowCmd (VarExpr S))))
+(TimeCmd (ShowCmd (VarExpr S)))
 (TimeCmd (StmtCmd (AssertStmt (VarExpr n) "")))
 (WriteImageCmd (VarExpr j6X_7r_) "")
 (ReadImageCmd "" (VarArgument k))

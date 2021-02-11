@@ -2,10 +2,9 @@
 (PrintCmd "*Jl")
 (StmtCmd (ReturnStmt (FloatExpr 0)))
 (TimeCmd
- (StmtCmd
-  (WriteImageCmd
-   (CallExpr l6h_ (CallExpr H3e.7q_ (IntExpr 3) (VarExpr x)) (VarExpr x))
-   "")))
+ (WriteImageCmd
+  (CallExpr l6h_ (CallExpr H3e.7q_ (IntExpr 3) (VarExpr x)) (VarExpr x))
+  ""))
 (ShowCmd (VarExpr l9Y.3d.4I.4i_9m.5u_))
 (StmtCmd (AssertStmt (VarExpr z) "sO"))
 (ShowCmd (VarExpr h2f_3X_))

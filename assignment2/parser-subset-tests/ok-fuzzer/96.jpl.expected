@@ -1,1 +1,1 @@
-(TimeCmd (StmtCmd (PrintCmd "w")))
+(TimeCmd (PrintCmd "w"))

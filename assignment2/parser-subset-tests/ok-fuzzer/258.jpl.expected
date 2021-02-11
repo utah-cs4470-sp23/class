@@ -8,7 +8,7 @@
 (WriteImageCmd (VarExpr Y) "")
 (StmtCmd (AssertStmt (VarExpr d) "ALa"))
 (PrintCmd "")
-(TimeCmd (StmtCmd (WriteImageCmd (IntExpr 14) "")))
+(TimeCmd (WriteImageCmd (IntExpr 14) ""))
 (WriteImageCmd (FloatExpr 0) "")
 (ShowCmd
  (CallExpr

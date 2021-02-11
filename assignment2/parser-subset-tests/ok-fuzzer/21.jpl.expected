@@ -6,12 +6,12 @@
 (StmtCmd (LetStmt (ArgLValue (VarArgument U9z_)) (CallExpr y)))
 (WriteImageCmd (VarExpr l4F_7m_0C_3s.2V.9Y_) "E")
 (StmtCmd (ReturnStmt (IntExpr 9)))
-(TimeCmd (StmtCmd (ReadImageCmd "'#" (VarArgument A))))
+(TimeCmd (ReadImageCmd "'#" (VarArgument A)))
 (PrintCmd "8")
 (WriteImageCmd (VarExpr L) "WfJRYV")
 (ShowCmd (FloatExpr 88622))
 (PrintCmd "`)")
-(TimeCmd (StmtCmd (ShowCmd (IntExpr 0))))
+(TimeCmd (ShowCmd (IntExpr 0)))
 (PrintCmd "b")
 (StmtCmd
  (ReturnStmt

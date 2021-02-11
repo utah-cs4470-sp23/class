@@ -5,7 +5,7 @@
    D
    (CallExpr N0x_ (CallExpr l) (IntExpr 9) (FloatExpr 4) (VarExpr f0s.3u.)))))
 (ReadImageCmd "" (VarArgument d3T.))
-(TimeCmd (StmtCmd (ShowCmd (IntExpr 35))))
+(TimeCmd (ShowCmd (IntExpr 35)))
 (StmtCmd (ReturnStmt (FloatExpr 3550)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument A6B_)) (CallExpr O3Q.)))
 (ShowCmd (CallExpr n (FloatExpr 0)))

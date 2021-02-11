@@ -7,7 +7,7 @@
 (ReadImageCmd "" (VarArgument q))
 (ShowCmd (FloatExpr 5))
 (PrintCmd "Bs")
-(TimeCmd (StmtCmd (ShowCmd (IntExpr 4))))
+(TimeCmd (ShowCmd (IntExpr 4)))
 (WriteImageCmd (CallExpr f (CallExpr F4H_)) "")
 (ReadImageCmd "&T" (VarArgument r))
 (StmtCmd (ReturnStmt (FloatExpr 840)))

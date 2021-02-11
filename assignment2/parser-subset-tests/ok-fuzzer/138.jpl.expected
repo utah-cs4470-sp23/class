@@ -8,5 +8,5 @@
 (ReadImageCmd "kjj" (VarArgument R))
 (PrintCmd "V")
 (WriteImageCmd (CallExpr g8N_8M. (IntExpr 301) (IntExpr 9)) "")
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 5))))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (WriteImageCmd (VarExpr v2Y_8z.) "")))))
+(TimeCmd (ShowCmd (FloatExpr 5)))
+(TimeCmd (TimeCmd (WriteImageCmd (VarExpr v2Y_8z.) "")))

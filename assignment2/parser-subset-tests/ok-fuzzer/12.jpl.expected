@@ -10,7 +10,7 @@
 (ShowCmd (IntExpr 9))
 (WriteImageCmd (IntExpr 9) "Y91d7")
 (ReadImageCmd "MF" (VarArgument Q3K_))
-(TimeCmd (StmtCmd (WriteImageCmd (IntExpr 46) "")))
+(TimeCmd (WriteImageCmd (IntExpr 46) ""))
 (ShowCmd (FloatExpr 0))
 (WriteImageCmd
  (CallExpr

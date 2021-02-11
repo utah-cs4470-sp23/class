@@ -25,7 +25,7 @@
   (CallExpr I)
   (VarExpr Z))
  "")
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument L3S.))))
+(TimeCmd (ReadImageCmd "" (VarArgument L3S.)))
 (WriteImageCmd
  (CallExpr
   v7h.9z.0j.

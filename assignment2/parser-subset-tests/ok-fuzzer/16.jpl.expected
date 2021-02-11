@@ -6,6 +6,6 @@
 (WriteImageCmd (CallExpr O9u.6p.6O_ (IntExpr 3)) "")
 (ReadImageCmd "" (VarArgument k2x.))
 (WriteImageCmd (FloatExpr 0) "|")
-(TimeCmd (StmtCmd (PrintCmd "%'b6#L")))
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 13481))))
+(TimeCmd (PrintCmd "%'b6#L"))
+(TimeCmd (ShowCmd (FloatExpr 13481)))
 (ShowCmd (VarExpr n2w_5u_))

@@ -12,5 +12,5 @@
 (PrintCmd "")
 (StmtCmd (AssertStmt (FloatExpr 7) "U"))
 (PrintCmd "")
-(TimeCmd (StmtCmd (ShowCmd (CallExpr e (IntExpr 3)))))
+(TimeCmd (ShowCmd (CallExpr e (IntExpr 3))))
 (ReadImageCmd "" (VarArgument g1m_7k_))

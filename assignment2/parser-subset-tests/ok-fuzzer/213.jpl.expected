@@ -1,5 +1,5 @@
-(TimeCmd (StmtCmd (WriteImageCmd (VarExpr v6T.4I_3J.) "mzu,n")))
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
+(TimeCmd (WriteImageCmd (VarExpr v6T.4I_3J.) "mzu,n"))
+(TimeCmd (ShowCmd (FloatExpr 0)))
 (ShowCmd
  (CallExpr
   r7c.

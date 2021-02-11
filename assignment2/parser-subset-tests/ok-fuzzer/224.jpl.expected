@@ -12,6 +12,6 @@
 (WriteImageCmd (VarExpr K3t.) ".")
 (PrintCmd "")
 (WriteImageCmd (FloatExpr 21) "")
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument S))))
-(TimeCmd (StmtCmd (PrintCmd ":")))
+(TimeCmd (ReadImageCmd "" (VarArgument S)))
+(TimeCmd (PrintCmd ":"))
 (WriteImageCmd (FloatExpr 0) "rS2m")

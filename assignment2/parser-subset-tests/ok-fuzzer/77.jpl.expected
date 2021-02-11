@@ -1,6 +1,5 @@
 (TimeCmd (StmtCmd (ReturnStmt (VarExpr f0M.6W_3Q.1f_))))
-(TimeCmd
- (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument w9m_9E_6z.))))))
+(TimeCmd (TimeCmd (ReadImageCmd "" (VarArgument w9m_9E_6z.))))
 (WriteImageCmd (IntExpr 7) "&l")
 (ShowCmd (CallExpr n1y_2J_))
 (StmtCmd (AssertStmt (FloatExpr 8) ""))
@@ -10,7 +9,7 @@
 (ShowCmd (VarExpr l0p.))
 (StmtCmd (LetStmt (ArgLValue (VarArgument Z4U.)) (VarExpr p)))
 (StmtCmd (AssertStmt (CallExpr e) "6"))
-(TimeCmd (StmtCmd (PrintCmd "")))
+(TimeCmd (PrintCmd ""))
 (WriteImageCmd (IntExpr 695) "")
 (StmtCmd (ReturnStmt (VarExpr L)))
 (StmtCmd

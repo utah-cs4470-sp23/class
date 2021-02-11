@@ -11,7 +11,7 @@
   (VarExpr L8g_5h.)))
 (WriteImageCmd (FloatExpr 0) "k")
 (ReadImageCmd "" (VarArgument V6Y.))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ShowCmd (FloatExpr 5))))))
+(TimeCmd (TimeCmd (ShowCmd (FloatExpr 5))))
 (ShowCmd
  (CallExpr
   n

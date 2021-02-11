@@ -1,4 +1,4 @@
-(TimeCmd (StmtCmd (PrintCmd "")))
+(TimeCmd (PrintCmd ""))
 (StmtCmd (ReturnStmt (VarExpr w)))
 (ReadImageCmd "tz" (VarArgument T))
 (PrintCmd "")

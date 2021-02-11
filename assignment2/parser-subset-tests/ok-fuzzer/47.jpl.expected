@@ -714,4 +714,4 @@
 (StmtCmd (ReturnStmt (CallExpr F)))
 (WriteImageCmd (FloatExpr 0) "ff?6")
 (WriteImageCmd (IntExpr 3) "")
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
+(TimeCmd (ShowCmd (FloatExpr 0)))

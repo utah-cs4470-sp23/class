@@ -1,5 +1,4 @@
-(TimeCmd
- (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "tTHew" (VarArgument O6x.))))))
+(TimeCmd (TimeCmd (ReadImageCmd "tTHew" (VarArgument O6x.))))
 (StmtCmd (ReturnStmt (IntExpr 5)))
 (StmtCmd (AssertStmt (CallExpr d) "e1"))
 (WriteImageCmd (CallExpr S1g_9p.4N_2j_ (IntExpr 2) (FloatExpr 2)) "")

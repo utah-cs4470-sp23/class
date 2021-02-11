@@ -2,5 +2,5 @@
 (ShowCmd (CallExpr W))
 (ReadImageCmd "" (VarArgument Z))
 (ReadImageCmd "" (VarArgument m))
-(TimeCmd (StmtCmd (PrintCmd "N")))
+(TimeCmd (PrintCmd "N"))
 (PrintCmd "")

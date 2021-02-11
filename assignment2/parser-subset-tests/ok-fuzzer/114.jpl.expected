@@ -1,16 +1,15 @@
 (PrintCmd "")
 (PrintCmd "_")
 (StmtCmd (ReturnStmt (IntExpr 8)))
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument T))))))
+(TimeCmd (TimeCmd (ReadImageCmd "" (VarArgument T))))
 (WriteImageCmd (FloatExpr 0) "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "Ra" (VarArgument T))))))
+(TimeCmd (TimeCmd (ReadImageCmd "Ra" (VarArgument T))))
 (ShowCmd (IntExpr 66614))
 (TimeCmd
- (StmtCmd
-  (TimeCmd
-   (StmtCmd (LetStmt (ArgLValue (VarArgument U9Y.9W.)) (CallExpr F0z.9q.))))))
+ (TimeCmd
+  (StmtCmd (LetStmt (ArgLValue (VarArgument U9Y.9W.)) (CallExpr F0z.9q.)))))
 (ReadImageCmd "7P)" (VarArgument B1E.))
-(TimeCmd (StmtCmd (ReadImageCmd ");" (VarArgument w))))
+(TimeCmd (ReadImageCmd ");" (VarArgument w)))
 (ReadImageCmd "" (VarArgument U1B.3n_))
 (PrintCmd "")
 (PrintCmd "")

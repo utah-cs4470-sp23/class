@@ -1,4 +1,4 @@
-(TimeCmd (StmtCmd (ShowCmd (VarExpr f8O.6r.5p_0t.6O_0P.2A.))))
+(TimeCmd (ShowCmd (VarExpr f8O.6r.5p_0t.6O_0P.2A.)))
 (ShowCmd (CallExpr c9k.))
 (StmtCmd (LetStmt (ArgLValue (VarArgument S7a_)) (IntExpr 8)))
 (ReadImageCmd "" (VarArgument B))

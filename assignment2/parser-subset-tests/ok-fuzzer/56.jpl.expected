@@ -5,19 +5,18 @@
 (StmtCmd (AssertStmt (FloatExpr 0) ""))
 (TimeCmd (StmtCmd (AssertStmt (VarExpr p4S_0v.) "0")))
 (TimeCmd
- (StmtCmd
-  (WriteImageCmd
-   (CallExpr
-    E
-    (FloatExpr 986)
-    (FloatExpr 0)
-    (IntExpr 62)
-    (IntExpr 63432)
-    (FloatExpr 1)
-    (FloatExpr 5924)
-    (CallExpr S5R.0q. (IntExpr 68))
-    (IntExpr 200921))
-   "")))
-(TimeCmd (StmtCmd (PrintCmd "n|")))
+ (WriteImageCmd
+  (CallExpr
+   E
+   (FloatExpr 986)
+   (FloatExpr 0)
+   (IntExpr 62)
+   (IntExpr 63432)
+   (FloatExpr 1)
+   (FloatExpr 5924)
+   (CallExpr S5R.0q. (IntExpr 68))
+   (IntExpr 200921))
+  ""))
+(TimeCmd (PrintCmd "n|"))
 (PrintCmd "")
 (StmtCmd (ReturnStmt (CallExpr h)))

@@ -6,7 +6,7 @@
 (PrintCmd "")
 (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument V8a.)) (IntExpr 56))))
 (ReadImageCmd "M" (VarArgument p))
-(TimeCmd (StmtCmd (PrintCmd "")))
+(TimeCmd (PrintCmd ""))
 (ShowCmd (FloatExpr 18237451085))
 (StmtCmd (AssertStmt (FloatExpr 0) "qE"))
 (TimeCmd (StmtCmd (AssertStmt (VarExpr Z6P.8R_) "VS")))

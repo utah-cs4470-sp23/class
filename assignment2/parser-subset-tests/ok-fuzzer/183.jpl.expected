@@ -1,5 +1,5 @@
 (PrintCmd "[")
 (WriteImageCmd (FloatExpr 91461) "")
-(TimeCmd (StmtCmd (TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "")))))))
+(TimeCmd (TimeCmd (TimeCmd (PrintCmd ""))))
 (PrintCmd "s")
 (StmtCmd (AssertStmt (VarExpr Q) "P`"))

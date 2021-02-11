@@ -1,6 +1,6 @@
 (ReadImageCmd "H6#" (VarArgument n4S_))
 (PrintCmd "")
-(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
+(TimeCmd (ShowCmd (FloatExpr 0)))
 (StmtCmd
  (ReturnStmt
   (CallExpr

@@ -1,5 +1,5 @@
 (WriteImageCmd (FloatExpr 0) "")
-(TimeCmd (StmtCmd (PrintCmd "o")))
+(TimeCmd (PrintCmd "o"))
 (ReadImageCmd "^B" (VarArgument z))
 (WriteImageCmd (FloatExpr 3) "")
 (ShowCmd (FloatExpr 0))

@@ -1,5 +1,5 @@
 (ReadImageCmd "+" (VarArgument Q))
-(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument p1O.4e_8U_))))
+(TimeCmd (ReadImageCmd "" (VarArgument p1O.4e_8U_)))
 (ShowCmd (CallExpr o9Q.))
 (PrintCmd "")
 (WriteImageCmd (CallExpr J) "")

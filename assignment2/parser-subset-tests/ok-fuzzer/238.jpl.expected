@@ -10,5 +10,5 @@
 (ReadImageCmd "" (VarArgument R))
 (ShowCmd (CallExpr o))
 (StmtCmd (LetStmt (ArgLValue (VarArgument O)) (FloatExpr 0)))
-(TimeCmd (StmtCmd (WriteImageCmd (FloatExpr 77336) "]D")))
+(TimeCmd (WriteImageCmd (FloatExpr 77336) "]D"))
 (ReadImageCmd "Y" (VarArgument O))
