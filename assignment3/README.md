@@ -368,4 +368,25 @@ this assignment.
 In other words, get something small and simple to work, test it
 thoroughly, and repeat.
 
-3. Find a good tool for executing a single instruction at a time.
+3. Find and use a tool for interactive debugging of assembly language
+programs. The important features are inspecting the machine state
+(memory, registers, and processor flags) and for executing a single
+instruction at a time. The default tool for this job is the
+interactive debugger `gdb`. [Here is a brief
+guide](https://www.cs.umb.edu/~cheungr/cs341/Using_gdb_for_Assembly.pdf)
+to the assembly-relevant parts of gdb. Here is the [full
+documentation](https://www.gnu.org/software/gdb/documentation).
+Various GUI front-ends for gdb are available if you prefer a
+non-command-line debugging environment.
+
+4. Keep a couple of references for x86-64 assembly language handy
+while you are working.
+  * Here are some short, quick guides:
+    - <https://www.gnu.org/software/gdb/documentation/>
+    - <https://khoury.neu.edu/home/ntuck/courses/2018/09/cs3650/amd64_asm.html>
+    - <http://www.cs.cmu.edu/afs/cs/academic/class/15213-s20/www/recitations/x86-cheat-sheet.pdf>
+  * These are a bit longer and more detailed:
+    - <https://software.intel.com/content/dam/develop/external/us/en/documents/introduction-to-x64-assembly-181178.pdf>
+    - <https://www.cs.tufts.edu/comp/40/docs/x64_cheatsheet.pdf>
+  * And finally, this is the definitive guide:
+    - <https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-sdm-combined-volumes-1-2a-2b-2c-2d-3a-3b-3c-3d-and-4.html>
