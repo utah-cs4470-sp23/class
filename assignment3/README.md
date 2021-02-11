@@ -355,4 +355,17 @@ before calling the function:
 Since it's a first argument, it always takes up the `rdi` register.
 Don't get this wrong.
 
+## Debugging Assembly
 
+One of the primarily challenges your will face during code generation
+is debugging the emittted assembly language. We offer the following
+suggestions:
+
+1. Plan on spending a lot of time debugging. Start very early on
+this assignment.
+
+2. Practice incremental development to the maximum extent possible.
+In other words, get something small and simple to work, test it
+thoroughly, and repeat.
+
+3. Find a good tool for executing a single instruction at a time.
