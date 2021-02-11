@@ -372,18 +372,18 @@ thoroughly, and repeat.
 programs. The important features are inspecting the machine state
 (memory, registers, and processor flags) and executing a single
 instruction at a time. The default tool for this job is the
-interactive debugger `gdb`. [Here is a brief
-guide](https://www.cs.umb.edu/~cheungr/cs341/Using_gdb_for_Assembly.pdf)
-to the assembly-relevant parts of gdb. Here is the [full
-documentation](https://www.gnu.org/software/gdb/documentation).
+interactive debugger `gdb`. Here are some quick tutorials on using the
+assembly-relevant parts of gdb:
+    * <https://www.cs.umb.edu/~cheungr/cs341/Using_gdb_for_Assembly.pdf>
+    * <https://www.cs.swarthmore.edu/~newhall/cs31/resources/ia32_gdb.php>
+    * <https://web.cecs.pdx.edu/~apt/cs491/gdb.pdf>
+Here is the [full documentation](https://www.gnu.org/software/gdb/documentation).
 Various GUI front-ends for gdb are available if you prefer a
 non-command-line debugging environment.
 
 4. Keep a couple of references for x86-64 assembly language handy
 while you are working.
       * Here are some short, quick guides:
-        - <https://www.cs.swarthmore.edu/~newhall/cs31/resources/ia32_gdb.php>
-        - <https://web.cecs.pdx.edu/~apt/cs491/gdb.pdf>
         - <https://khoury.neu.edu/home/ntuck/courses/2018/09/cs3650/amd64_asm.html>
         - <http://www.cs.cmu.edu/afs/cs/academic/class/15213-s20/www/recitations/x86-cheat-sheet.pdf>
       * These are a bit longer and more detailed:
