@@ -118,8 +118,11 @@ checking.
 ## Flattening the JPL subset
 
 Flattening refers to replacing deeply-nested ASTs with shallow ones by
-adding more `let` statements. For example, flattening the following
-expression:
+adding more `let` statements. This is an extremely common technique
+that is implemented in almost all compilers. Its purpose is to take
+complex syntactical forms that appear in the source language, and to
+turn them into simpler forms that are easier for the rest of the
+compiler to process. For example, flattening the following expression:
 
     read image "in.png" to img
     time write image resize(crop(sepia(img), 50, 250, 650, 650), 300, 200) to "out.png"
