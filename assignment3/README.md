@@ -374,9 +374,11 @@ programs. The important features are inspecting the machine state
 instruction at a time. The default tool for this job is the
 interactive debugger `gdb`. Here are some quick tutorials on using the
 assembly-relevant parts of gdb:
+
     * <https://www.cs.umb.edu/~cheungr/cs341/Using_gdb_for_Assembly.pdf>
     * <https://www.cs.swarthmore.edu/~newhall/cs31/resources/ia32_gdb.php>
     * <https://web.cecs.pdx.edu/~apt/cs491/gdb.pdf>
+
 Here is the [full documentation](https://www.gnu.org/software/gdb/documentation).
 Various GUI front-ends for gdb are available if you prefer a
 non-command-line debugging environment.
