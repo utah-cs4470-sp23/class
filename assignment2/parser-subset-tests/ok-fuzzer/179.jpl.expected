@@ -501,7 +501,7 @@
                (VarExpr D)
                (FloatExpr 12)
                (CallExpr M)
-               (FloatExpr -9223372036854775808))
+               (FloatExpr 2927066))
               (IntExpr 4)
               (FloatExpr 0)
               (FloatExpr 0)
