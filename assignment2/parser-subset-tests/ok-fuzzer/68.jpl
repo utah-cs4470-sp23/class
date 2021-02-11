@@ -1,0 +1,12 @@
+time print ""
+return w
+read image "tz" to T
+print ""
+read image "[" to C8T.4m.
+assert h, "5"
+read image "" to D
+read image "" to Y
+print "G"
+write image 096. to ""
+read image "O" to l6R_9u.
+read image "" to X3z_

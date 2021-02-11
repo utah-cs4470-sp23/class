@@ -1,0 +1,8 @@
+(WriteImageCmd (IntExpr 36) "")
+(StmtCmd (LetStmt (ArgLValue (VarArgument w5J_5h.)) (IntExpr 4)))
+(ReadImageCmd "m" (VarArgument q))
+(WriteImageCmd (FloatExpr 0) "Nc)4t'")
+(StmtCmd (AssertStmt (VarExpr X2W.1L.3s.0K.) "f<r+"))
+(PrintCmd "}m_(A")
+(StmtCmd (ReturnStmt (IntExpr 1)))
+(PrintCmd "")

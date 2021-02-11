@@ -1,0 +1,5 @@
+(StmtCmd (ReturnStmt (FloatExpr 0)))
+(ShowCmd (IntExpr 77))
+(WriteImageCmd (CallExpr w8d_) "")
+(ReadImageCmd "" (VarArgument P))
+(PrintCmd "")

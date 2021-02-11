@@ -1,0 +1,11 @@
+write .1 to "Yg" 
+write image .4736 to "_T" 
+assert .5, "" 
+= z 5
+u image "" to read
+write image 9632 "" 
+return 635274 
+show Z1e_() 
+print "S" 
+read image "rNc" to m3B_3C. 
+show 2. 

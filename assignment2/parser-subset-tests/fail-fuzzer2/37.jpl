@@ -1,0 +1,9 @@
+show .5 
+write image f0I_(o1y.1l., z7D.5g_3u.(), z7D.5g_3u.(), 63.78, .7, Q, 5501, to "IV" 
+read image "qtokF`" to l 
+time show S 
+time assert assert n, 
+write image j6X_7r_ to 
+read image image "" to
+assert n(), "" 
+write image 31 to "%j}#" 

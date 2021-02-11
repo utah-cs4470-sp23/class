@@ -1,0 +1,5 @@
+(WriteImageCmd (IntExpr 6) "bD2")
+(StmtCmd (AssertStmt (FloatExpr 0) "$W"))
+(TimeCmd (PrintCmd ""))
+(ShowCmd (CallExpr T))
+(TimeCmd (PrintCmd ""))

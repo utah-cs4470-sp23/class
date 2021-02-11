@@ -1,0 +1,17 @@
+time let z = 6
+show 2
+write image 038. to ""
+show .20
+assert .86480801732, "!P"
+write image 5 to "v"
+time print ""
+print ""
+print ""
+write image 4 to ""
+return v9s.(7, w4d.9J., 104)
+read image "J]@$" to o
+print ""
+let a = 2
+show N
+print ""
+show 614825385.8468

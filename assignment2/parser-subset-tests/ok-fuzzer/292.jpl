@@ -1,0 +1,5 @@
+show 3
+time time read image "K" to h
+write image 5 to ""
+let r = 2
+show 5

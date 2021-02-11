@@ -1,0 +1,9 @@
+read image "" to Y
+print ""
+let M = 3783
+show .243702782201869710300502954458183
+show 850932871
+read image "" to F
+print "s"
+show .380
+assert m6J., ""

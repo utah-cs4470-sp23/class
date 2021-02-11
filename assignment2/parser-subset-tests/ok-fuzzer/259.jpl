@@ -1,0 +1,12 @@
+read image "" to m4h.
+show P1x.
+show 640301.3
+assert H, ">"
+show K()
+write image f() to ""
+return .98
+time time assert 81, "y"
+let G = 4768
+let d = 1
+show U9D_
+write image 7 to "jE"

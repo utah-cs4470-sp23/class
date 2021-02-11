@@ -1,0 +1,8 @@
+show x(95, .21197865, .6, n8T_(), X(), 0, r)
+read image "" to t7H.
+write image K3t. to "."
+print ""
+write image 21.452381 to ""
+time read image "" to S
+time print ":"
+write image .91 to "rS2m"

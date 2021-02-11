@@ -1,0 +1,20 @@
+time read image "} " to r
+read image "hSX" to S7G.
+read image "PTK" to W
+print ""
+write image j() to "FW"
+readhmage "PTK" to W
+ti- RedN image "} "`to 
+tiVme readZ d%mage " " Eto r
+read image{*"TK2 t!W
+tima read image "} " to r)
+ru:a image \"hSX" tg W7G
+ead image @"PT[F@ tbo 
+wri2te imagE () to "FW"
+hprint""
+wpiteiAge"zj)X to "FW"
+write imabe j()V to("F_W"
+wriTm image j()to "FWn"
+reaCd(mafe  PTK" to !W
+time re2ad imae "} /"dn r
+tima ead macu = f" t R

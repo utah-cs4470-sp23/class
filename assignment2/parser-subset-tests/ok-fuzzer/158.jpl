@@ -1,0 +1,2 @@
+read image "" to L
+time assert 3, "u%"

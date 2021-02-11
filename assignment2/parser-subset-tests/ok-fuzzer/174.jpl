@@ -1,0 +1,5 @@
+read image "" to g
+print "D"
+let L = .1
+print ""
+return 980.

@@ -1,0 +1,8 @@
+(TimeCmd (ShowCmd (CallExpr c (FloatExpr 7))))
+(StmtCmd (ReturnStmt (VarExpr f0T.)))
+(ReadImageCmd "$`" (VarArgument V1E.8m_4b_))
+(WriteImageCmd (CallExpr d0l_7y.3Y_ (FloatExpr 121) (VarExpr M)) "")
+(ReadImageCmd "" (VarArgument V))
+(WriteImageCmd (CallExpr q) "0")
+(WriteImageCmd (FloatExpr 0) "1^")
+(StmtCmd (AssertStmt (VarExpr M7i.9w_4A_2A.9p.) ".8"))

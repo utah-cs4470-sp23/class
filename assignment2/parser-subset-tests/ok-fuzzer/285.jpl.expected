@@ -1,0 +1,15 @@
+(WriteImageCmd (IntExpr 0) "")
+(PrintCmd "")
+(PrintCmd "")
+(TimeCmd
+ (ShowCmd
+  (CallExpr
+   i3U.
+   (VarExpr B)
+   (CallExpr i1j_8L_ (VarExpr a))
+   (FloatExpr 97153825760))))
+(PrintCmd "")
+(StmtCmd (AssertStmt (VarExpr g) "0"))
+(WriteImageCmd (CallExpr Q (IntExpr 8)) "QowR")
+(WriteImageCmd (VarExpr Y) ",!")
+(ShowCmd (VarExpr O))

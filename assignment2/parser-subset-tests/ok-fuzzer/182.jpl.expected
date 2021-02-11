@@ -1,0 +1,7 @@
+(WriteImageCmd (IntExpr 0) "[")
+(WriteImageCmd (CallExpr W (FloatExpr 892) (VarExpr S8r_) (CallExpr H)) "")
+(ShowCmd (IntExpr 0))
+(PrintCmd "6M")
+(WriteImageCmd (FloatExpr 0) "")
+(ShowCmd (FloatExpr 0))
+(WriteImageCmd (FloatExpr 0) "")

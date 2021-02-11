@@ -1,0 +1,5 @@
+(WriteImageCmd (IntExpr 32015) "33")
+(WriteImageCmd (IntExpr 6) "")
+(StmtCmd (ReturnStmt (FloatExpr 0)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument I)) (CallExpr T0f_)))
+(TimeCmd (ReadImageCmd "a" (VarArgument j5x.)))

@@ -1,0 +1,6 @@
+time time let P = .0
+read image "9*3i*" to j1Z_
+time time assert 4, "$8ksY|!"
+read image "@" to F
+write image A(06854) to ""
+print "FM"

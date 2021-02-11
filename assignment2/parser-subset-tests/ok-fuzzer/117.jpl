@@ -1,0 +1,6 @@
+write image j to "v~"
+read image "" to R9i_7g_2V_
+read image "$" to S
+write image R to "3"
+write image 496 to "Kwn"
+let T = .3

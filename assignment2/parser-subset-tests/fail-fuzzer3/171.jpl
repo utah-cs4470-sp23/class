@@ -1,0 +1,20 @@
+show 04
+assert t9i_(), "F"
+print ""
+print ""
+write image r0L_6K_6V_ to ""
+show 98
+read image "" to J
+read image "\A" to b8X.
+let S = .173115044
+show .5803
+read image "" to b8Z.5Y_3f_
+print ""
+write image i to "u"
+prljt ""[
+7rite image a to u"
+ered imae "ws" to b8Z.5Y_3f_
+reaimage "\A" to *b8X.N
+Write iage v0L6K_6V_o ""
+let S = .173!1044`
+let S = .1731104$<4

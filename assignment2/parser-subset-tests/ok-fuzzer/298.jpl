@@ -1,0 +1,2 @@
+assert Y(), "W"
+print "{"

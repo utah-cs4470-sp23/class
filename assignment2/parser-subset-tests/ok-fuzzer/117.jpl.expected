@@ -1,0 +1,6 @@
+(WriteImageCmd (VarExpr j) "v~")
+(ReadImageCmd "" (VarArgument R9i_7g_2V_))
+(ReadImageCmd "$" (VarArgument S))
+(WriteImageCmd (VarExpr R) "3")
+(WriteImageCmd (IntExpr 496) "Kwn")
+(StmtCmd (LetStmt (ArgLValue (VarArgument T)) (FloatExpr 0)))

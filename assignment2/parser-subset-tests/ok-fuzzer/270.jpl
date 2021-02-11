@@ -1,0 +1,16 @@
+show 2
+show c
+write image L9G.(N) to ""
+write image 8128 to ""
+read image "" to c
+write image 6. to ""
+read image "" to o7L.
+show 36733230682.92380
+read image "U" to A8a_
+write image b to "aq"
+print ""
+show 6149
+print ""
+show 9
+print "<![C,/s+k"
+let T0G. = 8697714.50

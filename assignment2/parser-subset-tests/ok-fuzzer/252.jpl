@@ -1,0 +1,6 @@
+time write image A to "Igz"
+read image "" to p
+read image "" to l
+write image h1H_ to ""
+read image "" to m4a_
+read image "" to P

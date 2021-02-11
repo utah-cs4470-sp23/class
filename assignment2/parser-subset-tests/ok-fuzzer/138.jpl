@@ -1,0 +1,12 @@
+write image E9K_5t.5a.2U.1G_ to ":"
+assert w(), "h"
+read image "" to r
+let N = 5
+write image C1y_ to ""
+read image "" to A
+show B
+read image "kjj" to R
+print "V"
+write image g8N_8M.(0301, 9) to ""
+time show 5.8168
+time time write image v2Y_8z. to ""

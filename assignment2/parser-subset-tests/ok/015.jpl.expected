@@ -1,0 +1,2 @@
+(PrintCmd
+ "k anchkfn ~!@#%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?`1234567890-=qwertyuiop[]\asdfghjkl;'zxcvbnm,./~`")

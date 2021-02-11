@@ -1,0 +1,2 @@
+(PrintCmd "")
+(TimeCmd (ReturnStmt (FloatExpr 69)))

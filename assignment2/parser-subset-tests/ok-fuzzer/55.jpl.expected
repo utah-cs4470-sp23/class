@@ -1,0 +1,6 @@
+(StmtCmd (AssertStmt (IntExpr 3) "T"))
+(ShowCmd (CallExpr W))
+(ReadImageCmd "" (VarArgument Z))
+(ReadImageCmd "" (VarArgument m))
+(TimeCmd (PrintCmd "N"))
+(PrintCmd "")

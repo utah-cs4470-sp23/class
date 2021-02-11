@@ -1,0 +1,7 @@
+time let a1Z. = .92
+show .0852
+write image I5M.5J_5O_2R_() to ";"
+return .42
+time print "[."
+read image "" to h
+read image "v2" to P

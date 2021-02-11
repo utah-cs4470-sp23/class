@@ -1,0 +1,6 @@
+(PrintCmd "")
+(StmtCmd (LetStmt (ArgLValue (VarArgument P2w_8m.5n.6o_)) (VarExpr h8E_)))
+(WriteImageCmd (FloatExpr 0) "&P46o")
+(ReadImageCmd "-YyE" (VarArgument H))
+(ReadImageCmd "" (VarArgument x))
+(ReadImageCmd "" (VarArgument E4h.))

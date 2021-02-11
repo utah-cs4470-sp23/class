@@ -1,0 +1,11 @@
+show .5355
+time read image "" to Z
+print ""
+write image 70. to "TXM'"
+read image "5p" to A
+let J = .47
+assert o, "mh"
+read image "I0[gWX" to v5Q.
+time show M2Z.
+read image "" to H
+let n = N

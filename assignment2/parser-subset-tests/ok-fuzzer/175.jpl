@@ -1,0 +1,7 @@
+read image "" to a
+time read image "" to K
+assert .6, ""
+show 99
+time let B = R
+print "i"
+write image s to ""

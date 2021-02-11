@@ -1,0 +1,20 @@
+(PrintCmd "")
+(ShowCmd (CallExpr s))
+(TimeCmd (PrintCmd ""))
+(WriteImageCmd
+ (CallExpr
+  F1I.
+  (CallExpr J8Q.)
+  (IntExpr 574)
+  (FloatExpr 0)
+  (IntExpr 7)
+  (IntExpr 44)
+  (FloatExpr 0))
+ "N")
+(ShowCmd (IntExpr 1533))
+(ReadImageCmd "L" (VarArgument y))
+(WriteImageCmd (VarExpr y) "nFl#")
+(StmtCmd (ReturnStmt (VarExpr b2K.8S.)))
+(WriteImageCmd (CallExpr F (CallExpr d5y.)) "L")
+(ReadImageCmd "c;q" (VarArgument o0G_7E.))
+(WriteImageCmd (VarExpr K) ">")

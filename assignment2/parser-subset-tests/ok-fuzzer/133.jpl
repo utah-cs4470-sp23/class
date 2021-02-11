@@ -1,0 +1,13 @@
+read image "" to A
+read image "" to X0M_7P.
+read image "rd" to b2x_3G.
+read image "" to f
+time show 4
+time write image 016 to "&>"
+print "A"
+write image 77 to ""
+read image "$" to C
+print ""
+show V5Z.3r_
+show j9u_
+write image j() to "j"

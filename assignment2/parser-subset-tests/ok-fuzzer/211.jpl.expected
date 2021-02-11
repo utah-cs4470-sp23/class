@@ -1,0 +1,5 @@
+(ShowCmd (IntExpr 7023))
+(ShowCmd (IntExpr 0))
+(WriteImageCmd (FloatExpr 46) "N)")
+(WriteImageCmd (CallExpr P (VarExpr f9i_1f_1W_7b_1P_6N_3N.) (FloatExpr 0)) "")
+(WriteImageCmd (VarExpr x0v_5f_9k.) "")

@@ -1,0 +1,13 @@
+(TimeCmd (ShowCmd (VarExpr f8O.6r.5p_0t.6O_0P.2A.)))
+(ShowCmd (CallExpr c9k.))
+(StmtCmd (LetStmt (ArgLValue (VarArgument S7a_)) (IntExpr 8)))
+(ReadImageCmd "" (VarArgument B))
+(WriteImageCmd (FloatExpr 0) "")
+(ReadImageCmd "8" (VarArgument o8U.))
+(ShowCmd (CallExpr G9t.9U_6P.7q.5Y.4m_))
+(PrintCmd " ")
+(ShowCmd (FloatExpr 7))
+(StmtCmd (AssertStmt (IntExpr 1) "r4"))
+(StmtCmd
+ (LetStmt (ArgLValue (VarArgument l7C_)) (CallExpr y2n_ (VarExpr L9u_))))
+(ShowCmd (FloatExpr 8))

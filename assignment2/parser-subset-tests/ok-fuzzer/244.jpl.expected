@@ -1,0 +1,1 @@
+(WriteImageCmd (FloatExpr 0) "")

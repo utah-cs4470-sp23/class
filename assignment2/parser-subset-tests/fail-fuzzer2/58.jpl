@@ -1,0 +1,4 @@
+write image 4 
+print "" 
+time let S1D. = .0496842593373043658 
+time write image .55409440931 to ":" 

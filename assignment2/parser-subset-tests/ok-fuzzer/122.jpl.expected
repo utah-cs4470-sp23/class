@@ -1,0 +1,7 @@
+(TimeCmd (WriteImageCmd (VarExpr N9s_) "$"))
+(ReadImageCmd "~" (VarArgument O))
+(WriteImageCmd (CallExpr D0a_) "BT")
+(ReadImageCmd "M0" (VarArgument L7O.1C_))
+(ShowCmd (VarExpr k))
+(StmtCmd (ReturnStmt (IntExpr 8)))
+(StmtCmd (ReturnStmt (CallExpr f8H.7y_)))

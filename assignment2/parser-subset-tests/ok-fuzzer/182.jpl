@@ -1,0 +1,7 @@
+write image 0 to "["
+write image W(892.701, S8r_, H()) to ""
+show 0
+print "6M"
+write image .9021260 to ""
+show .6
+write image .0 to ""

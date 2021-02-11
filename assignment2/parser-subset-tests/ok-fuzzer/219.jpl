@@ -1,0 +1,13 @@
+show Q
+write image c() to "<"
+time write image X4p. to "0"
+read image "?<CzO" to D
+write image .4 to "J"
+time read image "Z" to R7m.4Y.
+write image .10 to ","
+write image 30375. to "A"
+read image "" to G
+return k3E.8w_
+write image u(9345) to "%U?"
+print "]S"
+write image L6w.() to ""

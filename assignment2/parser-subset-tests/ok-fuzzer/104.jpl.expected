@@ -1,0 +1,7 @@
+(TimeCmd (ReadImageCmd "Mj'" (VarArgument m8o.9e.3W.)))
+(TimeCmd (TimeCmd (PrintCmd "")))
+(ReadImageCmd "G^" (VarArgument z1g.))
+(WriteImageCmd (IntExpr 835) "")
+(StmtCmd (ReturnStmt (VarExpr n3J_1k_6U.5d.)))
+(WriteImageCmd (FloatExpr 0) "")
+(ShowCmd (VarExpr z))

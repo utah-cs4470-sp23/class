@@ -1,0 +1,77 @@
+#!/usr/bin/env perl
+
+use strict;
+use autodie;
+use warnings;
+use File::Spec;
+
+my $exe = File::Spec->rel2abs($0);
+die unless ($exe =~ /^(.*)\/test-subset-parser$/);
+my $dir = "${1}/parser-subset-tests";
+print "$dir\n";
+die unless -d $dir;
+
+my @ok_files = ();
+push @ok_files, glob "${dir}/ok/*.jpl";
+push @ok_files, glob "${dir}/ok-fuzzer/*.jpl";
+
+my @error_files = ();
+push @error_files, glob "${dir}/fail-fuzzer1/*.jpl";
+push @error_files, glob "${dir}/fail-fuzzer2/*.jpl";
+push @error_files, glob "${dir}/fail-fuzzer3/*.jpl";
+
+sub runit($$) {
+    (my $cmd, my $f) = @_;
+    system("$cmd > ${f}.output");    
+    open my $INF, "<${f}.output" or die;
+    my $good = 0;
+    my $bad = 0;
+    while (my $line = <$INF>) {
+        $good++ if ($line =~ /Compilation succeeded/);
+        $bad++ if ($line =~ /Compilation failed/);
+    }
+    return 2 if (($good + $bad) != 1);
+    return 1 if ($bad == 1);
+    return 0 if ($good == 1);
+    die "whoops!";
+}
+
+my $fails = 0;
+
+foreach my $f (@ok_files) {
+    my $got = runit("make run TEST=$f", $f);
+    my $expect = 0;
+    print "$f : expect = ".($expect).", got = ".($got);
+    if ($got != $expect) {
+        print "    <----------------- OOPS";
+        $fails++;
+    } else {
+        system "racket ${dir}/pp.rkt < ${f}.output > ${f}.output.pp";
+        my $res = system "diff -c ${f}.expected ${f}.output.pp";
+        if ($res != 0) {
+            print "    <----------------- OOPS";
+            $fails++;
+        }
+    }
+    print "\n";
+}
+
+foreach my $f (@error_files) {
+    my $got = runit("make run TEST=$f", $f);
+    my $expect = 1;
+    print "$f : expect = ".($expect).", got = ".($got);
+    if ($got != $expect) {
+        print "    <----------------- OOPS";
+        $fails++;
+    }
+    print "\n";
+}
+
+print "\n";
+
+if ($fails == 0) {
+    print "All tests pass.\n";
+} else {
+    print "${fails} tests fail.\n";
+}
+

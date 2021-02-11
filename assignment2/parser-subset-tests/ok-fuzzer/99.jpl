@@ -1,0 +1,19 @@
+time read image "R" to t
+write image 124.7684382190 to "4"
+print ""
+assert 98.2, ""
+read image "]" to y9x_
+return B
+print ""
+return 5
+write image 984655.9435 to ""
+show 5
+print ""
+write image I(34) to ""
+assert 2, ""
+read image "" to i
+write image J to "+l."
+return s4n_0C.4F.
+print "I"
+read image "" to F
+show o(r)

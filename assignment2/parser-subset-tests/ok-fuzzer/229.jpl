@@ -1,0 +1,3 @@
+show 85
+write image H0i_8j_() to "rh"
+read image "8" to q

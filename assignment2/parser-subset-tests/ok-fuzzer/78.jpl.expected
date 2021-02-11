@@ -1,0 +1,7 @@
+(ShowCmd (IntExpr 4))
+(StmtCmd (ReturnStmt (IntExpr 0)))
+(ShowCmd (VarExpr E))
+(StmtCmd (ReturnStmt (CallExpr e3u.3w.)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument n)) (IntExpr 4)))
+(ShowCmd (VarExpr F))
+(ReadImageCmd "s" (VarArgument d1J.))

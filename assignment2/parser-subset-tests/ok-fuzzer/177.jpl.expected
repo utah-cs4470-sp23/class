@@ -1,0 +1,20 @@
+(ShowCmd (FloatExpr 0))
+(WriteImageCmd
+ (CallExpr
+  f0I_
+  (VarExpr o1y.1l.)
+  (CallExpr z7D.5g_3u.)
+  (FloatExpr 63)
+  (FloatExpr 0)
+  (CallExpr E9Q.)
+  (VarExpr Q)
+  (IntExpr 5501)
+  (IntExpr 4342))
+ "IV")
+(ReadImageCmd "qtokF`" (VarArgument l))
+(TimeCmd (ShowCmd (VarExpr S)))
+(TimeCmd (AssertStmt (VarExpr n) ""))
+(WriteImageCmd (VarExpr j6X_7r_) "")
+(ReadImageCmd "" (VarArgument k))
+(StmtCmd (AssertStmt (CallExpr n) ""))
+(WriteImageCmd (IntExpr 31) "%j}#")

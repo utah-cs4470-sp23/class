@@ -1,0 +1,13 @@
+time show 8
+assert 0, "C"
+time return w5V_()
+write image 130 to "b"
+show z
+time time show .7006
+time return n
+read image "" to i3A_1Z.0f_1h.
+print "b"
+print "N"
+write image .0494248527 to ""
+write image I9s_5R_() to "M"
+print ""

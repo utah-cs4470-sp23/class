@@ -1,0 +1,5 @@
+(PrintCmd "")
+(ShowCmd (IntExpr 4))
+(StmtCmd (LetStmt (ArgLValue (VarArgument a)) (VarExpr s)))
+(ReadImageCmd "" (VarArgument W))
+(StmtCmd (AssertStmt (IntExpr 896) ""))

@@ -1,0 +1,6 @@
+assert 3, "T"
+show W()
+read image "" to Z
+read image "" to m
+time print "N"
+print ""

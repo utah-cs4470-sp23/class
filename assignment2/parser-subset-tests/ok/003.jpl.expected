@@ -1,0 +1,2 @@
+(PrintCmd
+ "lmkjchfni 98765   86715248799_+_~!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:ZXCVBNM<>?|}}|}|?>?")

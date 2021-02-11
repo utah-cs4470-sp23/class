@@ -1,0 +1,5 @@
+(ShowCmd (VarExpr j5K_4F_))
+(WriteImageCmd (IntExpr 88) "Jd")
+(ReadImageCmd "," (VarArgument g5d_0A_5Q.))
+(WriteImageCmd (CallExpr v (VarExpr r5f_1O.)) "")
+(PrintCmd "")

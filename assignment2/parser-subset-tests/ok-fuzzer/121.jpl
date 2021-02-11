@@ -1,0 +1,4 @@
+let M = 06808.529
+read image "" to m
+write image 59.9634 to ""
+show Y()

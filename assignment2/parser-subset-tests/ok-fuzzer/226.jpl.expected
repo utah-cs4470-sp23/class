@@ -1,0 +1,5 @@
+(StmtCmd (LetStmt (ArgLValue (VarArgument G3h.)) (FloatExpr 0)))
+(ShowCmd (VarExpr I5G_9j_))
+(ShowCmd (FloatExpr 73))
+(PrintCmd "")
+(ReadImageCmd "" (VarArgument a3X.4z.4g_))
