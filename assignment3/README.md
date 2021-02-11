@@ -7,18 +7,18 @@ that you implemented a parser for in Assignment 2. This compiler's job
 is to turn an AST into:
 
 - an assembly function, or
-- a type error.
+- a naming or type error.
 
 You will be implementing this compiler in three steps:
 
-- Type checking
+- Name resolution and type checking
 - Flattening
 - Code generation
 
 Recall that the subset of JPL that we are working with contains
-variable of just four types: `bool`, `int`, `float`, and `int[,]`
-which we will refer to in this assignment as `pict`. The four types
-correspond to the following types in C, all provided by the
+variables of just four types: `bool`, `int`, `float`, and `int[,]`.
+In this assignment we will refer to the last of these as `pict`. The
+four types correspond to the following types in C, all provided by the
 `<stdint.h>` header:
 
 - `bool` corresponds to `int32_t` and takes up 4 bytes
