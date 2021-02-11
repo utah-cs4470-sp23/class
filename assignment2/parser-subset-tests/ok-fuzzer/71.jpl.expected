@@ -1,7 +1,7 @@
 (StmtCmd (AssertStmt (CallExpr N (CallExpr F9W.)) ""))
 (PrintCmd "")
 (WriteImageCmd (VarExpr t) "v")
-(TimeCmd (LetStmt (ArgLValue (VarArgument w)) (IntExpr 4)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument w)) (IntExpr 4))))
 (ShowCmd (VarExpr e0E_))
 (PrintCmd "W")
 (StmtCmd (AssertStmt (FloatExpr 0) "t"))

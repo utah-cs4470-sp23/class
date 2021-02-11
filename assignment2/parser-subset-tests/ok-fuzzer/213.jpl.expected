@@ -301,4 +301,4 @@
 (ShowCmd (IntExpr 1))
 (ReadImageCmd "3" (VarArgument M))
 (ShowCmd (VarExpr p))
-(TimeCmd (AssertStmt (IntExpr 32) ""))
+(TimeCmd (StmtCmd (AssertStmt (IntExpr 32) "")))

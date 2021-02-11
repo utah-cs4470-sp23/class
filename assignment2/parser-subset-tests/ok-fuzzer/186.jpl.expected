@@ -1,6 +1,6 @@
 (TimeCmd (WriteImageCmd (CallExpr N4k.7P. (VarExpr u5S.1l_)) ""))
 (WriteImageCmd (IntExpr 9) "2")
-(TimeCmd (LetStmt (ArgLValue (VarArgument E)) (VarExpr A)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument E)) (VarExpr A))))
 (PrintCmd "")
 (TimeCmd (PrintCmd "p"))
 (ShowCmd (CallExpr Q1z_))

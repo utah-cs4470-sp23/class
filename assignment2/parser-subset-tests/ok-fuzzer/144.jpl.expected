@@ -1,6 +1,6 @@
 (ReadImageCmd "!" (VarArgument w))
 (WriteImageCmd (IntExpr 1) "")
-(TimeCmd (LetStmt (ArgLValue (VarArgument g)) (VarExpr m7T.)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument g)) (VarExpr m7T.))))
 (ReadImageCmd ">u?ES" (VarArgument V9x.9U_))
 (PrintCmd "")
 (WriteImageCmd (FloatExpr 0) "")

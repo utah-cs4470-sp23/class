@@ -8,7 +8,7 @@
 (ShowCmd (CallExpr F))
 (StmtCmd (LetStmt (ArgLValue (VarArgument K7b_)) (FloatExpr 0)))
 (PrintCmd "u")
-(TimeCmd (AssertStmt (FloatExpr 9965) "T"))
+(TimeCmd (StmtCmd (AssertStmt (FloatExpr 9965) "T")))
 (ReadImageCmd "h6F1" (VarArgument r9E_3X.1W_))
 (ReadImageCmd "" (VarArgument D))
 (StmtCmd (ReturnStmt (IntExpr 75)))

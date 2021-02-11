@@ -10,5 +10,5 @@
 (ShowCmd (IntExpr 17))
 (WriteImageCmd (IntExpr 95) "")
 (ReadImageCmd "Xl" (VarArgument k5Z.7m.1U_))
-(TimeCmd (AssertStmt (FloatExpr 4244) "r"))
+(TimeCmd (StmtCmd (AssertStmt (FloatExpr 4244) "r")))
 (TimeCmd (PrintCmd ""))

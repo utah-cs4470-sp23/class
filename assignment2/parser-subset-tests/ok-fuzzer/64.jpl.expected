@@ -1,6 +1,6 @@
 (PrintCmd ")")
 (TimeCmd (ReadImageCmd "" (VarArgument n5j_4s.8Q.)))
-(TimeCmd (TimeCmd (AssertStmt (CallExpr I) "")))
+(TimeCmd (TimeCmd (StmtCmd (AssertStmt (CallExpr I) ""))))
 (ShowCmd (VarExpr r3y.))
 (PrintCmd "U+")
 (WriteImageCmd (CallExpr K9v_7Z_4g_2T.2U. (VarExpr m)) "9E")

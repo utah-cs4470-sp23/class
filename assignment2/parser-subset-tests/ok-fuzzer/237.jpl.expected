@@ -19,7 +19,7 @@
 (PrintCmd "0")
 (WriteImageCmd (FloatExpr 369715305) "")
 (PrintCmd "")
-(TimeCmd (LetStmt (ArgLValue (VarArgument q)) (FloatExpr 913880)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument q)) (FloatExpr 913880))))
 (WriteImageCmd (IntExpr 46) "")
 (StmtCmd (ReturnStmt (FloatExpr 0)))
 (ReadImageCmd "" (VarArgument g))

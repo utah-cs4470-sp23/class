@@ -4,7 +4,7 @@
 (ReadImageCmd "" (VarArgument I5y.0d.8x_))
 (PrintCmd "")
 (WriteImageCmd (CallExpr a8x.) "Y")
-(TimeCmd (AssertStmt (FloatExpr 7) ""))
+(TimeCmd (StmtCmd (AssertStmt (FloatExpr 7) "")))
 (PrintCmd ".")
 (PrintCmd "")
 (ReadImageCmd "q" (VarArgument B1k_))

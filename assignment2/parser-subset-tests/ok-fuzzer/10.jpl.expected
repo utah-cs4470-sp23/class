@@ -1,6 +1,7 @@
-(TimeCmd (LetStmt (ArgLValue (VarArgument A)) (CallExpr h (VarExpr J3v.))))
+(TimeCmd
+ (StmtCmd (LetStmt (ArgLValue (VarArgument A)) (CallExpr h (VarExpr J3v.)))))
 (StmtCmd (ReturnStmt (FloatExpr 0)))
-(TimeCmd (AssertStmt (IntExpr 4869) "!"))
+(TimeCmd (StmtCmd (AssertStmt (IntExpr 4869) "!")))
 (ShowCmd (FloatExpr 0))
 (WriteImageCmd (IntExpr 353729630) "'d8t")
 (PrintCmd "=y=WWWu2X")

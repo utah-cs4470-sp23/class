@@ -521,5 +521,5 @@
 (ReadImageCmd "" (VarArgument u))
 (PrintCmd "xK")
 (ShowCmd (VarExpr X0E_))
-(TimeCmd (ReturnStmt (FloatExpr 0)))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 0))))
 (ShowCmd (VarExpr y6P.9S.2D_))

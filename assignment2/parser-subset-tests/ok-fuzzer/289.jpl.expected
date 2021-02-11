@@ -13,5 +13,6 @@
 (TimeCmd (ReadImageCmd "" (VarArgument N1r.5W_5N.)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument t)) (IntExpr 3)))
 (TimeCmd (PrintCmd ""))
-(TimeCmd (LetStmt (ArgLValue (VarArgument P)) (CallExpr I (VarExpr t))))
+(TimeCmd
+ (StmtCmd (LetStmt (ArgLValue (VarArgument P)) (CallExpr I (VarExpr t)))))
 (WriteImageCmd (IntExpr 56) "&")

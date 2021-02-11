@@ -4,7 +4,7 @@
 (WriteImageCmd (CallExpr S1g_9p.4N_2j_ (IntExpr 2) (FloatExpr 2)) "")
 (ShowCmd (IntExpr 73))
 (ReadImageCmd "U" (VarArgument I4O.7X.))
-(TimeCmd (LetStmt (ArgLValue (VarArgument p6X.)) (CallExpr w)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument p6X.)) (CallExpr w))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument y)) (CallExpr D (IntExpr 4))))
 (PrintCmd "Z")
 (StmtCmd (ReturnStmt (IntExpr 21)))

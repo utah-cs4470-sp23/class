@@ -8,7 +8,7 @@
 (ShowCmd (FloatExpr 25))
 (PrintCmd "")
 (ShowCmd (FloatExpr 9262))
-(TimeCmd (AssertStmt (CallExpr n) "r"))
+(TimeCmd (StmtCmd (AssertStmt (CallExpr n) "r")))
 (TimeCmd (WriteImageCmd (VarExpr U4Z_7L_) "3U"))
 (ReadImageCmd "]" (VarArgument t9n_))
 (ReadImageCmd "" (VarArgument a))

@@ -1,4 +1,4 @@
-(TimeCmd (AssertStmt (IntExpr 63) ""))
+(TimeCmd (StmtCmd (AssertStmt (IntExpr 63) "")))
 (ReadImageCmd "" (VarArgument K))
 (ShowCmd (FloatExpr 74))
 (PrintCmd "")

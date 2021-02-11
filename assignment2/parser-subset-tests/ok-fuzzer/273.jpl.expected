@@ -1,4 +1,4 @@
-(TimeCmd (AssertStmt (CallExpr V) "0"))
+(TimeCmd (StmtCmd (AssertStmt (CallExpr V) "0")))
 (PrintCmd "")
 (ReadImageCmd "" (VarArgument P))
 (StmtCmd (LetStmt (ArgLValue (VarArgument O)) (IntExpr 5450)))

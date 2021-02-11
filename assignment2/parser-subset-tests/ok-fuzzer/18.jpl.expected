@@ -5,7 +5,7 @@
 (PrintCmd "")
 (TimeCmd (WriteImageCmd (CallExpr r9H_8k_4P_) ""))
 (WriteImageCmd (IntExpr 1) "Z")
-(TimeCmd (AssertStmt (VarExpr v) "?ia"))
+(TimeCmd (StmtCmd (AssertStmt (VarExpr v) "?ia")))
 (TimeCmd (ShowCmd (FloatExpr 0)))
 (ReadImageCmd "" (VarArgument c5K.))
 (ShowCmd (FloatExpr 8163))

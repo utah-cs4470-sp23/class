@@ -9,7 +9,7 @@
 (TimeCmd (TimeCmd (TimeCmd (PrintCmd ""))))
 (PrintCmd "")
 (ShowCmd (CallExpr S2i_))
-(TimeCmd (AssertStmt (VarExpr g) ""))
+(TimeCmd (StmtCmd (AssertStmt (VarExpr g) "")))
 (StmtCmd (ReturnStmt (IntExpr 57392)))
 (TimeCmd (PrintCmd "9^^VR7"))
 (ShowCmd (CallExpr R8m.4g.6x_3M_))

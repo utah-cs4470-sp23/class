@@ -501,7 +501,7 @@
                (VarExpr D)
                (FloatExpr 12)
                (CallExpr M)
-               (FloatExpr -9223372036854775808))
+               (FloatExpr 2927066))
               (IntExpr 4)
               (FloatExpr 0)
               (FloatExpr 0)
@@ -635,7 +635,8 @@
    (IntExpr 18647)
    (CallExpr n))))
 (TimeCmd
- (TimeCmd (TimeCmd (LetStmt (ArgLValue (VarArgument b)) (CallExpr M)))))
+ (TimeCmd
+  (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument b)) (CallExpr M))))))
 (ReadImageCmd "HH" (VarArgument M))
 (StmtCmd (AssertStmt (VarExpr G) "0"))
 (WriteImageCmd (VarExpr J1G.4C.) "")

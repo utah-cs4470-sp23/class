@@ -4,7 +4,7 @@
 (PrintCmd "")
 (WriteImageCmd (VarExpr k5Y_0q.) "")
 (PrintCmd "M)F")
-(TimeCmd (TimeCmd (AssertStmt (IntExpr 88246675) "Cv")))
+(TimeCmd (TimeCmd (StmtCmd (AssertStmt (IntExpr 88246675) "Cv"))))
 (WriteImageCmd (VarExpr a7m_) "=")
 (PrintCmd "")
 (TimeCmd (ReadImageCmd "" (VarArgument H7d_)))

@@ -3,7 +3,7 @@
 (WriteImageCmd (FloatExpr 0) "")
 (ReadImageCmd "" (VarArgument v))
 (PrintCmd "%rb")
-(TimeCmd (LetStmt (ArgLValue (VarArgument s)) (IntExpr 5)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument s)) (IntExpr 5))))
 (PrintCmd "")
 (WriteImageCmd (CallExpr W) "")
 (StmtCmd

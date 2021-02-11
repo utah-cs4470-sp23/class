@@ -5,6 +5,6 @@
 (ReadImageCmd "" (VarArgument N))
 (ReadImageCmd "3" (VarArgument V6E_9l_))
 (PrintCmd "sK")
-(TimeCmd (LetStmt (ArgLValue (VarArgument l)) (FloatExpr 0)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument l)) (FloatExpr 0))))
 (ShowCmd (FloatExpr 0))
 (TimeCmd (ShowCmd (IntExpr 4)))

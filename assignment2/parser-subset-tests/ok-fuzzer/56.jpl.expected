@@ -3,7 +3,7 @@
 (WriteImageCmd (CallExpr b) "4")
 (StmtCmd (LetStmt (ArgLValue (VarArgument a)) (IntExpr 3)))
 (StmtCmd (AssertStmt (FloatExpr 0) ""))
-(TimeCmd (AssertStmt (VarExpr p4S_0v.) "0"))
+(TimeCmd (StmtCmd (AssertStmt (VarExpr p4S_0v.) "0")))
 (TimeCmd
  (WriteImageCmd
   (CallExpr

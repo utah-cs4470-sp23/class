@@ -17,6 +17,6 @@
     (CallExpr R (VarExpr E5j.))
     (FloatExpr 0)))))
 (ShowCmd (VarExpr c7Z_9j.))
-(TimeCmd (ReturnStmt (FloatExpr 2)))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 2))))
 (WriteImageCmd (CallExpr H9N_) "")
 (StmtCmd (ReturnStmt (CallExpr X5f_)))

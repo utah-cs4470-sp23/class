@@ -1,7 +1,7 @@
 (WriteImageCmd (CallExpr R5k.6O_) "v")
 (WriteImageCmd (VarExpr X) "")
 (PrintCmd "E")
-(TimeCmd (AssertStmt (CallExpr k) ""))
+(TimeCmd (StmtCmd (AssertStmt (CallExpr k) "")))
 (ShowCmd (VarExpr u))
 (WriteImageCmd (FloatExpr 0) "NV")
 (WriteImageCmd (FloatExpr 0) "")

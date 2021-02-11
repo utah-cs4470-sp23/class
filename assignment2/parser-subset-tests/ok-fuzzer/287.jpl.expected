@@ -2,7 +2,8 @@
 (TimeCmd
  (TimeCmd
   (TimeCmd
-   (LetStmt (ArgLValue (VarArgument X6o_0I.4H.)) (CallExpr e6L_8s_1f_)))))
+   (StmtCmd
+    (LetStmt (ArgLValue (VarArgument X6o_0I.4H.)) (CallExpr e6L_8s_1f_))))))
 (TimeCmd (PrintCmd "f"))
 (WriteImageCmd (FloatExpr 97438) "[")
 (ShowCmd

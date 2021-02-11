@@ -1,6 +1,6 @@
 (WriteImageCmd (FloatExpr 0) "")
 (ReadImageCmd "" (VarArgument J))
-(TimeCmd (ReturnStmt (VarExpr v3y.6R.)))
+(TimeCmd (StmtCmd (ReturnStmt (VarExpr v3y.6R.))))
 (ShowCmd
  (CallExpr
   r1s_2C_1r.

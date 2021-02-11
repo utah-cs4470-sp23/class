@@ -4,8 +4,8 @@
 (TimeCmd (TimeCmd (PrintCmd "")))
 (StmtCmd (AssertStmt (VarExpr m) "m{"))
 (PrintCmd "")
-(TimeCmd (ReturnStmt (VarExpr S)))
-(TimeCmd (ReturnStmt (FloatExpr 916952924414752512)))
+(TimeCmd (StmtCmd (ReturnStmt (VarExpr S))))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 916952924414752512))))
 (WriteImageCmd
  (CallExpr
   F0F_

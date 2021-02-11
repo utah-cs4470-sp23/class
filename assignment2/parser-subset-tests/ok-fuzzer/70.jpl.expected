@@ -1,7 +1,7 @@
 (StmtCmd (AssertStmt (FloatExpr 200074) ""))
 (PrintCmd "")
 (ShowCmd (IntExpr 8))
-(TimeCmd (TimeCmd (AssertStmt (VarExpr O) "T*v&X")))
+(TimeCmd (TimeCmd (StmtCmd (AssertStmt (VarExpr O) "T*v&X"))))
 (TimeCmd (TimeCmd (TimeCmd (WriteImageCmd (CallExpr j4T_4U_) ""))))
 (StmtCmd (ReturnStmt (CallExpr V)))
 (ReadImageCmd "" (VarArgument t6c_))

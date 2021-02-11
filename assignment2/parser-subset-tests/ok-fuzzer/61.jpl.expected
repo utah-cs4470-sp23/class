@@ -1,6 +1,6 @@
 (WriteImageCmd (FloatExpr 0) ".")
 (TimeCmd (ReadImageCmd "" (VarArgument w)))
-(TimeCmd (ReturnStmt (VarExpr B6n_2g_8p.)))
+(TimeCmd (StmtCmd (ReturnStmt (VarExpr B6n_2g_8p.))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument g)) (VarExpr v)))
 (ReadImageCmd "<P" (VarArgument f))
 (ShowCmd (FloatExpr 28))

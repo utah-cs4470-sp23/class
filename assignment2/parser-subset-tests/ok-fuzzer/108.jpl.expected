@@ -6,4 +6,4 @@
 (PrintCmd "LJb")
 (StmtCmd (LetStmt (ArgLValue (VarArgument H8O.7K.)) (VarExpr Z)))
 (StmtCmd (AssertStmt (CallExpr e4x_) "*"))
-(TimeCmd (ReturnStmt (FloatExpr 0)))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 0))))

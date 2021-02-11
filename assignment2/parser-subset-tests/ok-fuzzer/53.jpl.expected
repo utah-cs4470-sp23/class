@@ -12,5 +12,5 @@
 (WriteImageCmd (FloatExpr 9) "1Vn")
 (ReadImageCmd "(" (VarArgument S))
 (ShowCmd (CallExpr J1X.))
-(TimeCmd (TimeCmd (AssertStmt (FloatExpr 0) "")))
+(TimeCmd (TimeCmd (StmtCmd (AssertStmt (FloatExpr 0) ""))))
 (ReadImageCmd "" (VarArgument D3O.0I_2m_))

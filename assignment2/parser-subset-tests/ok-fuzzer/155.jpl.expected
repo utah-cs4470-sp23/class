@@ -7,7 +7,7 @@
 (WriteImageCmd (IntExpr 2) "")
 (ReadImageCmd " y5G" (VarArgument B))
 (WriteImageCmd (CallExpr I8X.3n.) "")
-(TimeCmd (ReturnStmt (CallExpr n)))
+(TimeCmd (StmtCmd (ReturnStmt (CallExpr n))))
 (PrintCmd "u1[h")
 (ReadImageCmd "!" (VarArgument L))
 (TimeCmd

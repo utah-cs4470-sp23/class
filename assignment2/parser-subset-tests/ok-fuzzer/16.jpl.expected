@@ -1,7 +1,7 @@
 (ReadImageCmd "_" (VarArgument j))
 (PrintCmd "a")
 (ReadImageCmd "^" (VarArgument P7f.9j_2q_))
-(TimeCmd (AssertStmt (FloatExpr 0) ""))
+(TimeCmd (StmtCmd (AssertStmt (FloatExpr 0) "")))
 (PrintCmd "")
 (WriteImageCmd (CallExpr O9u.6p.6O_ (IntExpr 3)) "")
 (ReadImageCmd "" (VarArgument k2x.))

@@ -1,5 +1,5 @@
 (TimeCmd (WriteImageCmd (IntExpr 6) "v^"))
-(TimeCmd (AssertStmt (VarExpr b2e.3i_0X.6z_6m_7W_) "F"))
+(TimeCmd (StmtCmd (AssertStmt (VarExpr b2e.3i_0X.6z_6m_7W_) "F")))
 (StmtCmd (ReturnStmt (IntExpr 33)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument b)) (CallExpr R8D. (IntExpr 7))))
 (PrintCmd "C")

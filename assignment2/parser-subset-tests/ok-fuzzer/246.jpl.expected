@@ -8,7 +8,8 @@
 (StmtCmd (AssertStmt (IntExpr 9287) ""))
 (ShowCmd (CallExpr j9O_4f.))
 (PrintCmd "")
-(TimeCmd (LetStmt (ArgLValue (VarArgument H3D_)) (VarExpr f3p.6N.7a_)))
+(TimeCmd
+ (StmtCmd (LetStmt (ArgLValue (VarArgument H3D_)) (VarExpr f3p.6N.7a_))))
 (WriteImageCmd (IntExpr 447182) "")
 (ShowCmd (FloatExpr 264))
 (PrintCmd "%F")

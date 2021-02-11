@@ -2,6 +2,6 @@
 (TimeCmd (ReadImageCmd "" (VarArgument K)))
 (StmtCmd (AssertStmt (FloatExpr 0) ""))
 (ShowCmd (IntExpr 99))
-(TimeCmd (LetStmt (ArgLValue (VarArgument B)) (VarExpr R)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument B)) (VarExpr R))))
 (PrintCmd "i")
 (WriteImageCmd (VarExpr s) "")

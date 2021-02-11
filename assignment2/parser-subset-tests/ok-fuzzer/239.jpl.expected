@@ -76,4 +76,4 @@
 (StmtCmd (AssertStmt (FloatExpr 0) ""))
 (ReadImageCmd "" (VarArgument r))
 (ShowCmd (IntExpr 7))
-(TimeCmd (LetStmt (ArgLValue (VarArgument S1p.)) (IntExpr 7)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument S1p.)) (IntExpr 7))))

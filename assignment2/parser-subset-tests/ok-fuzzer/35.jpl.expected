@@ -1,5 +1,5 @@
 (WriteImageCmd (IntExpr 4) "G")
-(TimeCmd (ReturnStmt (FloatExpr 2667390382925111)))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 2667390382925111))))
 (TimeCmd (ReadImageCmd "" (VarArgument O8H.7j.)))
 (ReadImageCmd "i" (VarArgument K))
 (StmtCmd (ReturnStmt (IntExpr 2)))

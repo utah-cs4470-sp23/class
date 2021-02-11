@@ -1,6 +1,6 @@
 (TimeCmd (WriteImageCmd (CallExpr D8e.) ";lK]"))
 (TimeCmd (ReadImageCmd "" (VarArgument s)))
-(TimeCmd (ReturnStmt (IntExpr 6005)))
+(TimeCmd (StmtCmd (ReturnStmt (IntExpr 6005))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument X)) (IntExpr 1)))
 (PrintCmd "")
 (StmtCmd (LetStmt (ArgLValue (VarArgument K)) (VarExpr z)))

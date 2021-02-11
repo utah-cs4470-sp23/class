@@ -1,4 +1,4 @@
-(TimeCmd (LetStmt (ArgLValue (VarArgument z)) (IntExpr 6)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument z)) (IntExpr 6))))
 (ShowCmd (IntExpr 2))
 (WriteImageCmd (FloatExpr 38) "")
 (ShowCmd (FloatExpr 0))
