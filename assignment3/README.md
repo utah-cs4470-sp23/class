@@ -392,3 +392,7 @@ while you are working.
         - <https://www.cs.tufts.edu/comp/40/docs/x64_cheatsheet.pdf>
       * And finally, this is the definitive guide:
         - <https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-sdm-combined-volumes-1-2a-2b-2c-2d-3a-3b-3c-3d-and-4.html>
+
+5. Implement an optional debug mode in your compiler where it prints
+details about what it is thinking about at various stages of the
+compilation job.
