@@ -1,17 +1,19 @@
-(TimeCmd (WriteImageCmd (IntExpr 6) "v^"))
-(TimeCmd (AssertStmt (VarExpr b2e.3i_0X.6z_6m_7W_) "F"))
+(TimeCmd (StmtCmd (WriteImageCmd (IntExpr 6) "v^")))
+(TimeCmd (StmtCmd (AssertStmt (VarExpr b2e.3i_0X.6z_6m_7W_) "F")))
 (StmtCmd (ReturnStmt (IntExpr 33)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument b)) (CallExpr R8D. (IntExpr 7))))
 (PrintCmd "C")
 (ReadImageCmd "" (VarArgument s2P_))
 (ReadImageCmd "Sn" (VarArgument k))
 (ShowCmd (IntExpr 621))
-(TimeCmd (WriteImageCmd (VarExpr e5S.) "Z"))
+(TimeCmd (StmtCmd (WriteImageCmd (VarExpr e5S.) "Z")))
 (ShowCmd (IntExpr 8))
 (StmtCmd (LetStmt (ArgLValue (VarArgument Z6b.)) (CallExpr Q)))
 (StmtCmd (ReturnStmt (IntExpr 596)))
 (TimeCmd
- (TimeCmd (ShowCmd (CallExpr r (CallExpr k (VarExpr p0w.) (VarExpr t))))))
+ (StmtCmd
+  (TimeCmd
+   (StmtCmd (ShowCmd (CallExpr r (CallExpr k (VarExpr p0w.) (VarExpr t))))))))
 (ShowCmd (IntExpr 35))
 (WriteImageCmd (CallExpr k) "")
 (ReadImageCmd "P*a@~k" (VarArgument c))

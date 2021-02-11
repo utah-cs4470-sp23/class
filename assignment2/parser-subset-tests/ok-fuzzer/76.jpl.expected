@@ -8,7 +8,8 @@
 (StmtCmd (ReturnStmt (VarExpr a)))
 (ReadImageCmd "" (VarArgument y))
 (StmtCmd (ReturnStmt (CallExpr c1z_6S_)))
-(TimeCmd (WriteImageCmd (VarExpr I) "F_"))
-(TimeCmd (PrintCmd "f"))
-(TimeCmd (TimeCmd (ReadImageCmd "=" (VarArgument J8z_6p.))))
+(TimeCmd (StmtCmd (WriteImageCmd (VarExpr I) "F_")))
+(TimeCmd (StmtCmd (PrintCmd "f")))
+(TimeCmd
+ (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "=" (VarArgument J8z_6p.))))))
 (ReadImageCmd "" (VarArgument D))

@@ -1,2 +1,2 @@
 (StmtCmd (ReturnStmt (VarExpr e)))
-(TimeCmd (PrintCmd ""))
+(TimeCmd (StmtCmd (PrintCmd "")))

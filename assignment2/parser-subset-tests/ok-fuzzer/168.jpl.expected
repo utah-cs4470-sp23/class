@@ -6,4 +6,4 @@
 (StmtCmd (AssertStmt (CallExpr W6t.) " "))
 (ReadImageCmd "" (VarArgument h))
 (PrintCmd "+")
-(TimeCmd (AssertStmt (FloatExpr 0) ""))
+(TimeCmd (StmtCmd (AssertStmt (FloatExpr 0) "")))

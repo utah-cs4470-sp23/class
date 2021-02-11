@@ -1,7 +1,7 @@
 (ReadImageCmd "" (VarArgument a6n.3M_))
 (StmtCmd (ReturnStmt (VarExpr G)))
 (StmtCmd (ReturnStmt (FloatExpr 0)))
-(TimeCmd (PrintCmd "u"))
+(TimeCmd (StmtCmd (PrintCmd "u")))
 (PrintCmd "mz")
 (ShowCmd (IntExpr 86))
 (PrintCmd "")

@@ -1,11 +1,11 @@
 (ShowCmd (FloatExpr 547227800775))
 (PrintCmd "U0kI")
 (ShowCmd (VarExpr a6s.4I.6L_3D.))
-(TimeCmd (TimeCmd (PrintCmd "")))
+(TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "")))))
 (StmtCmd (AssertStmt (VarExpr m) "m{"))
 (PrintCmd "")
-(TimeCmd (ReturnStmt (VarExpr S)))
-(TimeCmd (ReturnStmt (FloatExpr 916952924414752512)))
+(TimeCmd (StmtCmd (ReturnStmt (VarExpr S))))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 916952924414752512))))
 (WriteImageCmd
  (CallExpr
   F0F_

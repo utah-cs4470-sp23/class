@@ -1,2 +1,2 @@
-(TimeCmd (ShowCmd (IntExpr 6)))
-(TimeCmd (ShowCmd (IntExpr 3)))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 6))))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 3))))

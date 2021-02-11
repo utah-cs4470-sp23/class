@@ -9,7 +9,7 @@
 (PrintCmd "0")
 (ReadImageCmd "" (VarArgument w))
 (PrintCmd "")
-(TimeCmd (ReadImageCmd "6" (VarArgument W5A_)))
+(TimeCmd (StmtCmd (ReadImageCmd "6" (VarArgument W5A_))))
 (ShowCmd (CallExpr h2Q_3R.7h.7L.3D_))
 (PrintCmd ",9")
 (ShowCmd (VarExpr v))

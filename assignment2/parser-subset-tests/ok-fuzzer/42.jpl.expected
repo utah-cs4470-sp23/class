@@ -1,4 +1,4 @@
-(TimeCmd (ShowCmd (VarExpr v)))
+(TimeCmd (StmtCmd (ShowCmd (VarExpr v))))
 (WriteImageCmd
  (CallExpr
   b4h_0W.
@@ -51,9 +51,9 @@
  "L")
 (StmtCmd
  (LetStmt (ArgLValue (VarArgument i8m_)) (CallExpr a8t.4v_ (IntExpr 78983))))
-(TimeCmd (ShowCmd (FloatExpr 0)))
+(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
 (ReadImageCmd "" (VarArgument N))
 (PrintCmd "=K")
-(TimeCmd (WriteImageCmd (FloatExpr 0) ""))
+(TimeCmd (StmtCmd (WriteImageCmd (FloatExpr 0) "")))
 (WriteImageCmd (FloatExpr 0) "]6 ")
 (PrintCmd "A")

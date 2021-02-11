@@ -9,4 +9,4 @@
 (WriteImageCmd (CallExpr b1G_2b.3p_) "")
 (ReadImageCmd "" (VarArgument Y))
 (StmtCmd (AssertStmt (VarExpr L0s.9c.4u_0f.) "M@"))
-(TimeCmd (ShowCmd (IntExpr 7)))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 7))))

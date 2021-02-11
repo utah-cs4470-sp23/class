@@ -1,21 +1,22 @@
 (ShowCmd (VarExpr O7f.))
 (ReadImageCmd "" (VarArgument F1H.))
-(TimeCmd (TimeCmd (WriteImageCmd (CallExpr G) "s")))
+(TimeCmd (StmtCmd (TimeCmd (StmtCmd (WriteImageCmd (CallExpr G) "s")))))
 (StmtCmd (AssertStmt (VarExpr R4U_8w.) "_"))
 (PrintCmd ";.")
 (StmtCmd (AssertStmt (FloatExpr 0) "4}"))
 (ShowCmd (CallExpr U (CallExpr B2K_0f.) (VarExpr o)))
 (TimeCmd
- (WriteImageCmd
-  (CallExpr
-   r
-   (CallExpr e)
-   (FloatExpr 0)
-   (CallExpr S (FloatExpr 612) (IntExpr 7743)))
-  "Q"))
+ (StmtCmd
+  (WriteImageCmd
+   (CallExpr
+    r
+    (CallExpr e)
+    (FloatExpr 0)
+    (CallExpr S (FloatExpr 612) (IntExpr 7743)))
+   "Q")))
 (WriteImageCmd (FloatExpr 0) "")
 (WriteImageCmd (CallExpr Z (IntExpr 0)) "f")
-(TimeCmd (ShowCmd (FloatExpr 0)))
+(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
 (ShowCmd (VarExpr T))
 (StmtCmd (ReturnStmt (VarExpr X1b.0g.8g.4w.1e_0N.3Z_)))
 (PrintCmd "")

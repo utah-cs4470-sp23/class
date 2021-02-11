@@ -5,6 +5,6 @@
 (ShowCmd (FloatExpr 0))
 (StmtCmd (AssertStmt (IntExpr 718) ""))
 (ShowCmd (IntExpr 9))
-(TimeCmd (ReadImageCmd "" (VarArgument i)))
+(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument i))))
 (ReadImageCmd "" (VarArgument q2V.))
 (StmtCmd (ReturnStmt (IntExpr 44)))

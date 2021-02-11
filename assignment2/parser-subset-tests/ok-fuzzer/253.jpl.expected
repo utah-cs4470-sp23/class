@@ -1,6 +1,6 @@
 (PrintCmd "]lG#")
 (PrintCmd "")
-(TimeCmd (ShowCmd (FloatExpr 0)))
+(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument E)) (VarExpr t)))
 (WriteImageCmd (IntExpr 1) "")
 (ReadImageCmd "" (VarArgument r9A_3y_))

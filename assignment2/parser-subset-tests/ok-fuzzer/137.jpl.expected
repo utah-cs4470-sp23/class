@@ -14,8 +14,8 @@
 (StmtCmd (AssertStmt (FloatExpr 427543) ""))
 (ShowCmd (FloatExpr 4082928564))
 (StmtCmd (AssertStmt (VarExpr K5P_2c.8M_4c_) "+"))
-(TimeCmd (ShowCmd (VarExpr R6y_5b.8w.)))
-(TimeCmd (WriteImageCmd (FloatExpr 277) ""))
+(TimeCmd (StmtCmd (ShowCmd (VarExpr R6y_5b.8w.))))
+(TimeCmd (StmtCmd (WriteImageCmd (FloatExpr 277) "")))
 (StmtCmd (AssertStmt (IntExpr 1) ""))
 (WriteImageCmd
  (CallExpr

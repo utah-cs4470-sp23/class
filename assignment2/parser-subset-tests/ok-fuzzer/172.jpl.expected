@@ -1,6 +1,6 @@
-(TimeCmd (ReturnStmt (FloatExpr 8)))
+(TimeCmd (StmtCmd (ReturnStmt (FloatExpr 8))))
 (PrintCmd ";")
-(TimeCmd (PrintCmd ";/"))
+(TimeCmd (StmtCmd (PrintCmd ";/")))
 (ShowCmd (CallExpr C))
 (StmtCmd (ReturnStmt (FloatExpr 0)))
 (PrintCmd "")

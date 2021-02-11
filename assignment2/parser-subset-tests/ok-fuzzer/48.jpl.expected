@@ -2,7 +2,7 @@
 (WriteImageCmd (IntExpr 29) "")
 (StmtCmd (LetStmt (ArgLValue (VarArgument S)) (IntExpr 98)))
 (StmtCmd (ReturnStmt (VarExpr u2H.)))
-(TimeCmd (ShowCmd (CallExpr t)))
+(TimeCmd (StmtCmd (ShowCmd (CallExpr t))))
 (StmtCmd (ReturnStmt (IntExpr 64)))
 (StmtCmd (AssertStmt (VarExpr P2I_) ""))
 (PrintCmd "=")

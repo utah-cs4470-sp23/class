@@ -1,7 +1,7 @@
 (ShowCmd (IntExpr 3))
 (PrintCmd "")
 (StmtCmd (LetStmt (ArgLValue (VarArgument N)) (CallExpr f (FloatExpr 192663))))
-(TimeCmd (ReadImageCmd "" (VarArgument a)))
+(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument a))))
 (ReadImageCmd "" (VarArgument X9m_8h_6Y_1n.))
 (ShowCmd (VarExpr s))
 (ShowCmd (FloatExpr 0))

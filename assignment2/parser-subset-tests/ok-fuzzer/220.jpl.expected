@@ -6,9 +6,9 @@
 (ShowCmd (CallExpr z))
 (WriteImageCmd (FloatExpr 1) "u")
 (WriteImageCmd (FloatExpr 2254) "")
-(TimeCmd (ReadImageCmd "l" (VarArgument Q9J_)))
+(TimeCmd (StmtCmd (ReadImageCmd "l" (VarArgument Q9J_))))
 (ShowCmd (IntExpr 566))
-(TimeCmd (PrintCmd "rX"))
+(TimeCmd (StmtCmd (PrintCmd "rX")))
 (StmtCmd (AssertStmt (IntExpr 8) ""))
 (WriteImageCmd
  (CallExpr
@@ -98,6 +98,6 @@
   (VarExpr i5P.)
   (IntExpr 53))
  "")
-(TimeCmd (WriteImageCmd (VarExpr K) ""))
+(TimeCmd (StmtCmd (WriteImageCmd (VarExpr K) "")))
 (WriteImageCmd (IntExpr 11) "|{")
 (ShowCmd (VarExpr T1f_))

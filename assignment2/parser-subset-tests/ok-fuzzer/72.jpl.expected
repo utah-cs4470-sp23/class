@@ -1,6 +1,6 @@
 (ShowCmd (IntExpr 4))
 (ReadImageCmd "@g" (VarArgument x2F_))
-(TimeCmd (TimeCmd (PrintCmd "n")))
+(TimeCmd (StmtCmd (TimeCmd (StmtCmd (PrintCmd "n")))))
 (StmtCmd (AssertStmt (FloatExpr 0) ""))
 (ShowCmd (IntExpr 1))
 (ReadImageCmd "" (VarArgument p3n_))

@@ -5,7 +5,7 @@
    D
    (CallExpr N0x_ (CallExpr l) (IntExpr 9) (FloatExpr 4) (VarExpr f0s.3u.)))))
 (ReadImageCmd "" (VarArgument d3T.))
-(TimeCmd (ShowCmd (IntExpr 35)))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 35))))
 (StmtCmd (ReturnStmt (FloatExpr 3550)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument A6B_)) (CallExpr O3Q.)))
 (ShowCmd (CallExpr n (FloatExpr 0)))
@@ -15,7 +15,7 @@
 (ReadImageCmd "" (VarArgument R5O_))
 (ShowCmd (IntExpr 0))
 (ReadImageCmd "X" (VarArgument w6i_))
-(TimeCmd (LetStmt (ArgLValue (VarArgument u8c.)) (FloatExpr 2)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument u8c.)) (FloatExpr 2))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument z)) (IntExpr 3)))
 (WriteImageCmd
  (CallExpr

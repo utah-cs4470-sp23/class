@@ -1,5 +1,5 @@
 (StmtCmd (AssertStmt (CallExpr G8n_5T_) "Z"))
-(TimeCmd (ShowCmd (FloatExpr 0)))
+(TimeCmd (StmtCmd (ShowCmd (FloatExpr 0))))
 (PrintCmd "a{")
 (ReadImageCmd "H" (VarArgument m))
 (WriteImageCmd (VarExpr E2U_) "E")

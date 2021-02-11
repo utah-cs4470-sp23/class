@@ -1,5 +1,5 @@
 (PrintCmd "")
-(TimeCmd (ReadImageCmd "e{" (VarArgument f4L_7s.)))
+(TimeCmd (StmtCmd (ReadImageCmd "e{" (VarArgument f4L_7s.))))
 (ShowCmd (CallExpr G9g.))
 (ReadImageCmd "" (VarArgument F))
 (ShowCmd (CallExpr j))
@@ -7,4 +7,4 @@
 (ReadImageCmd "" (VarArgument a1N.))
 (ReadImageCmd "" (VarArgument K9N_))
 (WriteImageCmd (VarExpr j0i.9R.7o.) "")
-(TimeCmd (ShowCmd (VarExpr d)))
+(TimeCmd (StmtCmd (ShowCmd (VarExpr d))))

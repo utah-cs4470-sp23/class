@@ -8,7 +8,7 @@
 (PrintCmd "#|s#")
 (StmtCmd (AssertStmt (CallExpr E (VarExpr T)) ""))
 (PrintCmd "")
-(TimeCmd (PrintCmd ""))
+(TimeCmd (StmtCmd (PrintCmd "")))
 (StmtCmd (LetStmt (ArgLValue (VarArgument y)) (FloatExpr 0)))
 (ShowCmd (CallExpr U))
 (PrintCmd "")

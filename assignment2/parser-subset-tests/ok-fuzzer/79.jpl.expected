@@ -2,4 +2,4 @@
 (WriteImageCmd (IntExpr 6) "")
 (StmtCmd (ReturnStmt (FloatExpr 0)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument I)) (CallExpr T0f_)))
-(TimeCmd (ReadImageCmd "a" (VarArgument j5x.)))
+(TimeCmd (StmtCmd (ReadImageCmd "a" (VarArgument j5x.))))

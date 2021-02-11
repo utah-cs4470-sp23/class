@@ -7,7 +7,7 @@
 (ReadImageCmd "" (VarArgument C))
 (PrintCmd "U")
 (ShowCmd (VarExpr P8N.))
-(TimeCmd (WriteImageCmd (CallExpr o) "`,"))
+(TimeCmd (StmtCmd (WriteImageCmd (CallExpr o) "`,")))
 (ReadImageCmd "" (VarArgument u))
 (ReadImageCmd "N" (VarArgument N5L_7w_5d_))
 (WriteImageCmd (FloatExpr 0) "")

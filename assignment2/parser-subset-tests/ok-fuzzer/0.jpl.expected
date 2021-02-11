@@ -1,4 +1,4 @@
-(TimeCmd (LetStmt (ArgLValue (VarArgument C)) (IntExpr 4)))
+(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument C)) (IntExpr 4))))
 (WriteImageCmd (VarExpr W) "B")
 (WriteImageCmd (IntExpr 8) "~<")
 (ShowCmd
@@ -192,5 +192,5 @@
   (IntExpr 3780)
   (FloatExpr 48)))
 (ShowCmd (IntExpr 3))
-(TimeCmd (TimeCmd (ReadImageCmd "XH" (VarArgument g3h.))))
-(TimeCmd (ReadImageCmd "" (VarArgument F)))
+(TimeCmd (StmtCmd (TimeCmd (StmtCmd (ReadImageCmd "XH" (VarArgument g3h.))))))
+(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument F))))

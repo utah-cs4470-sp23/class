@@ -1,18 +1,22 @@
 (PrintCmd "UcN")
-(TimeCmd (ReadImageCmd "" (VarArgument T)))
+(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument T))))
 (TimeCmd
- (TimeCmd (TimeCmd (WriteImageCmd (CallExpr g2v_0h.5s_ (CallExpr p4I_)) ""))))
+ (StmtCmd
+  (TimeCmd
+   (StmtCmd
+    (TimeCmd
+     (StmtCmd (WriteImageCmd (CallExpr g2v_0h.5s_ (CallExpr p4I_)) "")))))))
 (PrintCmd "")
 (StmtCmd (LetStmt (ArgLValue (VarArgument V)) (CallExpr C)))
 (ReadImageCmd "Uo" (VarArgument o))
 (WriteImageCmd (FloatExpr 0) "")
 (PrintCmd "n")
-(TimeCmd (ShowCmd (IntExpr 9)))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 9))))
 (ShowCmd (VarExpr u8F.))
 (WriteImageCmd (FloatExpr 642) "")
-(TimeCmd (ShowCmd (IntExpr 12)))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 12))))
 (PrintCmd "0")
 (ShowCmd (FloatExpr 0))
-(TimeCmd (PrintCmd ""))
+(TimeCmd (StmtCmd (PrintCmd "")))
 (ShowCmd (IntExpr 81344))
 (ShowCmd (FloatExpr 0))

@@ -1,2 +1,2 @@
-(TimeCmd (PrintCmd ""))
+(TimeCmd (StmtCmd (PrintCmd "")))
 (ReadImageCmd "" (VarArgument H4p_2C.1c.))

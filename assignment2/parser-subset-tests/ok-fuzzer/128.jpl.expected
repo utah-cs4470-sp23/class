@@ -1,6 +1,6 @@
 (PrintCmd "")
-(TimeCmd (ShowCmd (CallExpr R8V_9F_7b_7v.0M.8M.)))
-(TimeCmd (ReadImageCmd "" (VarArgument K0Z_)))
+(TimeCmd (StmtCmd (ShowCmd (CallExpr R8V_9F_7b_7v.0M.8M.))))
+(TimeCmd (StmtCmd (ReadImageCmd "" (VarArgument K0Z_))))
 (StmtCmd (AssertStmt (IntExpr 477) "?YkK"))
 (StmtCmd (LetStmt (ArgLValue (VarArgument z2h.)) (IntExpr 9)))
 (ReadImageCmd ">a$;" (VarArgument J))

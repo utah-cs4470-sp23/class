@@ -13,5 +13,5 @@
 (WriteImageCmd (VarExpr A6t.) "]")
 (ReadImageCmd "" (VarArgument I))
 (ShowCmd (CallExpr h (FloatExpr 0)))
-(TimeCmd (ShowCmd (IntExpr 68)))
+(TimeCmd (StmtCmd (ShowCmd (IntExpr 68))))
 (ShowCmd (CallExpr m))

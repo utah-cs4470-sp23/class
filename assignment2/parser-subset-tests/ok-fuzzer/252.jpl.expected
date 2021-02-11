@@ -1,4 +1,4 @@
-(TimeCmd (WriteImageCmd (VarExpr A) "Igz"))
+(TimeCmd (StmtCmd (WriteImageCmd (VarExpr A) "Igz")))
 (ReadImageCmd "" (VarArgument p))
 (ReadImageCmd "" (VarArgument l))
 (WriteImageCmd (VarExpr h1H_) "")

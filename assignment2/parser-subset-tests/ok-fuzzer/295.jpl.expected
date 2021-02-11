@@ -1,6 +1,6 @@
 (ReadImageCmd "H" (VarArgument J))
-(TimeCmd (PrintCmd "o"))
-(TimeCmd (ShowCmd (VarExpr u9k_7C.5N_)))
+(TimeCmd (StmtCmd (PrintCmd "o")))
+(TimeCmd (StmtCmd (ShowCmd (VarExpr u9k_7C.5N_))))
 (PrintCmd "+cs")
 (ReadImageCmd "fv" (VarArgument J4e_8U.))
 (ShowCmd

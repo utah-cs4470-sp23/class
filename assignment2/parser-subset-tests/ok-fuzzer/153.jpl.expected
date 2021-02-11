@@ -379,5 +379,5 @@
 (PrintCmd "75")
 (WriteImageCmd (FloatExpr 0) "")
 (ShowCmd (IntExpr 5))
-(TimeCmd (ReadImageCmd "P{" (VarArgument s2V.1s.)))
-(TimeCmd (AssertStmt (IntExpr 1557) ""))
+(TimeCmd (StmtCmd (ReadImageCmd "P{" (VarArgument s2V.1s.))))
+(TimeCmd (StmtCmd (AssertStmt (IntExpr 1557) "")))
