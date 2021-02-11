@@ -25,19 +25,22 @@ four types correspond to the following types in C, all provided by the
 - `int` corresponds to `int64_t` and takes up 8 bytes
 - `float` corresponds to `double` and takes up 8 bytes
 - `pict` corresponds to `struct { int64_t; int64_t; double *; }`
-  and takes up 24 bytes
+  and takes up 24 bytes (since all three components of the struct
+  have 8-byte alignment, there is no padding)
 
 Expressions in this subset are either constants, or they are a call to
 one of the following functions:
 
-- `has_size(pict, int, int): bool`
-- `sepia(pict): pict`
+- `add_ints(int, int) : int`
+- `add_floats(float, float) : float`
+- `has_size(pict, int, int) : bool`
+- `sepia(pict) : pict`
 - `blur(pict, float) : pict`
-- `resize(pict, int, int): pict`
-- `crop(pict, int, int, int, int): pict`
+- `resize(pict, int, int) : pict`
+- `crop(pict, int, int, int, int) : pict`
 
-A runtime with implementations (in C) of all five functions will be
-provided to you, with the following signatures:
+A runtime with implementations (in C) of all of these functions will
+be provided to you, with the following signatures:
 
 ```
 #include <stdint.h>
@@ -48,7 +51,9 @@ struct pict {
     double *data;
 };
 
-int32_t has_size(struct pict input, int rows, int cols);
+int64_t add_ints(int64_t a, int64_t b);
+double add_floats(double a, double b);
+int32_t has_size(struct pict input, int64_t rows, int64_t cols);
 struct pict sepia(struct pict input);
 struct pict blur(struct pict input, double radius);
 struct pict resize(struct pict input, int64_t rows, int64_t cols);
@@ -57,11 +62,12 @@ struct pict crop(struct pict input, int64_t top, int64_t left, int64_t bottom, i
 
 Your compiler's output will call these provided implementations.
 
-Your compiler must output assembly code for the NASM assembler. That
-assembly code must compile cleanly to an object file that defines the
-function `main`; after compilation, the user will run NASM to assemble
-the generated code, and link it with the provided runtime to produce a
-finished executable.
+Your compiler must output assembly code for the [NASM
+assembler](https://www.nasm.us/). That assembly code must compile
+cleanly to an object file that defines the function `main`; after
+compilation, the user will run NASM to assemble the generated code,
+and link it with the provided runtime to produce a finished
+executable.
 
 Besides the functions provided above, the runtime also provides these
 functions:
