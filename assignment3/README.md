@@ -405,3 +405,20 @@ while you are working.
 5. Implement an optional debug mode in your compiler where it prints
 details about what it is thinking about at various stages of the
 compilation job.
+
+## CHECKIN Due February 26
+
+The checkin part of this assignment is intended to assist you in
+eliminating as many bugs as possible in your name resolution, type
+checking, and flattening code before you move on to code generation.
+
+This checkin will be very much like the handin part of Assignment 2,
+in the sense that you will emit s-expressions representing your parse
+tree. There will be two differences. First, the code you print will
+need to be typechecked and decorated with type information, as
+described below. Second, the code you print will have been flattened.
+Your typechecked, flattened s-expression output will be compared
+against ours and any differences flagged.
+
+## HANDIN Due March 5
+
