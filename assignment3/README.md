@@ -414,11 +414,18 @@ checking, and flattening code before you move on to code generation.
 
 This checkin will be very much like the handin part of Assignment 2,
 in the sense that you will emit s-expressions representing your parse
-tree. There will be two differences. First, the code you print will
-need to be typechecked and decorated with type information, as
-described below. Second, the code you print will have been flattened.
-Your typechecked, flattened s-expression output will be compared
-against ours and any differences flagged.
+tree. There are two pieces:
+
+  1. Your compiler should implement a `-t` command line option which
+     causes it to stop after typechecking and print s-expressions
+     (similar to those you printed for the handin part of Assignment
+     2) that include type information as specified below.
+
+  2. Your compiler should implement a `-f` command line option which
+     causes it to stop after flattening and print s-expressions.
+     Again, these should be annotated with types.
+
+
 
 ## HANDIN Due March 5
 
