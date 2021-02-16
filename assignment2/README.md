@@ -199,6 +199,17 @@ your makefile should supply the `-p` flag itself. As before, please
 test everything early so we can solve any problems before the
 deadline.
 
+For this assignment, your makefile should be silent: it should not
+echo commands that it runs to the console. There are various ways
+to accomplish this but the simplest one is probably to put a `@`
+character at the start of each command that you want to silence.
+For example John's makefile looks like this:
+
+```
+run:
+    @./jplc -p $(TEST)
+```
+
 Assuming that you have checked out the `jpl` repository in your home
 directory, go to the directory containing your makefile, type this
 command, and make sure you get the correct output:
