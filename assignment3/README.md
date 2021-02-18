@@ -338,6 +338,40 @@ tree. There are two pieces:
      Again, these should be annotated with types.
 
 
-
 ## HANDIN Due March 5
 
+
+The handin expects you to have a complete compiler for the JPL subset
+of interest, which emits NASM assembly code. Specifically your
+compiler should implement a `-s` command line option which causes it
+to generate assembly code and print it to the standard output. That
+assembly code must be correct as described above---it must pass NASM,
+the linker, and run cleanly, producing the expected output.
+
+To help you in this task, we are providing the `test-assembly.pl`
+script. It runs your compiler on a set of tests (in
+`tests/assembly/*.jpl`) ordered by difficulty; for each test it runs
+your compiler and compares the generated assembly code to code
+produced by our compiler (in `tests/assembly/*.s`). While you are not
+required to match this assembly exactly, it'll be easiest for you if
+you do. Comparing your generated assembly to the recommended assembly
+is likely the fastest way for you to find issues in your compiler.
+The tests are ordered by difficulty, and we recommend not moving on to
+a later test until every earlier test is done; to that end the test
+script will stop on the first failure.
+
+After you have assembly generation working, run `test-codegen.pl`.
+This script runs your compiler, assembles the resulting assembly,
+links it, and runs it. This script will use a larger set of tests than
+`test-assembly.pl`, so it's possible to fail this script after passing
+that one, but that should be unlikely. We strongly recommend not
+trying this until the previous test works: running malformed assembly
+is dangerous in a way looking at it isn't, and comparing diffs of the
+assembly code is way easier than using a debugger to step through a
+bad executable.
+
+As always, even if the tests pass on your computer, or some other
+computer, it does not count unless those tests also pass on a CADE
+Linux machine. Since this is a hard requirement, please test it out
+well before the due date so you have time to resolve any problems that
+may come up. On CADE, you will want to use the `elf64` format for NASM.
