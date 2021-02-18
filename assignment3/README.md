@@ -15,11 +15,10 @@ You will be implementing this compiler in three steps:
 - Flattening
 - Code generation
 
-Recall that the subset of JPL that we are working with contains
-variables of just four types: `bool`, `int`, `float`, and `int[,]`.
-In this assignment we will refer to the last of these as `pict`. The
-four types correspond to the following types in C, all provided by the
-`<stdint.h>` header:
+Recall that the subset of JPL that we are working with contains values
+of just four types: `bool`, `int`, `float`, and `int[,]`. In this
+assignment we will refer to the last of these as `pict`. These
+correspond to the following C types (you'll need `<stdint.h>`):
 
 - `bool` corresponds to `int32_t` and takes up 4 bytes
 - `int` corresponds to `int64_t` and takes up 8 bytes
@@ -31,8 +30,8 @@ four types correspond to the following types in C, all provided by the
 Expressions in this subset are either constants, or they are a call to
 one of the following functions:
 
-- `add_ints(int, int) : int`
-- `add_floats(float, float) : float`
+- `sub_ints(int, int) : int`
+- `sub_floats(float, float) : float`
 - `has_size(pict, int, int) : bool`
 - `sepia(pict) : pict`
 - `blur(pict, float) : pict`
@@ -62,12 +61,13 @@ struct pict crop(struct pict input, int64_t top, int64_t left, int64_t bottom, i
 
 Your compiler's output will call these provided implementations.
 
-Your compiler must output assembly code for the [NASM
-assembler](https://www.nasm.us/). That assembly code must compile
-cleanly to an object file that defines the function `main`; after
-compilation, the user will run NASM to assemble the generated code,
-and link it with the provided runtime to produce a finished
-executable.
+Your compiler must output code for the [NASM assembler][nasm]. That
+assembly code must compile cleanly to an object file that defines the
+function `main`; after compilation, the user will run NASM to assemble
+the generated code, and link it with the provided runtime to produce a
+finished executable.
+
+[nasm]: https://www.nasm.us/
 
 Besides the functions provided above, the runtime also provides these
 functions:
@@ -79,7 +79,6 @@ void write_image(struct pict input, char *filename);
 void show(char *typestring, void *datum);
 void abort(char *text);
 double time(void);
-double time_since(double);
 ```
 
 You are expected to use them to implement JPL's various commands and
@@ -132,23 +131,31 @@ would produce:
     read image "in.png" to img
     let t.0 = time()
     let t.1 = sepia(img)
-    let t.2 = crop(t.1, 50, 250, 650, 650)
-    let t.3 = resize(t.2, 300, 200)
-    write image t.3 to "out.png"
-    let t.4 = time_since(t.0)
-    show t.4
-    print "write image t.3 to 'out.png'"
+    let t.2 = 50
+    let t.3 = 250
+    let t.4 = 650
+    let t.5 = 650
+    let t.6 = crop(t.1, t.2, t.3, t.4, t.5)
+    let t.7 = 300
+    let t.8 = 200
+    let t.9 = resize(t.6, t.7, t.8)
+    write image t.9 to "out.png"
+    let t.10 = time()
+    let t.11 = sub_floats(t.10, t.0)
+    show t.11
+    print "write image resize(crop(sepia(img), 50, 250, 650, 650), 300, 200) to 'out.png'"
+    let t.12 = 0
+    return t.12
 
 Specifically, flattening a type-correct JPL program from this
 assignment's subset must result in a type-correct JPL program, also in
 the same subset, which satisfies these additional constraints:
 
-- Every argument to a function is an integer constant, float constant,
-  or a variable reference
+- Every argument to a function is a variable reference
 - Every argument to `assert`, `return`, `show`, or `write image` is a
   variable reference.
 - There are no `time` commands; those are expanded to `time`,
-  `show_time`, and `print` calls.
+  `sub_float`, `show`, and `print`
 - There is exactly one `return` command, and it is the last command in
   the list. If the input program had more than one `return`, drop all
   commands that come after it; if it did not have a `return`, add `let
@@ -198,44 +205,49 @@ example, the the flattened code above defines:
 The total size of the stack frame in this case is 112 bytes. Note that
 locations do not start at 0. This is because the stack grows down.
 
+On macOS, the stack frame has to be a multiple of 16 bytes in size.
+Pad it if necessary.
+
 With the stack frame planned out, you must generate the function
 prologue, then output code for each commands in the program in order,
 and then generate the function epilogue.
 
-The function prologue is the following sequence of assembly commands:
+## Storing Constants
 
-	pushq	%rbp
-	movq	%rsp, %rbp
-	subq	$XXX, %rsp
+Output the assembly code:
 
-where `XXX` is the total size of the stack frame, **plus 24**. The function
-epilogue is the following sequence of assembly commands:
+    global _jpl_code
+    extern TODO
+    
+    section .data
 
-	addq	$XXX, %rsp
-	popq	%rbp
-	retq
+Next you must gather all the integer, float, and string constants in
+your program. These are placed in the "data section" of the assembly,
+and later on when the program actually uses those constants they're
+loaded from the data section.
 
-Here `XXX` is again the total size of the stack frame **plus 24**. The
-function prologue and epilogue are perfect mirrors and must match.
+Each constant must be given a name; store that name somewhere so you
+can recall it later, when the constant is used. One way to do that is
+to have a hash table that maps AST nodes to names.
 
-Second, you must gather all the strings across all commands in the
-program, and generate assembly for them. For each string, the assembly
-looks like this:
+Then output a constant definition for each constant, as described in
+our [Assembly Handbook](../assembly.md).
 
-    .section	___TEXT
-    stringN: .asciz "STRING CONTENTS\0"
+## Generating code
 
-Here `STRING CONTENTS` refers to the contents of the string and `N`
-refers to a new counter for strings. Make sure to add the `\0` at the
-end. Create a map from string constants to their numbers `N`.
+Output the assembly code:
 
-Each of the types of commands has its own assembly snippet that must
-be produced. After flattening, the JPL program is a shallow list of
-commands, with one of the following forms:
+    section .text
+
+With the stack frame planned out, you must generate the function
+prologue, then output code for each commands in the program in order,
+and then generate the function epilogue. After flattening, the JPL
+program is a shallow list of commands, with one of the following
+forms:
 
 - A `let` statement with an integer or floating point constant
 - A `let` statement with a variable reference
-- A `let` statement with a function call
+- A `let` statement with a function call where all arguments are variables
 - An `assert` statement with a variable reference
 - A `read image` command
 - A `write image` command with a variable reference
@@ -243,168 +255,68 @@ commands, with one of the following forms:
 - A `show` command with a variable reference
 - A `return` statement with a variable reference
 
-A `let` statement with an integer or floating point constant
-corresponds to the following assembly:
+Each of the types of commands has its own assembly snippet that must
+be produced, described in the [Assembly Handbook](../assembly.md) in
+the root of this directory.
 
-	movq	$XXX, -YYY(%rbp)
+If you follow the instructions in our "Assembly Handbook" carefully,
+your code should work. And what "work" means is a little involved.
+Your compiler is expected to ensure that:
 
-Here `XXX` is the actual constant value (as an integer) and `YYY` is
-the location corresponding to the variable on the left hand side of
-the `let`.
+- The compiler, run with the `-s` flag, returns successfully and
+  outputs a bunch of assembly code and a single line with the words
+  `Compilation successful` at the beginning.
+- The NASM assembler then successfully assembles the code into an
+  object file and produces no console output.
+- The linker then successfully links the object file and the runtime
+  into an executable and produces no console output.
+- The resulting executable runs and produces the expected output and
+  return code, without triggering any kind of fault condition (like a
+  segmentation fault). It also does not trigger any unexpected effects
+  (accessing the wrong files, for example).
 
-A `let` statement with a variable reference corresponds to the
-following assembly:
-
-	movq	-XXX(%rbp), %rbx
-	movq	%rbx, -YYY(%rbp)
-
-Here `XXX` is the location of the variable on the right hand side and
-`YYY` is the location of the variable on the left hand side.
-
-An `assert` statement with a variable reference corresponds to the
-following assembly:
-
-	cmpq	-XXX(%rbp), 0
-    jnz	skipN
-    movq	stringM(%rip), %rdi
-    call	_abort
-    skipN:
-
-Here, `XXX` is the location of the variable in the assertion, `N` is a
-new counter for assertions, `M` is the number for the string constant
-in the assertion.
-
-A `return` statement with a variable reference corresponds to the
-following assembly:
-
-	movq	-XXX(%rbp), %rax
-
-Here `XXX` is the location of the variable.
-
-All other commands are basically function calls, so let's finally
-discuss how to generate assembly for those.
-
-A function call has some number of arguments and one output.
-
-All arguments except floats are passed in registers, specifically the
-registers `rdi`, `rsi`, `rdx`, `rcx`, `r8d`, and `r9d`, in that order.
-Float arguments are passed in `xmm0`, `xmm1`, `xmm2`, `xmm3`, `xmm4`,
-`xmm5`, `xmm6`, and `xmm7`. No function in JPL passes so many
-arguments that you need to worry about what to with extra ones. If the
-function returns `pict`, it will have an extra integer argument as its
-first argument.
-
-How exactly each argument is handled depends on their type: `int`,
-`bool`, `float`, `pict`, or strings.
-
-`int` arguments are moved to their destination register with this bit
-of assembly for variable arguments:
-
-    movq -XXX(%rbp), REG
-
-where `XXX` is the location of that integer argument and `REG` is the
-destination register, or for constants:
-
-    movq $XXX, REG
-    
-where `XXX` is the value of the constant.
-
-`bool` arguments are moved to their destination register like so:
-
-    movl -XXX(%rbp), %ebx
-    movq %rbx, REG
-
-`float` arguments are moved to their destination register like so:
-
-???
-
-String arguments are moved to their destination register like so:
-
-    movq	stringM(%rip), REG
-
-Here `M` is the number for that string.
-
-`pict` arguments are passed like so:
-
-	leaq	-XXX(%rbp), %rbx
-	movq	(%rbx), %rax
-	movq	%rax, (%rsp)
-	movq	8(%rbx), %rax
-	movq	%rax, 8(%rsp)
-	movq	16(%rbx), %rax
-	movq	%rax, 16(%rsp)
-
-Here `XXX` is the locaton of the `pict` argument. Note that there is
-no `REG` in this block. `pict` arguments do not take up a register
-because they are passed on the stack. If you know a bit of assembly,
-you can see that this copies 24 bytes from the location of the `pict`
-argument to the top of the stack.
-
-To call the function, use the assembly:
-
-    callq	_FNNAME
-    
-Here, `FNNAME` is the name of the function
-
-After the function returns, if it returns an `int` or `bool`, you can
-move that output to its location using the following assembly:
-
-    movq	%rax, -XXX(%rbp)
-
-If it returns a `float`, move it to its location like so:
-
-???
-
-If it returns a `pict` argument, however, that actually means the
-function had an extra first argument, which you must set like so
-before calling the function:
-
-	movq	-XXX(%rbp), %rdi
-
-Since it's a first argument, it always takes up the `rdi` register.
-Don't get this wrong.
+Because there are lots of ways to go wrong, you'll be doing a lot of
+debugging, at several different levels.
 
 ## Debugging Assembly
 
-One of the primarily challenges your will face during code generation
-is debugging the emittted assembly language. We offer the following
-suggestions:
+*This will be a challenging assignment.* One of the biggest challenges
+during code generation is debugging the emittted assembly language. We
+offer the following suggestions:
 
-1. Plan on spending a lot of time debugging. Start very early on
-this assignment.
+**Time**: Plan on spending a lot of time debugging. Start very early
+on this assignment.
 
-2. Practice incremental development to the maximum extent possible.
-In other words, get something small and simple to work, test it
-thoroughly, and repeat.
+**Incrementalize**: Practice incremental development to the maximum
+extent possible. Get something small and simple to work, and test it
+thoroughly, before moving on. The code generation tests are ordered by
+difficulty for this reason; it is a good idea to start at `001.jpl`
+and not to move on until it works.
 
-3. Find and use a tool for interactive debugging of assembly language
+**Bisect**: Always start by narrowing the issue to the relevant part
+of the compiler. Check the type-checked tree, the flattened output,
+and the assembly code, so you know which stage went wrong. Keep stages
+strictly separated (keep all assembly logic separate from all
+flattening logic) so it's easy to debug. You can add extra compiler
+flags to output additional information (like the stack layout).
+
+**Common Issues**: The [Assembly Handbook](../assembly.md) lists some
+common issues and how to fix them. Often the best way to understand a
+problem is to narrow it down to the relevant assembly snippet (easy if
+you are working incrementally!) and then compare it to the recommended
+output.
+
+**Tools**: Use a tool for interactive debugging of assembly language
 programs. The important features are inspecting the machine state
 (memory, registers, and processor flags) and executing a single
 instruction at a time. The default tool for this job is the
-interactive debugger `gdb`. Here is the [gdb
-documentation](https://www.gnu.org/software/gdb/documentation).
-Various GUI front-ends for gdb are available if you prefer a
-non-command-line debugging environment. Here are some quick tutorials
-on using the assembly-relevant parts of gdb:
+interactive debugger `gdb`. The [Assembly Handbook](../assembly.md)
+has links to some debugger tutorials.
 
-    * <https://www.cs.umb.edu/~cheungr/cs341/Using_gdb_for_Assembly.pdf>
-    * <https://www.cs.swarthmore.edu/~newhall/cs31/resources/ia32_gdb.php>
-    * <https://web.cecs.pdx.edu/~apt/cs491/gdb.pdf>
-
-4. Keep a couple of references for x86-64 assembly language handy
-while you are working.
-      * Here are some short, quick guides:
-        - <https://khoury.neu.edu/home/ntuck/courses/2018/09/cs3650/amd64_asm.html>
-        - <http://www.cs.cmu.edu/afs/cs/academic/class/15213-s20/www/recitations/x86-cheat-sheet.pdf>
-      * These are a bit longer and more detailed:
-        - <https://software.intel.com/content/dam/develop/external/us/en/documents/introduction-to-x64-assembly-181178.pdf>
-        - <https://www.cs.tufts.edu/comp/40/docs/x64_cheatsheet.pdf>
-      * And finally, this is the definitive guide:
-        - <https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-sdm-combined-volumes-1-2a-2b-2c-2d-3a-3b-3c-3d-and-4.html>
-
-5. Implement an optional debug mode in your compiler where it prints
-details about what it is thinking about at various stages of the
-compilation job.
+**References**: Keep a couple of references for both x86-64
+instruction set and the NASM assembler specifically handy while you
+are working. You can find lists of both in the [Assembly
+Handbook](../assembly.md).
 
 ## CHECKIN Due February 26
 
