@@ -17,13 +17,15 @@ be `elf64`, on macOS `macho64`, and on windows `win64`. Don't forget
 the "64". Assembling produces an object file with a `.o` extension.
 You then need to link it, like this:
 
-    ld code.o runtime.o
+    clang code.o runtime.o
 
 The `runtime.o` in this case is the object file containing the
-provided functions. This will produce a file called `a.out`, short for
-"assembler output". (Note that it is not actually output by your
-assembler...)
+provided functions, and `clang` takes care of both linking the two
+object files and also linking in system libraries that `runtime.o`
+relies on.
 
+This command will produce a file called `a.out`, short for "assembler
+output". (Even though it is not actually output by your assembler...)
 You can run that file:
 
     ./a.out
@@ -154,11 +156,7 @@ in assembly. Here's a quick example:
     pi:   dq 3.1415926535897932384626433
     hewo: db `Hello, World!`, 0
 
-Define integer constants like this:
-
-    NAME: dq VALUE
-
-Define floating point constants like so:
+Define integer and floating-point constants like this:
 
     NAME: dq VALUE
 
@@ -200,9 +198,21 @@ corresponds to the following assembly:
 
 Here `NAME` is the constant's name and `XXX` is the location
 corresponding to the variable on the left hand side of the `let`.
+You might want to add a comment with the constant's value as well.
 
-A `let` statement with a reference to an integer of floating argument
-corresponds to the following assembly:
+A `let` statement with `true` or `false` as the argument has this
+assembly:
+
+    mov dword [rbp - XXX], YYY
+
+Here `XXX` is again the location of the variable and `YYY` is either
+`0` for `false` or `1` for `true`. By writing `mov dword` instead of
+`mov`, we're indicating to the assembler that we only want to store 4
+bytes instead of 8.
+
+A `let` statement with a variable reference has different assembly for
+different types. When the variable stores an integer of float, use the
+following assembly:
 
     mov		rbx, [rbp - XXX]
     mov		[rbp - YYY], rbx
@@ -210,29 +220,56 @@ corresponds to the following assembly:
 Here `XXX` is the location of the variable on the right hand side and
 `YYY` is the location of the variable on the left hand side.
 
+If instead it stores a boolean, use this:
+
+    mov		ebx, [rbp - XXX]
+    mov		[rbp - YYY], ebx
+
+Again `XXX` is the right hand side's location and `YYY` is the left
+hand side's location. The assembly uses `ebx` intead of `rbx` to again
+cause a 4-byte move.
+
+If it stores a picture, use this:
+
+	mov     rbx, [rbp - XXX]
+	mov     [rbp - YYY], rbx
+	mov     rbx, [rbp - XXX + 8]
+	mov     [rbp - YYY + 8], rbx
+	mov     rbx, [rbp - XXX + 16]
+	mov     [rbp - YYY + 16], rbx
+
+Note that this basically copies the picture in 8-byte chunks. NASM is
+nice enough to turn the math in something like `[rbp - 48 + 8]` into
+the simpler `[rbp - 40]`.
+
+A `let` statement with a function call is much more complex; see the
+section below on calling funtions.
+
 An `assert` statement with a variable reference corresponds to the
 following assembly:
 
-	cmp qword	[rbp - XXX], 0
+	cmp qword [rbp - XXX], 0
     jne		.SKIP
     mov		rdi, [rel NAME]
-    call	_abort
+    call	_fail_assertion
     .SKIP:
 
 Here, `XXX` is the location of the variable in the assertion, `SKIP`
 is a unique name for the assertions, and `NAME` is the name for the
 string constant in the assertion. Note that `SKIP` is preceded by a
-dot.
+dot. This code basically tests the condition, calls `fail_assertion`
+if the test fails, and otherwise skips that and carries on.
 
-A `return` statement with a variable reference corresponds to the
-following assembly:
+A `return` statement with a variable reference, where that variable
+stores an integer, corresponds to the following assembly:
 
-	movq	-XXX(%rbp), %rax
+	mov		rax, [rbp - XXX]
 
 Here `XXX` is the location of the variable.
 
-All other commands call a function (either a named one like `blur` and
-`sepia` or another provided function like `time` or `read_image`).
+All other commands can be thought of as a function call (either a
+named one like `blur` and `sepia` or another provided function like
+`get_time` or `read_image`).
 
 ## Calling functions
 
@@ -241,7 +278,8 @@ exactly it is called depends on the details.
 
 Integer and boolean arguments are passed in the registers `rdi`,
 `rsi`, `rdx`, `rcx`, `r8`, and `r9`, in that order. Integer and
-boolean return values are located in `rax`.
+boolean return values are located in `rax`. So are string arguments,
+because string arguments are passed as pointers.
 
 Float arguments are passed in `xmm0`, `xmm1`, `xmm2`, `xmm3`, `xmm4`,
 `xmm5`, `xmm6`, and `xmm7`. Float return values are located in `xmm0`.
@@ -261,22 +299,6 @@ function; and saving the return value.
 where `XXX` is the location of that integer argument on the stack and
 `REG` is the destination register
 
-For constant integer arguments use this bit of assembly instead:
-
-    mov      REG, [rel NAME]
-             
-where `NAME` is the name of the constant.
-
-Finally, if the function returns a `pict` value, it that actually
-takes an extra first argument. Don't get this wrong. Set that first
-argument like so before calling the function:
-
-	lea      rdi, [rbp - XXX]
-
-Since it's a first argument, it always takes up the `rdi` register.
-This uses the `lea` command instead of the `mov` command to load the
-address, not its contents.
-
 `bool` arguments are moved to their destination register like so:
 
     mov      ebx, [rbp - XXX]
@@ -288,12 +310,6 @@ This uses two `mov` commands to convert 32-bit to 64-bit values.
 
     movsd	REG, [rbp - XXX]
 
-For constant integer arguments use this bit of assembly instead:
-
-    mov      REG, [rel NAME]
-    
-where `NAME` is the name of the constant.
-
 String arguments are moved to their destination register like so:
 
     lea     REG, [rel NAME]
@@ -302,16 +318,25 @@ Here `NAME` is the name of that string constant. Note that we use
 `lea` instead of `mov` since we want to store a pointer in the
 register, instead of storing the value at the pointer.
 
-To push a `pict` on the stack, do this:
+If the function returns a `pict` value, it actually takes an extra
+first argument. Don't get this wrong. Set that first argument like so
+before calling the function:
 
-    add     rsp, 24
-	lea     rbx, [rbp - XXX]
-	mov     r10, [rbx]
-	mov     [rsp], r10
-	mov     r10, [rbx + 8]
-	mov     [rsp + 8], r10
-	mov     r10, [rbx + 16]
-	mov     [rsp + 16], r10
+	lea      rdi, [rbp - XXX]
+
+Since it's a first argument, it always takes up the `rdi` register.
+This uses the `lea` command instead of the `mov` command to load the
+address, not its contents.
+
+To pass a `pict` argument, you need to push it onto the stack, like so:
+
+    sub     rsp, 32
+	mov     rbx, [rbp - XXX]
+	mov     [rsp], rbx
+	mov     rbx, [rbp - XXX + 8]
+	mov     [rsp + 8], rbx
+	mov     rbx, [rbp - XXX + 16]
+	mov     [rsp + 16], rbx
 
 Here `XXX` is the location of the `pict` argument. Note that there is
 no `REG` in this block. `pict` arguments do not take up a register
@@ -320,11 +345,9 @@ because they are passed on the stack.
 If you know a bit of assembly, you can see that this copies 24 bytes
 from the location of the `pict` argument to the top of the stack. Note
 that you can't move from memory to memory. The data has to stop over
-in a register.
-
-On macOS, where the stack has to be 16-byte aligned, you will want to
-add 32 bytes instead of 24. Make sure to make the corresponding change
-after the call instruction too.
+in a register. Note also that this code allocates 32 bytes on the
+stack, not 24. That's in case you're on macOS, where the stack has to
+be 16-byte aligned.
 
 To call the function, use the assembly:
 
@@ -335,7 +358,7 @@ Here, `FNNAME` is the name of the function. Note the underscore.
 After the function returns, if it took any `pict` arguments, you have
 to remove them from the stack, like this:
 
-    sub rsp, 24
+    add rsp, 32
 
 If the function returns an `int`, you can move it to its location
 using the following assembly:

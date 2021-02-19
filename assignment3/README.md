@@ -50,8 +50,8 @@ struct pict {
     double *data;
 };
 
-int64_t add_ints(int64_t a, int64_t b);
-double add_floats(double a, double b);
+int64_t sub_ints(int64_t a, int64_t b);
+double sub_floats(double a, double b);
 int32_t has_size(struct pict input, int64_t rows, int64_t cols);
 struct pict sepia(struct pict input);
 struct pict blur(struct pict input, double radius);
@@ -77,8 +77,8 @@ struct pict read_image(char *filename);
 void print(char *text);
 void write_image(struct pict input, char *filename);
 void show(char *typestring, void *datum);
-void abort(char *text);
-double time(void);
+void fail_assertion(char *text);
+double get_time(void);
 ```
 
 You are expected to use them to implement JPL's various commands and
