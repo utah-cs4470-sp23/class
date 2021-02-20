@@ -178,11 +178,12 @@ Make sure that the flattened JPL you generate is type-correct. We
 recommend re-type-checking the flattened output and crashing your
 compiler if it does not type check. This will catch a lot of bugs.
 
-Flattening should be a single function that takes a list of commands
-and a symbol table as input, and produces a list of commands as
-output. Additionally, it should update the symbol table to reflect the
-new variables that it introduced. Flattening should never crash on a
-type-correct JPL program from this assignment's subset.
+Your flattening function should take a list of commands and a symbol
+table as input. As output, it produces a list of commands and updates
+the symbol table to reflect the new variables that it
+introduced. Flattening is not allowed to fail: once a JPL program in
+this assignment's subset has been typechecked, flattening should
+always work.
 
 ## Code generation
 
