@@ -1,4 +1,4 @@
-(WriteImageCmd (VarExpr T) "\u0006")
+(WriteImageCmd (VarExpr T) "\6")
 (WriteImageCmd (FloatExpr 29) "$m")
 (StmtCmd (ReturnStmt (CallExpr P)))
 (PrintCmd "")
