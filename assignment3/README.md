@@ -121,8 +121,9 @@ Flattening refers to replacing deeply-nested ASTs with shallow ones by
 adding more `let` statements. This is an extremely common technique
 that is implemented in almost all compilers. Its purpose is to take
 complex syntactical forms that appear in the source language, and to
-turn them into simpler forms that are easier for the rest of the
-compiler to process. For example, flattening the following expression:
+turn them into simpler (but functionally equivalent) forms that are
+easier for the rest of the compiler to process. For example,
+flattening the following expression:
 
     read image "in.png" to img
     time write image resize(crop(sepia(img), 50, 250, 650, 650), 300, 200) to "out.png"
@@ -162,11 +163,12 @@ the same subset, which satisfies these additional constraints:
   commands that come after it; if it did not have a `return`, add `let
   t.N = 0; return t.N` to the end of the program.
 
-Note that this requires introducing new variable names. We strongly
-recommend naming your new variables `t.N`, where `N` is the value of a
-global counter that counts up from 0. This guarantees that these
-variables will not clash either with each other or with variable names
-chosen by the user.
+Note that this requires introducing new variable names. You should
+name your new variables `t.N`, where `N` is the value of a global
+counter that counts up from 0. This guarantees that these variables
+will not clash either with each other or with variable names chosen by
+the user. It also allows us to match your flattened output against
+ours (since those are the variable names that our compilers use too).
 
 When converting `time` commands to `print` arguments, you'll run into
 a small problem because in JPL the string argument to `print` cannot
@@ -177,11 +179,12 @@ Make sure that the flattened JPL you generate is type-correct. We
 recommend re-type-checking the flattened output and crashing your
 compiler if it does not type check. This will catch a lot of bugs.
 
-Flattening should be a single function that takes a list of commands
-and a symbol table as input, and produces a list of commands as
-output. Additionally, it should update the symbol table to reflect the
-new variables that it introduced. Flattening should never crash on a
-type-correct JPL program from this assignment's subset.
+Your flattening function should take a list of commands and a symbol
+table as input. As output, it produces a list of commands and updates
+the symbol table to reflect the new variables that it
+introduced. Flattening is not allowed to fail: once a JPL program in
+this assignment's subset has been typechecked, flattening should
+always work.
 
 ## Code generation
 

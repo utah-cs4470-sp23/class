@@ -568,6 +568,10 @@ arguments, array bounds, and assertions. It is acceptable to not emit
 that code when the JPL compiler can prove that the assertion cannot
 fail.
 
+When an internal error occurs, the process running the compiled JPL
+program should exit with status code 0. When an external error occurs,
+any value can be returned to the OS.
+
 JPL compilers need not preserve external errors. Almost any change to
 a program can cause a memory allocation to change from failing to not
 failing in some obscure situations. JPL compilers also need not
