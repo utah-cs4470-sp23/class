@@ -99,7 +99,8 @@ Next, you must define two functions:
   terminates the program (on a type error) or returns the type of the
   expression. Type errors only occur if the arguments to a function
   have the incorrect type, or if an undefined variable or function is
-  used, or if a normal variable is used as a function.
+  used, or if a normal variable is used as a function, or if a
+  variable or function name is reused.
 
 - `type_stmt` takes a `Stmt` AST node and a symbol table, and either
   terminates the program (on a type error) or returns nothing after
