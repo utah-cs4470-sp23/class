@@ -98,6 +98,53 @@ This function scales an image to a new width and height. (WRITE ME PAVEL)
 
 (WRITE ME PAVEL)
 
+# Testing Your Code
+
+You can use our JPL implementation on the CADE lab machines. The
+compiler executable is in `/home/regehr/jplc/jplc`. Please test it on
+the `gradient.jpl` program that we have provided. Your interaction
+with the compiler should look like this:
+
+```
+$ /home/regehr/jplc/jplc gradient.jpl 
+
+Compilation succeeded
+$ ./a.out 
+[start timer]
+[0.005576s]
+wrote 800 x 600 png to 'gradient.png'
+$ 
+```
+
+If this does not work, you may need to set some additional environment
+variables, please see the settings at the bottom of
+`/home/regehr/.bash_profile` on the CADE systems.
+
+At this point you should view `gradient.png` and make sure it contains
+a color gradient. You can do this either by downloading the png file
+to your own machine, or you might also be able to use a remote display
+program. This will only work from a machine that has an X windows server
+installed (these are available for all common platforms).
+
+For example, to `ssh` to CADE with remote display enabled, you should
+be able to do something like this:
+
+```
+Johns-MacBook-Pro:jpl johnregehr$ ssh -Y regehr@lab2-3.eng.utah.edu
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+Last login: Tue Feb 23 14:17:53 2021 from c-67-163-89-122.hsd1.ut.comcast.net
+
+#################################################
+#               Welcome to CADE                 #
+#                                               #
+#            No Scheduled Downtime              #
+#################################################
+
+[regehr@lab2-3 ~]$ display gradient.png 
+```
+
+At this point the image should show up on your local machine.
+
 # HANDIN
 
 This assignment has no checkin component, but we are happy to discuss
