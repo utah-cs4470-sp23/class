@@ -1,6 +1,6 @@
 # DO NOT READ. Assignment is unfinished and also extremely scary.
 
-# Assignment 3: Typechecking and Code Generation for the JPL Subset
+# Assignment 4: Typechecking and Code Generation for the JPL Subset
 
 Your third assignment is to build a compiler for the subset of JPL
 that you implemented a parser for in Assignment 2. This compiler's job

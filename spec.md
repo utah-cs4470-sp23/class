@@ -292,10 +292,10 @@ A return statement inside a function ends execution of that function;
 in this case the type of the returned expression must match the
 function's return type. A return statement at the top level terminates
 execution of the JPL program. In this case, the returned value must be
-an integer, and it is used as the exit code for the process running
-the JPL program. In the absence of an explicit return statement,
-functions return `{}` (the empty tuple, of type `{}`) and the
-top-level program returns `0`.
+an integer, and it is truncated to 32 bits and used as the exit code
+for the process running the JPL program. In the absence of an explicit
+return statement, functions return `{}` (the empty tuple, of type
+`{}`) and the top-level program returns `0`.
 
 ```
 stmt : return <expr>

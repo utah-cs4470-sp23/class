@@ -1,5 +1,4 @@
-# Assignment 3: Lexing
+# Assignment 3: Writing some JPL
 
-- invert an image
+For this assignment you will implement several JPL programs.
 
-- circle
