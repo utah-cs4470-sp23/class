@@ -118,16 +118,18 @@ $
 
 If this does not work, you may need to set some additional environment
 variables, please see the settings at the bottom of
-`/home/regehr/.bash_profile` on the CADE systems.
+`/home/regehr/.bash_profile` on the CADE systems. Contact the
+instructors on Discord if you are having trouble.
 
 At this point you should view `gradient.png` and make sure it contains
 a color gradient. You can do this either by downloading the png file
 to your own machine, or you might also be able to use a remote display
-program. This will only work from a machine that has an X windows server
-installed (these are available for all common platforms).
+program. This will only work from a machine that has an X windows
+server installed (these are available for all common platforms, but
+are usually not installed by default on Windows or Mac machines).
 
-For example, to `ssh` to CADE with remote display enabled, you should
-be able to do something like this:
+For example, if you have a Mac with XQuartz installed, or you are on a
+Linux box, you can `ssh` to CADE with remote display enabled like this:
 
 ```
 Johns-MacBook-Pro:jpl johnregehr$ ssh -Y regehr@lab2-3.eng.utah.edu
@@ -143,15 +145,14 @@ Last login: Tue Feb 23 14:17:53 2021 from c-67-163-89-122.hsd1.ut.comcast.net
 [regehr@lab2-3 ~]$ display gradient.png 
 ```
 
-At this point the image should show up on your local machine.
+At this point, after a delay, the image should show up on your local
+machine in a windows.
 
 # HANDIN
 
 This assignment has no checkin component, but we are happy to discuss
 problems and solutions with you on Discord.
 
-Test your code using (WRITE ME)
-
-Each of your programs should be named after the function it mainly contains,
-so for example, `blur.jpl` would contain your blur function.
+Each of your programs should be named after the function it mainly contains.
+So, for example, `blur.jpl` would contain your blur function.
 
