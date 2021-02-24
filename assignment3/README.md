@@ -16,7 +16,7 @@ alpha channel ranges from 0.0 (totally transparent) to 1.0 (totally
 opaque).
 
 For example, the pixel value `{ 1., 0., 0., 1. }` is an opaque red
-color, while `{ 1., 1., 0., 0.5 }` is a semi-transparent magenta. The
+color, while `{ 1., 1., 0., 0.5 }` is a semi-transparent yellow. The
 pixel value `{ 0., 1., 0., 1. }` is pure green, `{ 0., 0., 0., 1. }`
 is pure black, and `{ 1., 1., 1., 1. }` is pure white. For this
 assignment, we won't be dealing with transparency, so you can always
