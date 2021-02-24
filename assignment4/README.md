@@ -131,7 +131,7 @@ flattening the following expression:
 would produce:
 
     read image "in.png" to img
-    let t.0 = time()
+    let t.0 = get_time()
     let t.1 = sepia(img)
     let t.2 = 50
     let t.3 = 250
@@ -142,7 +142,7 @@ would produce:
     let t.8 = 200
     let t.9 = resize(t.6, t.7, t.8)
     write image t.9 to "out.png"
-    let t.10 = time()
+    let t.10 = get_time()
     let t.11 = sub_floats(t.10, t.0)
     show t.11
     print "write image resize(crop(sepia(img), 50, 250, 650, 650), 300, 200) to 'out.png'"
