@@ -156,7 +156,7 @@ pixels, and write the results to `sample_small.png`.
 Given a picture, extracts a rectangle for it given the top left and
 bottom right coordinates of the square. The top and left coordinates
 must be treated inclusively, while the bottom and right coordinates
-must be treated inclusively. For example, `crop(img, 10, 20, 100,
+must be treated exclusively. For example, `crop(img, 10, 20, 100,
 500)` should output an image of size `480x90`.
 
 Your test program should extract the 200x100 rectangle at the center of
