@@ -34,7 +34,7 @@ the two representations.
 [color-picker]: https://www.google.com/search?q=color+picker
 
 In JPL images, the first dimension is the row and the second dimension
-is the height. So an image is normally passed like this: `img[H, W]`.
+is the column. So an image is normally passed like this: `img[H, W]`.
 But when we write the size of an image below we write `WxH`. Don't get
 these mixed up.
 
