@@ -234,3 +234,5 @@ function and the corresponding test code.
 
 Hand in 10 JPL files in a directory called `assignment3` in your
 Github repo.
+
+This assignment is due Friday Feb 26.
