@@ -7,13 +7,16 @@ check that it works.
 
 ## Images in JPL
 
-In JPL, the `pict` type is a rank-2 array of pixels, where a pixel is
-a tuple containing four floats: `{ red, green, blue, alpha }`. The
-four values in a pixel represent the intensity of that pixel in the
-red, green, blue, and alpha channels. Each color channel ranges from
-0.0 (none of that color) to 1.0 (maximum intensity of that color). The
-alpha channel ranges from 0.0 (totally transparent) to 1.0 (totally
-opaque).
+In this assignment we'll refer to a `pict` type: a rank-2 array of
+pixels, where a pixel is a tuple containing four floats: `{ red,
+green, blue, alpha }`. In JPL code you should use the explicit
+version of this type: `float4[,]`.
+
+The four values in a pixel represent the intensity of that pixel in
+the red, green, blue, and alpha channels. Each color channel ranges
+from 0.0 (none of that color) to 1.0 (maximum intensity of that
+color). The alpha channel ranges from 0.0 (totally transparent) to 1.0
+(totally opaque).
 
 For example, the pixel value `{ 1., 0., 0., 1. }` is an opaque red
 color, while `{ 1., 1., 0., 0.5 }` is a semi-transparent yellow. The
