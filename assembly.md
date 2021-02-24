@@ -52,6 +52,16 @@ This tells NASM that the assembly code defines a function named
 `_main` and that that function name should be externally available (to
 the runtime).
 
+Next, it should name all of the runtime-provided functions that it is
+going to call, like this:
+
+    extern _fail_assertion
+    extern _sub_float
+    ...
+
+Note that each function name has an underscore in front of it. No one
+knows where this convention came from, but you need to do that.
+
 Next, your assembly file will have the line:
 
     section .data
@@ -186,7 +196,8 @@ epilogue is the following sequence of assembly commands:
 	ret
 
 Here `XXX` is again the total size of the stack frame. The function
-prologue and epilogue are perfect mirrors and must match.
+prologue and epilogue are perfect mirrors and must match. Keep in mind
+that the stack frame must be a multiple of 16 bytes in size.
 
 ## Compiling statements
 
@@ -346,8 +357,7 @@ If you know a bit of assembly, you can see that this copies 24 bytes
 from the location of the `pict` argument to the top of the stack. Note
 that you can't move from memory to memory. The data has to stop over
 in a register. Note also that this code allocates 32 bytes on the
-stack, not 24. That's in case you're on macOS, where the stack has to
-be 16-byte aligned.
+stack, not 24. That's because the stack has to be 16-byte aligned.
 
 To call the function, use the assembly:
 

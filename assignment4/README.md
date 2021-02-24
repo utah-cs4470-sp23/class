@@ -131,23 +131,23 @@ flattening the following expression:
 would produce:
 
     read image "in.png" to img
-    let t.0 = get_time()
-    let t.1 = sepia(img)
-    let t.2 = 50
-    let t.3 = 250
-    let t.4 = 650
+    let t.1 = get_time()
+    let t.2 = sepia(img)
+    let t.3 = 50
+    let t.4 = 250
     let t.5 = 650
-    let t.6 = crop(t.1, t.2, t.3, t.4, t.5)
-    let t.7 = 300
-    let t.8 = 200
-    let t.9 = resize(t.6, t.7, t.8)
+    let t.6 = 650
+    let t.7 = crop(t.2, t.3, t.4, t.5, t.6)
+    let t.8 = 300
+    let t.9 = 200
+    let t.10 = resize(t.7, t.8, t.9)
     write image t.9 to "out.png"
-    let t.10 = get_time()
-    let t.11 = sub_floats(t.10, t.0)
-    show t.11
+    let t.11 = get_time()
+    let t.12 = sub_floats(t.11, t.1)
+    show t.12
     print "write image resize(crop(sepia(img), 50, 250, 650, 650), 300, 200) to 'out.png'"
-    let t.12 = 0
-    return t.12
+    let t.13 = 0
+    return t.13
 
 Specifically, flattening a type-correct JPL program from this
 assignment's subset must result in a type-correct JPL program, also in
@@ -186,7 +186,7 @@ introduced. Flattening is not allowed to fail: once a JPL program in
 this assignment's subset has been typechecked, flattening should
 always work.
 
-## Code generation
+## Planning the Stack Frame
 
 The first stage of code generation is planning the stack frame.
 
@@ -200,30 +200,24 @@ symbol table and assign a location to each variable, in order, making
 sure to give each variable as much space as its type requires. For
 example, the the flattened code above defines:
 
-| Var      | img  | t.0    | t.1  | t.2  | t.3  | t.4    |
-|----------|------|--------|------|------|------|--------|
-| Type     | pict | double | pict | pict | pict | double |
-| Size     | 24   | 8      | 24   | 24   | 24   | 8      |
-| Location | 24   | 32     | 56   | 80   | 104  | 112    |
+| Var      | img  | t.0    | t.1  | t.2 | t.3 | ... |
+|----------|------|--------|------|-----|-----|-----|
+| Type     | pict | double | pict | int | int | ... |
+| Size     | 24   | 8      | 24   | 8   | 8   | ... |
+| Location | 24   | 32     | 56   | 64  | 72  | ... |
 
-The total size of the stack frame in this case is 112 bytes. Note that
+The total size of the stack frame in this case is 176 bytes. Note that
 locations do not start at 0. This is because the stack grows down.
 
-On macOS, the stack frame has to be a multiple of 16 bytes in size.
-Pad it if necessary.
-
-With the stack frame planned out, you must generate the function
-prologue, then output code for each commands in the program in order,
-and then generate the function epilogue.
+The stack frame must be a multiple of 16 bytes in size. In this
+example, it already is, but if it weren't, you need to pad the stack
+frame to be a multiple of 16 bytes.
 
 ## Storing Constants
 
-Output the assembly code:
-
-    global _jpl_code
-    extern TODO
-    
-    section .data
+Let's begin generating assembly code. In the [Assembly
+Handbook](../assembly.md), go to the "Syntax of Assembly" section and
+output the various parts required for your assembly code.
 
 Next you must gather all the integer, float, and string constants in
 your program. These are placed in the "data section" of the assembly,
@@ -239,15 +233,15 @@ our [Assembly Handbook](../assembly.md).
 
 ## Generating code
 
-Output the assembly code:
+In the "text section" of your assembly code, you must generate the
+code for the `main` function. That means generating the function
+prologue, then outputing code for each commands in the program in
+order, and then generating the function epilogue. The [Assembly
+Handbook](../assembly.md) has templates for the assembly code for each
+of these steps.
 
-    section .text
-
-With the stack frame planned out, you must generate the function
-prologue, then output code for each commands in the program in order,
-and then generate the function epilogue. After flattening, the JPL
-program is a shallow list of commands, with one of the following
-forms:
+Luckily, after flattening, the JPL program is a shallow list of
+commands, with one of the following forms:
 
 - A `let` statement with an integer or floating point constant
 - A `let` statement with a variable reference
@@ -263,9 +257,11 @@ Each of the types of commands has its own assembly snippet that must
 be produced, described in the [Assembly Handbook](../assembly.md) in
 the root of this directory.
 
-If you follow the instructions in our "Assembly Handbook" carefully,
-your code should work. And what "work" means is a little involved.
-Your compiler is expected to ensure that:
+## Testing correctness
+
+If you follow the instructions in our [Assembly
+Handbook](../assembly.md) carefully, your code should work. What that
+means is a little involved. Your compiler must ensure that:
 
 - The compiler, run with the `-s` flag, returns successfully and
   outputs a bunch of assembly code and a single line with the words
