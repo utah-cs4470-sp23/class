@@ -133,9 +133,16 @@ Here are some common error messages:
 - `impossible combination of address sizes`: You forgot the "64" at
   the end of your NASM format flag. It should be, for example, `elf64`
   not `elf`.
+- `symbol ... not defined`: You need to add an `extern` declaration
+  for that function in the runtime.
 
 Something weird that could happen:
 
+- If you are trying to do something with strings, and are getting
+  segmentation faults, make sure you used `lea` instead of `mov` to
+  load the string constant into a register. `lea` puts the pointer of
+  the string in the register, while `mov` instead copies the
+  value---the first 8 characters.
 - If you find that you're only printing part of long strings, or
   printing some garbage before those strings, check that you're not
   overwriting part of the string pointer. This might be from using an
@@ -259,7 +266,7 @@ section below on calling funtions.
 An `assert` statement with a variable reference corresponds to the
 following assembly:
 
-	cmp qword [rbp - XXX], 0
+	cmp dword [rbp - XXX], 0
     jne		.SKIP
     mov		rdi, [rel NAME]
     call	_fail_assertion
@@ -269,7 +276,9 @@ Here, `XXX` is the location of the variable in the assertion, `SKIP`
 is a unique name for the assertions, and `NAME` is the name for the
 string constant in the assertion. Note that `SKIP` is preceded by a
 dot. This code basically tests the condition, calls `fail_assertion`
-if the test fails, and otherwise skips that and carries on.
+if the test fails, and otherwise skips that and carries on. Note that
+we use `cmp dword` instead of `cmp qword`. That's important, because
+booleans are 32-bit integers in JPL.
 
 A `return` statement with a variable reference, where that variable
 stores an integer, corresponds to the following assembly:

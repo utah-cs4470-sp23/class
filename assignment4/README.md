@@ -82,7 +82,11 @@ double get_time(void);
 ```
 
 You are expected to use them to implement JPL's various commands and
-statements.
+statements. Note that to use `show` you need the type, as a string in
+JPL syntax, and a *pointer to* the object you want to print. (In other
+words, you must call `show("...", &data)` for it to work.) The
+`print` and `fail_assertion` commands expect that their
+string argument ends in a newline, which you need to add.
 
 ## Type Checking in JPL subset
 
