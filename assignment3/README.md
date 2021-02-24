@@ -7,25 +7,29 @@ check that it works.
 
 ## Images in JPL
 
-In JPL, the `pict` type is a rank-2 array of pixels, where a pixel is
-a tuple containing four floats: `{ red, blue, green, alpha }`. The
-four values in a pixel represent the intensity of that pixel in the
-red, blue, green, and alpha channels. Each color channel ranges from
-0.0 (none of that color) to 1.0 (maximum intensity of that color). The
-alpha channel ranges from 0.0 (totally transparent) to 1.0 (totally
-opaque).
+In this assignment we'll refer to a `pict` type: a rank-2 array of
+pixels, where a pixel is a tuple containing four floats: `{ red,
+green, blue, alpha }`. In JPL code you should use the explicit
+version of this type: `float4[,]`.
+
+The four values in a pixel represent the intensity of that pixel in
+the red, green, blue, and alpha channels. Each color channel ranges
+from 0.0 (none of that color) to 1.0 (maximum intensity of that
+color). The alpha channel ranges from 0.0 (totally transparent) to 1.0
+(totally opaque).
 
 For example, the pixel value `{ 1., 0., 0., 1. }` is an opaque red
-color, while `{ 1., 1., 0., 0.5 }` is a semi-transparent magenta. The
+color, while `{ 1., 1., 0., 0.5 }` is a semi-transparent yellow. The
 pixel value `{ 0., 1., 0., 1. }` is pure green, `{ 0., 0., 0., 1. }`
 is pure black, and `{ 1., 1., 1., 1. }` is pure white. For this
 assignment, we won't be dealing with transparency, so you can always
 use `1.0` for the alpha channel.
 
-If can play around with the [Google color picker][color-picker] to
+You can play around with the [Google color picker][color-picker] to
 look up RGB colors. The RGB values are on the left, though keep in
 mind that these are using a scale of 0 to 255 whereas JPL uses a scale
-from 0.0 to 1.0.
+from 0.0 to 1.0, so you'll have to do a bit of math to convert between
+the two representations.
 
 [color-picker]: https://www.google.com/search?q=color+picker
 
@@ -95,15 +99,15 @@ Converts a photo to [sepia-tone][sepia], like old-timey photos are. To
 do so, take any RGB pixel and covert it to a new RGB pixel using this
 formula:
 
-Your test code should load `sample.png` and output its sepia-toned
-version in `sample-sepia.png`.
-
     new R = 0.393 * old R + 0.769 * old G + 0.189 * old B
     new G = 0.349 * old R + 0.686 * old G + 0.168 * old B
     new B = 0.272 * old R + 0.534 * old G + 0.131 * old B
 
 Be careful because sometimes this formula produces values bigger
 than 1. That is never legal in JPL and you must cap pixel values at 1.0
+
+Your test program should blur `sample.png` and write the blurred image
+to `sample-sepia.png`.
 
 [sepia]: https://www.google.com/search?q=sepia+tone&tbm=isch
 
@@ -116,7 +120,7 @@ be treated as a special case. The red channel of the pixel at (0,0),
 for example, should have its pixel values computed by average of the
 red values of the four pixels in the input image at (0,0), (0,1),
 (1,0), and (1,1). It can't be a full 3x3 square because five of those
-pixels would be offscreen.
+pixels would be off-screen.
 
 Your test program should blur `sample.png` and write the blurred image
 to `sample-blurry.png`. Time the resulting code using the built-in
@@ -140,8 +144,7 @@ value of the pixel to be the following weighted average:
     + pixel @ (i2_int, j2_int + 1) * (1 - i2_frac) * j2_frac
     + pixel @ (i2_int + 1, j2_int + 1) * i2_frac * j2_frac
 
-If this description is confusing you can find [more details][bilin]
-online.
+You can find [more details][bilin] online.
 
 [bilin]: https://chao-ji.github.io/jekyll/update/2018/07/19/BilinearResize.html
 
@@ -156,7 +159,7 @@ must be treated inclusively, while the bottom and right coordinates
 must be treated inclusively. For example, `crop(img, 10, 20, 100,
 500)` should output an image of size `480x90`.
 
-Your test program should extract the 200x100 rectange at the center of
+Your test program should extract the 200x100 rectangle at the center of
 `sample.png` and write the resulting cropped image to
 `sample-center.png`.
 
@@ -164,7 +167,8 @@ Your test program should extract the 200x100 rectange at the center of
 
 You can use our JPL implementation on the CADE lab machines. The
 compiler executable is in `/home/regehr/jplc/jplc`. Please test it on
-the `gradient.jpl` program that we have provided. Your interaction
+the `gradient.jpl` program that we have provided in the same directory
+as the markdown file that you are reading right now. Your interaction
 with the compiler should look like this:
 
 ```
@@ -186,6 +190,16 @@ If this does not work, you may need to set some additional environment
 variables, please see the settings at the bottom of
 `/home/regehr/.bash_profile` on the CADE systems. Contact the
 instructors on Discord if you are having trouble.
+
+The compiler we have provided is not supposed to crash, nor is it
+supposed to generate executables that crash (recall that JPL is a
+*safe* programming language). However, this compiler is very new and
+it is not particularly well tested. If you suspect that you have run
+into a compiler bug, please bring this up on the Discord and we'll try
+to get it fixed. This compiler also does not produce great error
+messages and we apologize in advance for that. (If you hate the error
+messages that it produces, then hopefully this will motivate you to do
+a better job in your own compiler!)
 
 At this point you should view `gradient.png` and make sure it contains
 a color gradient. You can do this either by downloading the PNG file
@@ -217,9 +231,14 @@ machine in a windows.
 # HANDIN
 
 This assignment has no checkin component, but we are happy to discuss
-problems and solutions with you on Discord.
+problems and solutions with you on Discord. Please do not post full
+solutions to individual problems in the Discord.
 
 Each of your programs should be named after the function it mainly
 contains. So, for example, `blur.jpl` would contain your blur
-function and the correspond test code.
+function and the corresponding test code.
 
+Hand in 10 JPL files in a directory called `assignment3` in your
+Github repo.
+
+This assignment is due Friday Feb 26.
