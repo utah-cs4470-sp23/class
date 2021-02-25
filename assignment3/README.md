@@ -133,8 +133,8 @@ writing files.
 This function scales an image to a new width and height using linear
 interpolation. Let's say the input image is `W`x`H` it's being resized
 to `W2xH2`. That means ideally you'd like the output pixel at (`i`,
-`j`) to correspond to the input pixel at (`i2 = i / W * W2`, `j2 = j /
-W * W2`). But in general that isn't an integer coordinate; let's say
+`j`) to correspond to the input pixel at (`i2 = i / W2 * W`, `j2 = j /
+W2 * W`). But in general that isn't an integer coordinate; let's say
 `i2 = i2_int + i2_frac` for the integer part `i2_int` and the
 fractional part `i2_frac`, and similar for `j2`. Then you want to
 value of the pixel to be the following weighted average:
