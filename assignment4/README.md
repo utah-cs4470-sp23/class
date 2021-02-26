@@ -148,8 +148,8 @@ would produce:
     write image t.9 to "out.png"
     let t.11 = get_time()
     let t.12 = sub_floats(t.11, t.1)
+    print "time:"
     show t.12
-    print "write image resize(crop(sepia(img), 50, 250, 650, 650), 300, 200) to 'out.png'"
     let t.13 = 0
     return t.13
 
@@ -163,7 +163,7 @@ the same subset, which satisfies these additional constraints:
 
 - There are no `time` commands; those are expanded to two `get_time`
   calls (one before the code whose execution is being timed and one
-  after), `sub_floats`, `show`, and `print`
+  after), `sub_floats`, `print`, and `show`
 
 - There is exactly one `return` command, and it is the last command in
   the list. If the input program had more than one `return`, drop all
@@ -177,10 +177,16 @@ will not clash either with each other or with variable names chosen by
 the user. It also allows us to match your flattened output against
 ours (since those are the variable names that our compilers use too).
 
-When converting `time` commands to `print` arguments, you'll run into
-a small problem because in JPL the string argument to `print` cannot
-contain double quotes. It's acceptable to replace double quotes with
-single quotes to circumvent this.
+*For a small amount of extra credit:* Instead of printing `time:`
+before printing an elapsed time, print `time: cmd` where `cmd` is the
+text of the command being timed, as it appeared literally in the
+original source code, including and comments or newlines that appeared
+inside that command. When doing this, you'll run into a small problem
+because in JPL the string argument to `print` cannot contain double
+quotes. You should replace double quotes with single quotes to
+circumvent this. Printing this output will cause your compiler to fail
+some test cases. This is fine as long as the only failures are the
+ones triggered by this extra string.
 
 Make sure that the flattened JPL you generate is type-correct. We
 recommend re-type-checking the flattened output and crashing your
