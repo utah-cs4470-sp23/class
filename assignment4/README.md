@@ -178,17 +178,6 @@ will not clash either with each other or with variable names chosen by
 the user. It also allows us to match your flattened output against
 ours (since those are the variable names that our compilers use too).
 
-*For a small amount of extra credit:* Instead of printing `time:`
-before printing an elapsed time, print `time: cmd` where `cmd` is the
-text of the command being timed, as it appeared literally in the
-original source code, including and comments or newlines that appeared
-inside that command. When doing this, you'll run into a small problem
-because in JPL the string argument to `print` cannot contain double
-quotes. You should replace double quotes with single quotes to
-circumvent this. Printing this output will cause your compiler to fail
-some test cases. This is fine as long as the only failures are the
-ones triggered by this extra string.
-
 Make sure that the flattened JPL you generate is type-correct. We
 recommend re-type-checking the flattened output and crashing your
 compiler if it does not type check. This will catch a lot of bugs.
@@ -199,6 +188,24 @@ the symbol table to reflect the new variables that it
 introduced. Flattening is not allowed to fail: once a JPL program in
 this assignment's subset has been typechecked, flattening should
 always work.
+
+Note that `time return` is slightly awkward because the `time` command
+is flattened to multiple commands, some of which come before the
+`return` command and some of which come after. If your compiler runs
+into this code, all parts of the `time` command that come before the
+`return` should appear in the final flattened output, but none of the
+commands after the `return` should appear.
+
+*For a small amount of extra credit:* Instead of printing `time:`
+before printing an elapsed time, print `time: cmd` where `cmd` is the
+text of the command being timed, as it appeared literally in the
+original source code, including and comments or newlines that appeared
+inside that command. When doing this, you'll run into a small problem
+because in JPL the string argument to `print` cannot contain double
+quotes. You should replace double quotes with single quotes to
+circumvent this. Printing this output will cause your compiler to fail
+some test cases. This is fine as long as the only failures are the
+ones triggered by this extra string.
 
 ## Planning the Stack Frame
 
