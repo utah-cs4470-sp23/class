@@ -160,8 +160,11 @@ the same subset, which satisfies these additional constraints:
 - Every argument to a function is a variable reference
 - Every argument to `assert`, `return`, `show`, or `write image` is a
   variable reference.
-- There are no `time` commands; those are expanded to `time`,
-  `sub_float`, `show`, and `print`
+
+- There are no `time` commands; those are expanded to two `get_time`
+  calls (one before the code whose execution is being timed and one
+  after), `sub_floats`, `show`, and `print`
+
 - There is exactly one `return` command, and it is the last command in
   the list. If the input program had more than one `return`, drop all
   commands that come after it; if it did not have a `return`, add `let
