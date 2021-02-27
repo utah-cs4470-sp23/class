@@ -1,0 +1,6 @@
+(PrintCmd "line 1")
+(PrintCmd "line 2")
+(PrintCmd
+ "^ If those are on the same line, you need to add newlines to strings you print")
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.0)))

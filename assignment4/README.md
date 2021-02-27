@@ -15,6 +15,20 @@ You will be implementing this compiler in three steps:
 - Flattening
 - Code generation
 
+**IMPORTANT:** Ideally, your compiler will typecheck the AST,
+flatten it, and then typecheck the (now flattened) AST a second time
+in order to catch flattener bugs. However, depending on how you have
+structured your compiler, it may not be convenient to typecheck
+twice. Therefore we are permitting a differnt option where your
+compiler supports two different modes. First, when your compiler gets
+the `-t` option, it typechecks the AST and prints it in s-expression
+form as describe below. Second, when it gets the `-f` option, it
+flattens the AST (without typechecking first) and then typechecks it
+before printing s-expressions. If you choose this second option, you
+will still need to print s-expressions containing type information
+before and after flattening, but no single execution of your compiler
+will need to run the typechecker twice.
+
 Recall that the subset of JPL that we are working with contains values
 of just four types: `bool`, `int`, `float`, and `int[,]`. In this
 assignment we will refer to the last of these as `pict`. These
@@ -120,6 +134,58 @@ Modify your `Expr` AST node to add a field for types. Modify
 `type_expr` to save the type it returns to the AST node it was type
 checking.
 
+Your compiler should implement a `-t` command line option which causes
+it to stop after typechecking and print s-expressions (similar to
+those you printed for the handin part of Assignment 2) that include
+type information.
+
+For example, consider this JPL program (which is the same as `007.jpl`
+in the `tests` subdirectory under the directory where this `README.md`
+file is stored:
+
+```
+let z = sub_ints(7, 2)
+return z
+```
+
+Your existing compiler from before starting this assignment, when
+given the `-p` flag, should be producing something like this:
+
+```
+(StmtCmd (LetStmt (ArgLValue (VarArgument int z)) (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
+(StmtCmd (ReturnStmt (VarExpr int z)))
+
+Compilation succeeded
+```
+
+And then, after your output is run through `pp.rkt` (which strips off
+the final line) you should end up with this exact text:
+
+```
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int z))
+  (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
+(StmtCmd (ReturnStmt (VarExpr int z)))
+```
+
+When given the `-t` flag, your compiler for this assignment should
+produce output that, when run through `pp.rkt`, looks exactly like
+this:
+
+```
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int z))
+  (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
+(StmtCmd (ReturnStmt (VarExpr int z)))
+```
+
+The difference is that all now all AST nodes that have types include
+the name of those types as annotations in the output. You can find
+more examples in `tests/*.jpl.typechecked`.
+
+
 ## Flattening the JPL subset
 
 Flattening refers to replacing deeply-nested ASTs with shallow ones by
@@ -196,16 +262,45 @@ into this code, all parts of the `time` command that come before the
 `return` should appear in the final flattened output, but none of the
 commands after the `return` should appear.
 
-*For a small amount of extra credit:* Instead of printing `time:`
+Your compiler must implement a `-f` command line option which causes
+it to stop after flattening and print s-expressions. Again, these
+should be annotated with types. Here is the flattened, typechecked
+version of `007.jpl` after being run through `pp.rkt`:
+
+```
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 7)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.1)) (IntExpr int 2)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int z))
+  (CallExpr int sub_ints (VarExpr int t.0) (VarExpr int t.1))))
+(StmtCmd (ReturnStmt (VarExpr int z)))
+```
+
+The expected flattened output for every test case can be found
+in `tests/*.jpl.flattened`.
+
+**IMPORTANT:** Since there are many different ways in which you might
+choose to traverse the AST during the flattening process, we are not
+going to insist that you produce exactly the output above. Your output
+may differ in the order in which flattened statements appear, and it
+may differ in choices of temporary variables. In other words, your
+output must meet the requirements for flattened code that are listed
+in this part of the assignment, but it need to be syntactically
+identical to our output.
+
+
+**For a small amount of extra credit:** Instead of printing `time:`
 before printing an elapsed time, print `time: cmd` where `cmd` is the
 text of the command being timed, as it appeared literally in the
-original source code, including and comments or newlines that appeared
+original source code, including any comments or newlines that appeared
 inside that command. When doing this, you'll run into a small problem
 because in JPL the string argument to `print` cannot contain double
 quotes. You should replace double quotes with single quotes to
 circumvent this. Printing this output will cause your compiler to fail
 some test cases. This is fine as long as the only failures are the
 ones triggered by this extra string.
+
 
 ## Planning the Stack Frame
 
@@ -339,27 +434,22 @@ instruction set and the NASM assembler specifically handy while you
 are working. You can find lists of both in the [Assembly
 Handbook](../assembly.md).
 
-## CHECKIN Due February 26
+## CHECKIN Due March 5
 
 The checkin part of this assignment is intended to assist you in
 eliminating as many bugs as possible in your name resolution, type
 checking, and flattening code before you move on to code generation.
 
-This checkin will be very much like the handin part of Assignment 2,
-in the sense that you will emit s-expressions representing your parse
-tree. There are two pieces:
+For this part of the assignment you should implement typechecking and
+flattening as described above. Also, add two new targets to your
+makefile called `run-a4t` and `run-a4f`. If we go to your compiler's
+root directory and type `make run-a4t TEST=007.jpl` then your makefile
+must run your compiler with the `-t` command line option on `007.jpl.
+If we go to your compiler's root directory adn type `make run-a4f
+TEST=007.jpl` then your makefile must run your compiler with the `-f`
+command line option on `007.jpl`.
 
-  1. Your compiler should implement a `-t` command line option which
-     causes it to stop after typechecking and print s-expressions
-     (similar to those you printed for the handin part of Assignment
-     2) that include type information as specified below.
-
-  2. Your compiler should implement a `-f` command line option which
-     causes it to stop after flattening and print s-expressions.
-     Again, these should be annotated with types.
-
-
-## HANDIN Due March 5
+## HANDIN Due March 19
 
 
 The handin expects you to have a complete compiler for the JPL subset

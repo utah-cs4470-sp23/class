@@ -1,0 +1,1 @@
+(StmtCmd (AssertStmt (VarExpr bool true) "This should not be printed"))

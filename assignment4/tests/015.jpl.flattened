@@ -1,0 +1,3 @@
+(StmtCmd (AssertStmt (VarExpr bool false) "This should be printed"))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.0)))

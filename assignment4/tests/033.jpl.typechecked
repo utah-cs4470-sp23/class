@@ -1,0 +1,2 @@
+(ReadImageCmd "foo.png" (VarArgument pict img))
+(WriteImageCmd (CallExpr pict sepia (VarExpr pict img)) "foo.png")

@@ -1,0 +1,4 @@
+(PrintCmd "line 1")
+(PrintCmd "line 2")
+(PrintCmd
+ "^ If those are on the same line, you need to add newlines to strings you print")

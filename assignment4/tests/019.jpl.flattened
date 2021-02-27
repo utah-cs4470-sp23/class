@@ -1,0 +1,6 @@
+(PrintCmd "hi")
+(PrintCmd "bye")
+(PrintCmd
+ "^ If you see 'bye' twice you need to add a null-terminator to your strings")
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.0)))

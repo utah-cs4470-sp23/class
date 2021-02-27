@@ -1,0 +1,9 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument float z))
+  (CallExpr
+   float
+   sub_floats
+   (CallExpr float sub_floats (FloatExpr float 3) (FloatExpr float 1))
+   (CallExpr float sub_floats (FloatExpr float 2) (FloatExpr float 12)))))
+(StmtCmd (ReturnStmt (IntExpr int 4)))

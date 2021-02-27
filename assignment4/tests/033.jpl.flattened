@@ -1,0 +1,8 @@
+(ReadImageCmd "foo.png" (VarArgument pict img))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument pict t.0))
+  (CallExpr pict sepia (VarExpr pict img))))
+(WriteImageCmd (VarExpr pict t.0) "foo.png")
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.1)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.1)))

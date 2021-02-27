@@ -1,0 +1,5 @@
+(StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 3)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int y)) (VarExpr int x)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int z)) (VarExpr int y)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t)) (VarExpr int z)))
+(StmtCmd (ReturnStmt (VarExpr int t)))

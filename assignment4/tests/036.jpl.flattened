@@ -1,0 +1,21 @@
+(StmtCmd
+ (LetStmt (ArgLValue (VarArgument float t.0)) (CallExpr float get.time)))
+(StmtCmd
+ (LetStmt (ArgLValue (VarArgument float t.2)) (CallExpr float get.time)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 2)))
+(StmtCmd
+ (LetStmt (ArgLValue (VarArgument float t.3)) (CallExpr float get.time)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument float t.4))
+  (CallExpr float sub_floats (VarExpr float t.3) (VarExpr float t.2))))
+(ShowCmd (VarExpr float t.4))
+(StmtCmd
+ (LetStmt (ArgLValue (VarArgument float t.1)) (CallExpr float get.time)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument float t.5))
+  (CallExpr float sub_floats (VarExpr float t.1) (VarExpr float t.0))))
+(ShowCmd (VarExpr float t.5))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.6)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.6)))

@@ -1,0 +1,30 @@
+(ReadImageCmd "foo.png" (VarArgument pict img))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.2)) (IntExpr int 20)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.3)) (IntExpr int 20)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument pict t.1))
+  (CallExpr
+   pict
+   resize
+   (VarExpr pict img)
+   (VarExpr int t.2)
+   (VarExpr int t.3))))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.4)) (IntExpr int 5)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.5)) (IntExpr int 5)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.6)) (IntExpr int 15)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.7)) (IntExpr int 15)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument pict t.0))
+  (CallExpr
+   pict
+   crop
+   (VarExpr pict t.1)
+   (VarExpr int t.4)
+   (VarExpr int t.5)
+   (VarExpr int t.6)
+   (VarExpr int t.7))))
+(WriteImageCmd (VarExpr pict t.0) "foo.png")
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.8)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.8)))
