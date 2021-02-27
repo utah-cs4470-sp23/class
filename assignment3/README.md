@@ -82,8 +82,8 @@ This function draws a white, unfilled circle in the center of an
 pixels) and the second is the thickness of the white line (also in
 pixels).
 
-Your test code should call `circle(400, 10)` and write the resulting
-image to `circle.png`.
+Your test code should call `circle(400.0, 10.0)` and write the
+resulting image to `circle.png`.
 
     has_size(pict, int, int) : bool
 
