@@ -180,6 +180,7 @@ this:
   (ArgLValue (VarArgument int z))
   (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
 (StmtCmd (ReturnStmt (VarExpr int z)))
+#<eof>
 ```
 
 The difference is that all now all AST nodes that have types include
@@ -276,6 +277,7 @@ version of `007.jpl` after being run through `pp.rkt`:
   (ArgLValue (VarArgument int z))
   (CallExpr int sub_ints (VarExpr int t.0) (VarExpr int t.1))))
 (StmtCmd (ReturnStmt (VarExpr int z)))
+#<eof>
 ```
 
 The expected flattened output for every test case can be found
@@ -445,7 +447,7 @@ For this part of the assignment you should implement typechecking and
 flattening as described above. Also, add two new targets to your
 makefile called `run-a4t` and `run-a4f`. If we go to your compiler's
 root directory and type `make run-a4t TEST=007.jpl` then your makefile
-must run your compiler with the `-t` command line option on `007.jpl.
+must run your compiler with the `-t` command line option on `007.jpl`.
 If we go to your compiler's root directory and type `make run-a4f
 TEST=007.jpl` then your makefile must run your compiler with the `-f`
 command line option on `007.jpl`.
