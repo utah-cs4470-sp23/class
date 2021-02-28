@@ -1,1 +1,2 @@
 (StmtCmd (AssertStmt (VarExpr bool false) "This should be printed"))
+#<eof>

@@ -3,3 +3,4 @@
   (ArgLValue (VarArgument float z))
   (CallExpr float sub_floats (FloatExpr float 3) (FloatExpr float 2))))
 (StmtCmd (ReturnStmt (IntExpr int 3)))
+#<eof>

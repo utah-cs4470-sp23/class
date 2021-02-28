@@ -152,21 +152,22 @@ Your existing compiler from before starting this assignment, when
 given the `-p` flag, should be producing something like this:
 
 ```
-(StmtCmd (LetStmt (ArgLValue (VarArgument int z)) (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
-(StmtCmd (ReturnStmt (VarExpr int z)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument z)) (CallExpr sub_ints (IntExpr 7) (IntExpr 2))))
+(StmtCmd (ReturnStmt (VarExpr z)))
 
 Compilation succeeded
 ```
 
-And then, after your output is run through `pp.rkt` (which strips off
+Then, after your output is run through `pp.rkt` (which strips off
 the final line) you should end up with this exact text:
 
 ```
 (StmtCmd
  (LetStmt
-  (ArgLValue (VarArgument int z))
-  (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
-(StmtCmd (ReturnStmt (VarExpr int z)))
+  (ArgLValue (VarArgument z))
+  (CallExpr sub_ints (IntExpr 7) (IntExpr 2))))
+(StmtCmd (ReturnStmt (VarExpr z)))
+#<eof>
 ```
 
 When given the `-t` flag, your compiler for this assignment should
@@ -286,8 +287,8 @@ going to insist that you produce exactly the output above. Your output
 may differ in the order in which flattened statements appear, and it
 may differ in choices of temporary variables. In other words, your
 output must meet the requirements for flattened code that are listed
-in this part of the assignment, but it need to be syntactically
-identical to our output.
+in this part of the assignment, but it does not need to be
+syntactically identical to our output.
 
 
 **For a small amount of extra credit:** Instead of printing `time:`
@@ -445,9 +446,24 @@ flattening as described above. Also, add two new targets to your
 makefile called `run-a4t` and `run-a4f`. If we go to your compiler's
 root directory and type `make run-a4t TEST=007.jpl` then your makefile
 must run your compiler with the `-t` command line option on `007.jpl.
-If we go to your compiler's root directory adn type `make run-a4f
+If we go to your compiler's root directory and type `make run-a4f
 TEST=007.jpl` then your makefile must run your compiler with the `-f`
 command line option on `007.jpl`.
+
+To test your typechecker, go to your compiler's root directory and run
+`BLA/jpl/assignment4/test-subset-typechecker` where `BLA` is whereever
+you checked out the `jpl` repository. This script will invoke your
+makefile using commands such as `make run-a4t TEST=007.jpl` and
+compare your output against the reference output.
+
+As mentioned above, we are not going to perform automated testing of
+your flattened code because there are many subtlties in how you
+traverse the AST that change the order of statements and temporary
+variables. However, we ask that you check (by hand) that your
+flattened output is equivalent to ours, by looking at the
+`tests/*.jpl.flattened` files. We will also look at your output
+by hand.
+
 
 ## HANDIN Due March 19
 

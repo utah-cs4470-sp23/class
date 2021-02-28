@@ -4,3 +4,4 @@
  (AssertStmt
   (CallExpr bool has_size (VarExpr pict img) (IntExpr int 10) (IntExpr int 10))
   "Please do not modify foo.png, it should be 10x10"))
+#<eof>

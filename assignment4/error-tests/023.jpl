@@ -1,0 +1,6 @@
+
+let img = 5.51
+
+
+
+read image "foo.png" to img

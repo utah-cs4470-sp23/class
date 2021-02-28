@@ -2,3 +2,4 @@
 (StmtCmd (LetStmt (ArgLValue (VarArgument float y)) (FloatExpr float 2)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 1)))
 (StmtCmd (ReturnStmt (VarExpr int t.0)))
+#<eof>

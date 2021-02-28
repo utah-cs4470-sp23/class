@@ -5,3 +5,4 @@
   (ArgLValue (VarArgument int z))
   (CallExpr int sub_ints (VarExpr int t.0) (VarExpr int t.1))))
 (StmtCmd (ReturnStmt (VarExpr int z)))
+#<eof>

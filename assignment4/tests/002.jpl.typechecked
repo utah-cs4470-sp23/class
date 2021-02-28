@@ -1,1 +1,2 @@
 (StmtCmd (ReturnStmt (IntExpr int 0)))
+#<eof>

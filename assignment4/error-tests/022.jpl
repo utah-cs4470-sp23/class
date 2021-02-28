@@ -1,0 +1,8 @@
+
+let x = 1
+let y = x
+let z = y
+let t = z
+show t
+let z = t
+

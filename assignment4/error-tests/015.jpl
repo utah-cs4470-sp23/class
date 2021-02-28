@@ -1,0 +1,3 @@
+read image "foo.png" to img
+assert sepia(img), "This should be printed"
+
