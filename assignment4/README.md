@@ -1,5 +1,3 @@
-# DO NOT READ. Assignment is unfinished and also extremely scary.
-
 # Assignment 4: Typechecking and Code Generation for the JPL Subset
 
 Your third assignment is to build a compiler for the subset of JPL
