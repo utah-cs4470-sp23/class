@@ -19,7 +19,7 @@ You will be implementing this compiler in three steps:
 flatten it, and then typecheck the (now flattened) AST a second time
 in order to catch flattener bugs. However, depending on how you have
 structured your compiler, it may not be convenient to typecheck
-twice. Therefore we are permitting a differnt option where your
+twice. Therefore we are permitting a different option where your
 compiler supports two different modes. First, when your compiler gets
 the `-t` option, it typechecks the AST and prints it in s-expression
 form as describe below. Second, when it gets the `-f` option, it
@@ -354,7 +354,7 @@ our [Assembly Handbook](../assembly.md).
 
 In the "text section" of your assembly code, you must generate the
 code for the `main` function. That means generating the function
-prologue, then outputing code for each commands in the program in
+prologue, then outputting code for each commands in the program in
 order, and then generating the function epilogue. The [Assembly
 Handbook](../assembly.md) has templates for the assembly code for each
 of these steps.
@@ -400,7 +400,7 @@ debugging, at several different levels.
 ## Debugging Assembly
 
 *This will be a challenging assignment.* One of the biggest challenges
-during code generation is debugging the emittted assembly language. We
+during code generation is debugging the emitted assembly language. We
 offer the following suggestions:
 
 **Time**: Plan on spending a lot of time debugging. Start very early
@@ -453,13 +453,13 @@ TEST=007.jpl` then your makefile must run your compiler with the `-f`
 command line option on `007.jpl`.
 
 To test your typechecker, go to your compiler's root directory and run
-`BLA/jpl/assignment4/test-subset-typechecker` where `BLA` is whereever
+`BLA/jpl/assignment4/test-subset-typechecker` where `BLA` is wherever
 you checked out the `jpl` repository. This script will invoke your
 makefile using commands such as `make run-a4t TEST=007.jpl` and
 compare your output against the reference output.
 
 As mentioned above, we are not going to perform automated testing of
-your flattened code because there are many subtlties in how you
+your flattened code because there are many subtleties in how you
 traverse the AST that change the order of statements and temporary
 variables. However, we ask that you check (by hand) that your
 flattened output is equivalent to ours, by looking at the
