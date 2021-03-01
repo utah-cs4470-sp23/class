@@ -268,7 +268,7 @@ following assembly:
 
 	cmp dword [rbp - XXX], 0
     jne		.SKIP
-    mov		rdi, [rel NAME]
+    lea		rdi, [rel NAME]
     call	_fail_assertion
     .SKIP:
 
