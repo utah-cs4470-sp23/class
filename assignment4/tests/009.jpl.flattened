@@ -1,0 +1,33 @@
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.3)) (IntExpr int 7)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.4)) (IntExpr int 3)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int t.2))
+  (CallExpr int sub_ints (VarExpr int t.3) (VarExpr int t.4))))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.5)) (IntExpr int 9)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int t.1))
+  (CallExpr int sub_ints (VarExpr int t.2) (VarExpr int t.5))))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.7)) (IntExpr int 2)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.9)) (IntExpr int 4)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.11)) (IntExpr int 6)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.12)) (IntExpr int 1)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int t.10))
+  (CallExpr int sub_ints (VarExpr int t.11) (VarExpr int t.12))))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int t.8))
+  (CallExpr int sub_ints (VarExpr int t.9) (VarExpr int t.10))))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int t.6))
+  (CallExpr int sub_ints (VarExpr int t.7) (VarExpr int t.8))))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument int t.0))
+  (CallExpr int sub_ints (VarExpr int t.1) (VarExpr int t.6))))
+(StmtCmd (ReturnStmt (VarExpr int t.0)))
+#<eof>

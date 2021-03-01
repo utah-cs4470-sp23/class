@@ -1,0 +1,5 @@
+(StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 4)))
+(ShowCmd (VarExpr int x))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.0)))
+#<eof>

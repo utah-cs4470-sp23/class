@@ -1,0 +1,2 @@
+(TimeCmd (PrintCmd "hi"))
+#<eof>

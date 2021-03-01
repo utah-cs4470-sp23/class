@@ -1,0 +1,4 @@
+
+read image "foo.png" to img
+let img2 = img
+

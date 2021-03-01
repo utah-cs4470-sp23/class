@@ -1,0 +1,7 @@
+
+read image "foo.png" to img
+
+return 7
+
+assert has_size(img, 10, 10), "Please do not modify foo.png, it should be 10x10"
+

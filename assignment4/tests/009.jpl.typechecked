@@ -1,0 +1,20 @@
+(StmtCmd
+ (ReturnStmt
+  (CallExpr
+   int
+   sub_ints
+   (CallExpr
+    int
+    sub_ints
+    (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 3))
+    (IntExpr int 9))
+   (CallExpr
+    int
+    sub_ints
+    (IntExpr int 2)
+    (CallExpr
+     int
+     sub_ints
+     (IntExpr int 4)
+     (CallExpr int sub_ints (IntExpr int 6) (IntExpr int 1)))))))
+#<eof>

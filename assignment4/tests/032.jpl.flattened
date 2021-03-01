@@ -1,0 +1,19 @@
+(ReadImageCmd "foo.png" (VarArgument pict img))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.1)) (IntExpr int 10)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.2)) (IntExpr int 10)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument bool t.0))
+  (CallExpr
+   bool
+   has_size
+   (VarExpr pict img)
+   (VarExpr int t.1)
+   (VarExpr int t.2))))
+(StmtCmd
+ (AssertStmt
+  (VarExpr bool t.0)
+  "Please do not modify foo.png, it should be 10x10"))
+(StmtCmd (LetStmt (ArgLValue (VarArgument int t.3)) (IntExpr int 0)))
+(StmtCmd (ReturnStmt (VarExpr int t.3)))
+#<eof>

@@ -1,0 +1,4 @@
+(ShowCmd (IntExpr int 1))
+(ShowCmd (IntExpr int 2))
+(PrintCmd "^ If you see '12' you need to print a newline after show commands")
+#<eof>

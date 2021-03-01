@@ -1,0 +1,4 @@
+(StmtCmd (LetStmt (ArgLValue (VarArgument float x)) (FloatExpr float 3)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument float y)) (FloatExpr float 2)))
+(StmtCmd (ReturnStmt (IntExpr int 1)))
+#<eof>

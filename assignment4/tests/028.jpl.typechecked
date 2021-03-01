@@ -1,0 +1,2 @@
+(ReadImageCmd "foo.png" (VarArgument pict img))
+#<eof>

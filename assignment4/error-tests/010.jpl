@@ -1,0 +1,6 @@
+
+let x = 3.14
+let y = 2.72
+let z = sub_floats(x, y)
+let w = sub_ints(1, z)
+

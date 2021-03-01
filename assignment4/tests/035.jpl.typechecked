@@ -1,0 +1,12 @@
+(ReadImageCmd "foo.png" (VarArgument pict img))
+(WriteImageCmd
+ (CallExpr
+  pict
+  crop
+  (CallExpr pict resize (VarExpr pict img) (IntExpr int 20) (IntExpr int 20))
+  (IntExpr int 5)
+  (IntExpr int 5)
+  (IntExpr int 15)
+  (IntExpr int 15))
+ "foo.png")
+#<eof>

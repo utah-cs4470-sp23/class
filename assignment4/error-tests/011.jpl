@@ -1,0 +1,6 @@
+
+let x = 3.14
+let y = 2.72
+let z = sub_floats(x, y)
+show z
+let pic = crop(z, 1, 1, 10, 10)

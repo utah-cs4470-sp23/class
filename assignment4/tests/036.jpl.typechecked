@@ -1,0 +1,3 @@
+(TimeCmd
+ (TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 2)))))
+#<eof>

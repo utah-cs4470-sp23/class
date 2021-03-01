@@ -1,0 +1,7 @@
+
+let x = 3
+let y = x
+let z = y
+let t = z
+return t
+

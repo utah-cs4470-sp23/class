@@ -1,0 +1,14 @@
+(TimeCmd
+ (TimeCmd
+  (TimeCmd
+   (TimeCmd
+    (TimeCmd
+     (StmtCmd
+      (LetStmt
+       (ArgLValue (VarArgument float x))
+       (CallExpr
+        float
+        sub_floats
+        (FloatExpr float 3)
+        (FloatExpr float 1)))))))))
+#<eof>

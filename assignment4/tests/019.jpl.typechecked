@@ -1,0 +1,5 @@
+(PrintCmd "hi")
+(PrintCmd "bye")
+(PrintCmd
+ "^ If you see 'bye' twice you need to add a null-terminator to your strings")
+#<eof>
