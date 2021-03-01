@@ -28,9 +28,10 @@ before and after flattening, but no single execution of your compiler
 will need to run the typechecker twice.
 
 Recall that the subset of JPL that we are working with contains values
-of just four types: `bool`, `int`, `float`, and `int[,]`. In this
-assignment we will refer to the last of these as `pict`. These
-correspond to the following C types (you'll need `<stdint.h>`):
+of just four types: `bool`, `int`, `float`, and
+`{float,float,float,float}[,]`. In this assignment we will refer to
+the last of these as `pict`. These correspond to the following C types
+(you'll need `<stdint.h>`):
 
 - `bool` corresponds to `int32_t` and takes up 4 bytes
 - `int` corresponds to `int64_t` and takes up 8 bytes
