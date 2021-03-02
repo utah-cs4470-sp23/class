@@ -16,4 +16,3 @@
   (CallExpr float sub_floats (VarExpr float t.0) (VarExpr float t.3))))
 (StmtCmd (LetStmt (ArgLValue (VarArgument int t.6)) (IntExpr int 4)))
 (StmtCmd (ReturnStmt (VarExpr int t.6)))
-#<eof>

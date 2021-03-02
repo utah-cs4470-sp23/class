@@ -9,4 +9,3 @@
   (IntExpr int 15)
   (IntExpr int 15))
  "foo.png")
-#<eof>

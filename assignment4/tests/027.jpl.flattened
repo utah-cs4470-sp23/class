@@ -10,4 +10,3 @@
 (ShowCmd (VarExpr float t.2))
 (StmtCmd (LetStmt (ArgLValue (VarArgument int t.3)) (IntExpr int 0)))
 (StmtCmd (ReturnStmt (VarExpr int t.3)))
-#<eof>

@@ -5,4 +5,3 @@
 (PrintCmd "^ If you see '12' you need to print a newline after show commands")
 (StmtCmd (LetStmt (ArgLValue (VarArgument int t.2)) (IntExpr int 0)))
 (StmtCmd (ReturnStmt (VarExpr int t.2)))
-#<eof>

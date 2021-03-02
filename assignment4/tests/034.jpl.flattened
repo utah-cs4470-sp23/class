@@ -7,4 +7,3 @@
 (WriteImageCmd (VarExpr pict t.0) "foo.png")
 (StmtCmd (LetStmt (ArgLValue (VarArgument int t.2)) (IntExpr int 0)))
 (StmtCmd (ReturnStmt (VarExpr int t.2)))
-#<eof>
