@@ -1,4 +1,3 @@
 (ReadImageCmd "foo.png" (VarArgument pict img))
 (StmtCmd (LetStmt (ArgLValue (VarArgument int t.0)) (IntExpr int 7)))
 (StmtCmd (ReturnStmt (VarExpr int t.0)))
-#<eof>

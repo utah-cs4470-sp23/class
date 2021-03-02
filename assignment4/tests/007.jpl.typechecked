@@ -3,4 +3,3 @@
   (ArgLValue (VarArgument int z))
   (CallExpr int sub_ints (IntExpr int 7) (IntExpr int 2))))
 (StmtCmd (ReturnStmt (VarExpr int z)))
-#<eof>
