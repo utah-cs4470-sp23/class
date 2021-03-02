@@ -1,0 +1,4 @@
+hi
+bye
+^ If you see 'bye' twice you need to add a null-terminator to your strings
+; return code: 0
