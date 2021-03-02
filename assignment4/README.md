@@ -394,7 +394,10 @@ means is a little involved. Your compiler must ensure that:
   (accessing the wrong files, for example).
 
 Because there are lots of ways to go wrong, you'll be doing a lot of
-debugging, at several different levels.
+debugging, at several different levels. To start, try to assemble,
+link, and run the provided [hello.s](hello.s) file, which should print
+"Hello, World!" with a successful return code and no fault conditions
+when properly assembled, linked, and run.
 
 ## Debugging Assembly
 
