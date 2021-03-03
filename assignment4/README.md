@@ -117,15 +117,15 @@ Next, you must define two functions:
   terminates the program (on a type error) or returns the type of the
   expression. Type errors only occur if the arguments to a function
   have the incorrect type, or if an undefined variable or function is
-  used, or if a normal variable is used as a function, or if a
-  variable or function name is reused.
+  used, or if a normal variable is used as a function.
 
-- `type_stmt` takes a `Stmt` AST node and a symbol table, and either
-  terminates the program (on a type error) or returns nothing after
-  modifying the symbol table. Type errors occur for `assert` with a
-  non-`bool` argument, `write image` with a non-`pict` argument, and
-  `return` with a non-`int` argument. They also occur for `let` and
-  `read image` when a variable is redefined.
+- `type_command` takes a `Command` AST node and a symbol table, and
+  either terminates the program (on a type error) or returns nothing
+  after modifying the symbol table. Type errors occur for `assert`
+  with a non-`bool` argument, `write image` with a non-`pict`
+  argument, and `return` with a non-`int` argument. They also occur
+  for `let` and `read image` when they try to redefine a variable
+  name that is already bound.
 
 Note that `show` works on any type so it never raises a type error.
 
