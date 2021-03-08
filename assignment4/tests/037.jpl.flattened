@@ -1,44 +1,49 @@
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.0)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.0)) (CallExpr float get_time)))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.2)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.2)) (CallExpr float get_time)))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.4)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.4)) (CallExpr float get_time)))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.6)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.6)) (CallExpr float get_time)))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.8)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.8)) (CallExpr float get_time)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 2)))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.9)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.9)) (CallExpr float get_time)))
+(PrintCmd "time:")
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument float t.10))
   (CallExpr float sub_floats (VarExpr float t.9) (VarExpr float t.8))))
 (ShowCmd (VarExpr float t.10))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.7)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.7)) (CallExpr float get_time)))
+(PrintCmd "time:")
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument float t.11))
   (CallExpr float sub_floats (VarExpr float t.7) (VarExpr float t.6))))
 (ShowCmd (VarExpr float t.11))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.5)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.5)) (CallExpr float get_time)))
+(PrintCmd "time:")
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument float t.12))
   (CallExpr float sub_floats (VarExpr float t.5) (VarExpr float t.4))))
 (ShowCmd (VarExpr float t.12))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.3)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.3)) (CallExpr float get_time)))
+(PrintCmd "time:")
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument float t.13))
   (CallExpr float sub_floats (VarExpr float t.3) (VarExpr float t.2))))
 (ShowCmd (VarExpr float t.13))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.1)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.1)) (CallExpr float get_time)))
+(PrintCmd "time:")
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument float t.14))

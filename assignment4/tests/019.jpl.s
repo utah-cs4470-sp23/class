@@ -1,4 +1,4 @@
-global _main
+global main
 extern _sub_ints
 extern _sub_floats
 extern _has_size
@@ -20,7 +20,7 @@ const2: db `^ If you see 'bye' twice you need to add a null-terminator to your s
 const3: dq 0
 
 section .text
-_main:
+main:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 16
