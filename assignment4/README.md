@@ -479,30 +479,21 @@ to generate assembly code and print it to the standard output. That
 assembly code must be correct as described above---it must pass NASM,
 the linker, and run cleanly, producing the expected output.
 
-To help you in this task, we are providing the `test-assembly.pl`
-script. It runs your compiler on a set of tests (in
-`tests/assembly/*.jpl`) ordered by difficulty; for each test it runs
-your compiler and compares the generated assembly code to code
-produced by our compiler (in `tests/assembly/*.s`). While you are not
-required to match this assembly exactly, it'll be easiest for you if
-you do. Comparing your generated assembly to the recommended assembly
-is likely the fastest way for you to find issues in your compiler.
-The tests are ordered by difficulty, and we recommend not moving on to
-a later test until every earlier test is done; to that end the test
-script will stop on the first failure.
+To help you in this task, we are providing a number of test inputs as
+well as suggested assembly output and also what should be output when
+the generated code runs. These can all be found in the `tests`
+subdirectory. The tests are approximately ordered by difficulty, so we
+suggest going through them in numerical order, getting each one to
+work before moving on to the next one. Comparing your generated
+assembly to the recommended assembly is likely the fastest way for you
+to find issues in your compiler, but you are not required to match it
+exactly (since this could be difficult if your flattened code looks
+different from ours). We strongly recommend trying to get the assembly
+right *before* running it: running malformed assembly is dangerous in
+a way looking at it isn't, and comparing diffs of the assembly code is
+way easier than using a debugger to step through a bad executable.
 
-After you have assembly generation working, run `test-codegen.pl`.
-This script runs your compiler, assembles the resulting assembly,
-links it, and runs it. This script will use a larger set of tests than
-`test-assembly.pl`, so it's possible to fail this script after passing
-that one, but that should be unlikely. We strongly recommend not
-trying this until the previous test works: running malformed assembly
-is dangerous in a way looking at it isn't, and comparing diffs of the
-assembly code is way easier than using a debugger to step through a
-bad executable.
-
-As always, even if the tests pass on your computer, or some other
-computer, it does not count unless those tests also pass on a CADE
-Linux machine. Since this is a hard requirement, please test it out
-well before the due date so you have time to resolve any problems that
-may come up. On CADE, you will want to use the `elf64` format for NASM.
+Please make sure your compiler works on CADE machines. As usual, this
+is a hard requirement, so test it out early so you have time to fix
+issues that may come up. On CADE, you will want to use the `elf64`
+format for NASM.
