@@ -48,16 +48,16 @@ first. Semicolons start a line comment.
 Your assembly file should start with the the following text:
 
     global main
+    global _main
 
 This tells NASM that the assembly code defines a function named `main`
 and that that function name should be externally available (to the
 runtime).
 
-(On macOS, symbols instead have an underscore in front of them. If you
-want your code to work on macOS we recommend having `global main` and
-then following it with `global _main`. Then, when you define the
-`main` function with `main:`, put `_main:` right after it. This
-defines both `main` and `_main` to point to the same function. This
+(On macOS, symbols instead have an underscore in front of them; on
+other systems they don't. We recommend having `global main` and then
+following it with `global _main`, effectively exporting the same
+function under two names, so your code works on both systems.This
 won't matter on CADE, where we're evaluating your code, but it might
 help you debug your code on your own machine.)
 
@@ -79,6 +79,8 @@ Following that line, you'll define a bunch of constants, and after
 that you'll have:
 
     section .text
+    main:
+    _main:
 
 after which will come all of your assembly instructions.
 
