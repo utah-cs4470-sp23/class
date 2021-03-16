@@ -1,6 +1,0 @@
-
-let x = 1
-let y = 5
-let z = sub_ints(y, x)
-return z
-

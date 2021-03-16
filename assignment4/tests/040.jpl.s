@@ -1,4 +1,4 @@
-global _main
+global main
 extern _sub_ints
 extern _sub_floats
 extern _has_size
@@ -17,7 +17,7 @@ section .data
 const0: dq 77
 
 section .text
-_main:
+main:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 32

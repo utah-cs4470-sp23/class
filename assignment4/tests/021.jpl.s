@@ -1,4 +1,4 @@
-global _main
+global main
 extern _sub_ints
 extern _sub_floats
 extern _has_size
@@ -22,7 +22,7 @@ const4: db `^ If you see '12' you need to print a newline after show commands\n`
 const5: dq 0
 
 section .text
-_main:
+main:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 32

@@ -1,8 +1,9 @@
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.0)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.0)) (CallExpr float get_time)))
 (StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 2)))
 (StmtCmd
- (LetStmt (ArgLValue (VarArgument float t.1)) (CallExpr float get.time)))
+ (LetStmt (ArgLValue (VarArgument float t.1)) (CallExpr float get_time)))
+(PrintCmd "time:")
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument float t.2))
