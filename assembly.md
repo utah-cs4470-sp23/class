@@ -17,12 +17,13 @@ be `elf64`, on macOS `macho64`, and on windows `win64`. Don't forget
 the "64". Assembling produces an object file with a `.o` extension.
 You then need to link it, like this:
 
-    clang code.o runtime.o
+    clang code.o runtime.a
 
-The `runtime.o` in this case is the object file containing the
+The `runtime.a` in this case is the object file containing the
 provided functions, and `clang` takes care of both linking the two
-object files and also linking in system libraries that `runtime.o`
-relies on.
+object files and also linking in system libraries that `runtime.a`
+relies on. You can build `runtime.a` with `compile-runtime.sh`, which
+will work on CADE and many other systems.
 
 This command will produce a file called `a.out`, short for "assembler
 output". (Even though it is not actually output by your assembler...)
