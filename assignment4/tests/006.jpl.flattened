@@ -1,7 +1,0 @@
-(StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 1)))
-(StmtCmd (LetStmt (ArgLValue (VarArgument int y)) (IntExpr int 5)))
-(StmtCmd
- (LetStmt
-  (ArgLValue (VarArgument int z))
-  (CallExpr int sub_ints (VarExpr int y) (VarExpr int x))))
-(StmtCmd (ReturnStmt (VarExpr int z)))
