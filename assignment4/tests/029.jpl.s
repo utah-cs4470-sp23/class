@@ -1,4 +1,5 @@
 global main
+global _main
 extern _sub_ints
 extern _sub_floats
 extern _has_size
@@ -19,6 +20,7 @@ const1: dq 0
 
 section .text
 main:
+_main:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 64
@@ -37,4 +39,3 @@ main:
 	add rsp, 64
 	pop rbp
 	ret
-Compilation succeeded: assembly complete

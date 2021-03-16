@@ -1,4 +1,5 @@
 global main
+global _main
 extern _sub_ints
 extern _sub_floats
 extern _has_size
@@ -16,12 +17,14 @@ extern _write_image
 section .data
 const0: dq 3.0
 const1: dq 1.0
-const2: db `float`, 0
-const3: db `\n`, 0
-const4: dq 0
+const2: db `time:\n`, 0
+const3: db `float`, 0
+const4: db `\n`, 0
+const5: dq 0
 
 section .text
 main:
+_main:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 160
@@ -49,10 +52,12 @@ main:
 	movsd xmm1, [rbp - 40]
 	call _sub_floats
 	movsd [rbp - 80], xmm0
-	lea rdi, [rel const2] ; float
+	lea rdi, [rel const2] ; time:
+	call _print
+	lea rdi, [rel const3] ; float
 	lea rsi, [rbp - 80]
 	call _show
-	lea rdi, [rel const3] ; \n
+	lea rdi, [rel const4] ; \n
 	call _print
 	call _get_time
 	movsd [rbp - 88], xmm0
@@ -60,10 +65,12 @@ main:
 	movsd xmm1, [rbp - 32]
 	call _sub_floats
 	movsd [rbp - 96], xmm0
-	lea rdi, [rel const2] ; float
+	lea rdi, [rel const2] ; time:
+	call _print
+	lea rdi, [rel const3] ; float
 	lea rsi, [rbp - 96]
 	call _show
-	lea rdi, [rel const3] ; \n
+	lea rdi, [rel const4] ; \n
 	call _print
 	call _get_time
 	movsd [rbp - 104], xmm0
@@ -71,10 +78,12 @@ main:
 	movsd xmm1, [rbp - 24]
 	call _sub_floats
 	movsd [rbp - 112], xmm0
-	lea rdi, [rel const2] ; float
+	lea rdi, [rel const2] ; time:
+	call _print
+	lea rdi, [rel const3] ; float
 	lea rsi, [rbp - 112]
 	call _show
-	lea rdi, [rel const3] ; \n
+	lea rdi, [rel const4] ; \n
 	call _print
 	call _get_time
 	movsd [rbp - 120], xmm0
@@ -82,10 +91,12 @@ main:
 	movsd xmm1, [rbp - 16]
 	call _sub_floats
 	movsd [rbp - 128], xmm0
-	lea rdi, [rel const2] ; float
+	lea rdi, [rel const2] ; time:
+	call _print
+	lea rdi, [rel const3] ; float
 	lea rsi, [rbp - 128]
 	call _show
-	lea rdi, [rel const3] ; \n
+	lea rdi, [rel const4] ; \n
 	call _print
 	call _get_time
 	movsd [rbp - 136], xmm0
@@ -93,15 +104,16 @@ main:
 	movsd xmm1, [rbp - 8]
 	call _sub_floats
 	movsd [rbp - 144], xmm0
-	lea rdi, [rel const2] ; float
+	lea rdi, [rel const2] ; time:
+	call _print
+	lea rdi, [rel const3] ; float
 	lea rsi, [rbp - 144]
 	call _show
-	lea rdi, [rel const3] ; \n
+	lea rdi, [rel const4] ; \n
 	call _print
-	mov rbx, [rel const4] ; 0
+	mov rbx, [rel const5] ; 0
 	mov [rbp - 152], rbx
 	mov rax, [rbp - 152]
 	add rsp, 160
 	pop rbp
 	ret
-Compilation succeeded: assembly complete
