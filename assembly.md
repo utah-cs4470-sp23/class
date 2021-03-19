@@ -17,13 +17,16 @@ be `elf64`, on macOS `macho64`, and on windows `win64`. Don't forget
 the "64". Assembling produces an object file with a `.o` extension.
 You then need to link it, like this:
 
-    clang code.o runtime.a
+    clang code.o runtime.a -lpng -L/home/regehr/lib -L/usr/local/lib -lm
 
 The `runtime.a` in this case is the object file containing the
 provided functions, and `clang` takes care of both linking the two
 object files and also linking in system libraries that `runtime.a`
 relies on. You can build `runtime.a` with `compile-runtime.sh`, which
-will work on CADE and many other systems.
+will work on CADE and many other systems. The `-l` options tell
+the linker to pull in the PNG support library and the standard math
+library, and the `-L` options give the linker some places to look
+for these.
 
 This command will produce a file called `a.out`, short for "assembler
 output". (Even though it is not actually output by your assembler...)
