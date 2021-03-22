@@ -165,17 +165,23 @@ You can do the same trick with larger grammars, like the full JPL grammar.
 Create a short Markdown file `a5-checkin.md` that lives in the root
 directory of your repository. Each item below will ask you to include
 some text in this file. Please number the sections of this file using
-the numbers below.
+the numbers below. Each of your answers should be enclosed in triple
+backticks, like this:
+
+    ```
+    your code here
+    ```
+
+This makes sure it looks right when viewed on the web.
 
 1. To support the expanded version of JPL, you will need to define a
    number of new AST classes. Do this. Make sure to include all
    relevant member variables (for example, the AST node for the binary
    addition operator should reference two expression subtrees).  You
-   will need to some some choices here. For example, do you want a
+   will need to make some choices here. For example, do you want a
    single AST node type for all binary operators, or do you want a
    dedicated node type for addition, subtraction, multiplication,
-   etc.? In `a5-checkin.md`, tell us where in your source code to find
-   these classes (source file name, range of line numbers).
+   and so on? Put the code for the classes in `a5-checkin.md`.
 
 2. Produce an _expanded grammar_ for the subset of JPL defined here,
    which enforces precedence. Specifically, this grammar should be
@@ -184,7 +190,8 @@ the numbers below.
    `<expr1>`, `<expr2>`, `<expr3>`, and so on. An expression where
    precedence is important, such as `1 + 2 * 3`, must have exactly one
    parse tree according to this grammar, and of course it needs to be
-   the correct one. Put this expanded grammar in `a5-checkin.md`.
+   the correct one. Put this expanded grammar in `a5-checkin.md`,
+   using the same syntax we've been using for grammars.
 
 3. Write the signature for the type checking function for the
    Assignment 5 version of JPL. Put this in `a5-checkin.md`.
@@ -192,8 +199,8 @@ the numbers below.
 4. Write the type checking function for `array` expressions. Given an
    AST, it should either assign types to all AST nodes in the subtree
    under an `array` node, or else signal a type error (and print a
-   reasonable error message). In `a5-checkin.md`, tell us the location
-   (source file name, line number) of this function.
+   reasonable error message). Place the code for this function,
+   and any supporting helper methods specific to it, in `a5-checkin.md`/
 
 As always, make sure to push your changes to Github in the main branch
 of your repository before the checkin due date.
