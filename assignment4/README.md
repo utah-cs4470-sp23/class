@@ -471,13 +471,15 @@ by hand.
 
 ## HANDIN Due March 19
 
-
 The handin expects you to have a complete compiler for the JPL subset
 of interest, which emits NASM assembly code. Specifically your
 compiler should implement a `-s` command line option which causes it
 to generate assembly code and print it to the standard output. That
 assembly code must be correct as described above---it must pass NASM,
 the linker, and run cleanly, producing the expected output.
+
+Also, make sure that your makefile supports `make run TEST=foo.jpl`.
+In this case, the makefile should supply the `-s` flag.
 
 To help you in this task, we are providing a number of test inputs as
 well as suggested assembly output and also what should be output when
