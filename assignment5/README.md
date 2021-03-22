@@ -99,7 +99,7 @@ expr : dim(<expr>, <expr>)
 
 The first argument to `dim` must be an array, of an arbitrary rank.
 The second must be an integer. The result is an integer, giving the
-length of the array in the given dimention. For example,
+length of the array in the given dimension. For example,
 
     dim(array[i : N] f(i), 0)
 
@@ -162,27 +162,60 @@ You can do the same trick with larger grammars, like the full JPL grammar.
 
 ## CHECKIN Due March 26
 
-TODO: John please expand this part
+Create a short Markdown file `a5-checkin.md` that lives in the root
+directory of your repository. Each item below will ask you to include
+some text in this file. Please number the sections of this file using
+the numbers below.
 
-- Define AST classes for everything
-- Write an expanded grammar with precedence
-- Write the signature for the type checking function
-- Write the type checking function for `array` expressions
+1. To support the expanded version of JPL, you will need to define a
+   number of new AST classes. Do this. Make sure to include all
+   relevant member variables (for example, the AST node for the binary
+   addition operator should reference two expression subtrees).  You
+   will need to some some choices here. For example, do you want a
+   single AST node type for all binary operators, or do you want a
+   dedicated node type for addition, subtraction, multiplication,
+   etc.? In `a5-checkin.md`, tell us where in your source code to find
+   these classes (source file name, range of line numbers).
 
-Please also produce an _expanded grammar_ for the subset of JPL
-defined here, which enforces precedence. Specifically, this grammar
-should be similar to the grammar given above for `<expr>`, except that
-instead of one `<expr>` syntax class it should have syntax classes
-`<expr1>`, `<expr2>`, `<expr3>`, and so on. An expression where
-precedence is important, such as `1 + 2 * 3`, must have exactly one
-parse tree according to this grammar.
+2. Produce an _expanded grammar_ for the subset of JPL defined here,
+   which enforces precedence. Specifically, this grammar should be
+   similar to the grammar given above for `<expr>`, except that
+   instead of one `<expr>` syntax class it should have syntax classes
+   `<expr1>`, `<expr2>`, `<expr3>`, and so on. An expression where
+   precedence is important, such as `1 + 2 * 3`, must have exactly one
+   parse tree according to this grammar, and of course it needs to be
+   the correct one. Put this expanded grammar in `a5-checkin.md`.
+
+3. Write the signature for the type checking function for the
+   Assignment 5 version of JPL. Put this in `a5-checkin.md`.
+
+4. Write the type checking function for `array` expressions. Given an
+   AST, it should either assign types to all AST nodes in the subtree
+   under an `array` node, or else signal a type error (and print a
+   reasonable error message). In `a5-checkin.md`, tell us the location
+   (source file name, line number) of this function.
+
+As always, make sure to push your changes to Github in the main branch
+of your repository before the checkin due date.
 
 ## HANDIN Due April 2
 
-Support the `-p` and `-t` flags for the subset defined here.
+Implement the parser and typechecker for the version of JPL defined
+in this assignment.
 
-Test parsing with this special tester: TODO
+Your makefile must support two new command line options. First, if
+someone runs `make run-a4p TEST=007.jpl` then your compiler should
+parse (but not typecheck or flatten) `007.jpl` and print it out using
+the same s-expression format that we used for Assignment 4 (or else
+produce a parse error). Check your results against our reference
+output by running (from the root directory of your repo) the
+`test-a5-parser` script that is in the same directory as this
+assignment.
 
-Test precedence with this special tester: TODO
-
-Test types with this special tester: TODO
+Second, if someone runs `make run-a4t TEST=007.jpl` then your compiler
+should parse and typecheck (but not flatten) `007.jpl` and print it
+out using the same s-expression format that we used for Assignment 4
+(or else produce a parse or typecheck error). Check your results
+against our reference output by running (from the root directory of
+your repo) the `test-a5-typechecker` script that is in the same
+directory as this assignment.
