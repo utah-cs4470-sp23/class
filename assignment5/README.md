@@ -211,7 +211,7 @@ Implement the parser and typechecker for the version of JPL defined
 in this assignment.
 
 Your makefile must support two new command line options. First, if
-someone runs `make run-a4p TEST=007.jpl` then your compiler should
+someone runs `make run-a5p TEST=007.jpl` then your compiler should
 parse (but not typecheck or flatten) `007.jpl` and print it out using
 the same s-expression format that we used for Assignment 4 (or else
 produce a parse error). Check your results against our reference
@@ -219,7 +219,7 @@ output by running (from the root directory of your repo) the
 `test-a5-parser` script that is in the same directory as this
 assignment.
 
-Second, if someone runs `make run-a4t TEST=007.jpl` then your compiler
+Second, if someone runs `make run-a5t TEST=007.jpl` then your compiler
 should parse and typecheck (but not flatten) `007.jpl` and print it
 out using the same s-expression format that we used for Assignment 4
 (or else produce a parse or typecheck error). Check your results
