@@ -1,0 +1,6 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument f))
+  (ArrConExpr (FloatExpr 1) (FloatExpr 0) (UnopExpr - (FloatExpr 1)))))
+(StmtCmd (LetStmt (ArgLValue (VarArgument i)) (ArrConExpr)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument b)) (ArrConExpr (VarExpr false))))

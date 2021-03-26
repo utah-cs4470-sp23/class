@@ -1,0 +1,10 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument x))
+  (ArrConExpr
+   (ArrIndexExpr
+    (IntExpr 6)
+    (IntExpr 3)
+    (BinopExpr (IntExpr 3) + (IntExpr 5))
+    (IntExpr 6)
+    (IntExpr 6)))))

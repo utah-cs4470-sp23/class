@@ -1,0 +1,5 @@
+(ShowCmd
+ (ArrConExpr
+  (ArrConExpr)
+  (ArrConExpr (IntExpr 3) (IntExpr 3) (IntExpr 5) (IntExpr 6) (IntExpr 6))
+  (ArrConExpr (IntExpr 5))))
