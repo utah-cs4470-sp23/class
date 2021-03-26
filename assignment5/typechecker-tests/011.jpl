@@ -1,4 +1,0 @@
-// ERROR
-
-let x = {1, 2, false, 3.3}
-let y = 1 + x

@@ -1,7 +1,0 @@
-// OK
-
-fn test() : {} {
-   return {}
-}
-
-show test()
