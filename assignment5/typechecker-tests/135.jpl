@@ -1,0 +1,7 @@
+// OK
+
+fn f(x : int[]) : {} {
+}
+
+let a = []
+show f(a)

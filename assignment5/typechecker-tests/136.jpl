@@ -1,0 +1,8 @@
+// OK
+
+fn f() : int[] {
+    return []
+}
+
+let a[N] = f()
+assert N == 0, "WAT"

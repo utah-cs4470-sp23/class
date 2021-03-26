@@ -1,0 +1,12 @@
+// ERROR
+
+fn z() : int {
+  return 7
+}
+
+fn gradient(i : int, j : int, W : int, H : int) : float {
+  let z = 4334
+  return 0.25 + z
+}
+
+show gradient(0, 0, 22, 0)

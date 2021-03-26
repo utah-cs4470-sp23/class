@@ -1,0 +1,11 @@
+// OK
+
+fn ff(f : float) : float {
+   return f * 2.0
+}
+
+fn grayscale_pixel(r : float) : {float,float,float,float} {
+   let y = ff(r)
+   return {y, y, y, 1.0}
+}
+

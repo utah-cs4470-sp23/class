@@ -1,0 +1,5 @@
+// ERROR
+
+fn a(b[c] : float) : float {
+   return 1.0
+}

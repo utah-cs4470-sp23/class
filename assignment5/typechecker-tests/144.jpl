@@ -1,0 +1,17 @@
+// OK
+
+fn cube(n : int) : int {
+   let a = array[i:n,j:n,k:n] 1
+   return sum[i:n,j:n,k:n] a[i,j,k]
+}
+
+show cube(0)
+show cube(1)
+show cube(2)
+show cube(3)
+show cube(4)
+show cube(5)
+show cube(6)
+show cube(7)
+show cube(8)
+show cube(100)

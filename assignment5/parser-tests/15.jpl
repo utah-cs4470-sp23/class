@@ -1,0 +1,6 @@
+// ERROR
+
+let a = 7
+show a
+let b[] = a
+show b

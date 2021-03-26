@@ -1,0 +1,7 @@
+// ERROR
+
+fn f(x : float[]) : {} {
+
+}
+
+show f([])

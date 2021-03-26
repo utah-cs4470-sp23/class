@@ -1,0 +1,7 @@
+// ERROR
+
+fn gradient(i : int, j : int, W : int, H : int) : float {
+  return 0.25
+}
+
+show gradient(0, 0, false, 0)

@@ -1,0 +1,5 @@
+// OK
+
+let N = 33
+
+show sum[y : N] 4

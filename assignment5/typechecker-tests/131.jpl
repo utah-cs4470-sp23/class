@@ -1,0 +1,8 @@
+// ERROR
+
+let ttttx = 1
+fn f() : int {
+  return x
+}
+let x = 2
+attribute ad

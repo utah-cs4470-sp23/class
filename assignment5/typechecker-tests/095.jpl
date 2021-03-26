@@ -1,0 +1,11 @@
+// ERROR
+
+let z = 3
+
+fn f() : int {
+   return 4
+}
+
+let f = 200
+
+show f()

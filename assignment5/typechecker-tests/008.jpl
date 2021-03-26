@@ -1,0 +1,5 @@
+// ERROR
+
+let z = {1, 2, false, 4, 5, true}
+let x = if z{1} then z{0} else z{1}
+

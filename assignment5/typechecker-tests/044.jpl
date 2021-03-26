@@ -1,0 +1,6 @@
+// OK
+
+let { W, H } = { 800, 600 }
+
+show W
+show H

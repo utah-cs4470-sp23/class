@@ -1,0 +1,15 @@
+// OK
+
+/* Example 3: blending modes */
+
+read image "photo1.png" to photo1_image[W, H]
+read image "photo2.png" to photo2_image[W_, H_]
+assert (W == W_) && (H == H_), "Images must have the same size"
+
+write image array[i : W, j : H] ( \
+  { photo1_image[i, j]{0} * photo2_image[i, j]{0} \
+  , photo1_image[i, j]{1} * photo2_image[i, j]{1} \
+  , photo1_image[i, j]{2} * photo2_image[i, j]{2} \
+  , photo1_image[i, j]{3} * photo2_image[i, j]{3} \
+} \
+) to "photo_multiply.png"

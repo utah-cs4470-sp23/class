@@ -1,0 +1,4 @@
+// ERROR
+
+let x = array[i : i] i
+show x

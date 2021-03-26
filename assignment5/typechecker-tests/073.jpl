@@ -1,0 +1,3 @@
+// ERROR
+
+assert -4, "hello!"

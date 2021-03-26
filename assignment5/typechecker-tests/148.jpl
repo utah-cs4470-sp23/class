@@ -1,0 +1,31 @@
+// OK
+
+fn prime(n : int) : bool {
+   let a = array[i:n] if (i > 1 && i < n) then (if ((n % i) == 0) then 1 else 0) else 0
+   return (sum[i:n] a[i]) == 0
+}
+
+show prime(2)
+show prime(3)
+show prime(4)
+show prime(5)
+show prime(6)
+show prime(7)
+show prime(8)
+show prime(9)
+show prime(10)
+show prime(11)
+show prime(12)
+show prime(13)
+show prime(14)
+show prime(15)
+show prime(16)
+show prime(17)
+show prime(18)
+show prime(19)
+show prime(20)
+show prime(21)
+show prime(22)
+show prime(23)
+show prime(24)
+show prime(25)

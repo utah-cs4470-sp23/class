@@ -1,0 +1,6 @@
+// OK
+
+fn test() : {} {
+}
+
+show test()

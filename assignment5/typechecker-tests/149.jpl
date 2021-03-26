@@ -1,0 +1,49 @@
+// OK
+
+/* This file implements a raytracer with:
+
+- A sphere at 0, 0, 0, radius 1
+- A camera at 4, 0, 0
+- A viewing pyramid that intersects 0, +-2, +-2
+- A point light source at x, y, z
+- A totally matte white surface
+
+*/
+
+// Send a ray at 0, x, y,
+// return a point {x', y', z'} such that
+// x'^2 + y'^2 + z'^2 ~= 1
+// or x' = y' = z' = 0 if there is no intersection
+fn sphere_point({x : float, y : float}) : float3 {
+    // p(t) = { 4 - t, t * x / 4, t * y / 4 }
+    let r = 1.0 + (x*x + y*y) / 16.0
+    // r*t*t - 8*t + 15 = 0
+    let t = (8.0 - sqrt(64.0 - 60.0*r)) / (2.0 * r)
+    return { 4.0 - t, t * x / 4.0, t * y / 4.0 }
+}
+
+fn energy({x : float, y : float, z : float}, {lx : float, ly : float, lz : float}) : float {
+    let d2 = (lx - x)*(lx - x) + (ly - y)*(ly - y) + (lz - z)*(lz - z)
+    let r2 = y*y + z*z
+    let alpha = atan2(r2, 4.0 - x)
+    let beta = atan2(r2, x)
+    let gamma = alpha + beta
+    return cos(gamma) / d2
+}
+
+fn color(x : float, {lx : float, ly : float, lz : float}) : float4 {
+    return { 9.0 * x, 9.0 * x, 9.0 * x, 1.0 }
+}
+
+fn pixel({x : float, y : float}, ls : float3) : float4 {
+    return color(if x*x + y*y < 16.0 / 15.0 \
+    then energy(sphere_point({x, y}), ls) \
+    else 0.0, ls)
+}
+
+assert argnum == 3, "Need exactly 3 arguments for the light source coordinates"
+let ls = { float(args[0]), float(args[1]), float(args[2]) }
+let {W, H} = { 400, 400 }
+time let img = array[i : W, j : H] pixel({float(i - 200) / 100.0, float(j - 200) / 100.0}, ls)
+    
+write image img to "sphere.png"
