@@ -1,0 +1,43 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument x))
+  (IteExpr
+   (IteExpr
+    (IteExpr
+     (IteExpr
+      (IteExpr
+       (IntExpr 1)
+       (BinopExpr
+        (BinopExpr
+         (BinopExpr
+          (BinopExpr
+           (IntExpr 2)
+           +
+           (BinopExpr (BinopExpr (IntExpr 0) / (IntExpr 0)) * (IntExpr 2)))
+          +
+          (UnopExpr - (IntExpr 1)))
+         +
+         (IntExpr 1))
+        +
+        (IntExpr 1))
+       (VarExpr false))
+      (BinopExpr
+       (BinopExpr
+        (BinopExpr
+         (IntExpr 3)
+         >
+         (BinopExpr
+          (BinopExpr (IntExpr 4) - (IntExpr 5))
+          -
+          (UnopExpr ! (UnopExpr ! (UnopExpr ! (IntExpr 5))))))
+        <
+        (IntExpr 0))
+       ==
+       (IntExpr 1))
+      (VarExpr false))
+     (VarExpr true)
+     (IntExpr 5))
+    (IntExpr 6)
+    (VarExpr false))
+   (VarExpr true)
+   (BinopExpr (IntExpr 7) + (IntExpr 2)))))
