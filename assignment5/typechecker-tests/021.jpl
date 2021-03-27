@@ -7,6 +7,8 @@ fn gradient(i : int, j : int, W : int, H : int) : float {
     float(i - j + H) / float(W + H)
 }
 
-let { W, H } = { 800, 600 }
+let W = 800
+let H = 600
+
 let gradient_image = array[i : W, j : H] gradient(i, j, W, H)
 write image gradient_image to "gradient.png"
