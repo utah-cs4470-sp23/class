@@ -1,0 +1,8 @@
+(Func
+ gradient
+ float
+ ((Binding (VarArgument IntType i) int)
+  (Binding (VarArgument IntType j) int)
+  (Binding (VarArgument IntType W) int)
+  (Binding (VarArgument IntType H) int))
+ ((ReturnStmt (CallExpr FloatType float (IntExpr IntType 0)))))

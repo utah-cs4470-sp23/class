@@ -1,0 +1,1 @@
+(ShowCmd (ArrConExpr (ArrayType IntType rank=1)))

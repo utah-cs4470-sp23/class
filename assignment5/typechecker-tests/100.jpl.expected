@@ -1,0 +1,14 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument (ArrayType (ArrayType IntType rank=1) rank=1) a))
+  (ArrayExpr
+   ((x (IntExpr IntType 10)))
+   ((ArrayExpr
+     ((y (IntExpr IntType 10)))
+     ((BinopExpr IntType (VarExpr IntType x) + (VarExpr IntType y))))))))
+(ShowCmd (VarExpr (ArrayType (ArrayType IntType rank=1) rank=1) a))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (ArrayArg b i))
+  (VarExpr (ArrayType (ArrayType IntType rank=1) rank=1) a)))
+(ShowCmd (VarExpr IntType i))

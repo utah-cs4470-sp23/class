@@ -1,0 +1,14 @@
+(Func
+ ff
+ float
+ ((Binding (VarArgument FloatType f) float))
+ ((ReturnStmt
+   (BinopExpr FloatType (VarExpr FloatType f) * (FloatExpr FloatType 2)))))
+(Func
+ grayscale_pixel
+ float
+ ((Binding (VarArgument FloatType r) float))
+ ((LetStmt
+   (ArgLValue (VarArgument FloatType r_linear))
+   (CallExpr FloatType ff (VarExpr FloatType r)))
+  (ReturnStmt (VarExpr FloatType r_linear))))

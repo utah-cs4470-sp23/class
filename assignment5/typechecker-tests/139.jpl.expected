@@ -1,0 +1,34 @@
+(Func
+ gradient
+ float
+ ((Binding (VarArgument IntType i) int)
+  (Binding (VarArgument IntType j) int)
+  (Binding (VarArgument IntType W) int)
+  (Binding (VarArgument IntType H) int))
+ ((ReturnStmt
+   (BinopExpr
+    FloatType
+    (CallExpr
+     FloatType
+     float
+     (BinopExpr IntType (VarExpr IntType i) + (VarExpr IntType j)))
+    /
+    (CallExpr
+     FloatType
+     float
+     (BinopExpr IntType (VarExpr IntType W) + (VarExpr IntType H)))))))
+(StmtCmd (LetStmt (ArgLValue (VarArgument IntType W)) (IntExpr IntType 800)))
+(StmtCmd (LetStmt (ArgLValue (VarArgument IntType H)) (IntExpr IntType 600)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument pict gradient_image))
+  (ArrayExpr
+   ((i (VarExpr IntType W)) (j (VarExpr IntType H)))
+   ((CallExpr
+     FloatType
+     gradient
+     (VarExpr IntType i)
+     (VarExpr IntType j)
+     (VarExpr IntType W)
+     (VarExpr IntType H))))))
+(WriteImageCmd (VarExpr pict gradient_image) "gradient.png")

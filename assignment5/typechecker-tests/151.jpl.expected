@@ -1,0 +1,18 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument (ArrayType BoolType rank=1) a))
+  (ArrConExpr
+   (ArrayType BoolType rank=1)
+   (VarExpr BoolType true)
+   (VarExpr BoolType false))))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument BoolType b))
+  (UnopExpr
+   BoolType
+   !
+   (ArrIndexExpr
+    BoolType
+    (VarExpr (ArrayType BoolType rank=1) a)
+    (IntExpr IntType 1)))))
+(ShowCmd (VarExpr BoolType b))

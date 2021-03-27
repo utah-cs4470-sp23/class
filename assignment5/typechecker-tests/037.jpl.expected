@@ -1,0 +1,8 @@
+(ShowCmd
+ (ArrConExpr
+  (ArrayType IntType rank=1)
+  (IntExpr IntType 3)
+  (IntExpr IntType 3)
+  (IntExpr IntType 5)
+  (IntExpr IntType 6)
+  (IntExpr IntType 6)))

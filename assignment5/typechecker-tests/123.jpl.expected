@@ -1,0 +1,5 @@
+(Func
+ a
+ float
+ ((Binding (VarArgument (ArrayType FloatType rank=1) b) (float 1)))
+ ((ReturnStmt (FloatExpr FloatType 3))))

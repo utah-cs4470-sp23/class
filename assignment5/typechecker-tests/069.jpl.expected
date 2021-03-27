@@ -1,0 +1,8 @@
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument FloatType x))
+  (CallExpr FloatType float (IntExpr IntType 3))))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument IntType y))
+  (CallExpr IntType int (FloatExpr FloatType 3))))

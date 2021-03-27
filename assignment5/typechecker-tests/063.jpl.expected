@@ -1,0 +1,6 @@
+(ShowCmd
+ (BinopExpr
+  IntType
+  (CallExpr IntType int (FloatExpr FloatType 3))
+  +
+  (CallExpr IntType int (CallExpr FloatType float (IntExpr IntType 10)))))

@@ -1,0 +1,14 @@
+(StmtCmd (LetStmt (ArgLValue (VarArgument IntType N)) (IntExpr IntType 7)))
+(StmtCmd
+ (LetStmt
+  (ArgLValue (VarArgument (ArrayType IntType rank=1) a))
+  (ArrayExpr ((i (IntExpr IntType 10))) ((VarExpr IntType i)))))
+(ShowCmd
+ (ArrayExpr
+  ((i (VarExpr IntType N)))
+  ((SumExpr
+    ((j (VarExpr IntType i)))
+    ((ArrIndexExpr
+      IntType
+      (VarExpr (ArrayType IntType rank=1) a)
+      (VarExpr IntType j)))))))

@@ -1,0 +1,7 @@
+(Func f (int 1) () ((ReturnStmt (ArrConExpr (ArrayType IntType rank=1)))))
+(StmtCmd
+ (LetStmt (ArgLValue (ArrayArg a N)) (CallExpr (ArrayType IntType rank=1) f)))
+(StmtCmd
+ (AssertStmt
+  (BinopExpr BoolType (VarExpr IntType N) == (IntExpr IntType 0))
+  "WAT"))

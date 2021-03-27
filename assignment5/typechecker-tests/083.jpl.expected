@@ -1,0 +1,9 @@
+(StmtCmd
+ (LetStmt (ArgLValue (VarArgument BoolType z)) (VarExpr BoolType true)))
+(StmtCmd
+ (AssertStmt
+  (UnopExpr
+   BoolType
+   !
+   (UnopExpr BoolType ! (UnopExpr BoolType ! (VarExpr BoolType z))))
+  "hello!"))
