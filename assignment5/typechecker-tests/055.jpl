@@ -1,7 +1,0 @@
-// OK
-
-let { { W, {{ H }} }, D } = { { 800, {{ 600 }} }, 33 }
-
-show W
-show H
-show D

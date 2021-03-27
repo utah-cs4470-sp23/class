@@ -1,4 +1,0 @@
-// OK
-
-let z = {1, 2, false, 4, 5, true}
-assert z{5}, "hello!"

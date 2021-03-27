@@ -1,7 +1,0 @@
-// OK
-
-let x = [[{}], [{}], [{}]]
-
-fn horrible(i : int) : {}[] {
-    return x[i]
-}

@@ -2,14 +2,17 @@
 
 /* Example 3: blending modes */
 
-read image "photo1.png" to photo1_image[W, H]
-read image "photo2.png" to photo2_image[W_, H_]
+read image "photo1.png" to photo1_image
+read image "photo2.png" to photo2_image
+
+let W = dim(photo1_image, 0)
+let W_ = dim(photo2_image, 0)
+
+let H = dim(photo1_image, 1)
+let H_ = dim(photo2_image, 1)
+
 assert W == W_ && H == H_, "Images must have the same size"
 
 write image array[i : W, j : H] ( \
-  { photo1_image[i, j]{0} * photo2_image[i, j]{0} \
-  , photo1_image[i, j]{1} * photo2_image[i, j]{1} \
-  , photo1_image[i, j]{2} * photo2_image[i, j]{2} \
-  , photo1_image[i, j]{3} * photo2_image[i, j]{3} \
-} \
+  photo1_image[i, j] * photo2_image[i, j] \
 ) to "photo_multiply.png"

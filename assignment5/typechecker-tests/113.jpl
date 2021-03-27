@@ -1,8 +1,0 @@
-// ERROR
-
-read video "blarg" to x[w1,h1]
-let y[w,h]=x
-assert w1 == w, "bla"
-assert h1 == h, "bla2"
-let red = x[3,5]{0}
-show red + 1.0

@@ -1,5 +1,5 @@
 // OK
 
-fn a(b[c] : float[]) : float {
+fn a(b : float[]) : float {
   return 3.0
 }
