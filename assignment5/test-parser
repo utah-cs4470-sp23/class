@@ -19,7 +19,7 @@ my @files = glob "${dir}/*.jpl";
 
 sub runit($) {
     (my $cmd) = @_;
-    open my $INF, "$cmd -p |" or die;
+    open my $INF, "$cmd |" or die;
     my $good = 0;
     my $bad = 0;
     while (my $line = <$INF>) {

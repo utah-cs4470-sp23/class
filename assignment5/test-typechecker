@@ -5,9 +5,9 @@ use autodie;
 use warnings;
 use File::Spec;
 
-my $compiler = $ARGV[0];
-die "please specify a compiler" unless defined $compiler;
-die unless -x $compiler;
+#my $compiler = $ARGV[0];
+#die "please specify a compiler" unless defined $compiler;
+#die unless -x $compiler;
 
 my $exe = File::Spec->rel2abs($0);
 die unless ($exe =~ /^(.*)\/test\-typechecker$/);
@@ -19,7 +19,7 @@ my @files = glob "${dir}/*.jpl";
 
 sub runit($) {
     (my $cmd) = @_;
-    open my $INF, "$cmd -t |" or die;
+    open my $INF, "$cmd |" or die;
     my $good = 0;
     my $bad = 0;
     while (my $line = <$INF>) {
@@ -60,7 +60,7 @@ my $fails = 0;
 foreach my $f (@files) {
     my $expect = lookat($f);
 
-    my $got = runit("$compiler $f");
+    my $got = runit("make run-a5t TEST=$f");
     
     print "$f : expect = ".pr($expect).", got = ".pr($got);
     if ($got != $expect) {
