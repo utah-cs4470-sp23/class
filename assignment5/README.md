@@ -160,6 +160,59 @@ So consider the two possible parse trees of `1 + 2 * 3`:
 
 You can do the same trick with larger grammars, like the full JPL grammar.
 
+## S-expressions for the larger subset
+
+Here is a quick guide for the S-expressions we expect you to generate
+for this assignment. For each expression type and for lvalues, the
+optional `<type>?` field indicates where type information would go if
+type checking has been performed.
+
+Types:
+
+```
+IntType
+FloatType
+BoolType
+(ArrayType <int> <type>)
+```
+
+Exprs:
+
+```
+(VarExpr <type>? <variable>)
+(IntExpr <type>? <int>)
+(FloatExpr <type>? <int>)
+(BinaryExpr <type>? <expr> <op> <expr>)
+(UnaryExpr <type>? <op> <expr>)
+(ArrayIndexExpr <type>? <expr> <expr> ...)
+(CallExpr <type>? <variable> <expr> ...)
+(ArrayExpr <type>? [<variable> <expr>] ... <expr>)
+(SumExpr <type>? [<variable> <expr>] ... <expr>)
+(IfExpr <type>? <expr> <expr> <expr>)
+```
+
+Arguments:
+
+```
+(VarArgument <variable>)
+(ArgLValue <type>? <arg>)
+(ArgBinding <arg> <type>)
+```
+
+Commands:
+
+```
+(LetStmt <lvalue> <expr>)
+(AssertStmt <expr> <string>)
+(ReturnStmt <expr>)
+(FunctionCmd <variable> (<binding> ...) <type> <stmt> ...)
+(ShowCmd <expr>)
+(TimeCmd <command>)
+(ReadImageCmd <string> <argument>)
+(WriteImageCmd <expr> <string>)
+(StmtCmd <stmt>)
+```
+
 ## CHECKIN Due March 26
 
 Create a short Markdown file `a5-checkin.md` that lives in the root
