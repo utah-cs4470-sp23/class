@@ -54,7 +54,8 @@ Syntax
 ------
 
 There are four syntax classes: types, expressions, statements, and
-commands. A program is a newline-separated sequence of commands.
+commands. A program is a sequence of commands, each of which must
+be terminated by a newline.
 
 There are also auxiliary syntax classes for lvalues, arguments, and
 bindings.
