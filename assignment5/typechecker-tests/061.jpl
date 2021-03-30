@@ -1,6 +1,0 @@
-// ERROR
-
-let f = [1.0, 0.0, -1.0]
-let i = [3, 6, 1, 2, 5]
-let b = [false, true, false, false, true, false, false, true, false, false, true, false, false, true, 2, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false]
-

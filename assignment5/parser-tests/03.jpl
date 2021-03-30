@@ -1,5 +1,0 @@
-// OK
-
-let f = [1.0, 0.0, -1.0]
-let i = []
-let b = [false]

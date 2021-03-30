@@ -1,1 +1,0 @@
-(ShowCmd (ArrConExpr (IntExpr 3) (IntExpr 6)))

@@ -1,5 +1,0 @@
-// OK
-
-let a = [true, false]
-let b = !a[1]
-show b
