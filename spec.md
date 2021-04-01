@@ -152,13 +152,9 @@ expr : <expr> + <expr>
 
 Precedence is described below. Within a precedence class, evaluation
 is left to right. Integer overflows wrap around in two's complement
-fashion. There are no unsigned types or operators.
+fashion. There are no unsigned types or operators. Integer modulus is
+defined so that `0 <= a % b < abs(b)`, and modulo zero is an error.
 
-Keep in mind that a number of interesting floating point values exist,
-such as -0, inf, and NaN. Operations on these values should follow
-standard IEEE 754 semantics. For example, `inf + 1 = inf`, and `x / 0
-= NaN`. Floating point instructions should generally give you the
-desired behavior for free, it is built into the FP hardware unit.
 Don't implement your own version of the modulus operator on floats!
 Use the C standard library's `fmod` operation, or your chosen
 language's equivalent.[1]
@@ -167,6 +163,11 @@ language's equivalent.[1]
     `math.fmod` is closer, but you must check for a zero right-hand
     side and return `NaN` instead of throwing an exception.
 
+Keep in mind that a number of interesting floating point values exist,
+such as -0, inf, and NaN. Operations on these values should follow
+standard IEEE 754 semantics. For example, `inf + 1 = inf`, and `x / 0
+= NaN`. Floating point instructions should generally give you the
+desired behavior for free, it is built into the FP hardware unit.
 
 Comparisons, which take either two integer subexpressions or two
 float subexpressions, and yield Booleans:
