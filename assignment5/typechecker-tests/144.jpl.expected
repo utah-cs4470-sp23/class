@@ -1,21 +1,27 @@
 (Func
  cube
- int
- ((Binding (VarArgument IntType n) int))
+ IntType
+ ((Binding (VarArgument IntType n) IntType))
  ((LetStmt
    (ArgLValue (VarArgument (ArrayType IntType rank=3) a))
    (ArrayExpr
-    ((i (VarExpr IntType n)) (j (VarExpr IntType n)) (k (VarExpr IntType n)))
-    ((IntExpr IntType 1))))
+    (ArrayType IntType rank=3)
+    (i (VarExpr IntType n))
+    (j (VarExpr IntType n))
+    (k (VarExpr IntType n))
+    (IntExpr IntType 1)))
   (ReturnStmt
    (SumExpr
-    ((i (VarExpr IntType n)) (j (VarExpr IntType n)) (k (VarExpr IntType n)))
-    ((ArrIndexExpr
-      IntType
-      (VarExpr (ArrayType IntType rank=3) a)
-      (VarExpr IntType i)
-      (VarExpr IntType j)
-      (VarExpr IntType k)))))))
+    IntType
+    (i (VarExpr IntType n))
+    (j (VarExpr IntType n))
+    (k (VarExpr IntType n))
+    (ArrIndexExpr
+     IntType
+     (VarExpr (ArrayType IntType rank=3) a)
+     (VarExpr IntType i)
+     (VarExpr IntType j)
+     (VarExpr IntType k))))))
 (ShowCmd (CallExpr IntType cube (IntExpr IntType 0)))
 (ShowCmd (CallExpr IntType cube (IntExpr IntType 1)))
 (ShowCmd (CallExpr IntType cube (IntExpr IntType 2)))

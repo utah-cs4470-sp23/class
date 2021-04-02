@@ -1,10 +1,10 @@
 (Func
  gradient
- float
- ((Binding (VarArgument IntType i) int)
-  (Binding (VarArgument IntType j) int)
-  (Binding (VarArgument IntType W) int)
-  (Binding (VarArgument IntType H) int))
+ FloatType
+ ((Binding (VarArgument IntType i) IntType)
+  (Binding (VarArgument IntType j) IntType)
+  (Binding (VarArgument IntType W) IntType)
+  (Binding (VarArgument IntType H) IntType))
  ((ReturnStmt (FloatExpr FloatType 0))))
 (ShowCmd
  (CallExpr
