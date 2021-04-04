@@ -286,21 +286,21 @@
      (VarExpr false))
     (VarExpr jAdJi2)
     (BinopExpr
+     (BinopExpr (UnopExpr - (IntExpr 27394)) >= (UnopExpr - (IntExpr 24324)))
+     ==
      (BinopExpr
-      (BinopExpr (UnopExpr - (IntExpr 27394)) >= (UnopExpr - (IntExpr 24324)))
-      ==
-      (VarExpr fsEvgx))
-     >=
-     (BinopExpr
-      (IntExpr 15560)
-      -
+      (VarExpr fsEvgx)
+      >=
       (BinopExpr
-       (BinopExpr (IntExpr 17650) + (VarExpr ugG30n))
-       >
-       (IteExpr
-        (IntExpr 38587)
-        (UnopExpr - (IntExpr 12600))
-        (IntExpr 20312))))))
+       (IntExpr 15560)
+       -
+       (BinopExpr
+        (BinopExpr (IntExpr 17650) + (VarExpr ugG30n))
+        >
+        (IteExpr
+         (IntExpr 38587)
+         (UnopExpr - (IntExpr 12600))
+         (IntExpr 20312)))))))
    (IteExpr
     (IteExpr
      (IteExpr
@@ -331,59 +331,62 @@
   (ArgLValue (VarArgument x8))
   (BinopExpr
    (BinopExpr
+    (VarExpr qqb9Tb)
+    -
+    (IteExpr
+     (UnopExpr - (VarExpr AbBIh4))
+     (VarExpr true)
+     (UnopExpr - (IntExpr 10895))))
+   ==
+   (BinopExpr
     (BinopExpr
-     (BinopExpr
-      (VarExpr qqb9Tb)
-      -
-      (IteExpr
-       (UnopExpr - (VarExpr AbBIh4))
-       (VarExpr true)
-       (UnopExpr - (IntExpr 10895))))
-     ==
      (BinopExpr
       (IteExpr (UnopExpr ! (VarExpr eda27Z)) (VarExpr true) (IntExpr 2096))
       %
-      (VarExpr ShMTN5)))
-    >
-    (BinopExpr
-     (UnopExpr ! (UnopExpr ! (UnopExpr - (IntExpr 7000))))
-     %
-     (UnopExpr ! (VarExpr AK6WY0))))
-   <
-   (IteExpr
-    (BinopExpr
+      (VarExpr ShMTN5))
+     >
      (BinopExpr
-      (BinopExpr (VarExpr JPL6RC) < (VarExpr hcQzCT))
-      !=
-      (IteExpr (VarExpr itkJls) (IntExpr 42889) (VarExpr Yp9FRc)))
-     <
-     (IteExpr
-      (VarExpr qXjIuB)
-      (UnopExpr ! (VarExpr Sx_EEt))
-      (BinopExpr (VarExpr OcLFlP) < (VarExpr CBtKTb))))
-    (BinopExpr
-     (IteExpr
-      (BinopExpr (UnopExpr - (IntExpr 8020)) == (VarExpr qYqYOv))
-      (IteExpr
-       (UnopExpr - (IntExpr 43138))
-       (IntExpr 49584)
-       (UnopExpr - (IntExpr 23596)))
-      (IteExpr (VarExpr ZRy5La) (VarExpr P0E_Am) (VarExpr ReVBHa)))
-     <
-     (IteExpr
-      (UnopExpr - (IntExpr 10558))
-      (BinopExpr (VarExpr nus2V8) / (UnopExpr - (IntExpr 36478)))
+      (UnopExpr ! (UnopExpr ! (UnopExpr - (IntExpr 7000))))
+      %
+      (UnopExpr ! (VarExpr AK6WY0))))
+    <
+    (IteExpr
+     (BinopExpr
       (BinopExpr
-       (UnopExpr - (UnopExpr - (IntExpr 12615)))
-       +
-       (VarExpr B6cAYH))))
-    (BinopExpr
-     (BinopExpr
-      (BinopExpr (IntExpr 1384) == (UnopExpr - (IntExpr 40486)))
+       (BinopExpr (VarExpr JPL6RC) < (VarExpr hcQzCT))
+       !=
+       (IteExpr (VarExpr itkJls) (IntExpr 42889) (VarExpr Yp9FRc)))
       <
-      (BinopExpr (VarExpr vW9rHH) * (VarExpr HR3qXF)))
-     <
-     (UnopExpr - (UnopExpr - (IntExpr 49493))))))))
+      (IteExpr
+       (VarExpr qXjIuB)
+       (UnopExpr ! (VarExpr Sx_EEt))
+       (BinopExpr (VarExpr OcLFlP) < (VarExpr CBtKTb))))
+     (BinopExpr
+      (IteExpr
+       (BinopExpr (UnopExpr - (IntExpr 8020)) == (VarExpr qYqYOv))
+       (IteExpr
+        (UnopExpr - (IntExpr 43138))
+        (IntExpr 49584)
+        (UnopExpr - (IntExpr 23596)))
+       (IteExpr (VarExpr ZRy5La) (VarExpr P0E_Am) (VarExpr ReVBHa)))
+      <
+      (IteExpr
+       (UnopExpr - (IntExpr 10558))
+       (BinopExpr (VarExpr nus2V8) / (UnopExpr - (IntExpr 36478)))
+       (BinopExpr
+        (UnopExpr - (UnopExpr - (IntExpr 12615)))
+        +
+        (VarExpr B6cAYH))))
+     (BinopExpr
+      (IntExpr 1384)
+      ==
+      (BinopExpr
+       (BinopExpr
+        (UnopExpr - (IntExpr 40486))
+        <
+        (BinopExpr (VarExpr vW9rHH) * (VarExpr HR3qXF)))
+       <
+       (UnopExpr - (UnopExpr - (IntExpr 49493))))))))))
 (StmtCmd
  (LetStmt
   (ArgLValue (VarArgument x9))
@@ -393,22 +396,22 @@
     (IteExpr
      (BinopExpr
       (BinopExpr
+       (UnopExpr
+        !
+        (IteExpr
+         (VarExpr teZqHY)
+         (UnopExpr ! (VarExpr HScQvO))
+         (IntExpr 9018)))
+       <
        (BinopExpr
-        (UnopExpr
-         !
-         (IteExpr
-          (VarExpr teZqHY)
-          (UnopExpr ! (VarExpr HScQvO))
-          (IntExpr 9018)))
-        <
-        (BinopExpr
-         (UnopExpr ! (VarExpr Uwse5U))
-         %
-         (UnopExpr - (UnopExpr - (IntExpr 42994)))))
-       ==
-       (UnopExpr - (IntExpr 45815)))
-      >
-      (BinopExpr (VarExpr uo7sWu) / (VarExpr g3Zalo)))
+        (UnopExpr ! (VarExpr Uwse5U))
+        %
+        (UnopExpr - (UnopExpr - (IntExpr 42994)))))
+      ==
+      (BinopExpr
+       (UnopExpr - (IntExpr 45815))
+       >
+       (BinopExpr (VarExpr uo7sWu) / (VarExpr g3Zalo))))
      (IteExpr
       (VarExpr OSXCkX)
       (IteExpr
