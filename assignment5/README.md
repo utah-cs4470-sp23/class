@@ -173,7 +173,7 @@ Types:
 IntType
 FloatType
 BoolType
-(ArrayType <int> <type>)
+(ArrayType <type> rank=<int>)
 ```
 
 Exprs:
@@ -182,13 +182,13 @@ Exprs:
 (VarExpr <type>? <variable>)
 (IntExpr <type>? <int>)
 (FloatExpr <type>? <int>)
-(BinaryExpr <type>? <expr> <op> <expr>)
-(UnaryExpr <type>? <op> <expr>)
-(ArrayIndexExpr <type>? <expr> <expr> ...)
+(BinopExpr <type>? <expr> <op> <expr>)
+(UnopExpr <type>? <op> <expr>)
+(ArrIndexExpr <type>? <expr> <expr> ...)
 (CallExpr <type>? <variable> <expr> ...)
 (ArrayExpr <type>? [<variable> <expr>] ... <expr>)
 (SumExpr <type>? [<variable> <expr>] ... <expr>)
-(IfExpr <type>? <expr> <expr> <expr>)
+(IteExpr <type>? <expr> <expr> <expr>)
 ```
 
 Arguments:
@@ -196,7 +196,7 @@ Arguments:
 ```
 (VarArgument <variable>)
 (ArgLValue <type>? <arg>)
-(ArgBinding <arg> <type>)
+(Binding <arg> <type>)
 ```
 
 Commands:
@@ -205,7 +205,7 @@ Commands:
 (LetStmt <lvalue> <expr>)
 (AssertStmt <expr> <string>)
 (ReturnStmt <expr>)
-(FunctionCmd <variable> (<binding> ...) <type> <stmt> ...)
+(Func <variable> <type> (<binding> ...) (<stmt> ...))
 (ShowCmd <expr>)
 (TimeCmd <command>)
 (ReadImageCmd <string> <argument>)
