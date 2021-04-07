@@ -188,7 +188,7 @@ Exprs:
 (CallExpr <type>? <variable> <expr> ...)
 (ArrayExpr <type>? [<variable> <expr>] ... <expr>)
 (SumExpr <type>? [<variable> <expr>] ... <expr>)
-(IfExpr <type>? <expr> <expr> <expr>)
+(IteExpr <type>? <expr> <expr> <expr>)
 ```
 
 Arguments:
