@@ -5,4 +5,4 @@
   (Binding (VarArgument IntType j) IntType)
   (Binding (VarArgument IntType W) IntType)
   (Binding (VarArgument IntType H) IntType))
- ((ReturnStmt (CallExpr FloatType float (IntExpr IntType 0)))))
+ ((ReturnStmt (FloatExpr FloatType 0))))

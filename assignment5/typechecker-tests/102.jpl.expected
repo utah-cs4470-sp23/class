@@ -2,9 +2,8 @@
  (LetStmt
   (ArgLValue (VarArgument (ArrayType IntType rank=2) a))
   (ArrayExpr
-   ((x (IntExpr IntType 10)) (y (IntExpr IntType 10)))
-   ((BinopExpr IntType (VarExpr IntType x) + (VarExpr IntType y))))))
+   (ArrayType IntType rank=2)
+   (x (IntExpr IntType 10))
+   (y (IntExpr IntType 10))
+   (BinopExpr IntType (VarExpr IntType x) + (VarExpr IntType y)))))
 (ShowCmd (VarExpr (ArrayType IntType rank=2) a))
-(StmtCmd
- (LetStmt (ArgLValue (ArrayArg b i j)) (VarExpr (ArrayType IntType rank=2) a)))
-(ShowCmd (BinopExpr IntType (VarExpr IntType i) + (VarExpr IntType j)))

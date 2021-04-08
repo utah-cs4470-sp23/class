@@ -4,19 +4,21 @@
  (LetStmt
   (ArgLValue (VarArgument (ArrayType (ArrayType FloatType rank=1) rank=1) a))
   (ArrayExpr
-   ((i (VarExpr IntType N)))
-   ((ArrayExpr
-     ((j (VarExpr IntType M)))
-     ((CallExpr
-       FloatType
-       float
-       (BinopExpr IntType (VarExpr IntType i) + (VarExpr IntType j)))))))))
+   (ArrayType (ArrayType FloatType rank=1) rank=1)
+   (i (VarExpr IntType N))
+   (ArrayExpr
+    (ArrayType FloatType rank=1)
+    (j (VarExpr IntType M))
+    (CallExpr
+     FloatType
+     float
+     (BinopExpr IntType (VarExpr IntType i) + (VarExpr IntType j)))))))
 (Func
  f
- float
+ FloatType
  ((Binding
    (VarArgument (ArrayType (ArrayType FloatType rank=1) rank=1) b)
-   ((float 1) 1)))
+   (ArrayType (ArrayType FloatType rank=1) rank=1)))
  ((ReturnStmt
    (ArrIndexExpr
     FloatType

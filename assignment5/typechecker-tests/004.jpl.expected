@@ -1,7 +1,7 @@
 (Func
  inc
- int
- ((Binding (VarArgument IntType i) int))
+ IntType
+ ((Binding (VarArgument IntType i) IntType))
  ((ReturnStmt
    (BinopExpr
     IntType

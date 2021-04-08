@@ -2,5 +2,3 @@
 
 let a = array[x : 10, y : 10] x + y
 show a
-let b[i, j] = a
-show i + j
