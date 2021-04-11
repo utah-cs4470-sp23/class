@@ -5,7 +5,7 @@ particular, you will be adding four of the following optimizations
 (you can choose which one you don't implement):
 
 - Constant folding for the basic math operations
-- Constant propagation for integers, floats, and booleans
+- Constant propagation for integers, floats, and Booleans
 - Dead code elimination for unused variables and dead branches
 - Loop fusion for `array` expressions
 - Peephole optimization for constant integer `sum` expressions
@@ -34,7 +34,7 @@ technique to make it possible to output JPL source code for the
 optimized program; this allows you to run both programs in the
 instructors' compiler and compare behavior. (This can be done by
 recursively converting the AST to a string in much the same way that
-you current turn an AST into s-expressions.)
+you currently turn an AST into s-expressions.)
 
 When optimizing, pay particular attention to the edge cases of the
 specification:
