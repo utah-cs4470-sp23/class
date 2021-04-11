@@ -2,7 +2,8 @@
 
 Your sixth assignment is to add program optimization to JPL. In
 particular, you will be adding four of the following optimizations
-(you can choose which one you don't implement):
+(you can choose which one you don't implement, except you must
+implement constant folding):
 
 - Constant folding for the basic math operations
 - Constant propagation for integers, floats, and Booleans
@@ -126,9 +127,20 @@ rounding error.
 
 ## CHECKIN Due April 16
 
+Implement constant folding in your compiler.
+
+Write a paragraph describing your implementation strategy for the
+other three optimizations that you will implement. Put these in a file
+called `a6-checkin.md` in the root directory of your repo.
+
 As always, make sure to push your changes to Github in the main branch
 of your repository before the checkin due date.
 
 ## HANDIN Due April 23
+
+Implement the three additional optimizations as described above.
+
+As always, make sure to push your changes to Github in the main branch
+of your repository before the handin due date.
 
 
