@@ -1,7 +1,8 @@
 # Assignment 6: Optimizing JPL
 
 Your sixth assignment is to add program optimization to JPL. In
-particular, you will be adding the following optimizations:
+particular, you will be adding four of the following optimizations
+(you can choose which one you don't implement):
 
 - Constant folding for the basic math operations
 - Constant propagation for integers, floats, and booleans
@@ -22,11 +23,9 @@ subsection of the "Semantics" section.
 ## Structuring the Optimizer
 
 Each optimization should be structured as a separate pass: a function
-that takes as input a program and outputs a new program. (You are free
-to reuse or modify the input program in order to construct the new
-one.) Each optimization should be correct on its own; that is, the
-optimization should work on any valid JPL program and return an
-equivalent program.
+that takes as input a program and outputs a new program. Each
+optimization should be correct on its own; that is, the optimization
+should work on any valid JPL program and return an equivalent program.
 
 The full JPL optimizer will then run a sequence of passes. It is good
 debugging technique to re-type-check the program after each individual
@@ -34,7 +33,8 @@ pass runs. This will catch many bugs. It is also good debugging
 technique to make it possible to output JPL source code for the
 optimized program; this allows you to run both programs in the
 instructors' compiler and compare behavior. (This can be done by
-recursively converting the AST to a string.)
+recursively converting the AST to a string in much the same way that
+you current turn an AST into s-expressions.)
 
 When optimizing, pay particular attention to the edge cases of the
 specification:
@@ -101,9 +101,9 @@ Finally, your optimizer must remove `assert` statements with constant
 true conditions. However, it must leave `assert` statements with
 constant `false` conditions alone!
 
-**Loop fusion:** your optimizer must replace accesses to computed
-arrays with a direct computation of the value. That description is
-pretty confusing, so consider instead this example:
+**Loop specialization:** your optimizer must replace accesses to
+computed arrays with a direct computation of the value. That
+description is pretty confusing, so consider instead this example:
 
     let x = array[i : 10] i * i
     let y = x[7]
@@ -120,14 +120,15 @@ original program would error while the new program returns a value.
 optimization: turning a `sum` expression with a constant body into a
 multiplication. For example, `sum[i : H, j : W] 7` should be replaced
 with `H * W * 7`. This optimization should be executed for loops with
-an integer body. It is not valid for floating-point values due to
+an integer body. Do not perform this optimization for summation loops
+that have a float-typed expression, this would not be valid due to
 rounding error.
 
-## CHECKIN Due April 9
+## CHECKIN Due April 16
 
 As always, make sure to push your changes to Github in the main branch
 of your repository before the checkin due date.
 
-## HANDIN Due April 16
+## HANDIN Due April 23
 
 
