@@ -102,7 +102,7 @@ Finally, your optimizer must remove `assert` statements with constant
 true conditions. However, it must leave `assert` statements with
 constant `false` conditions alone!
 
-**Loop specialization:** your optimizer must replace accesses to
+**Loop fusion:** your optimizer must replace accesses to
 computed arrays with a direct computation of the value. That
 description is pretty confusing, so consider instead this example:
 
@@ -154,7 +154,26 @@ of your repository before the checkin due date.
 Implement the three additional optimizations as described above. Our
 test cases will be published after the checkin due date.
 
+Each of your optimiziations should be controlled by a command line flag
+that can be provided zero or more times on the command line. These
+are
+- `-cf` for constant folding
+- `-cp` for constant propagation
+- `-dce` for dead code elimination
+- `-lf` for loop fusion
+- `-peep` for peepholes
+
+These optimizations must be executed in the specified order. So, for
+example, `jplc -cf -dce -cp -cf` would run constant folding, deadcode
+elimination, constant propagation, and then constant folding, in that
+order.
+
+We'll grade your assignment by passing a collection of these flags
+along with the `-t` flag, causing your compiler to dump an optimized,
+typechecked AST in s-expression form.
+
+```test driver instructions will go here```
+
 As always, make sure to push your changes to Github in the main branch
 of your repository before the handin due date.
-
 
