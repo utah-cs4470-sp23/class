@@ -127,18 +127,32 @@ rounding error.
 
 ## CHECKIN Due April 16
 
-Implement constant folding in your compiler.
+Implement constant folding in your compiler. Write four JPL programs
+that stress-test different aspects of constant folding, and make sure
+that they are compiled correctly. Call them `test-cf-[0-3].jpl`.
 
-Write a paragraph describing your implementation strategy for the
-other three optimizations that you will implement. Put these in a file
-called `a6-checkin.md` in the root directory of your repo.
+For each of the other three optimziations that you plan to implement,
+write four JPL programs that stress-test different aspects of the
+transformation. Call them `test-xx-[0-3].jpl` but change `xx` to be
+the name or abbreviation of the optimization being tested. Since you
+haven't yet written these optimizations, you must also write the
+optimized versions of these programs, call these
+`test-xx-[0-3]-output.jpl`. (If you did happen to write the
+optimizations before the checkin due date, of course feel free to
+create these files automatically using your compiler.)
+
+You must write all 16 tests on your own, but once you have done so, it
+is fine to trade test cases with other students who have also already
+written their own. Put them all into a directory called `a6-tests`
+that is a subdirectory of the root of your repository.
 
 As always, make sure to push your changes to Github in the main branch
 of your repository before the checkin due date.
 
 ## HANDIN Due April 23
 
-Implement the three additional optimizations as described above.
+Implement the three additional optimizations as described above. Our
+test cases will be published after the checkin due date.
 
 As always, make sure to push your changes to Github in the main branch
 of your repository before the handin due date.
