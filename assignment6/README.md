@@ -52,7 +52,7 @@ be preserved.
 ## The optimizations
 
 **Constant Folding:** your optimizer must fold arithmetic operations
-(`+`, `-`, `"*`, `/`, and `%`) and comparisons (`<`, `>`, `>=`, `<=`,
+(`+`, `-`, `*`, `/`, and `%`) and comparisons (`<`, `>`, `>=`, `<=`,
 `==`, and `!=`) on integers and floats when both arguments are
 constants.
 
