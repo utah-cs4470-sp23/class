@@ -149,7 +149,7 @@ that is a subdirectory of the root of your repository.
 As always, make sure to push your changes to Github in the main branch
 of your repository before the checkin due date.
 
-## HANDIN Due April 23
+## HANDIN Due April 28
 
 Implement the three additional optimizations as described above. Our
 test cases will be published after the checkin due date.
