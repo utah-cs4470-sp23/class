@@ -164,9 +164,27 @@ are
 - `-peep` for peepholes
 
 These optimizations must be executed in the specified order. So, for
-example, `jplc -cf -dce -cp -cf` would run constant folding, deadcode
+example, `jplc -cf -dce -cp -cf` would run constant folding, dead code
 elimination, constant propagation, and then constant folding, in that
 order.
+
+Important:
+You need to implement all five flags, even though you will implement
+only 4 of the optimizatians. So one of your flags just won't do
+anything.
+
+You should provide a program called `jplc` that runs your compiler.
+It can just be a shell script. It needs to pass command line options
+to your actual compiler. For example, if your compiler is in Java
+you could implement `jplc` something like this:
+
+```
+#!/usr/bin/env bash
+@java compiler $*
+```
+
+Here the `$*` passes the shell script's command line flags on to
+the JVM.
 
 We'll grade your assignment by passing a collection of these flags
 along with the `-t` flag, causing your compiler to dump an optimized,
