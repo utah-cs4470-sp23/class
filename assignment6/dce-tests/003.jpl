@@ -1,0 +1,10 @@
+
+fn f(i : int) : int {
+    assert true, "Whatever"
+    return 7
+}
+
+let x = 1
+let y = x
+show f(y)
+

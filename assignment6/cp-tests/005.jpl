@@ -1,0 +1,5 @@
+
+let x = array[] 1
+let y = x + 2
+show y
+

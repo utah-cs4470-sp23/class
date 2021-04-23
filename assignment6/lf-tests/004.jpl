@@ -1,0 +1,8 @@
+
+fn f(i : int) : int {
+   assert i != 7, "You should see this"
+}
+
+let x = array[i : N] f(i)
+show x[7]
+

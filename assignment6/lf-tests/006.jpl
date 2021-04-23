@@ -1,0 +1,9 @@
+
+fn loop() : int {
+   assert loop() > 7, "This should not be optimized away"
+   return 5
+}
+
+let x = array[i : 10] loop()
+show x[7]
+
