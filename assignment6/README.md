@@ -151,8 +151,7 @@ of your repository before the checkin due date.
 
 ## HANDIN Due April 28
 
-Implement the three additional optimizations as described above. Our
-test cases will be published after the checkin due date.
+Implement the three additional optimizations as described above.
 
 Each of your optimiziations should be controlled by a command line flag
 that can be provided zero or more times on the command line. These
@@ -168,30 +167,21 @@ example, `jplc -cf -dce -cp -cf` would run constant folding, dead code
 elimination, constant propagation, and then constant folding, in that
 order.
 
-Important:
 You need to implement all five flags, even though you will implement
 only 4 of the optimizatians. So one of your flags just won't do
 anything.
 
-You should provide a program called `jplc` that runs your compiler.
-It can just be a shell script. It needs to pass command line options
-to your actual compiler. For example, if your compiler is in Java
-you could implement `jplc` something like this:
+Modify your makefile in such a way that it contains the following targets:
+- `make a6-cf` runs constant folding and prints s-expression output
+- `make a6-cp` runs constant propagation and prints s-expression output
+- `make a6-dce` runs dead code eliminatiojn and prints s-expression output
+- `make a6-lf` runs loop fusion and prints s-expression output
+- `make a6-peep` runs peephole optimizations and prints s-expression output
 
-```
-#!/usr/bin/env bash
-@java compiler $*
-```
-
-Here the `$*` passes the shell script's command line flags on to
-the JVM.
-
-We'll grade your assignment by passing a collection of these flags
-along with the `-t` flag, causing your compiler to dump an optimized,
-typechecked AST in s-expression form.
-
-```test driver instructions will go here```
+Use these makefile targets to run your compiler on the provided test cases
+in this directory. We'll do the same.
 
 As always, make sure to push your changes to Github in the main branch
-of your repository before the handin due date.
+of your repository before the handin due date, and ensure that
+everything works on CADE lab Linux machines.
 
