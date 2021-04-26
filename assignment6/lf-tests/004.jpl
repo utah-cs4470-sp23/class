@@ -1,6 +1,8 @@
+let N = 10
 
 fn f(i : int) : int {
    assert i != 7, "You should see this"
+   return 0
 }
 
 let x = array[i : N] f(i)
