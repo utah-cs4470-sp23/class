@@ -131,7 +131,7 @@ Implement constant folding in your compiler. Write four JPL programs
 that stress-test different aspects of constant folding, and make sure
 that they are compiled correctly. Call them `test-cf-[0-3].jpl`.
 
-For each of the other three optimziations that you plan to implement,
+For each of the other three optimizations that you plan to implement,
 write four JPL programs that stress-test different aspects of the
 transformation. Call them `test-xx-[0-3].jpl` but change `xx` to be
 the name or abbreviation of the optimization being tested. Since you
@@ -153,7 +153,7 @@ of your repository before the checkin due date.
 
 Implement the three additional optimizations as described above.
 
-Each of your optimiziations should be controlled by a command line flag
+Each of your optimizations should be controlled by a command line flag
 that can be provided zero or more times on the command line. These
 are
 - `-cf` for constant folding
@@ -168,13 +168,13 @@ elimination, constant propagation, and then constant folding, in that
 order.
 
 You need to implement all five flags, even though you will implement
-only 4 of the optimizatians. So one of your flags just won't do
+only 4 of the optimizations. So one of your flags just won't do
 anything.
 
 Modify your makefile in such a way that it contains the following targets:
 - `make a6-cf` runs constant folding and prints s-expression output
 - `make a6-cp` runs constant propagation and prints s-expression output
-- `make a6-dce` runs dead code eliminatiojn and prints s-expression output
+- `make a6-dce` runs dead code elimination and prints s-expression output
 - `make a6-lf` runs loop fusion and prints s-expression output
 - `make a6-peep` runs peephole optimizations and prints s-expression output
 
