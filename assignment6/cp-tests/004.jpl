@@ -1,6 +1,6 @@
 
 fn f() : int {
-   return 7;
+   return 7
 }
 
 let x = 1
