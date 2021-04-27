@@ -4,6 +4,6 @@ fn loop2(x) : int {
    return x
 }
 
-let x = array[i : 10] loop(i)
+let x = array[i : 10] loop2(i)
 show x[7]
 
