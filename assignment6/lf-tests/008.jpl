@@ -1,5 +1,5 @@
 
-fn loop2(x) : int {
+fn loop2(x : int) : int {
    assert x == 7 || loop2(x) > 7, "This should not be optimized away"
    return x
 }
