@@ -303,22 +303,6 @@ return statement, functions return `{}` (the empty tuple, of type
 stmt : return <expr>
 ```
 
-Finally, attribute statements can do anything at all, and should not
-be written in source code. Instead, they can be used by the compiler
-to record any information it wants during compilation.
-
-```
-stmt : attribute <any-non-nl-tokens>
-```
-
-The attribute statement is followed by any sequence of non-newline
-tokens, followed by but not including, a newline. An attribute has no
-semantics at the language level, and attributes should not appear in
-source code. Attributes are used by individual compiler
-implementations to communicate information between compiler passes.
-All tokens between the attribute keyword and the end of the line are
-considered to be part of the attribute statement.
-
 ### Commands
 
 Commands are only available at the top level (not inside functions)
