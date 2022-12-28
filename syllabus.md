@@ -2,11 +2,11 @@
 CS 4470: Compilers, Spring 2023
 ===============================
 
-*Instructor*: Pavel Panchekha
-*Assistant*: 
-*Email*: pavpan@cs.utah.edu
+*Instructor*: Pavel Panchekha, pavpan@cs.utah.edu
+*Assistant*: Taylor Allred, taylor.c.allred@utah.edu
 *Lecture*: MW 3:00–4:30 in WEB L122
-*Office Hours*: 2174 MEB (Pavel)
+*Appointments*: W 11:00–12:00 2174 MEB
+*Office Hours*: 
 *Discord*: 
 *Github*: 
 
@@ -14,8 +14,8 @@ About the Course
 ----------------
 
 The goal of this class is to teach you how a compiler works, including
-all of the major components from front to back. As part of this,
-you'll write a compiler for a simple language called JPL. By the end of this course, you will be able to:
+all of the major components from front to back. By the end of this
+course, you will be able to:
 
 - understand concepts in lexical analysis, and implement a lexer
 - understand how a programming language is represented by a grammar
@@ -25,11 +25,9 @@ you'll write a compiler for a simple language called JPL. By the end of this cou
   several relatively simple optimizations
 - understand code generation, and implement generation of x86-64
 
-This is a programming-intensive, online course. You will need access
-to a computer with a good internet connection and a quiet location
-during class time, and also to do homework.
-
-No homework is required, but if you find textbooks helpful while
+This is a programming-intensive course: to understand compilers, you
+will you'll write a compiler for a simple language called JPL. No
+textbook is required, but if you find textbooks helpful while
 studying, I hear good things about *Engineering a Compiler* by Cooper
 and Torczon.
 
@@ -96,9 +94,9 @@ not representative of the grades they deserve.
 
 Components of course grades are:
 
-- programming assignments (70%)
-- attendance and participation in class and online (20%)
-- per-lecture quizzes (10%)
+| 70% | Assignments |
+| 20% | Attendance  |
+| 10% | Quizzes     |
 
 There will be no exams, final or otherwise.
 
