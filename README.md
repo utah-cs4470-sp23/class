@@ -8,7 +8,7 @@ CS 4470: Compilers, Spring 2023
 *Appointments*: https://shorturl.at/dzDJN
 *Office Hours*: 
 *Discord*: https://discord.gg/GymkJE3q
-*Github*: 
+*Github*: https://github.com/utah-cs4470-sp23/class
 
 About the Course
 ----------------
@@ -109,10 +109,10 @@ intention of these quizzes is to help you recall the major topics and
 ideas that you are learning in class.
 
 No one participates in a discussion if they will be shamed or
-embarrassed for it. All students must uphold a positive, wecoming, and
-supportive environment during discussions both in class and online.
-Remember that every piece of code has to debugged before it works---in
-class, you'll be participating in that debugging.
+embarrassed for it. All students must uphold a positive, welcoming,
+and supportive environment during discussions both in class and
+online. Remember that every piece of code has to debugged before it
+works---in class, you'll be participating in that debugging.
 
 Homework
 --------
@@ -153,6 +153,8 @@ not representative of the grades they deserve.
 
 Components of course grades are:
 
+|     |             |
+|-----|-------------|
 | 70% | Assignments |
 | 20% | Attendance  |
 | 10% | Quizzes     |
@@ -167,6 +169,7 @@ Course Schedule
 ---------------
 
 | Week | Topic                                                |
+|------|------------------------------------------------------|
 | 1    | Course intro, syllabus. Parts of a compiler. Lexing. |
 | 2    | ASTs and Parsing                                     |
 | 3    | Parsing II                                           |
