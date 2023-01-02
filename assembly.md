@@ -71,8 +71,8 @@ going to call, like this:
     extern sub_float
     ...
 
-Note that each function name has an underscore in front of it. No one
-knows where this convention came from, but you need to do that.
+(???) Note that each function name has an underscore in front of it.
+No one knows where this convention came from, but you need to do that.
 
 Next, your assembly file will have the line:
 
@@ -161,8 +161,6 @@ Something weird that could happen:
   printing some garbage before those strings, check that you're not
   overwriting part of the string pointer. This might be from using an
   `rbx` register where you should be using `ebx` with booleans, for example.
-
-Some tutorials on GDB:
 
 Here is the [gdb documentation][gdb-docs]. Various GUI front-ends for
 gdb are available if you prefer a non-command-line debugging

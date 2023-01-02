@@ -106,8 +106,8 @@ formula:
 Be careful because sometimes this formula produces values bigger
 than 1. That is never legal in JPL and you must cap pixel values at 1.0
 
-Your test program should blur `sample.png` and write the blurred image
-to `sample-sepia.png`.
+Your test program should sepia-tone `sample.png` and write the
+sepia-toned image to `sample-sepia.png`.
 
 [sepia]: https://www.google.com/search?q=sepia+tone&tbm=isch
 
@@ -131,12 +131,12 @@ writing files.
     resize(pict, int, int) : pict
 
 This function scales an image to a new width and height using linear
-interpolation. Let's say the input image is `W`x`H` it's being resized
-to `W2xH2`. That means ideally you'd like the output pixel at (`i`,
-`j`) to correspond to the input pixel at (`i2 = i / W2 * W`, `j2 = j /
-W2 * W`). But in general that isn't an integer coordinate; let's say
-`i2 = i2_int + i2_frac` for the integer part `i2_int` and the
-fractional part `i2_frac`, and similar for `j2`. Then you want to
+interpolation. Let's say the input image is `W`x`H` and it's being
+resized to `W2`x`H2`. That means ideally you'd like the output pixel
+at (`i`, `j`) to correspond to the input pixel at (`i2 = i / W2 * W`,
+`j2 = j / W2 * W`). But in general that isn't an integer coordinate;
+let's say `i2 = i2_int + i2_frac` for the integer part `i2_int` and
+the fractional part `i2_frac`, and similar for `j2`. Then you want to
 value of the pixel to be the following weighted average:
 
       pixel @ (i2_int, j2_int) * (1 - i2_frac) * (1 - j2_frac)
