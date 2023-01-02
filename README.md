@@ -125,11 +125,10 @@ instructors believe that writing compiler code is the most effective
 way to learn about how compilers work.
 
 Homework will be submitted and graded via Github. Assignments will be
-due at 5pm on Fridays. However, we will automatically grant an
-extension (without any grading penalty) until the start of the class
-period on Monday. Because the assignments are cumulative, if you fall
-behind, it's very difficult to catch up, so we will not accept
-submissions that are later than that.
+due at midnight at the end of Fridays. However, we will automatically
+grant a 48hr extension (without any grading penalty). Because the
+assignments are cumulative, if you fall behind, it's very difficult to
+catch up, so we will not accept submissions that are later than that.
 
 CS 4470 will follow the School of Computing’s policy, please read it
 carefully. Basically, it's OK to discuss the assignment with other
@@ -153,11 +152,11 @@ not representative of the grades they deserve.
 
 Components of course grades are:
 
-|     |             |
-|-----|-------------|
-| 70% | Assignments |
-| 20% | Attendance  |
-| 10% | Quizzes     |
+| Weight | Component   |
+|--------|-------------|
+| 70%    | Assignments |
+| 20%    | Attendance  |
+| 10%    | Quizzes     |
 
 There will be no exams, final or otherwise.
 
