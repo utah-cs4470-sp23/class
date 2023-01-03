@@ -6,7 +6,7 @@ CS 4470: Compilers, Spring 2023
 *Assistant*: Taylor Allred, taylor.c.allred@utah.edu \
 *Lecture*: MW 3:00–4:30 in WEB L122 \
 *Appointments*: https://shorturl.at/dzDJN \
-*Office Hours*: R 2:00–3:00 in TBD \
+*Office Hours*: R 2:00–3:00 in MEB 3145 \
 *Discord*: https://discord.gg/GymkJE3q \
 *Github*: https://github.com/utah-cs4470-sp23/class
 

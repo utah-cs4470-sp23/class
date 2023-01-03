@@ -36,9 +36,9 @@ the sequence of letters and digits is a keyword. By convention,
 variables that contain dots are reserved for compiler intermediates
 and should not be written in source code.
 
-The keywords are: `array`, `assert`, `bool`, `else`, `false`,
-`float3`, `float4`, `float`, `fn`, `if`, `int`, `let`, `print`,
-`read`, `return`, `show`, `sum`, `then`, `time`, `to`, `true`, `write`.
+The keywords are: `array`, `assert`, `bool`, `else`, `false`, `float`,
+`fn`, `if`, `image`, `int`, `let`, `print`, `read`, `return`, `show`,
+`sum`, `then`, `time`, `to`, `true`, `type`, `write`.
 
 Whitespace is allowed between any two tokens and consists of any
 sequence of spaces, line comments, block comments, and newline
@@ -78,14 +78,13 @@ The base types are Booleans, 64-bit signed integers, and 64-bit
 type : int
      | bool
      | float
-     | float3
-     | float4
+     | <variable>
      | <type> [ , ... ]
      | { <type> , ... }
 ```
 
-The aliases `float3` and `float4` correspond to `{float,float,float}`
-and `{float,float,float,float}`.
+The `<variable>` branch refers to type variables introduced with
+the `type` command; see below.
 
 The array syntax allows any number of commas between the square
 brackets; for example, `int[,,,]` means a four-dimensional array of
@@ -124,13 +123,9 @@ expr : { <expr> , ... }
 
 For tuples, each expression can have its own type, but for array
 constructors, each expression must have the same type. Array
-constructors always produce rank-1 arrays, but of course they may be
-nested to produce arrays of arrays.
-
-Note that both empty arrays and empty tuples are valid. An empty array
-constructor is treated as creating an array of ints. So, for example,
-`let x = []` creates a rank-1 array of integers that contains zero
-elements.
+constructors always produce rank-1 arrays; there's no way to directly
+construct a higher-rank array. However, an empty array constructor,
+`[]`, is invalid; we recommend making it invalid in type checking.
 
 Parentheses can be used to override precedence:
 
@@ -207,20 +202,24 @@ Both branches have to yield the same type.
 expr : if <expr> then <expr> else <expr>
 ```
 
-Implicit loops. `sum` operates on integers and floats.
+Implicit loops. `sum` and `max` operate on integers and floats.
 
 ```
 expr : array [ <variable> : <expr> , ... ] <expr>
      | sum [ <variable> : <expr> , ... ] <expr>
+     | max [ <variable> : <expr> , ... ] <expr>
 ```
 
 Each expression in the list of bindings (between the square brackets)
 must produce an integer, and in the body of the loop (after the square
 brackets) those variables are bound to integers. `array` expressions
 yield an array, whose rank is given by the number of bindings. `sum`
-expressions yield an integer or a float, depending on the sum of the
+and `max` expressions yield an integer or a float, depending on the
 body expression. If the list of bindings is empty for either `array`
-or `sum`, the body expression is evaluated and returned.
+or `sum`, the body expression is evaluated and returned. If any
+expression in the list of bindings returns negative number, that is a
+runtime error. Likewise if any expression in the list of bindings to a
+`sum` or `max` returns `0`, that is an error.
 
 Function calls:
 
@@ -309,32 +308,36 @@ Commands are only available at the top level (not inside functions)
 and are the only way side effects occur. Commands deal largely with
 input and output.
 
-PNG images and MP4 videos are the main input/output format. PNG files
-read as `float4[H,W]` (in the RGBA color space) and MP4 as
-`float3[T,H,W]` (in the RGB color space). Color values should be
-between 0.0 and 1.0. Values below 0.0 are clipped to 0.0 and values
-above 1.0 are clipped to 1.0. Infinities, NaN, and negative zero map
-to 0.0.
-
-Sound is not supported (though it would be cool!).
+PNG images are the main input/output format. PNG files read as
+`{float,float,float,float}[H,W]`, with the tuple representing RGBA
+colors. Color values should be between 0.0 and 1.0. Values below 0.0
+are clipped to 0.0 and values above 1.0 are clipped to 1.0.
+Infinities, NaN, and negative zero map to 0.0.
 
 ```
 cmd  : read image <string> to <argument>
-     | read video <string> to <argument>
      | write image <expr> to <string>
-     | write video <expr> to <string>
 ```
 
-Statements are also commands.
+The `type` command introduces a type alias:
 
 ```
-cmd  : <stmt>
+cmd  : type <variable> = <type>
 ```
 
-At the top level, let statements can be used to define global
-variables. Top-level return statements terminate the program.
-Top-level attribute statements can be used to record the compilation
-stages already completed or turn various error checks on and off.
+The `let` command is like a `let` statement but defines a global:
+
+```
+cmd  : let <lvalue> = <expr>
+```
+
+The `assert` command is like an `assert` statement:
+
+```
+cmd  : assert <expr> , <string>
+```
+
+There are no `return` commands.
 
 Printing and timing statements are available for debugging purposes.
 
@@ -437,16 +440,16 @@ At compile time, a JPL implementation must reject syntactically
 malformed inputs (those that are not accepted by the JPL grammar) as
 well as inputs that are accepted by the grammar, but that fail to type
 check. For example, a program containing the expression `a < b` where
-`a` has Boolean type, must be rejected at compile time. Note that
+`a` has boolean type, must be rejected at compile time. Note that
 array sizes are not part of the type system. Compile-time error
 messages should mention the line number where the problem was first
 detected and also a brief description of the problem.
 
 ### Values
 
-Integers are represented by 64-bit signed integers.
+Integers behave like 64-bit two's-complement signed integers.
 
-Floats are represented by 64-bit IEEE-754 floating point values.
+Floats behave like by 64-bit IEEE-754 floating point values.
 
 Tuples are laid out contiguously in memory, with all values 32-bit
 aligned.
@@ -465,10 +468,12 @@ rematerialize that info.
 Variable bindings are lexical, meaning that every time a function is
 invoked it introduces a new variable scope.
 
+Type aliases are merely aliases, interchangable with their definition.
+
 It is always a compile-time error for a JPL program to refer to a name
 that has not yet been bound. So, for example, while this program looks
-like it should typecheck, it is not legal JPL because the body of f()
-refers to function g() which has not yet been bound:
+like it should typecheck, it is not legal JPL because the body of `f()`
+refers to function `g()` which has not yet been bound:
 
 ```
 fn f(x : int) : int {
@@ -483,11 +488,11 @@ fn g(x : int) : int {
 ```
 
 Shadowing is always illegal in JPL: it is a compile time error to bind
-a name that is already visible from the current scope. Thus, no JPL
-program can contain two functions with the same name, and it is always
-an error to introduce a function with the same name as a built-in
-function. It is not even legal to have a function-scoped variable with
-the same name as a global.
+a name that is already visible from the current scope, including a
+type alias. Thus, no JPL program can contain two functions with the
+same name, and it is always an error to introduce a function with the
+same name as a built-in function. It is not even legal to have a
+function-scoped variable with the same name as a global.
 
 JPL compilers must provide builtin functions including the following
 math functions:
@@ -496,8 +501,8 @@ math functions:
   `sqrt`, `exp`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, and `log`
 + Of two `float` arguments, returning a `float`:
   `pow` and `atan2`
-+ The `float` function, which converts an `int` to a `float`
-+ The `int` function, which converts a `float` to an `int`
++ The `to_float` function, which converts an `int` to a `float`
++ The `to_int` function, which converts a `float` to an `int`
 
 They can also provide builtin functions whose name contains a dot,
 which the compiler can use during compilation.
@@ -526,13 +531,14 @@ that are not 64-bit signed integer values.
 At run time, a JPL implementation must detect erroneous conditions. If
 any such condition occurs, the JPL program must be cleanly terminated
 (no segfaults or other OS-level traps!) and a brief, appropriate error
-message must be displayed that includes the text "Fatal
-error:". Run-time errors can be *internal* errors, namely:
+message must be displayed that includes the text "Fatal error:".
+Run-time errors include:
 
-- an integer division or modulus operation whose right-hand argument
-  is zero[^1]
+- an integer division or modulus operation by zero[^1]
 
 - out-of-bounds array access
+
+- `sum`ing or `max`ing zero elements
 
 - any failing assertion
 
@@ -541,38 +547,39 @@ error:". Run-time errors can be *internal* errors, namely:
 
 Or they may be *external* errors:
 
-- failure to allocate memory
+- attempting to read a file that does not exist
 
-- failure of any I/O function (e.g. attempting to read a file that
-  does not exist or attempting to write a file to a full disk or a
-  write-protected location)
+- attempting to write a file to a full disk
+
+- attempting to write to a write-protected location
+
+- any other I/O function failing
+
+When an internal or external error occurs, the process running the
+compiled JPL program should exit with non-zero status code.
 
 JPL compilers must preserve internal errors: the compiler shouldn't
 change a program with internal errors into one without, or vice versa.
 JPL compilers must therefore emit code to check integer division
 arguments, array bounds, and assertions. It is acceptable to not emit
 that code when the JPL compiler can prove that the assertion cannot
-fail.
+fail. JPL compilers must also preserve termination and
+non-termination.
 
-When an internal error occurs, the process running the compiled JPL
-program should exit with status code 0. When an external error occurs,
-any value can be returned to the OS.
+JPL compilers need not strictly preserve external errors---that's
+impossible without a strict contract from the operating system---but
+should preserve the order and arguments of system calls, except for
+the time information in `time` commands. In practice, this is not
+hard, because only the top-level commands have I/O effects.
 
-JPL compilers need not preserve external errors. Almost any change to
-a program can cause a memory allocation to change from failing to not
-failing in some obscure situations. JPL compilers also need not
-preserve the type of internal or external error (for example, bounds
-checks could be implemented as assertions).
+JPL compilers also need not preserve the type of internal or external
+error (for example, bounds checks could be implemented as assertions).
 
-There are some rarer exceptional conditions, like stack overflow,
-where JPL programs are allowed to segfault or otherwise terminate
-uncleanly, and need not be preserved. As long as the compiler doesn't
-go out of its way to mess with this things should be fine.
-
-JPL compilers must preserve termination and non-termination. They must
-also preserve the order and contents of I/O effects and internal
-errors, other than time information in `time` commands. In practice
-this is not hard because only the top-level commands have I/O effects.
+There are some rarer exceptional conditions, like stack overflow or
+failure to allocate memory, where JPL programs are allowed to segfault
+or otherwise terminate uncleanly, and need not be preserved. As long
+as the compiler doesn't go out of its way to mess with this things
+should be fine.
 
 Elaboration
 -----------
@@ -665,19 +672,6 @@ repetition of statements in a function body: this should be limited
 only by the amount of memory on the machine running the JPL compiler.
 Similarly, the number of elements in an array should be limited only
 by memory size.
-
-
-Compilation
------------
-
-Loop fusion with this language leverages the rewrite
-
-    (array[i, ...] expr0(i, ...) )[expr1, ...]
-    ->
-    expr0(expr1, ...)
-
-This constructor / destructor pair eliminates the intermediate array,
-Note that this is the same rewrites as inlining functions.
 
 JPL Compiler Command Line Interface
 -----------------------------------
