@@ -1,5 +1,0 @@
-// ERROR
-
-let blarg = 3.333
-
-show blarg()

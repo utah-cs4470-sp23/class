@@ -1,6 +1,0 @@
-(TimeCmd (PrintCmd "p"))
-(ReadImageCmd "Q?" (VarArgument u3L.))
-(ShowCmd (IntExpr 0))
-(TimeCmd (ReadImageCmd "" (VarArgument d)))
-(ShowCmd (CallExpr d))
-(StmtCmd (LetStmt (ArgLValue (VarArgument w9M.)) (CallExpr K5z.)))

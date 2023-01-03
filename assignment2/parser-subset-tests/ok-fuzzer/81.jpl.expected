@@ -1,5 +1,0 @@
-(ShowCmd (CallExpr L))
-(WriteImageCmd (FloatExpr 0) "")
-(PrintCmd "")
-(ReadImageCmd "@r" (VarArgument N))
-(PrintCmd "")

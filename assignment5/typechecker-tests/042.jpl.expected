@@ -1,5 +1,0 @@
-(StmtCmd
- (LetStmt
-  (ArgLValue (VarArgument FloatType x))
-  (ArrayExpr FloatType (FloatExpr FloatType 7))))
-(ShowCmd (BinopExpr FloatType (FloatExpr FloatType 3) - (VarExpr FloatType x)))

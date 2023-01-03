@@ -1,2 +1,0 @@
-(ReadImageCmd "foo.png" (VarArgument pict img))
-(WriteImageCmd (VarExpr pict img) "foo.png")

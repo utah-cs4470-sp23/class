@@ -1,3 +1,0 @@
-(TimeCmd
- (TimeCmd
-  (TimeCmd (TimeCmd (TimeCmd (TimeCmd (StmtCmd (ReturnStmt (IntExpr 3)))))))))

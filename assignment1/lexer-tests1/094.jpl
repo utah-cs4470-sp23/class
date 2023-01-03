@@ -1,3 +1,0 @@
-// OK
-
-show int(3.3) + int(float(10))

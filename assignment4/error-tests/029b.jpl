@@ -1,4 +1,0 @@
-
-read image "foo.png" to img
-assert has_size(oops_img, 10, 10), "Please do not modify foo.png, it should be 10x10"
-

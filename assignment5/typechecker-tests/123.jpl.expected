@@ -1,7 +1,0 @@
-(Func
- a
- FloatType
- ((Binding
-   (VarArgument (ArrayType FloatType rank=1) b)
-   (ArrayType FloatType rank=1)))
- ((ReturnStmt (FloatExpr FloatType 3))))

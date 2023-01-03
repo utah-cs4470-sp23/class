@@ -1,5 +1,0 @@
-show L()
-write image .1 to ""
-print ""
-read image "@r" to N
-print ""

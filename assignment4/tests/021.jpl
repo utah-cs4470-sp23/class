@@ -1,5 +1,0 @@
-
-show 1
-show 2
-print "^ If you see '12' you need to print a newline after show commands"
-    

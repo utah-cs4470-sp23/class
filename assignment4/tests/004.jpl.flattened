@@ -1,2 +1,0 @@
-(StmtCmd (LetStmt (ArgLValue (VarArgument int x)) (IntExpr int 2)))
-(StmtCmd (ReturnStmt (VarExpr int x)))

@@ -1,3 +1,0 @@
-show .787
-write image 8 to "`a"
-write image 935. to "cA,"

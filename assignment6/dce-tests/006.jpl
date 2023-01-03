@@ -1,9 +1,0 @@
-
-fn f() : int {
-    assert false, "Gotcha"
-    return 1
-}
-
-let x = false
-show if x then f() else 2
-

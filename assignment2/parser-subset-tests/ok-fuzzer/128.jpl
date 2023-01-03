@@ -1,6 +1,0 @@
-print ""
-time show R8V_9F_7b_7v.0M.8M.()
-time read image "" to K0Z_
-assert 477, "?YkK"
-let z2h. = 9
-read image ">a$;" to J

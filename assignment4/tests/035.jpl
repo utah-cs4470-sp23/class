@@ -1,3 +1,0 @@
-
-read image "foo.png" to img
-write image crop(resize(img, 20, 20), 5, 5, 15, 15) to "foo.png"

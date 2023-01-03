@@ -1,8 +1,0 @@
-(StmtCmd
- (LetStmt
-  (ArgLValue (VarArgument (ArrayType IntType rank=1) x))
-  (ArrayExpr
-   (ArrayType IntType rank=1)
-   (i (IntExpr IntType 10))
-   (VarExpr IntType i))))
-(ShowCmd (VarExpr (ArrayType IntType rank=1) x))

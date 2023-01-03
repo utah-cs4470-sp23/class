@@ -1,8 +1,0 @@
-time show c(7.49)
-return f0T.
-read image "$`" to V1E.8m_4b_
-write image d0l_7y.3Y_(121.013321, M) to ""
-read image "" to V
-write image q() to "0"
-write image .0 to "1^"
-assert M7i.9w_4A_2A.9p., ".8"

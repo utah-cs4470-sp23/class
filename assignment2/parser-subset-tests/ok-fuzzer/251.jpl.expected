@@ -1,8 +1,0 @@
-(PrintCmd "")
-(ShowCmd (FloatExpr 0))
-(PrintCmd "e")
-(WriteImageCmd (VarExpr a7V_) "")
-(WriteImageCmd (VarExpr N8G.) ":O")
-(ReadImageCmd "%" (VarArgument s0D.4j_3o_))
-(ReadImageCmd "" (VarArgument z1W.))
-(ReadImageCmd "" (VarArgument z9R_))

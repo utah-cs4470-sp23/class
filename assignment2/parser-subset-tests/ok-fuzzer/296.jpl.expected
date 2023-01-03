@@ -1,8 +1,0 @@
-(StmtCmd (AssertStmt (CallExpr b4Q_4u_4H_) ""))
-(StmtCmd (AssertStmt (CallExpr V6b. (CallExpr W)) "L:D"))
-(StmtCmd (ReturnStmt (FloatExpr 582)))
-(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument B)) (IntExpr 2))))
-(ReadImageCmd "" (VarArgument e))
-(WriteImageCmd (IntExpr 1961) "X1rN")
-(StmtCmd (ReturnStmt (IntExpr 8)))
-(PrintCmd "/x-3Jr")

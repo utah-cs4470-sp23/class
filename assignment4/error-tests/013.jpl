@@ -1,3 +1,0 @@
-
-let z = sub_floats(sub_floats(3, 1.27), sub_floats(2.72, 12.34))
-

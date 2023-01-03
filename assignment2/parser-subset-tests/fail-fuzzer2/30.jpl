@@ -1,9 +1,0 @@
-time show v 
-write image b4h_0W.(826834, c5t_5A.(), 7, 26, m0G.1f_3O_, m0G.1f_3O_, f(I), l, 42, .667559, U(), L(), 230, 8, o, Z5W.0y.7w_2A_(), 3., c(p, i5v.2z_(), x, 532285.8627, .40, 5287, 2369, e), e), z, 338, 2, 50, F(), 2, C, .53, .016, 40, w8c.2K_3J.8l.8k.7K.3F.3l_(4), O7d_2f., O7d_2f., 9, .0845974, .1, .769, 6) to "L" 
-let i8m_ = a8t.4v_(78983) 
-time show 0. 
-read read image "" to to N 
-"=K" print
-time write image .412 to "" 
-write image .4146328 to "]6 " 
-print "A" 

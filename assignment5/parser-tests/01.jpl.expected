@@ -1,6 +1,0 @@
-(StmtCmd
- (ReturnStmt
-  (BinopExpr
-   (CallExpr float (BinopExpr (VarExpr i) + (VarExpr j)))
-   /
-   (CallExpr float (BinopExpr (VarExpr W) + (VarExpr H))))))

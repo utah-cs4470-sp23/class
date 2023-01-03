@@ -1,5 +1,0 @@
-// OK
-
-fn gradient(i : int, j : int, W : int, H : int) : float {
-  return 0.0
-}

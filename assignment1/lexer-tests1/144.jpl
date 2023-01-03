@@ -1,7 +1,0 @@
-// ERROR
-
-let x = 12
-attribute a = 3333
-show ft x = 2
-attribute a = 3333
-show f()

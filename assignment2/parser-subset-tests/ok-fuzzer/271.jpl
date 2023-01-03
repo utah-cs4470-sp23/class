@@ -1,8 +1,0 @@
-print "fo"
-write image 18 to ""
-time write image z() to ""
-time print ""
-show 5
-print ""
-read image "" to E
-print ".Ry"

@@ -1,7 +1,0 @@
-write image .854 to ""
-time print "o"
-read image "^B" to z
-write image 3.6 to ""
-show .913417
-return u3E.
-time assert 3, "'"

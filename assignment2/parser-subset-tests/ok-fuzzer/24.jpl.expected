@@ -1,6 +1,0 @@
-(WriteImageCmd (FloatExpr 2958882) "")
-(WriteImageCmd (CallExpr N7B.) "")
-(PrintCmd "")
-(PrintCmd "e")
-(WriteImageCmd (VarExpr y5v_4W.0x.4K.6a_0K.3r_) "")
-(StmtCmd (ReturnStmt (FloatExpr 0)))

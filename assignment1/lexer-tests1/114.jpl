@@ -1,6 +1,0 @@
-// OK
-
-read image "blarg" to x
-let y[w,h]=x
-let red = x[3,5]{0}
-show red + 1.0

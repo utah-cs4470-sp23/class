@@ -1,5 +1,0 @@
-// ERROR
-
-let z = true
-let z = false
-assert z, "hello!"

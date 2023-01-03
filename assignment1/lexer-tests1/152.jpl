@@ -1,6 +1,0 @@
-// ERROR
-
-let a = array[x : 10] x
-show a
-let b[3] = a
-

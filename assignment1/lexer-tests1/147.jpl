@@ -1,3 +1,0 @@
-// OK
-
-return float(i + j) / float(W + H)

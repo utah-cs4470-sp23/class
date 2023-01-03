@@ -1,5 +1,0 @@
-return .9
-show 23.
-show I
-write image g to ""
-write image X() to "h"

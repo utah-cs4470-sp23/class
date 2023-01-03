@@ -1,5 +1,0 @@
-(ReadImageCmd "s" (VarArgument D))
-(ReadImageCmd "X" (VarArgument Y7E.7s_6v.))
-(WriteImageCmd (IntExpr 98) "")
-(WriteImageCmd (FloatExpr 8) "")
-(WriteImageCmd (FloatExpr 0) "")

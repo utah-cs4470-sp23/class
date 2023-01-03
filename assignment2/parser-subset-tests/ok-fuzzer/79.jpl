@@ -1,5 +1,0 @@
-write image 32015 to "33"
-write image 6 to ""
-return .64
-let I = T0f_()
-time read image "a" to j5x.

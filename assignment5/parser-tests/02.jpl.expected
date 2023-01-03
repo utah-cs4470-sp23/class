@@ -1,1 +1,0 @@
-(ReadImageCmd "photo.png" (VarArgument photo_image))

@@ -1,8 +1,0 @@
-(WriteImageCmd (IntExpr 564) "")
-(StmtCmd (LetStmt (ArgLValue (VarArgument t)) (FloatExpr 0)))
-(PrintCmd "")
-(TimeCmd (TimeCmd (StmtCmd (AssertStmt (FloatExpr 0) "Oia"))))
-(ShowCmd (VarExpr d0G.))
-(ShowCmd (VarExpr J))
-(WriteImageCmd (FloatExpr 37993) "JJ 4")
-(ReadImageCmd "};" (VarArgument w))

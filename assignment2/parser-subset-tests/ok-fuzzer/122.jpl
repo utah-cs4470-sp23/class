@@ -1,7 +1,0 @@
-time write image N9s_ to "$"
-read image "~" to O
-write image D0a_() to "BT"
-read image "M0" to L7O.1C_
-show k
-return 8
-return f8H.7y_()

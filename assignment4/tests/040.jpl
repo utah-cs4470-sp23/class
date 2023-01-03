@@ -1,6 +1,0 @@
-
-time time return 77
-time print "this must not appear in flattened otuput"
-
-
-

@@ -1,8 +1,0 @@
-(PrintCmd "fo")
-(WriteImageCmd (IntExpr 18) "")
-(TimeCmd (WriteImageCmd (CallExpr z) ""))
-(TimeCmd (PrintCmd ""))
-(ShowCmd (IntExpr 5))
-(PrintCmd "")
-(ReadImageCmd "" (VarArgument E))
-(PrintCmd ".Ry")

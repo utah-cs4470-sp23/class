@@ -1,5 +1,0 @@
-(ReadImageCmd "" (VarArgument g))
-(PrintCmd "D")
-(StmtCmd (LetStmt (ArgLValue (VarArgument L)) (FloatExpr 0)))
-(PrintCmd "")
-(StmtCmd (ReturnStmt (FloatExpr 980)))

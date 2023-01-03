@@ -1,9 +1,0 @@
-show .8538143478
-write image 29 to ""
-let S = 98
-return u2H.
-time show t()
-return 64
-assert P2I_, ""
-print "="
-read image "Y" to r

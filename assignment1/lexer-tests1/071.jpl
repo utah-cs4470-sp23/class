@@ -1,6 +1,0 @@
-// ERROR
-
-let F = 3
-let N = false
-let a = array[i : F] i
-show array[i : N] sum[j : i] a[j]

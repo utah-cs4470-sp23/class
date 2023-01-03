@@ -1,6 +1,0 @@
-read image "foo.png" to img
-
-let x = has_size(img, 11000, 10000)
-
-return x
-

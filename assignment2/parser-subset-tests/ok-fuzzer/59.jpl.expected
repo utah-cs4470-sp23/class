@@ -1,6 +1,0 @@
-(TimeCmd (WriteImageCmd (CallExpr K (FloatExpr 3)) ""))
-(TimeCmd (PrintCmd ""))
-(WriteImageCmd (FloatExpr 4) "")
-(PrintCmd "")
-(StmtCmd (AssertStmt (FloatExpr 0) ""))
-(TimeCmd (TimeCmd (PrintCmd "")))

@@ -1,2 +1,0 @@
-(TimeCmd (TimeCmd (StmtCmd (ReturnStmt (IntExpr int 77)))))
-(TimeCmd (PrintCmd "this must not appear in flattened otuput"))

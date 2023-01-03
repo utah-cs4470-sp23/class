@@ -1,4 +1,0 @@
-(StmtCmd (LetStmt (ArgLValue (VarArgument bool x)) (VarExpr bool true)))
-(StmtCmd (LetStmt (ArgLValue (VarArgument bool y)) (VarExpr bool false)))
-(StmtCmd (AssertStmt (VarExpr bool x) "This should not be printed"))
-(StmtCmd (AssertStmt (VarExpr bool y) "This should be printed"))

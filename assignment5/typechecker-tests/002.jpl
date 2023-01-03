@@ -1,5 +1,0 @@
-// ERROR
-
-fn gradient(i : int, j : int, W : int, H : int) : float {
-  return 2
-}

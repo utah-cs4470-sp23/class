@@ -1,7 +1,0 @@
-(StmtCmd (AssertStmt (IntExpr 5) "&"))
-(TimeCmd (StmtCmd (AssertStmt (IntExpr 4) "")))
-(ReadImageCmd "iDU/" (VarArgument t))
-(PrintCmd "k")
-(ReadImageCmd ")KT" (VarArgument w2F.5M.2o.))
-(StmtCmd (AssertStmt (IntExpr 6) "("))
-(ReadImageCmd "" (VarArgument n6e_3k.0Z.))

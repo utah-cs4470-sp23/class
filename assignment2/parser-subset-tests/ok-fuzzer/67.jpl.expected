@@ -1,7 +1,0 @@
-(TimeCmd (StmtCmd (LetStmt (ArgLValue (VarArgument a1Z.)) (FloatExpr 0))))
-(ShowCmd (FloatExpr 0))
-(WriteImageCmd (CallExpr I5M.5J_5O_2R_) ";")
-(StmtCmd (ReturnStmt (FloatExpr 0)))
-(TimeCmd (PrintCmd "[."))
-(ReadImageCmd "" (VarArgument h))
-(ReadImageCmd "v2" (VarArgument P))

@@ -1,6 +1,0 @@
-(Func
- inc
- IntType
- ((Binding (VarArgument IntType i) IntType))
- ((ReturnStmt (BinopExpr IntType (IntExpr IntType 1) + (VarExpr IntType i)))))
-(ShowCmd (CallExpr IntType inc (IntExpr IntType 76)))

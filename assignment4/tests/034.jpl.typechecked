@@ -1,4 +1,0 @@
-(ReadImageCmd "foo.png" (VarArgument pict img))
-(WriteImageCmd
- (CallExpr pict blur (VarExpr pict img) (FloatExpr float 3))
- "foo.png")

@@ -1,5 +1,0 @@
-show j5K_4F_
-write image 88 to "Jd"
-read image "," to g5d_0A_5Q.
-write image v(r5f_1O.) to ""
-print ""

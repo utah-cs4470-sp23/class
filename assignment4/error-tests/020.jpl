@@ -1,5 +1,0 @@
-
-show 3
-show 4
-read image "foo.png" to img
-write image img2 to "bla.png"

@@ -1,5 +1,0 @@
-time write image 3 to "'5"
-time assert H(v(h1v_3L.)), ""
-time time show n0H.
-write image .7 to ""
-print "c&"

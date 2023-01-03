@@ -1,3 +1,0 @@
-// OK
-
-assert argnum >= 1, "Please pass an argument"

@@ -1,6 +1,0 @@
-
-print "line 1"
-print "line 2"
-print "^ If those are on the same line, you need to add newlines to strings you print"
-
-let sepia = 33.3

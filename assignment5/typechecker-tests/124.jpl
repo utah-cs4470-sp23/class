@@ -1,5 +1,0 @@
-// OK
-
-// no shadowing here!!
-let x = array[x : 5] x
-show x

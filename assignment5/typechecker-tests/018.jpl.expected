@@ -1,2 +1,0 @@
-(StmtCmd (LetStmt (ArgLValue (VarArgument IntType N)) (IntExpr IntType 33)))
-(ShowCmd (SumExpr IntType (y (VarExpr IntType N)) (IntExpr IntType 4)))

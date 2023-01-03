@@ -1,5 +1,0 @@
-// OK
-
-let N = 33
-
-show array[y : N] 4

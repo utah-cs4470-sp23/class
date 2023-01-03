@@ -1,7 +1,0 @@
-"[" image 0 to "[" write
-write image W(892.701, S8r_, H()) H()) to "" 
-show 0 
-print "6M" 
-write image .9021260 "" 
-show .6 
-write image .0 to "" 

@@ -1,7 +1,0 @@
-// ERROR
-
-fn inc(i : int) : int {
-   return 1 + i + (1) - 1
-}
-
-show inc(inc(inc(bla(inc(inc(inc(33)))))))

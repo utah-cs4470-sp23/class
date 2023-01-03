@@ -1,3 +1,0 @@
-// ERROR
-
-read iage "photo.png" to photo_image[W, H]

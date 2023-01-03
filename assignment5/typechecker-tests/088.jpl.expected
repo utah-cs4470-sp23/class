@@ -1,3 +1,0 @@
-(StmtCmd
- (LetStmt (ArgLValue (VarArgument BoolType z)) (VarExpr BoolType true)))
-(StmtCmd (AssertStmt (VarExpr BoolType z) "hello!"))

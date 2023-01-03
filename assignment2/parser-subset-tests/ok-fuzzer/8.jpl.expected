@@ -1,3 +1,0 @@
-(WriteImageCmd (FloatExpr 0) "")
-(TimeCmd (ReadImageCmd "(k" (VarArgument W0R_)))
-(ReadImageCmd "" (VarArgument G8s.2G_8E.))

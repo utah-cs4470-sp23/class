@@ -1,4 +1,0 @@
-// ERROR
-
-let x = float(true)
-let y = int(0.3)

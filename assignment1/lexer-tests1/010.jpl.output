@@ -1,6 +1,0 @@
-NEWLINE
-RETURN 'return'
-INTVAL '3'
-NEWLINE
-END_OF_FILE
-Compilation succeeded

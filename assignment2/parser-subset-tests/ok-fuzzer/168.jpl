@@ -1,9 +1,0 @@
-read image "" to N
-read image "" to h
-write image 4 to "T"
-let X8B. = 7874923249.
-read image "W " to Z4F.7r_5L.7r.
-assert W6t.(), " "
-read image "" to h
-print "+"
-time assert .966271389, ""

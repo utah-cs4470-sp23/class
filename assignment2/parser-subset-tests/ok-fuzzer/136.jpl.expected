@@ -1,5 +1,0 @@
-(TimeCmd (WriteImageCmd (IntExpr 3) "'5"))
-(TimeCmd (StmtCmd (AssertStmt (CallExpr H (CallExpr v (VarExpr h1v_3L.))) "")))
-(TimeCmd (TimeCmd (ShowCmd (VarExpr n0H.))))
-(WriteImageCmd (FloatExpr 0) "")
-(PrintCmd "c&")

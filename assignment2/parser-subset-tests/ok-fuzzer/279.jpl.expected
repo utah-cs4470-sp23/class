@@ -1,6 +1,0 @@
-(TimeCmd (StmtCmd (AssertStmt (VarExpr Z) "t")))
-(StmtCmd (AssertStmt (FloatExpr 704) "+"))
-(ShowCmd (FloatExpr 69108008))
-(TimeCmd (StmtCmd (AssertStmt (IntExpr 8) "S")))
-(PrintCmd "")
-(TimeCmd (WriteImageCmd (VarExpr k4H_) "`"))

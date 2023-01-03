@@ -1,2 +1,0 @@
-(PrintCmd "@uUOD")
-(PrintCmd "")

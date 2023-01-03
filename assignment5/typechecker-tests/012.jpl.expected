@@ -1,5 +1,0 @@
-(StmtCmd (LetStmt (ArgLValue (VarArgument IntType x)) (IntExpr IntType 1)))
-(StmtCmd
- (LetStmt
-  (ArgLValue (VarArgument IntType y))
-  (BinopExpr IntType (IntExpr IntType 1) + (VarExpr IntType x))))

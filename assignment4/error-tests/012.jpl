@@ -1,5 +1,0 @@
-
-let z = sub_floats(3.14, 2.72)
-let i = sub_ints(3, 3)
-show sub_floats(z, i)
-

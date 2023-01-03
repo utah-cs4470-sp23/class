@@ -1,7 +1,0 @@
-(TimeCmd
- (TimeCmd
-  (StmtCmd
-   (LetStmt
-    (ArgLValue (VarArgument I))
-    (CallExpr v (FloatExpr 2) (FloatExpr 0) (IntExpr 30))))))
-(StmtCmd (AssertStmt (FloatExpr 0) ""))

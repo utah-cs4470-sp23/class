@@ -1,6 +1,0 @@
-(PrintCmd "I'N(8")
-(WriteImageCmd (FloatExpr 0) "M")
-(WriteImageCmd (IntExpr 4) "E")
-(PrintCmd "O5")
-(ShowCmd (VarExpr i))
-(WriteImageCmd (IntExpr 2) ".")

@@ -1,7 +1,0 @@
-read image "foo.png" to y
-let x = true
-let y = false
-assert x, "This should not be printed"
-assert y, "This should be printed"
-
-    

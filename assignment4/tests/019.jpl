@@ -1,5 +1,0 @@
-
-print "hi"
-print "bye"
-print "^ If you see 'bye' twice you need to add a null-terminator to your strings"
-

@@ -1,8 +1,0 @@
-(StmtCmd (AssertStmt (CallExpr b7s_9c_) "O"))
-(PrintCmd "P")
-(WriteImageCmd (CallExpr O) "")
-(TimeCmd (TimeCmd (PrintCmd "")))
-(StmtCmd (LetStmt (ArgLValue (VarArgument q3J.8j.3S_)) (VarExpr e5M.1I.0F.)))
-(TimeCmd (TimeCmd (PrintCmd "O=>2")))
-(TimeCmd (TimeCmd (PrintCmd "")))
-(PrintCmd "gx")

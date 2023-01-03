@@ -1,8 +1,0 @@
-
-fn f(i : int) : int {
-   assert i != 7, "You should see this"
-}
-
-let x = array[i : 10] 5
-show x[f(1)]
-

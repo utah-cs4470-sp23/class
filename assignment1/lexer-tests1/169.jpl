@@ -1,7 +1,0 @@
-let x = (1.0)
-fn f(z : float) : float {
-  let y = ((((z))))
-  return y
-}
-let x = ((2.0))
-show f()

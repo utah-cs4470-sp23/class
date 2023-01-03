@@ -1,5 +1,0 @@
-
-// Should produce two different answers
-show ((0.1 + 0.2) + 0.3) - 0.6
-show (0.1 + (0.2 + 0.3)) - 0.6
-

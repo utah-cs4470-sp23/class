@@ -1,7 +1,0 @@
-NEWLINE
-SHOW 'show'
-LSQUARE '['
-RSQUARE ']'
-NEWLINE
-END_OF_FILE
-Compilation succeeded

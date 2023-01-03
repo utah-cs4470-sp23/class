@@ -1,5 +1,0 @@
-(StmtCmd (ReturnStmt (FloatExpr 0)))
-(ShowCmd (FloatExpr 23))
-(ShowCmd (VarExpr I))
-(WriteImageCmd (VarExpr g) "")
-(WriteImageCmd (CallExpr X) "h")

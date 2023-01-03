@@ -1,5 +1,0 @@
-// ERROR
-
-read video "blarg" to x[t]
-let y[w]=x
-let a[w][i,h]=x

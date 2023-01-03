@@ -1,9 +1,0 @@
-// ERROR
-
-fn id(x : int) : int {
-   return x
-}
-
-fn id(x : int) : int {
-   return x
-}

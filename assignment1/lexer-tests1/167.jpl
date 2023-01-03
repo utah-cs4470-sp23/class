@@ -1,2 +1,0 @@
-let args2[argnum2] = args
-assert argnum2 == argnum, "argnum must be length of args array"

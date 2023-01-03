@@ -1,9 +1,0 @@
-time print "R"
-time write image 84999.985558516007 to "lq"
-show 6213452302100.
-write image .65 to "o"
-assert 0, ""
-time read image "2" to t
-show .806
-print ""
-time time write image P() to ""

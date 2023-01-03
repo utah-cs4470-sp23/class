@@ -1,6 +1,0 @@
-print "I'N(8"
-write image .011198 to "M"
-write image 4 to "E"
-print "O5"
-show i
-write image 2 to "."

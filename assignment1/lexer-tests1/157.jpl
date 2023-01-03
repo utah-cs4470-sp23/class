@@ -1,5 +1,0 @@
-// ERROR
-
-let i = 33
-let x = array[10 : i] i
-show x

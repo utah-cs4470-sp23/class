@@ -1,4 +1,0 @@
-(StmtCmd
- (AssertStmt
-  (BinopExpr BoolType (VarExpr IntType argnum) >= (IntExpr IntType 1))
-  "Please pass an argument"))

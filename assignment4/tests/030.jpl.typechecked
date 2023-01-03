@@ -1,4 +1,0 @@
-(ReadImageCmd "foo.png" (VarArgument pict img))
-(StmtCmd (LetStmt (ArgLValue (VarArgument pict img2)) (VarExpr pict img)))
-(StmtCmd (LetStmt (ArgLValue (VarArgument pict img3)) (VarExpr pict img2)))
-(StmtCmd (LetStmt (ArgLValue (VarArgument pict img4)) (VarExpr pict img3)))

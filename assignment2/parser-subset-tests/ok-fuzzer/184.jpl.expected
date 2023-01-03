@@ -1,7 +1,0 @@
-(WriteImageCmd (FloatExpr 0) "")
-(TimeCmd (PrintCmd "o"))
-(ReadImageCmd "^B" (VarArgument z))
-(WriteImageCmd (FloatExpr 3) "")
-(ShowCmd (FloatExpr 0))
-(StmtCmd (ReturnStmt (VarExpr u3E.)))
-(TimeCmd (StmtCmd (AssertStmt (IntExpr 3) "'")))

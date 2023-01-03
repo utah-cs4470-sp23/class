@@ -1,4 +1,0 @@
-line 1
-line 2
-^ If those are on the same line, you need to add newlines to strings you print
-; return code: 0

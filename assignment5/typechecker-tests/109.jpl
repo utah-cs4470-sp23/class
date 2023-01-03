@@ -1,9 +1,0 @@
-// OK
-
-let a = array[x : 10, y : 10, z :  10] x + y + z
-show a
-let b = a
-let c = b
-let d = a
-show d
-

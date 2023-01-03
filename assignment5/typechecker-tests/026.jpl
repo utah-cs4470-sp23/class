@@ -1,5 +1,0 @@
-// ERROR
-
-let N = 33.0
-
-show sum[y : N] 4

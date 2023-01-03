@@ -1,5 +1,0 @@
-(ShowCmd (CallExpr p6b_))
-(ShowCmd (VarExpr c))
-(ShowCmd (CallExpr W1r.))
-(TimeCmd (ShowCmd (VarExpr R8r.2o.)))
-(WriteImageCmd (IntExpr 3) "_")

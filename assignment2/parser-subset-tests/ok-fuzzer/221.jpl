@@ -1,6 +1,0 @@
-read image "a" to V8R.8A_
-print ""
-write image 09.76 to ""
-time time read image "" to i
-print ""
-read image "" to S

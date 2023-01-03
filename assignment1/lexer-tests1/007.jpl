@@ -1,5 +1,0 @@
-// OK
-
-fn a(b[c] : float[]) : float {
-  return 3.0
-}

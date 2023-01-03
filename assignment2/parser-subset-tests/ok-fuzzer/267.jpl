@@ -1,5 +1,0 @@
-show O
-write image o(.228234, 3973, 00.) to ""
-time show H
-write image .8317877 to "G"
-print "wU"

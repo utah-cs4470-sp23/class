@@ -1,4 +1,0 @@
-
-read image "foo.png" to img
-write image blur(img, 3.14, 1) to "foo.png"
-

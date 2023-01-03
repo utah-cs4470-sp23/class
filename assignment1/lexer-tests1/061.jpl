@@ -1,8 +1,0 @@
-// OK
-
-fn cube(n : int) : int {
-   let a = array[i:n,j:n,k:n] 1
-   return sum[i:n,j:n,k:n] a[i,j,k]
-}
-
-show cube(22)

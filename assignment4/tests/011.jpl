@@ -1,6 +1,0 @@
-
-let x = 3.14
-let y = 2.72
-let z = sub_floats(x, y)
-return 2
-

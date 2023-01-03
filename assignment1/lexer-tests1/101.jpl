@@ -1,4 +1,0 @@
-// ERROR
-
-let z = false
-assert z{3}, "hello!"

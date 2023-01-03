@@ -1,8 +1,0 @@
-// OK
-
-fn inc(n : int) : int {
-  return 1 + n
-}
-
-print "hello!"
-show inc(33)

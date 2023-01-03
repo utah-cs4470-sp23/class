@@ -1,5 +1,0 @@
-return .55 
-show 77 
-write image w8d_() to "" 
-read image "" to to P 
-print "" 

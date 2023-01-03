@@ -1,6 +1,0 @@
-// OK
-
-let x = array[i : 10] i
-let y = x
-let z = y
-show z

@@ -1,3 +1,0 @@
-(StmtCmd (LetStmt (ArgLValue (VarArgument IntType z)) (IntExpr IntType 3)))
-(Func f IntType () ((ReturnStmt (IntExpr IntType 4))))
-(ShowCmd (CallExpr IntType f))

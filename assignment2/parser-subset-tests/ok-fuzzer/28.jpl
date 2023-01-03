@@ -1,8 +1,0 @@
-time time write image 5.16442 to "{"
-write image 3138621.4 to ""
-assert Z6t.(3), ""
-time print ""
-time time print "8zCe"
-time show e(22)
-show 39162.
-return 8

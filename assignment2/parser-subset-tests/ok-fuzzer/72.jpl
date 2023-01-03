@@ -1,7 +1,0 @@
-show 04
-read image "@g" to x2F_
-time time print "n"
-assert .6176, ""
-show 1
-read image "" to p3n_
-write image 93711 to "C&L"

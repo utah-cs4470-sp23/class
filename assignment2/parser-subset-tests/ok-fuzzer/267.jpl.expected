@@ -1,5 +1,0 @@
-(ShowCmd (VarExpr O))
-(WriteImageCmd (CallExpr o (FloatExpr 0) (IntExpr 3973) (FloatExpr 0)) "")
-(TimeCmd (ShowCmd (VarExpr H)))
-(WriteImageCmd (FloatExpr 0) "G")
-(PrintCmd "wU")

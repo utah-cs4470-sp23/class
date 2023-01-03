@@ -1,5 +1,0 @@
-(ShowCmd (IntExpr 3))
-(TimeCmd (TimeCmd (ReadImageCmd "K" (VarArgument h))))
-(WriteImageCmd (IntExpr 5) "")
-(StmtCmd (LetStmt (ArgLValue (VarArgument r)) (IntExpr 2)))
-(ShowCmd (IntExpr 5))

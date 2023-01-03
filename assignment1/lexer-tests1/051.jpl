@@ -1,4 +1,0 @@
-// OK
-
-let z = false
-assert z, "hello!"

@@ -1,9 +1,0 @@
-read image "+" to A
-write image Q7D. to ""
-assert P2v_5I_, ""
-let P = 5
-read image "#" to d7x.
-assert 9142652., "mp:"
-show .7
-show v0H_0b_5I_
-assert 660, ""

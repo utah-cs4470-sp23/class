@@ -1,5 +1,0 @@
-write image 6 to "bD2"
-assert .7413, "$W"
-time print ""
-show T()
-time print ""

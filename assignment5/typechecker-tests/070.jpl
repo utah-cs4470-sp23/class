@@ -1,5 +1,0 @@
-// ERROR
-
-let N = 33.0
-
-show array[y : N] 4

@@ -1,6 +1,0 @@
-time assert "t" Z,
-assert 704., 
-show 69108008.5336 
-time assert 8, "S" 
-print "" 
-time write image k4H_ to "`" 
