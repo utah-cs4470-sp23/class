@@ -37,8 +37,8 @@ variables that contain dots are reserved for compiler intermediates
 and should not be written in source code.
 
 The keywords are: `array`, `assert`, `bool`, `else`, `false`, `float`,
-`fn`, `if`, `image`, `int`, `let`, `print`, `read`, `return`, `show`,
-`sum`, `then`, `time`, `to`, `true`, `type`, `write`.
+`fn`, `if`, `image`, `int`, `let`, `max`, `print`, `read`, `return`,
+`show`, `sum`, `then`, `time`, `to`, `true`, `type`, `write`.
 
 Whitespace is allowed between any two tokens and consists of any
 sequence of spaces, line comments, block comments, and newline
@@ -241,7 +241,7 @@ binding strength is:
 - Ordered binary comparisons `<`, `>`, `<=`, `>=` are next
 - Unordered binary comparisons `==`, and `!=` are next
 - Boolean binary operators `&&` and `||` are next
-- Prefix `array`, `sum`, and `if` expressions have the lowest
+- Prefix `array`, `sum`, `max`, and `if` expressions have the lowest
   precedence
 
 > For example,
