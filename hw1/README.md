@@ -77,7 +77,7 @@ Your test code should create an 800x600 image and write it to
 
     circle(float, float) : pict
 
-This function draws a white, unfilled circle in the center of an
+This function draws a white, unfilled circle in the center of a black
 800x600 image. The first argument is the radius of the circle (in
 pixels) and the second is the thickness of the white line (also in
 pixels).
