@@ -215,5 +215,4 @@ Your solutions will be auto-graded. The auto-grader will use Github
 Actions and run on Ubuntu using the most recent release of the
 interpreter described above. The output text or images will be
 compared to gold-standard solutions using the Imagemagick `compare`
-tool. If you fail any tests, a "diff" image will be uploaded as an
-"artifact" that you can view.
+tool.
