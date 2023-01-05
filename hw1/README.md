@@ -175,6 +175,9 @@ apologize in advance for that. (If you hate the error messages that it
 produces, then hopefully this will motivate you to do a better job in
 your own compiler!)
 
+You can find the correct output for every function [in the auto-grader
+repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw1).
+
 # Submission and grading
 
 This assignment is due Friday Jan 13.
