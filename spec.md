@@ -312,7 +312,7 @@ PNG images are the main input/output format. PNG files read as
 `{float,float,float,float}[H,W]`, with the tuple representing RGBA
 colors. Color values should be between 0.0 and 1.0. Values below 0.0
 are clipped to 0.0 and values above 1.0 are clipped to 1.0.
-Infinities, NaN, and negative zero map to 0.0.
+NaN and negative zero map to 0.0.
 
 ```
 cmd  : read image <string> to <argument>
