@@ -1,0 +1,14 @@
+/* This generates a multi-colored gradient */
+
+fn gradient(i : int, j : int, W : int, H : int) : {float,float,float,float} {
+  return { \
+    to_float(i + j) / to_float(W + H), \
+    to_float(j - i + H) / to_float(W + H), \
+    0.0, \
+    1.0 \
+  }
+}
+
+let { W, H } = { 800, 600 }
+time let gradient_image = array[i : H, j : W] gradient(i, j, W, H)
+write image gradient_image to "gradient.png"
