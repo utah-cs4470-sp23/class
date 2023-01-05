@@ -177,6 +177,14 @@ your own compiler!)
 
 You can find the correct output for every function [in the auto-grader
 repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw1).
+If you generate images that are *similar* to the expected output, but
+not quite the same, you may be able to use the Imagemagick `compare`
+tool. If it's installed on your system, you can run a command like
+this:
+
+    compare your-output.png correct-output.png diff.png
+    
+Then the `diff.png` image will highlight differing pixels in red.
 
 # Submission and grading
 
