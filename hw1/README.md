@@ -184,7 +184,14 @@ this:
 
     compare your-output.png correct-output.png diff.png
     
-Then the `diff.png` image will highlight differing pixels in red.
+Then the `diff.png` image will highlight differing pixels in red. The
+auto-grader is a bit more lenient than that and allows pixels to
+differ a tiny amount. You can see what the auto-grader sees by passing
+some extra flags to `compare`:
+
+    compare -fuzz 1% -metric AE your-output.png correct-output.png diff.png
+
+As before, differing pixels are red.
 
 # Submission and grading
 
