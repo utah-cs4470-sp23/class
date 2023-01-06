@@ -37,8 +37,8 @@ variables that contain dots are reserved for compiler intermediates
 and should not be written in source code.
 
 The keywords are: `array`, `assert`, `bool`, `else`, `false`, `float`,
-`fn`, `if`, `image`, `int`, `let`, `max`, `print`, `read`, `return`,
-`show`, `sum`, `then`, `time`, `to`, `true`, `type`, `write`.
+`fn`, `if`, `image`, `int`, `let`, `print`, `read`, `return`, `show`,
+`sum`, `then`, `time`, `to`, `true`, `type`, `write`.
 
 Whitespace is allowed between any two tokens and consists of any
 sequence of spaces, line comments, block comments, and newline
@@ -202,24 +202,22 @@ Both branches have to yield the same type.
 expr : if <expr> then <expr> else <expr>
 ```
 
-Implicit loops. `sum` and `max` operate on integers and floats.
+Implicit loops. `sum` operates on integers and floats.
 
 ```
 expr : array [ <variable> : <expr> , ... ] <expr>
      | sum [ <variable> : <expr> , ... ] <expr>
-     | max [ <variable> : <expr> , ... ] <expr>
 ```
 
 Each expression in the list of bindings (between the square brackets)
 must produce an integer, and in the body of the loop (after the square
 brackets) those variables are bound to integers. `array` expressions
 yield an array, whose rank is given by the number of bindings. `sum`
-and `max` expressions yield an integer or a float, depending on the
-body expression. If the list of bindings is empty for either `array`
-or `sum`, the body expression is evaluated and returned. If any
+expressions yield an integer or a float, depending on the body
+expression. If the list of bindings is empty for either `array` or
+`sum`, the body expression is evaluated and returned. If any
 expression in the list of bindings returns negative number, that is a
-runtime error. Likewise if any expression in the list of bindings to a
-`sum` or `max` returns `0`, that is an error.
+runtime error. If `sum` sums zero elements, it returns `0` or `0.0`.
 
 Function calls:
 
@@ -241,7 +239,7 @@ binding strength is:
 - Ordered binary comparisons `<`, `>`, `<=`, `>=` are next
 - Unordered binary comparisons `==`, and `!=` are next
 - Boolean binary operators `&&` and `||` are next
-- Prefix `array`, `sum`, `max`, and `if` expressions have the lowest
+- Prefix `array`, `sum`, and `if` expressions have the lowest
   precedence
 
 > For example,
@@ -538,7 +536,7 @@ Run-time errors include:
 
 - out-of-bounds array access
 
-- `sum`ing or `max`ing zero elements
+- `sum` or `array` with negative bounds
 
 - any failing assertion
 
