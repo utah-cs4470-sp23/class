@@ -167,24 +167,24 @@ instructors' discretion.
 Course Schedule
 ---------------
 
-| Week | Topic                                                |
-|------|------------------------------------------------------|
-| 1    | Course intro, syllabus. Parts of a compiler. Lexing. |
-| 2    | ASTs and Parsing                                     |
-| 3    | Parsing II                                           |
-| 4    | Symbol tables                                        |
-| 5    | Type systems and type checking                       |
-| 6    | Runtime systems                                      |
-| 7    | Assembly and linking                                 |
-| 8    | Spring break                                         |
-| 9    | Optimization basics                                  |
-| 10   | Static analysis                                      |
-| 11   | Common optimizations                                 |
-| 12   | Intermediate representations                         |
-| 13   | Control flow graphs                                  |
-| 14   | The memory hierarchy                                 |
-| 15   | Vectorization                                        |
-| 16   | Conclusion                                           |
+| Week | Monday   | Topic                        | Off |
+|------|----------|------------------------------|-----|
+| 1    | 9 Jan    | Course intro and Lexing      |     |
+| 2    | 16 Jan   | ASTs                         | Mon |
+| 3    | 23 Jan   | Parsing                      |     |
+| 4    | 30 Jan   | Parsing II                   |     |
+| 5    | 6 Feb    | Symbol tables                |     |
+| 6    | 13 Feb   | Type checking                |     |
+| 7    | 20 Feb   | Assembly and linking         | Mon |
+| 8    | 27 Feb   | Runtime systems              |     |
+| 9    | 6 March  | Spring break                 | All |
+| 10   | 13 March | Optimization basics          |     |
+| 11   | 20 March | Static analysis              |     |
+| 12   | 27 March | Intermediate representations |     |
+| 13   | 3 April  | Control flow graphs          |     |
+| 14   | 10 April | The memory hierarchy         |     |
+| 15   | 17 April | Vectorization                |     |
+| 16   | 24 April | Conclusion                   |     |
 
 Note: This schedule is aspirational---a guide for our course, not a
 promise that will be kept no matter what. It will be updated and
