@@ -7,7 +7,7 @@ CS 4470: Compilers, Spring 2023
 *Lecture*: Mon/Wed 3:00–4:30 in WEB L122 \
 *Appointments*: https://shorturl.at/dzDJN \
 *Office Hours*: Thu 2:00–3:00 in MEB 3147 \
-*Discord*: https://discord.gg/GymkJE3q \
+*Discord*: https://discord.gg/fHvWXgdFv2 \
 *Github*: https://github.com/utah-cs4470-sp23/class
 
 About the Course
