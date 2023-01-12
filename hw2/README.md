@@ -1,5 +1,5 @@
-Assignment 1: Writing some JPL
-==============================
+Assignment 2: Writing the Lexer
+===============================
 
 Your first assignment is to build a lexical analyzer (a "lexer" or a
 "tokenizer") for JPL. Its job is to turn an arbitrary file into one
