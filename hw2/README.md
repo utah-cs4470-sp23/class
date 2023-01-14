@@ -21,7 +21,7 @@ full list of tokens you should support is:
     ARRAY ASSERT BOOL ELSE FALSE FLOAT FN IF IMAGE INT LET PRINT
     READ RETURN SHOW SUM THEN TIME TO TRUE TYPE WRITE
     COLON LCURLY RCURLY LPAREN RPAREN COMMA LSQUARE RSQUARE EQUALS
-    INTVAL FLOATVAL VARIABLE OP NEWLINE END_OF_FILE
+    STRING INTVAL FLOATVAL VARIABLE OP NEWLINE END_OF_FILE
 
 Note that some tokens, like `ARRAY` or `LCURLY`, correspond to only one
 possible string, while other tokens are non-trivial and correspond to
@@ -47,10 +47,10 @@ per line, in a format like this:
     LPAREN '('
     VARIABLE 'n'
     COLON ':'
-    VARIABLE 'int'
+    INT 'int'
     RPAREN ')'
     COLON ':'
-    VARIABLE 'int'
+    INT 'int'
     LCURLY '{'
     NEWLINE
     RETURN 'return'
