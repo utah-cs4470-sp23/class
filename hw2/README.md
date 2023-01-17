@@ -80,7 +80,9 @@ course you do not yet need to support the other command line flags.
 
 Each token prints its name and its contents, except for `NEWLINE` and
 `END_OF_FILE` tokens. Since your code will be auto-graded, you must
-match this output format exactly.
+match this output format exactly. Make sure not to add an extra space
+or newline after the `NEWLINE` and `END_OF_FILE` tokens; that is,
+print those tokens as `"NEWLINE"`, not `"NEWLINE "`.
 
 **Important note:** You should not try to enforce tricky properties,
 such as integers or float values being out of range, in your lexer.
