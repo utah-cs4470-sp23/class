@@ -16,7 +16,7 @@ instructors.
 The lexical syntax of JPL is in the [JPL Specification][lex-spec]. The
 full list of tokens you should support is:
 
-[lex-spec]: https://github.com/utah-cs4470-sp23/class/blob/main/spec.md#lexical-syntax
+[lex-spec]: https://github.com/utah-cs4470-sp23/class/blob/2023/spec.md#lexical-syntax
 
     ARRAY ASSERT BOOL ELSE FALSE FLOAT FN IF IMAGE INT LET PRINT
     READ RETURN SHOW SUM THEN TIME TO TRUE TYPE WRITE
@@ -76,7 +76,7 @@ Your compiler must also print `Compilation failed` when a lexer error
 is encountered. We will use these features when testing your code. Of
 course you do not yet need to support the other command line flags.
   
-[iface]: https://github.com/utah-cs4470-sp23/class/blob/main/spec.md#jpl-compiler-command-line-interface
+[iface]: https://github.com/utah-cs4470-sp23/class/blob/2023/spec.md#jpl-compiler-command-line-interface
 
 Each token prints its name and its contents, except for `NEWLINE` and
 `END_OF_FILE` tokens. Since your code will be auto-graded, you must
