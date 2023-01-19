@@ -43,10 +43,15 @@ The keywords are: `array`, `assert`, `bool`, `else`, `false`, `float`,
 Whitespace is allowed between any two tokens and consists of any
 sequence of spaces, line comments, block comments, and newline
 escapes. Line comments are a `//`, followed by any sequence of
-non-newline characters, followed by but not including a newline or end
-of file. Block comments are a `/*`, followed by any sequence of
-characters not including `*/`, followed by `*/`). Newline escapes are
-a backslash followed immediately by a newline.
+non-newline characters. Block comments are a `/*`, followed by
+any sequence of characters not including `*/`, followed by `*/`.
+Newline escapes are a backslash followed immediately by a newline.
+
+A single-line comment nevers contain a newline character, so the
+newline character at the end of a single-line comment generates a
+distinct newline token. Conversely, a multi-line comment may contain
+newline characters, and those contained newline characters do not
+generate distinct newline tokens.
 
 Multiple consecutive newline tokens must be squashed into one.
 
