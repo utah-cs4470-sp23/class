@@ -70,7 +70,7 @@ per line, in a format like this:
     RPAREN ')'
     NEWLINE
     END_OF_FILE
-    Compilation successful: lexical analysis complete
+    Compilation succeeded: lexical analysis complete
 
 Your compiler must also print `Compilation failed` when a lexer error
 is encountered. We will use these features when testing your code. Of
