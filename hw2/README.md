@@ -215,7 +215,7 @@ compares your compiler's output to the reference output from our JPL
 compiler. There are 179 tests, and your grade on this portion is the
 number of these tests that you pass.
 
-Part 2 asks your compiler to lex each file in `test-lexer3` and
+Part 2 asks your compiler to lex each file in `test-lexer2` and
 verifies that your compiler successfully lexes each file. There are 95
 files, and your grade on this portion is the number of these tests
 that you pass.
