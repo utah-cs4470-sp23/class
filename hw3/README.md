@@ -39,6 +39,9 @@ argument : <variable>
 lvalue : <argument>
 ```
 
+Recall that a JPL program is a sequence of newline-terminated
+commands.
+
 Informally, this subset is basically just commands, not including
 `time` and function definitions. It does not include statements, and
 it includes only the most basic types, expressions, arguments, and
