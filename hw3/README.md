@@ -143,7 +143,7 @@ public class VarArgument extends Argument {
 The AST node names that you must use in your S-expression output are:
 
     ReadCmd WriteCmd TypeCmd LetCmd AssertCmd PrintCmd ShowCmd
-    IntType FloatType BoolType
+    IntType FloatType BoolType VarType
     IntExpr FloatExpr VarExpr TrueExpr FalseExpr
     VarArgument
     ArgLValue
