@@ -55,7 +55,7 @@ parse-only mode of the [command line specification][jpl-p]. In this
 mode, your compiler should parse the input file and produce an output
 that looks like this:
 
-[jpl-p]: https://github.com/utah-cs4470-sp23/class/blob/main/spec.md
+[jpl-p]: https://github.com/utah-cs4470-sp23/class/blob/2023/spec.md
 
 ```
 (ReadCmd "photo.png" (VarArgument photo))
@@ -186,8 +186,7 @@ we require in the S-expression, but why not do that?
 
 For each production class, give it fields for all of its non-trivial
 tokens. For example, the `WriteCmd` should have a `string` field and
-an `Argument` field, while an `IntegerExpr` should have an `int`
-field.
+an `Expr` field, while an `IntegerExpr` should have an `int` field.
 
 ## Writing the parser
 
