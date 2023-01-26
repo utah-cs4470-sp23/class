@@ -186,7 +186,7 @@ we require in the S-expression, but why not do that?
 
 For each production class, give it fields for all of its non-trivial
 tokens. For example, the `WriteCmd` should have a `string` field and
-an `Expr` field, while an `IntegerExpr` should have an `int` field.
+an `Expr` field, while an `IntegerExpr` should have an `long` field.
 
 ## Writing the parser
 
