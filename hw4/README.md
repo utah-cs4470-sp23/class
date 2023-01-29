@@ -20,9 +20,6 @@ expr : { <expr> , ... }
      | ( <expr> )
      | <expr> { <integer> }
      | <expr> [ <expr> , ... ]
-     | if <expr> then <expr> else <expr>
-     | array [ <variable> : <expr> , ... ] <expr>
-     | sum [ <variable> : <expr> , ... ] <expr>
      | <variable> ( <expr> , ... )
 
 cmd  : time <cmd>
@@ -111,8 +108,11 @@ additional set of parentheses. For example, this function:
 
 has the following S-expression representation:
 
-    (FnCommand f ((VarBinding i (IntType))
-                  (VarBinding j (IntType))) (IntType)
+    (FnCmd
+     f
+     ((VarBinding (VarArgument i) (IntType))
+      (VarBinding (VarArgument j) (IntType)))
+     (IntType)
      (ReturnStmt (ArrayLiteralExpr (VarExpr i) (VarExpr j))))
 
 This is necessary for the S-expression representation to be
