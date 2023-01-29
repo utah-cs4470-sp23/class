@@ -144,7 +144,8 @@ Naturally, your parser must not enter infinite loops; it must
 terminate on all inputs. To handle cases like these, you will need to
 _first_ parse an expression without tuple indices, and _then_ check if
 the next token is a curly brace (and similarly for other forms of
-indexing).
+indexing), using the technique described in class of splitting a
+production into a head production and a continuation production.
 
 Make sure expressions such as `a{0}{0}` parse---this expression refers
 to a tuple `a` whose `0`-th element is itself a tuple whose `0`-th
@@ -171,33 +172,6 @@ If the bad edges form a loop, then it's possible for your code to go
 in an infinite loop. If the bad edges do _not_ form a loop, than every
 "infinite" loop will eventually increment the index to the end of the
 list of tokens and stop.
-
-## Handling precedence
-
-The grammar given above is ambiguous; for example, the expression
-`array[x : 1] y[0]` could be parsed as either `array[x : 1] (y[0])` or
-as `(array[x : 1] y)[0]`. You must parse these expressions according
-to the [JPL specification](../spec.md); in this example, the first
-parse is correct.
-
-We recommend you split the `expr` grammatical class internally into
-three classes: literal expressions (including the existing float /
-integer / boolean literals, variable names, and the new array and
-tuple literals), suffix expressions (for array and tuple indexing, and
-calls), and prefix expressions (for `if`, `array`, and `sum`). Make
-sure that these call each other in the right order and in the right
-places. Make sure that tricky cases work, like
-
-    if a then b else if c then d else e
-
-You will likely find it helpful to write out a grammar with explicit
-literal, prefix, and suffix expression classes, and then think
-carefully which of these each instance of `<expr>` in the JPL grammar
-refers to.
-
-Ultimately, while there are precedence challenges to this assignment,
-they should be minor. Homework 5 focuses primarily on operator
-precedence.
 
 # Testing your code
 
