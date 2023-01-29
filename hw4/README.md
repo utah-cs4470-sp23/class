@@ -64,8 +64,10 @@ Many rules in this assignment's grammar rely on sequences. Keep in
 mind the following rules for sequences in JPL:
 
 - Every place in the grammar with a sequence allows for an empty
-  sequence. Make sure you handle cases like empty array literals `[]`,
-  empty indexing expressions `a[]`, and empty array loops `array[] e`.
+  sequence. Make sure you handle cases like empty array literals `[]`
+  and empty indexing expressions `a[]`. Some of these are non-sensical
+  (like empty indexing expressions), but those will be rejected by
+  the type checker, not the parser.
 - JPL does not allow terminal commas, so for example `[1, ]` is not a
   valid array literal.
 - In JPL the delimiters are always paired, so for example `[1, 2}` is
