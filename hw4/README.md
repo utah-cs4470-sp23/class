@@ -40,8 +40,8 @@ binding : { <binding> , ... }
 ```
 
 Note that in this grammar the semicolon `;` represents a `NEWLINE`
-token. Informally, this subset is all of JPL except the arithmetic
-operators.
+token. Informally, this subset is all of JPL except for most of the
+expressions.
 
 As in Homework 3, your parser must produce S-expression parse trees
 when passed the `-p` and print `Compilation failed` or `Compilation
@@ -49,8 +49,7 @@ succeeded` when parsing. We will use this when testing your
 code. The new AST node names are:
 
     ArrayType TupleType
-    TupleLiteralExpr ArrayLiteralExpr TupleIndexExpr ArrayIndexExpr
-    IfExpr ArrayLoopExpr SumLoopExpr CallExpr
+    TupleLiteralExpr ArrayLiteralExpr TupleIndexExpr ArrayIndexExpr CallExpr
     TimeCmd FnCmd
     LetStmt AssertStmt ReturnStmt
     ArrayArgument TupleLValue TupleBinding VarBinding
@@ -100,9 +99,9 @@ S-expression representation:
 
     (TupleType (FloatType) (FloatType) (FloatType) (FloatType))
 
-There are two exceptions to this rule. First of all, in function
-definitions (`fn` commands) the function arguments are enclosed in an
-additional set of parentheses. For example, this function:
+There is one exception to this rule: in function definitions (`fn`
+commands) the function arguments are enclosed in an additional set of
+parentheses. For example, this function:
 
     fn f(i : int, j : int) : int {
         return [i, j] 
@@ -119,21 +118,6 @@ has the following S-expression representation:
 
 This is necessary for the S-expression representation to be
 unambiguous.
-
-Be careful when parsing `array` and `sum` loops. The loop
-
-    sum[i : H, j : W] f(i, j)
-
-has the following S-expression representation:
-
-    (SumLoopExpr i (VarExpr H) j (VarExpr W)
-     (CallExpr (VarExpr i) (VarExpr j)))
-    
-Note that in the `SumLoopExpr`, the `i` and `j` are `<variable>`s,
-stored as a string on the `SumLoopExpr` AST node, so they are just
-printed directly, but inside the loop body, the `i` and `j` are
-`<expr>`s, stored inside the `CallExpr` as `VarExpr` AST nodes, so
-they are printed as `(VarExpr i)` and `(VarExpr j)`.
 
 ## Avoiding infinite loops
 
@@ -183,7 +167,7 @@ to implement. You can run it on any test file to see the correct
 parsing of that file:
 
     ~/Downloads $ ./jplc-macos -p ~/jpl/examples/cat.jpl
-    (ShowCmd (ArrayLoopExpr ((x 1)) (ArrayIndexExpr y 0)))
+    (ShowCmd (CallExpr f (ArrayIndexExpr y 0)))
     Compilation succeeded: parsing complete
 
 Naturally, this JPL interpreter is a program and can have bugs. If you
