@@ -43,10 +43,29 @@ Note that in this grammar the semicolon `;` represents a `NEWLINE`
 token. Informally, this subset is all of JPL except for most of the
 expressions.
 
-As in Homework 3, your parser must produce S-expression parse trees
-when passed the `-p` and print `Compilation failed` or `Compilation
-succeeded` when parsing. We will use this when testing your
-code. The new AST node names are:
+**We are changing how we call your compiler from this assignment on.**
+From now on, we will call your compiler's `Makefile` with two
+arguments: `TEST`, which points to the program you want to compile,
+and `FLAGS`, which are the JPL compiler flags. As in,
+
+    make run TEST=/grader/ok/001.jpl FLAGS=-p
+
+Your Makefile should have a `run` rule like this:
+
+    run: compiler.class
+        java compiler $(FLAGS) $(TEST)
+
+A similar rule will apply to whatever language you are using; replace
+the explicit `-p` in your `Makefile` with `$(FLAGS)`.
+
+In this homework, the your compiler will be called with `FLAGS=-p`.
+We're making this change so that it's easier for you to test older
+homeworks, which increasingly you're going to want to do.
+
+As in Homework 3, the `-p` flag must cause your compiler to produce
+S-expression output and print `Compilation failed` or `Compilation
+succeeded`. We will use this when testing your code. The new AST node
+names are:
 
     ArrayType TupleType
     TupleLiteralExpr ArrayLiteralExpr TupleIndexExpr ArrayIndexExpr CallExpr
@@ -161,10 +180,9 @@ list of tokens and stop.
 
 # Testing your code
 
-Just like in the last homework, the JPL interpreter in the
-"[Releases][releases]" supports the `-p` operation you are being asked
-to implement. You can run it on any test file to see the correct
-parsing of that file:
+As before, the JPL interpreter available in the "[Releases][releases]"
+supports the `-p` operation you are being asked to implement. You can
+run it on any test file to see the correct parsing of that file:
 
     ~/Downloads $ ./jplc-macos -p ~/jpl/examples/cat.jpl
     (ShowCmd (CallExpr f (ArrayIndexExpr y 0)))
