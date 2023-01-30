@@ -41,8 +41,9 @@ comparison; boolean binary operators; and finally the prefix operators
 `if`, `array`, and `sum`. Additionally, the binary operators need to
 be disambiguated with regards to associativity (always left).
 
-Your parser is required to get the associativity correct even for
-operators where it doesn't matter, like integer and boolean operators.
+Even if you think that both parse trees are equally good (like for
+`1 + 2 + 3`), your parser *must* return the parse tree specified above
+(that is, `(1 + 2) + 3`).
 
 ## Printing the output
 
