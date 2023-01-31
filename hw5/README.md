@@ -128,9 +128,20 @@ does match the grammar given at the top of this assignment because:
     (array[] x) + 1 is an <expr> via "expr : <expr> + <expr>"
 
 This tells you that the grammar at the top of this assignment is
-incorrect and needs further disambiguation. Make sure to test the
-"right" parse trees too, because it is easy to accidentally write a
-grammar that rejects too much.
+incorrect and needs further disambiguation.
+
+Make sure to test the "right" parse trees too, because it is easy to
+accidentally write a grammar that rejects too much. For example,
+consider this expression:
+
+    -sum[i : 50] i
+
+this is unambiguous and only has one parse tree, even with the
+ambiguous grammar at the top of this assignment. Your disambiguated
+grammar must therefore continue to parse it, and it's easy to
+accidentally write a grammar that rejects it. Likewise, check nested
+`if` expressions and combinations of `if` and `array` to make sure
+they are still parsed by your disambiguated grammar.
 
 You are done disambiguating when your grammar rejects all the "wrong"
 parse trees but still accepts the "right" parse trees. If you'd like,
