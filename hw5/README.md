@@ -33,17 +33,30 @@ expr : <expr> + <expr>
 ```
 
 Importantly, this grammar is ambiguous as written, and must be
-disambiguated using JPL's [precedence rules](../spec.md#Expressions),
-which in short give the following precedence order: indexing (which
-you implemented last time); unary prefix operators; multiplicative
-operators; additive operators; ordered comparison; unordered
-comparison; boolean binary operators; and finally the prefix operators
-`if`, `array`, and `sum`. Additionally, the binary operators need to
-be disambiguated with regards to associativity (always left).
+disambiguated using JPL's [precedence rules](../spec.md#Expressions):
+
+| Operation                                            | Associativity |
+|------------------------------------------------------|---------------|
+| Indexing with `{ <integer> }` and `[ <expr> , ... ]` | Postfix       |
+| Unary inverse `!` and negation `-`                   | Prefix        |
+| Multiplicative operations `*`, `/`, and `%`          | Left          |
+| Additive operations `+` and `-`                      | Left          |
+| Ordered comparison `<`, `>`, `<=`, and `>=`          | Left          |
+| Unordered comparison `==` and `!=`                   | Left          |
+| Boolean operators `&&` and ``                        | Left          |
+| Prefix operators `array`, `sum`, and `if`            | Prefix        |
+
+The first row is the highest precedence. Note that unlike many
+languages, `&&` and `||` have the same precedence in JPL, so an
+expression like `a || b && c` is parsed as `(a || b) && c`. This is a
+purposeful simplification. All operators are left-associative.
 
 Even if you think that both parse trees are equally good (like for
-`1 + 2 + 3`), your parser *must* return the parse tree specified above
-(that is, `(1 + 2) + 3`).
+`1 + 2 + 3`), your parser *must* return the parse tree specified by
+the associativity and precedence above (that is, `(1 + 2) + 3`). This
+goes even for expressions where the types don't work; for example, you
+*must* parse `a < b < c` as `(a < b) < c` even though that's type
+invalid.
 
 ## Printing the output
 
