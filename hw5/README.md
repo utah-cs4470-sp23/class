@@ -41,8 +41,7 @@ disambiguated using JPL's [precedence rules](../spec.md#Expressions):
 | Unary inverse `!` and negation `-`                   | Prefix        |
 | Multiplicative operations `*`, `/`, and `%`          | Left          |
 | Additive operations `+` and `-`                      | Left          |
-| Ordered comparison `<`, `>`, `<=`, and `>=`          | Left          |
-| Unordered comparison `==` and `!=`                   | Left          |
+| Comparison `<`, `>`, `<=`, and `>=`, `==`, `!=`      | Left          |
 | Boolean operators `&&` and `\|\|`                    | Left          |
 | Prefix operators `array`, `sum`, and `if`            | Prefix        |
 
@@ -109,14 +108,14 @@ represented internally, as long as they print correctly.
 
 ## Handling precedence
 
-JPL has eight levels of precedence; until now, your implementation
+JPL has seven levels of precedence; until now, your implementation
 only had one (for postfix indexing expressions) or perhaps two (as you
 may have separated out literal expressions in your implementation).
 
 To handle precedence, you'll need to split the grammar given above
-into having multiple levels of expressions---eight or perhaps 9
+into having multiple levels of expressions---seven or perhaps eight
 depending on how you do it. We recommend giving them memorable names
-like `expr_ordered`, `expr_additive`, `expr_unop`, and similar.
+like `expr_comparison`, `expr_additive`, `expr_unop`, and similar.
 Otherwise you will frequently get confused.
 
 Writing a disambiguated grammar is tricky, and you may not get it
