@@ -43,7 +43,7 @@ disambiguated using JPL's [precedence rules](../spec.md#Expressions):
 | Additive operations `+` and `-`                      | Left          |
 | Ordered comparison `<`, `>`, `<=`, and `>=`          | Left          |
 | Unordered comparison `==` and `!=`                   | Left          |
-| Boolean operators `&&` and ``                        | Left          |
+| Boolean operators `&&` and `\|\|`                    | Left          |
 | Prefix operators `array`, `sum`, and `if`            | Prefix        |
 
 The first row is the highest precedence. Note that unlike many
