@@ -241,8 +241,7 @@ binding strength is:
 - Unary prefix `!` and `-` have the next-highest precedence
 - Multiplicative binary operators `*`, `/`, and `%` have third highest
 - Additive binary operators `+` and `-` are next
-- Ordered binary comparisons `<`, `>`, `<=`, `>=` are next
-- Unordered binary comparisons `==`, and `!=` are next
+- Binary comparisons `<`, `>`, `<=`, `>=`, `==`, and `!=` are next
 - Boolean binary operators `&&` and `||` are next
 - Prefix `array`, `sum`, and `if` expressions have the lowest
   precedence
