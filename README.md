@@ -5,7 +5,7 @@ CS 4470: Compilers, Spring 2023
 *Instructor*: Pavel Panchekha, pavpan@cs.utah.edu \
 *Assistant*: Taylor Allred, taylor.c.allred@utah.edu \
 *Lecture*: Mon/Wed 3:00–4:30 in WEB L122 \
-*Appointments*: https://shorturl.at/dzDJN \
+*Appointments*: Pavel: https://shorturl.at/dzDJN; Taylor: https://calendar.app.google/WJaC7S5Nk29Gx8fy6 \
 *Office Hours*: Thu 12:00–1:00 in MEB 3115 \
 *Discord*: https://discord.gg/fHvWXgdFv2 \
 *Github*: https://github.com/utah-cs4470-sp23/class
