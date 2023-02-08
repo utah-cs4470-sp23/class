@@ -35,10 +35,10 @@ expr : <integer>
      | <expr> && <expr>
      | <expr> || <expr>
      | ! <expr>
-     | if <expr> then <expr> else <expr>
      | { <expr> , ... }
      | [ <expr> , ... ]
      | ( <expr> )
+     | if <expr> then <expr> else <expr>
      | <expr> { <integer> }
      | <expr> [ <expr> , ... ]
 ```
@@ -46,11 +46,10 @@ expr : <integer>
 The only command of interest is the `show` command, because in this
 assignment we want to focus on type checking expressions only. The
 missing expressions (which you don't need to handle in this
-assignment) are `VarExpr`, `CallExpr`, `ArrayLoopExpr`, and
-`SumLoopExpr`.
+assignment) are `CallExpr`, `ArrayLoopExpr`, and `SumLoopExpr`.
 
 Additionally, in this subset, there will only be one variable name
-used, `pict`, which your type checker must assign the type
+used, `pict.`, which your type checker must assign the type
 `{float,float,float,float}[,]`, the usual JPL type for images. We'll
 make the handling of variables more complicated in the next
 assignment, but for now, it keeps things simple.
