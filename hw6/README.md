@@ -242,11 +242,11 @@ The rubrik is:
 
 | Weight | Function |
 |--------|----------|
-| 45%    | Part 1   |
-| 25%    | Part 2   |
-| 10%    | Part 3   |
-| 10%    | Part 4   |
-| 10%    | Part 5   |
+| 35%    | Part 1   |
+| 20%    | Part 2   |
+| 15%    | Part 3   |
+| 15%    | Part 4   |
+| 15%    | Part 5   |
 
 Your solutions will be auto-graded. The auto-grader will use Github
 Actions and runs on Ubuntu using the tests described above.
