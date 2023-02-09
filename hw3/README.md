@@ -13,7 +13,6 @@ assignment, the focus will be on two key steps:
 Formally, for this assignment you'll build a parser for a subset of
 JPL.
 
-
 ```
 cmd  : read image <string> to <argument>
      | write image <expr> to <string>
