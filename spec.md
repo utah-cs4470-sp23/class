@@ -130,7 +130,7 @@ For tuples, each expression can have its own type, but for array
 constructors, each expression must have the same type. Array
 constructors always produce rank-1 arrays; there's no way to directly
 construct a higher-rank array. However, an empty array constructor,
-`[]`, is invalid; we recommend making it invalid in type checking.
+`[]`, is considered type invalid.
 
 Parentheses can be used to override precedence:
 
@@ -220,9 +220,14 @@ brackets) those variables are bound to integers. `array` expressions
 yield an array, whose rank is given by the number of bindings. `sum`
 expressions yield an integer or a float, depending on the body
 expression. If the list of bindings is empty for either `array` or
-`sum`, the body expression is evaluated and returned. If any
-expression in the list of bindings returns negative number, that is a
-runtime error. If `sum` sums zero elements, it returns `0` or `0.0`.
+`sum`, the program is type-invalid.
+
+If any expression in the list of bindings returns negative number,
+that is a runtime error. On the other hand, it is valid to create an
+`array` of zero elements (of any rank) or to `sum` sums zero elements
+(which returns `0` or `0.0`). Furthermore note that it's valid to
+create, say, a `0 * 10` array, which is a 2D array with 0 rows of 10
+columns each.
 
 Function calls:
 
@@ -241,8 +246,7 @@ binding strength is:
 - Unary prefix `!` and `-` have the next-highest precedence
 - Multiplicative binary operators `*`, `/`, and `%` have third highest
 - Additive binary operators `+` and `-` are next
-- Ordered binary comparisons `<`, `>`, `<=`, `>=` are next
-- Unordered binary comparisons `==`, and `!=` are next
+- Binary comparisons `<`, `>`, `<=`, `>=`, `==`, and `!=` are next
 - Boolean binary operators `&&` and `||` are next
 - Prefix `array`, `sum`, and `if` expressions have the lowest
   precedence
