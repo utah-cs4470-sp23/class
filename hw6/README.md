@@ -112,9 +112,10 @@ classes are represented internally, as long as they print correctly.
 As discussed in class, we recommend defining a new set of types for
 type trees, separate from your types for type AST nodes. That means
 defining a top-level type for type tree (traditionally, this is called
-`Ty`) and subtypes for each kind of type (such as `IntTy`, `ArrayTy`,
-and so on). This separation will be useful to ensure that you resolve
-type definitions (the `type` command) in later assignments.
+`Ty`, but we recommend `ResolvedType`) and subtypes for each kind of
+type (such as `IntRType`, `ArrayRType`, and so on). This separation
+will be useful to ensure that you resolve type definitions (the `type`
+command) in later assignments.
 
 We additionally recommend defining a helper method to test if two
 types are equal, perhaps by overriding the `==` method if you're in
@@ -217,14 +218,11 @@ Generally speaking, Part 1 is somewhat easier than the other parts and
 we recommend you start there. Typically, Parts 3, 4, and 5 are the
 hardest, so we recommend making sure you pass all other parts first.
 
-Depending on how exactly you write your parser, you might find that
-you pass Parts 3, 4, and 5 very early. This usually happens because
-you haven't actually implemented any of the JPL subset and therefore
-reject all programs. That means you successfully reject invalid
-programs, passing Parts 3, 4, and 5. However, don't get too excited:
-you're rejecting these programs for the wrong reason, and will
-probably stop rejecting some of them once you implement the full JPL
-subset type checker.
+Depending on how exactly you write your type checker, you might find
+that you pass Parts 1 and 2 very early. This usually happens because
+your type checker isn't actually checking anything and therefore not
+rejecting any programs. As you start implementing your type checker,
+you will start rejecting programs.
 
 # Submission and grading
 
