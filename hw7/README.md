@@ -243,8 +243,8 @@ The rubrik is:
 |--------|----------|
 | 30%    | Part 1   |
 | 30%    | Part 2   |
-| 20%    | Part 3   |
-| 20%    | Part 4   |
+| 25%    | Part 3   |
+| 15%    | Part 4   |
 
 Your solutions will be auto-graded. The auto-grader will use Github
 Actions and runs on Ubuntu using the tests described above.
