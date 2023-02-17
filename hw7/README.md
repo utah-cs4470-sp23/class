@@ -202,17 +202,13 @@ Pretty-printing and comparing these S-expression outputs works as in
 
 You can find the tests and expected outputs [in the auto-grader
 repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw6).
-These tests come in six parts, corresponding to the five directories
-of tests.
 
-The directories `vardef` (Part 1), `fancyarg` (Part 2), `fundef` (Part
-3), and `typedef` (Part 4) contain both valid and invalid JPL
-programs. These are hand-written and intended to guide you through the
-recommended parts of this assignment.
+The directories `ok` (Part 1) and `fail` (Part 2) contain valid and
+invalid hand-written JPL programs to guide you through this
+assignment.
 
-The directories `ok-fuzzer` (Part 5) and `fail-fuzzer` (Part 6)
-contain auto-generated valid and invalid JPL programs, as in previous
-assignments.
+The `ok-fuzzer` (Part 3), and `fail-fuzzer` (Part 4) directories, on
+the other hand, contain valid and invalid auto-generated JPL programs.
 
 You can run these tests on your computer by downloading the
 auto-grader and running it like so:
@@ -223,12 +219,11 @@ We recommend trying to get each part working fully before moving on to
 the next one.
 
 Depending on how exactly you write your type checker, you might find
-that you pass Part 6 very early. This usually happens because you
-haven't actually implemented much of JPL and therefore reject all
-programs. That means you successfully reject invalid programs, passing
-Parts 6. However, don't get too excited: you're rejecting these
-programs for the wrong reason, and will probably stop rejecting some
-of them once you implement the full JPL type checker.
+that you pass Parts 2 and 4 very early. This usually happens because
+you haven't actually implemented much of JPL and therefore reject all
+of those programs. However, don't get too excited: you're rejecting
+these programs for the wrong reason, and will probably stop rejecting
+some of them once you implement the full JPL type checker.
 
 # Submission and grading
 
@@ -246,12 +241,10 @@ The rubrik is:
 
 | Weight | Function |
 |--------|----------|
-| 20%    | Part 1   |
-| 15%    | Part 2   |
+| 30%    | Part 1   |
+| 30%    | Part 2   |
 | 20%    | Part 3   |
-| 15%    | Part 4   |
-| 10%    | Part 5   |
-| 20%    | Part 6   |
+| 20%    | Part 4   |
 
 Your solutions will be auto-graded. The auto-grader will use Github
 Actions and runs on Ubuntu using the tests described above.

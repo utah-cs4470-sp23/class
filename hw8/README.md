@@ -42,23 +42,14 @@ your compiler must continue printing the type of that expression. Note
 that this type _must be a resolved type_, that is, it must not contain
 `VarType`s.
 
-## Function and type information
+## Resolving types
 
-Extend your symbol table to store function and type information by
-adding two new subclasses of `NameInfo`: `FunctionInfo`, and
-`TypeInfo`.
+Extend your symbol table to store type information by adding a new
+subclasses of `NameInfo` named `TypeInfo`. A `TypeInfo` stores the
+`ResolvedType` the name is defined as.
 
-A `FunctionInfo` stores a list of `ResolvedType`s for the argument
-types, a `ResolvedType` for the return type, and a child symbol table.
-That child symbol table is the symbol table used for checking the
-function body, and will be useful to us when writing the compiler
-back-end.
-
-A `TypeInfo` stores the `ResolvedType` the name is defined as.
-
-Now, add handling for the `type` command. A `type` command should
-resolve its type argument to a `ResolvedType` and add that to the
-symbol table as a `TypeInfo`.
+To handle a `type` command, resolve the `Type` to a `ResolvedType` and
+add that to the symbol table as a `TypeInfo`.
 
 You likely already have a `resolve_type` method that converts a `Type`
 AST node into a `ResolvedType`. Extend that function to take a symbol
@@ -66,17 +57,39 @@ table argument. When you attempt to resolve a `VarType`, look up the
 variable name in the symbol table; check that the name has a
 `TypeType`; and extract the actual type from within the `TypeType`.
 
-Test that `type` commands work properly. Now that you've added support
-for type definitions, be very careful with the difference between
-`Type`s, which are AST nodes, and `ResolvedType`s, which are the
-actual, concrete types of values. The rest of your compiler should
-only use `ResolvedType`s; all `Type` AST nodes should not be used once
-your type checker is done.
+Test that `type` commands work properly. For example, test that this
+is legal:
+
+```
+type a = int
+type b = {a, a}
+```
+
+However, also make sure that _recursive_ types are not allowed. For
+example, the following is not legal:
+
+```
+type z = z[]
+```
+
+Now that you've added support for type definitions, be very careful
+with the difference between `Type`s, which are AST nodes, and
+`ResolvedType`s, which are the actual, concrete types of values. The
+rest of your compiler should only use `ResolvedType`s; all `Type` AST
+nodes should not be used once your type checker is done.
 
 ## Handling function calls
 
-Next, add support for function _calls_. When type checking a function
-call, you must:
+Next, add support for function _calls_. To do that, you will need to
+store `FunctionInfo` in your symbol tables.
+
+A `FunctionInfo` stores a list of `ResolvedType`s for the argument
+types, a `ResolvedType` for the return type, and a child symbol table.
+That child symbol table is the symbol table used for checking the
+function body, and will be useful to us when writing the compiler
+back-end.
+
+When type checking a function call, you must:
 
 - Type check all subexpressions (the function arguments)
 - Look up the function name
@@ -96,22 +109,20 @@ these functions.
 
 ## Handling function definitions
 
-Now move on to type checking function definitions. For now, assume all
-bindings are the simple case:
+Now move on to type checking function definitions.
 
-```
-binding : <argument> : <type>
-```
+One challenge is handling bindings. To keep this simple, write a
+function that converts a `Binding` into a pair of `LValue` and `Type`.
+This is straightforward for both types of bindings.
 
 To type-check a function definition, you need to:
 
-- Extract the `Argument` and `Type` from each parameter
+- Extract the `LValue` and `Type` from each `Binding`
 - Resolve the argument and return types
 - Create a child symbol table, which will be used for function scope
-- Construct a `FunctionInfo` with those argument & return types, and
-  child symbol table
+- Add each `LValue` to the child symbol table, with its corresponding `ResolvedType`
+- Construct a `FunctionInfo` for the function itself
 - Add that `FunctionInfo` to the global symbol table
-- Add each binding to the _child_ symbol table using `add_binding`
 - Type check each statement inside the function
 
 For type checking statements, you will need to write a new `type_stmt`
@@ -125,26 +136,6 @@ type as the function's declared return type. Therefore, add an
 argument to `type_stmt` for the function's declared return type,
 and use that when type checking `return` statments.
 
-## Handling complex bindings
-
-Finally, extend your handling of function arguments to handle tuple
-binding:
-
-```
-binding : { <binding> , ... }
-```
-
-To keep this simple, write a function that converts a `Binding` into a
-pair of `LValue` and `Type`. This is straightforward for both types of
-bindings.
-
-Now, modify your handling of function parameters. For each function
-parameter, you will need to:
-
-- Convert the `Binding` into an `LValue` and a `Type`
-- Resolve the `Type`
-- Add the `LValue` to the child symbol table
-
 Make sure to test your code with complicated recursive bindings, such
 as the following:
 
@@ -153,6 +144,17 @@ fn foo({{x : int}, {}, {y : int, z : {int, int}}}, {}, w : int) : int {
     return x + w
 }
 ```
+
+Also make sure that recursive function calls work, as in:
+
+```
+fn plus(x : int, y : int) : int {
+    return if x == 0 then y else plus(x - 1, y + 1)
+}
+```
+
+As a reminder, recursive function _are_ legal in JPL, but _mutually
+recursive_ functions are not.
 
 # Testing your code
 
@@ -179,17 +181,13 @@ Pretty-printing and comparing these S-expression outputs works as in
 
 You can find the tests and expected outputs [in the auto-grader
 repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw6).
-These tests come in six parts, corresponding to the five directories
-of tests.
 
-The directories `vardef` (Part 1), `fancyarg` (Part 2), `fundef` (Part
-3), and `typedef` (Part 4) contain both valid and invalid JPL
-programs. These are hand-written and intended to guide you through the
-recommended parts of this assignment.
+The directories `ok` (Part 1) and `fail` (Part 2) contain valid and
+invalid hand-written JPL programs to guide you through this
+assignment.
 
-The directories `ok-fuzzer` (Part 5) and `fail-fuzzer` (Part 6)
-contain auto-generated valid and invalid JPL programs, as in previous
-assignments.
+The `ok-fuzzer` (Part 3), and `fail-fuzzer` (Part 4) directories, on
+the other hand, contain valid and invalid auto-generated JPL programs.
 
 You can run these tests on your computer by downloading the
 auto-grader and running it like so:
@@ -200,16 +198,15 @@ We recommend trying to get each part working fully before moving on to
 the next one.
 
 Depending on how exactly you write your type checker, you might find
-that you pass Part 6 very early. This usually happens because you
-haven't actually implemented much of JPL and therefore reject all
-programs. That means you successfully reject invalid programs, passing
-Parts 6. However, don't get too excited: you're rejecting these
-programs for the wrong reason, and will probably stop rejecting some
-of them once you implement the full JPL type checker.
+that you pass Parts 2 and 4 very early. This usually happens because
+you haven't actually implemented much of JPL and therefore reject all
+of those programs. However, don't get too excited: you're rejecting
+these programs for the wrong reason, and will probably stop rejecting
+some of them once you implement the full JPL type checker.
 
 # Submission and grading
 
-This assignment is due Friday Feb 24.
+This assignment is due Friday March 3.
 
 We are happy to discuss problems and solutions with you on Discord, in
 office hours, or by appointment.
@@ -223,12 +220,10 @@ The rubrik is:
 
 | Weight | Function |
 |--------|----------|
-| 20%    | Part 1   |
-| 15%    | Part 2   |
+| 30%    | Part 1   |
+| 30%    | Part 2   |
 | 20%    | Part 3   |
-| 15%    | Part 4   |
-| 10%    | Part 5   |
-| 20%    | Part 6   |
+| 20%    | Part 4   |
 
 Your solutions will be auto-graded. The auto-grader will use Github
 Actions and runs on Ubuntu using the tests described above.
