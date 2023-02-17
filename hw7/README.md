@@ -2,33 +2,42 @@ Assignment 7: Names and Scopes
 ==============================
 
 For this assignment you will extend your type checker to build symbol
-tables and handle names.
+tables and handle variable definitions.
  
-## The expression subset
+## The command subset
 
-In this assignment, you will extend your type checker to handle all of
-JPL, including all types of expressions, statements, and commands.
-Since you have already built a type checker for (most) expressions in
-the [previous assignment](../hw6/README.md), your focus won't be type
-checking rules; instead, this assignment will focus on handling names.
+In this assignment, you will extend your type checker to handle most
+of JPL---all of the types of expressions and commands, except for type
+and function definitions. Since you have already built a type checker
+for (most) expressions in the [previous assignment](../hw6/README.md),
+this assignment will focus on handling names.
 
-Importantly, you must also add support for all of JPL's built-in
-functions and values, including:
+Specifically, you add support for the following subset of JPL:
 
-- `args` and `argnum`
-- `sqrt`, `exp`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `log`
-- `pow` and `atan2`
-- `to_int` and `to_float`
+```
+expr : array [ <variable> : <expr> , ... ] <expr>
+     | sum [ <variable> : <expr> , ... ] <expr>
 
-Consult the [JPL specification](../spec.md) for the types of these
-constructs.
+cmd  : read image <string> to <argument>
+     | write image <expr> to <string>
+     | let <lvalue> = <expr>
+     | assert <expr> , <string>
+     | print <string>
+     | time <cmd>
+
+argument : <variable> [ <variable> , ... ]
+
+lvalue : { <lvalue> , ... }
+```
+
+Additionally, you should remove the hard-coded type for `pict.` and
+replace it with a proper symbol table to resolve the types of
+variables.
 
 As before, your parser must implement the `-t` and print `Compilation
 failed` or `Compilation succeeded` when type checking. We will use
 this when testing your compiler. Additionally, for each expression,
-your compiler must continue printing the type of that expression. Note
-that this type _must be a resolved type_, that is, it must not contain
-`VarType`s.
+your compiler must continue printing the type of that expression.
 
 ## Representing symbol tables
 
@@ -37,15 +46,10 @@ members: a reference to a parent `SymbolTable` (which will be `null`
 for the root symbol table) and a map from strings to a `NameInfo`
 class.
 
-Define three subclasses of `NameInfo`: `ValueInfo`, `FunctionInfo`,
-and `TypeInfo`. A `ValueInfo` just stores a `ResolvedType` (maybe you
-called them `Ty`) for now; later on, it will store more things. A
-`FunctionInfo` stores a list of `ResolvedType`s for the argument
-types, a `ResolvedType` for the return type, and a child symbol table.
-A `TypeInfo` stores the `ResolvedType` the name is defined as.
-
-For now, `NameInfo` will only contain a resolved type, but introducing
-this class now will save you some refactoring in future assignments.
+For now, you'll only need one subclass of `NameInfo`: `VariableInfo`,
+which will just store a `ResolvedType` for the type of the variable.
+(In Assignment 8, you will add handling for function and type
+definitions, and end up with more subclasses of `NameInfo`.)
 
 We recommend defining three helper functions on `SymbolTable`s: `add`,
 `get`, and `has`. The behavior should be clear from the name, noting
@@ -60,6 +64,30 @@ assignment just looped over a bunch of `ShowCmd`s) should now create
 and the global symbol table at the start and return the global symbol
 table at the end. The rest of your compiler will need this global
 symbol table.
+
+## Adding commands
+
+To begin, add type checking for all of the commands that don't bind
+new variables:
+
+```
+cmd  : write image <expr> to <string>
+     | assert <expr> , <string>
+     | print <string>
+     | time <cmd>
+```
+
+To do so, we recommend defining a `type_cmd` function, which takes as
+input a `Cmd` AST node and a symbol table and type checks the given
+command. Note that commands don't return values (unlike expressions)
+so the `type_cmd` function does not need to return anything. However,
+it does need to typecheck all subexpressions and check some type
+rules. For example, in an `assert` expression, you must check that the
+asserted expression evaluates to a boolean.
+
+Additionally, set up your initial global symbol table to give the
+correct types for the `args` and `argnum` built-in variables. Consult
+the [JPL specification](../spec.md) for their types.
 
 ## Handling variable definitions and uses
 
@@ -89,6 +117,8 @@ current symbol table. Make sure that an exception is raised (either by
 `SymbolTable.add` or by the `let` command handler) if the variable
 already exists in the symbol table.
 
+## Array and sum expressions
+
 Once this works, extend the grammar to handle loop expression:
 
 ```
@@ -99,8 +129,13 @@ expr : array [ <variable> : <expr> , ... ] <expr>
 When type checking `array` and `sum` loops, make sure to type check
 the _body_ of the loop using a new symbol table. That new symbol table
 should be the child of the current symbol table, with all of the
-variables added to it, mapping to integer types. (You must still
-enforce all of the other type rules for `array` and `sum`!)
+variables added to it, mapping to integer types.
+
+You must enforce all of the other type rules for `array` and `sum`.
+For example, you must ensure that all the loop bounds evaluate to
+integers, that the body of a `sum` expression has a numeric type, and
+you must return an array type of the proper size from an `array`
+expression.
 
 If you do it right, after you add type checking for `array` and `sum`,
 you won't need to modify your `VarExpr` handling at all.
@@ -140,87 +175,7 @@ the same argument or lvalue, as in:
     let a[a] = [1]
     let {a, a} = {1, 2}
     
-(Both of these are invalid in JPL.)
-
-## Handling function definitions and uses
-
-Next, we recommend adding support for function definitions and
-function calls. This involves a couple of complex pieces.
-
-Start with function _calls_. When type checking a function call, you
-must:
-
-- Type check all subexpressions
-- Look up the function name
-- Check that it is, in fact, a function (it must have a `FunctionInfo`)
-- Check that the right number of arguments have been passed
-- Check that each subexpressions's type is equal to the corresponding
-  argument type
-- Return the function's return type
-
-Make sure to include each of these checks! For example, it's easy to
-miss the check that you're passing the correct number of arguments; in
-JPL that is required.
-
-To test function calls, initialize your global symbol table with all
-of the built-in JPL functions like `sin` or `to_int`. Test calls to
-these functions.
-
-Now move on to type checking function definitions. The challenge here
-is handling bindings.
-
-Create a `ResolvedBinding` class and `ArgumentRBinding` /
-`TupleRBinding` subclasses. These are identical to their `Binding`
-equivalents, but contains `ResolvedType`s instead of `Type`s. Write a
-`resolve_binding` method which converts a `Binding` to a
-`ResolvedBinding`.
-
-Implement a `type_binding` method. It should take a `ResolvedBinding`
-and return a `ResolvedType` for the type of arguments that can be
-passed to that binding.
-
-Implement a `SymbolTable.add_binding` method. It should take a
-`ResolvedBinding` and add it to a symbol table. Note that bindings
-know their types, so you only need one argument to this method.
-
-Now you can check function definitions. Be careful, because there are
-a lot of steps:
-
-- Resolve all bindings by calling `resolve_binding`
-- Get types for each argument by calling `type_binding`
-- Resolve the return type
-- Construct a `FunctionInfo` with those argument & return types
-- Add that `FunctionInfo` to the global symbol table
-- Create a child symbol table, which will be used for function scope
-- Add each binding to the _child_ symbol table using `add_binding`
-- Type check each statement
-
-For type checking statements, you will need to write a new `type_stmt`
-function. This function takes in a `SymbolTable` and a `ResolvedType`
-for the return type, and returns nothing (but updates the
-`SymbolTable`). Handling the three types of statements (`let`,
-`assert`, and `return`) should be straightforward.
-
-## Resolving types
-
-Finally, we recommend adding type resolution.
-
-First, add handling for the `type` command. A `type` command should
-resolve its type argument to a `ResolvedType`, wrap that into a
-`TypeType`, and add that to the symbol table.
-
-You likely already have a `resolve_type` method that converts a `Type`
-AST node into a `ResolvedType`. Extend that function to take a symbol
-table argument. When you attempt to resolve a `VarType`, look up the
-variable name in the symbol table; check that the name has a
-`TypeType`; and extract the actual type from within the `TypeType`.
-
-Test that `type` commands work properly.
-
-Finally, add support for all other types of commands, including `read`
-and `write` commands, `show` commands, `time` commands, and `assert`
-commands. All of these should be straightforward, given the helper
-methods you've implemented.
+Both of these assignments are invalid in JPL.
 
 # Testing your code
 
