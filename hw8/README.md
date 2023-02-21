@@ -134,7 +134,9 @@ However, the `return` statement needs some special care, because for a
 `return` statement to be valid, it must return a value of the same
 type as the function's declared return type. Therefore, add an
 argument to `type_stmt` for the function's declared return type,
-and use that when type checking `return` statments.
+and use that when type checking `return` statments. On the other hand,
+as long as the return type is not `{}` (an empty tuple), a `return`
+statement is necessary. You must check for this.
 
 Make sure to test your code with complicated recursive bindings, such
 as the following:
