@@ -98,6 +98,7 @@ the following new JPL constructs:
 expr : <variable>
 
 cmd : let <lvalue> = <expr>
+    | read image <string> to <lvalue>
 
 lvalue : <argument>
 
@@ -116,6 +117,9 @@ extract the variable name being defined and add that name to the
 current symbol table. Make sure that an exception is raised (either by
 `SymbolTable.add` or by the `let` command handler) if the variable
 already exists in the symbol table.
+
+When handling a `read` command, the value being read always has the
+same type, `{float,float,float,float}[,]`.
 
 ## Array and sum expressions
 

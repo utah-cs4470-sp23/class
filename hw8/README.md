@@ -55,7 +55,7 @@ You likely already have a `resolve_type` method that converts a `Type`
 AST node into a `ResolvedType`. Extend that function to take a symbol
 table argument. When you attempt to resolve a `VarType`, look up the
 variable name in the symbol table; check that the name has a
-`TypeType`; and extract the actual type from within the `TypeType`.
+`TypeInfo`; and extract the actual type from within the `TypeInfo`.
 
 Test that `type` commands work properly. For example, test that this
 is legal:
