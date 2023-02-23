@@ -110,7 +110,8 @@ additional paramter for the current symbol table.
 
 Remove your hard-coded handling of `pict.` when type checking
 `VarExpr`s. Instead, look up the variable name in the symbol table,
-check that the name maps to `ValueInfo`, and return that value's type.
+check that the name maps to `VariableInfo`, and return that value's
+type.
 
 When handling a `let` command, type check the expression, and then
 extract the variable name being defined and add that name to the
