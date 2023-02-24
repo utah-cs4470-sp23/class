@@ -98,7 +98,7 @@ the following new JPL constructs:
 expr : <variable>
 
 cmd : let <lvalue> = <expr>
-    | read image <string> to <lvalue>
+    | read image <string> to <argument>
 
 lvalue : <argument>
 
