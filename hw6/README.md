@@ -72,6 +72,14 @@ will use this when testing your compiler.
 
 ## Printing the output
 
+As discussed in class, we recommend defining a new set of types for
+type trees, separate from your types for type AST nodes. That means
+defining a top-level type for type tree (traditionally, this is called
+`Ty`, but we recommend `ResolvedType`) and subtypes for each kind of
+type (such as `IntRType`, `ArrayRType`, and so on). This separation
+will be useful to ensure that you resolve type definitions (the `type`
+command) in later assignments.
+
 Much like in the parser, your type checker must produce S-expression
 parse trees when passed the `-t` and print `Compilation failed` or
 `Compilation succeeded` when type checking. The only difference from
@@ -98,24 +106,17 @@ type, because it is not an expression.
 The goal of this output format is to allow you to reuse as much
 S-expression output code as possible.
 
-We recommend internally adding a `Type` field to the `Expr` superclass
-of all expression AST nodes, whose value is initialized to `null` (or
-your language's equivalent) and which is set by the type checker. Then
-modify whatever method you use to produce S-expression to include that
-field in the output if it is not `null`. You ought to be able to
-support both the parser output and the type checker output without
-much extra work. That said, it is ultimately up to you how your AST
-classes are represented internally, as long as they print correctly.
+We recommend internally adding a `ResolvedType` field to the `Expr`
+superclass of all expression AST nodes, whose value is initialized to
+`null` (or your language's equivalent) and which is set by the type
+checker. Then modify whatever method you use to produce S-expression
+to include that field in the output if it is not `null`. You ought to
+be able to support both the parser output and the type checker output
+without much extra work. That said, it is ultimately up to you how
+your AST classes are represented internally, as long as they print
+correctly.
 
 ## Computing types
-
-As discussed in class, we recommend defining a new set of types for
-type trees, separate from your types for type AST nodes. That means
-defining a top-level type for type tree (traditionally, this is called
-`Ty`, but we recommend `ResolvedType`) and subtypes for each kind of
-type (such as `IntRType`, `ArrayRType`, and so on). This separation
-will be useful to ensure that you resolve type definitions (the `type`
-command) in later assignments.
 
 We additionally recommend defining a helper method to test if two
 types are equal, perhaps by overriding the `==` method if you're in
