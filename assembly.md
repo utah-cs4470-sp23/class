@@ -1,4 +1,14 @@
-# x86_64 Assembly Handbook for your JPL compiler
+x86_64 Assembly Handbook for your JPL compiler
+----------------------------------------------
+
+This document describes everything you need to know about assembly and
+low-level programming to generate code for your JPL compiler.
+
+# Assembly tools
+
+This section has short tips on how to work with assembly code.
+
+## Compiling and running
 
 You will be using an assembler called NASM. We picked this assembler
 because it is user-friendly (compared to other assemblers) and
@@ -8,7 +18,6 @@ manual][manual].
 [tutorial]: https://cs.lmu.edu/~ray/notes/nasmtutorial/
 [manual]: https://nasm.us/doc/nasmdoc0.html
 
-# Using the tools
 
 You can assemble some assembly code like this:
 
@@ -190,15 +199,31 @@ Naturally, you put the function's name instead of `jpl_main`. For
 weird macOS reasons, always two labels for each function, one with and
 one without a prefix underscore.
 
+Your compiler should produce all of the defined functions in file
+order, with `jpl_main` being last.
+
 Inside the function body are instructions. The general form of an
 assembly instruction looks like this:
 
-    LABEL: INSTRUCTION WIDTH DESTINATION, ARGUMENT ; COMMENT
+    LABEL: INSTRUCTION WIDTH ARGUMENT, ARGUMENT ; COMMENT
     
 Labels are optional and name locations in the binary code. (This is how
 "functions" work; they are nothing more than locations in the code.)
 In NASM, it's best to start labels that aren't functions with a
 period. This makes them "local" to that function.
+
+Instructions have an optional width. The width is usually inferred
+from the operands so you should not need to specify it. Different
+instructions have different numbers of operands, but the *destination*
+register always comes first. Semicolons start a line comment.
+
+Besides a register name, an argument can also be an "immediate" (which
+in NASM you write as a decimal number) or an "indirect" location,
+which refers to a memory location. The indirect location like `[rsp +
+8]` refers to the memory location whose address is RSP plus 8 bytes.
+x86\_64 has some very fancy addressing modes like `[rdi + 8 * rsp +
+16]`, but we wont' use them. In x86\_64, at least one argument is
+pretty much always a register.
 
 Instructions come from the x86\_64 ISA. The comprehensive source is the
 [Intel Manuals, Volume 2][intel-manuals], but the most convenient way
@@ -250,18 +275,6 @@ When reading about assembly instruction, note that:
 [felix]: https://www.felixcloutier.com/x86/
 [setcc]: https://www.felixcloutier.com/x86/setcc
 
-Instructions have an optional width. The width is usually inferred
-from the operands so you should not need to specify it. Different
-instructions have different numbers of operands, but the *destination*
-register always comes first. Semicolons start a line comment.
-
-Besides a register name, an argument can also be an "immediate" (which
-in NASM you write as a decimal number) or an "indirect" location,
-which refers to a memory location. The indirect location like `[rsp +
-8]` refers to the memory location whose address is RSP plus 8 bytes.
-x86_64 has some very fancy addressing modes like `[rdi + 8 * rsp +
-16]`, but we wont' use them.
-
 # The x86 Registers and Memory Layout
 
 x86_64 CPUs have 16 integer registers and 8 floating point registers
@@ -302,6 +315,7 @@ we'll need to save it like so:
     	push    rbp
     	mov     rbp, rsp
         push    r12
+        mov     r12, rbp
         ...
         pop     r12
 	    pop     rbp
@@ -309,22 +323,15 @@ we'll need to save it like so:
 
 In other functions, we just won't touch R12, so we won't need to save it.
 
-The RAX, R10, R11, and other registers are caller-saved, meaning that
-when you call a function, you should assume that those registers have
-been wiped.
+The RAX, R10, R11, and other registers we use are caller-saved,
+meaning that when you call a function, you should assume that those
+registers have been wiped.
 
 # Instructions
 
-## Pushing, popping, and copying
+## Pushing and popping
 
-You can load an integer, boolean, or floating-point constant into RAX
-like so:
-
-    mov rax, [rel NAME]
-
-Here `NAME` is the constant's name. You might want to add a comment
-with the constant's value as well. Then you can push RAX on the stack
-like so:
+Then you can push RAX on the stack like so:
 
     push rax
     
@@ -348,17 +355,47 @@ can do:
 Recall that subtracting from RSP *grows* the stack and that adding to
 RSP *shrinks* the stack.
 
-If you have two integer arguments, you can pop one into `rax` and one
-into `r10`. If you have two floating-point arguments, you'll do
-something like this:
+If you have two arguments, you can pop one into `rax` and one into
+`r10`, or one into `xmm0` and one into `xmm1`; we'll always put the
+left operand into `rax` and the right operand into `r10`.
 
-    movsd xmm0, [rsp]
-    movsd xmm1, [rsp + 8]
-    add   rsp, 16
+Sometimes we need to reserve stack space without putting anything in
+it, for example in order to call a function that returns a struct.
+That uses a plain `sub`:
+
+    sub rsp, 24 ; Reserve 24 bytes
+
+Similarly we can drop values from the stack if we no longer need them:
+
+    add rsp, 8  ; Drop 8 bytes
     
-Larger objects, like tuples or arrays, can't be moved directly into a
-register, since they are too big. However, they can be copied piece by
-piece, like so:
+When calling functions, the stack must be aligned to a multiple of 16
+bytes, which we do by reserving padding bytes and then later dropping
+them.
+
+## Copying data
+
+You can load an integer, boolean, or floating-point constant into RAX
+like so:
+
+    mov rax, [rel NAME]
+
+Here `NAME` is the constant's name. You might want to add a comment
+with the constant's value as well. Note that floating-point constants
+can be loaded into RAX, you just can't do floating-point math there.
+
+You can load a local or global variable like so:
+
+    mov rax, [rbp - 16]
+
+We will always refer to variables as offsets to RBP (or R12 for global
+variables) and intermediate values on the stack as offsets to RSP,
+though this is convention only. Note that in `jpl_main`, we refer to
+local variables (which are also global) relative to RBP.
+    
+To move things in memory, for example to move a local variable to the
+stack, we copy via the R10 register, ending up with a sequence like
+this:
 
     mov r10, [rsp + 16]
     mov [rax + 16], r10
@@ -367,12 +404,10 @@ piece, like so:
     mov r10, [rsp + 0]
     mov [rax + 0], r10
 
-This copies 24 bytes from `[rsp]` to `[rax]` via `r10`. Note that you
-can't move from memory to memory. The data has to stop over in a
-register, R10. Also note that we do the copy backwards---the furthest bytes
-first. This is because we will typically copy "up" the stack, and
-copying the highest bytes first means we won't overwrite our input
-with our output.
+This copies 24 bytes from `[rsp]` to `[rax]` via `r10`. Note that we
+do the copy backwards---the furthest bytes first. This is because we
+will typically copy "up" the stack, and copying the highest bytes
+first means we won't overwrite our input with our output.
 
 ## Arithmetic
 
@@ -384,8 +419,8 @@ You can negate a boolean with:
 
     xor rax, 1
 
-There's no instruction to negate a boolean, and many good ways to do
-so. We'll use the following ugly-but-clear method:
+There's no instruction to negate a float, and many good ways to do so.
+We'll use the following ugly-but-clear method:
 
     pxor  xmm0, xmm0
     subsd xmm0, xmm1
@@ -401,7 +436,7 @@ You can add, subtract, or multiply integers with:
 
 These operations handle overflow in exactly the way JPL expects.
 
-You can add, subtract, multiply, and divide floats with:
+You can add, subtract, and multiply floats with:
 
     addsd xmm0, xmm1
     subsd xmm0, xmm1
@@ -410,12 +445,13 @@ You can add, subtract, multiply, and divide floats with:
 Dividing and modulus is harder. You divide and modulus integers like
 so:
 
+    ; Numerator RAX
     mov  rdx, 0
     idiv r10
 
-This is a bit confusing. The input is expected in RAX. However, `idiv`
-considers its input RDX:RAX, a 128-bit number, so we zero our RDX.
-Then, we divide by the denominator, R10; note that RAX is not
+This is a bit confusing. The left operand is expected in RAX. However,
+`idiv` considers its input RDX:RAX, a 128-bit number, so we zero out
+RDX. Then, we divide by the denominator, R10; note that RAX is not
 mentioned. The result of the division is stored in RAX, while the
 modulus is stored in RDX, so in a modulus operation, you may need to:
 
@@ -462,16 +498,17 @@ Comparing integers and booleans is easy; it always takes this form:
 
 Here the `XX` refers to one of six instructions: `SETL`, `SETG`,
 `SETLE`, `SETGE`, `SETE`, or `SETNE`. The names should make it obvious
-what they do. The sequence of instructions can be a little obscure,
-though. First, we compare RAX and R10; this doesn't modify either of
-them, but it sets the flags. Then the `SETcc` operation sets the low 8
-bits of RAX to either 1 or 0. But since we can't rely on the top 56
-bits all being zero, we do a bitwise and with the constant 1, which
-zeros out all of the other bits. The result is that RAX is either 0
-or 1. For operations on booleans, you wouldn't need the `and`
-instruction, since in this case RAX is known to be either 0 or 1, but
-it's convenient to share code between integer and boolean operations
-so we keep it.
+what they do.
+
+This sequence of instructions can be a little obscure. First, we
+compare RAX and R10; this doesn't modify either of them, but it sets
+the flags. Then the `SETcc` operation sets the low 8 bits of RAX to
+either 1 or 0. But since we can't rely on the top 56 bits all being
+zero, we do a bitwise and with the constant 1, which zeros out all of
+the other bits. The result is that RAX is either 0 or 1. For
+operations on booleans, you wouldn't need the `and` instruction, since
+in this case RAX is known to be either 0 or 1, but it's convenient to
+share code between integer and boolean operations so we keep it.
 
 Comparing floating-point values is harder. The sequence of
 instructions looks like this:
@@ -490,11 +527,10 @@ arguments to the comparison instruction, and move the result (which is
 now in XMM1) to XMM0:
 
     cmpltsd xmm1, xmm0
-    movsd   xmm0, xmm1
-    movq    rax, xmm0
+    movq    rax, xmm1
     and     rax, 1
 
-The move is unnecessary, but we keep it for the sake of code sharing.
+Note that the move ends up moving XMM1, not XMM0.
 
 ## Constructing and indexing tuples
 
@@ -552,9 +588,7 @@ The `add` instruction pops the 24 bytes of arguments off the stack;
 then we push the heap pointer on the stack, followed by the array
 size, because that is how a JPL array is laid out.
 
-# Local variables
-
-... to be written ...
+... indexing arrays not yet written
 
 # Calling functions
 
@@ -569,81 +603,180 @@ because string arguments are passed as pointers.
 Float arguments are passed in `xmm0`, `xmm1`, `xmm2`, `xmm3`, `xmm4`,
 `xmm5`, `xmm6`, and `xmm7`. Float return values are located in `xmm0`.
 
+In either case, extra arguments go on the stack, in reverse order.
+
 Struct arguments are passed on the stack, so they do not require any
 registers at all. Struct return values, however, mean an extra integer
 passed as the first argument, in `rdi` (which contains a pointer to
 where that struct must be written).
 
-Calling a function requires setting up each argument; calling the
-function; adjusting the alignment; and saving the return value.
+To call a function, perform the following sequence of steps:
 
-Integer and boolean arguments are set with this bit of assembly:
+- If there's a struct return value, allocate space for it on the stack
+- Add padding so the final stack size, before the call, is a multiple
+  of 16 bytes
+- Compute every stack argument in reverse order (so that they end up
+  on the stack in the normal order)
+- Compute every register argument in reverse order
+- Pop all register arguments into their correct registers
+- If there's a struct return value, load its address into RDI
+- Execute the `call` instruction
+- Drop every stack argument
+- Drop the padding, if any
+- If the return value is in a register, push it onto the stack
 
-    mov REG, [rsp - XXX]
-             
-Here `REG` is the destination register and `XXX` is the argument's
-position on the stack.
+Note that functions that return `{}` in JPL are thought of as not
+returning a value at all, so for them ou neither need to allocate
+stack space nor push a value onto the stack.
 
-`float` arguments are moved to their destination register like so:
+Most of this uses straightforward instructions. Calling the function
+looks like this:
 
-    movsd REG, [rsp - XXX]
+    call _FN
 
-String arguments are moved to their destination register like so:
+Note the underscore; see the [Runtime Documentation][runtime], in the
+section on platform support, for details why.
 
-    lea REG, [rel NAME]
+[runtime]:https://github.com/utah-cs4470-sp23/runtime 
 
-Here `NAME` is the name of that string constant. Note that we use
-`lea` instead of `mov` since we want to store a pointer in the
-register, instead of storing the value at the pointer.
+Loading the address of the struct return value looks like this:
 
-If there are any left-over values, or any struct arguments, you must
-move them to be on the stop of the stack.
+    lea rdi, [rsp + OFFSET]
 
-If the function returns a struct value, it actually takes an extra
-first argument. Don't get this wrong. Set that first argument like so
-before calling the function:
+Here the offset should be equal to the total size of all of the stack
+arguments plus the size of the padding.
 
-	lea rdi, [rsp - XXX]
+# Control flow
 
-Since it's a first argument, it always takes up the `rdi` register.
-This uses the `lea` command instead of the `mov` command to load the
-address, not its contents. Note that the stack location needs to be
-empty, because it will be overwritten with the function output. It may
-not overlap any argument! It's best to reserve space for this
-argument before evaluating the function arguments, like so:
+## Conditionals
 
-    sub rsp, SIZE
-    
-Once all the arguments, and possibly space for the return value, are
-all set up, we need to align the stack. Basically, if the stack is
-16-byte aligned, you don't need to do anything, but if it's not, you
-must add this before the call:
+Conditionals are pretty simple, with a pattern that looks like this:
 
-    sub rsp, 8
+    cmp rax, 0
+    jz .ELSE
+    ; true branch goes here
+    jmp .END
+    .ELSE:
+    ; else branch goes here
+    .END:
 
-Now call the function, using the assembly:
+If RAX is 1, we "fall through" to the `then` branch and jump over the
+`else` branch; if RAX is 2, we jump over the `then` branch and fall
+through to whatever comes after.
 
-    call _NAME
-    
-Here, `NAME` is the name of the function. Note the underscore.
+## Loops
 
-After the function returns, undo any alignment change you did:
+... this section is not yet written
 
-    add rsp, 8
+# Commands and Statements
 
-Finally, adjust the stack to clear all the arguments:
+You don't generate any code for type definitions.
 
-    add rsp, XXX
+For `print` commands, load the address of the string like this:
 
-If the return value was a struct, it'll already be on the stack, so
-you don't have to do anything about it. But if the return value was an
-integer or boolean, it's in RAX:
+    lea rdi, [rel NAME]
 
-    push rax
+Here `NAME` is the name of the string constant. After loading the
+address, align the stack, call `print`, and unalign the stack.
 
-If it was a float, it's in XMM0:
+For `show` commands, align the stack, then load the address of the
+type description like above, then load the address of the stack like
+so:
 
-    add   rsp, 8
+    lea rsi, [rsp]
+
+Call `show`, drop the argument, and unalign the stack.
+
+For the `read` command, make room for the return value, align the
+stack, load the address of the stack into RDI and the address of the
+filename like above, call `read_image`, and unalign the stack.
+
+For the `write` command, align the stack, compute the argument, and
+load the address of the filename into RDI. Then call `write_image`,
+drop the argument, and unalign the stack.
+
+For a `let` command, just compute the argument and reclassify it as
+local variable by storing its (negative) offset to RBP.
+
+For the `assert` command, generate exactly the same code as you did to
+test whether the denominator of a division or modulus operation is
+zero.
+
+`time` commands are tricky. First, you will want to call the
+`get_time` function (pushing its return value on the stack). Then you
+want to run the command being timed. Then, call `get_time` again,
+again pushing its return value on the stack. Now:
+
+- Pop the result of the second call into XMM0
+- Copy the result of the first call ingo xmm1
+- Subtract
+- Align the stacks
+- Call `print_time`
+
+In the case that there's no alignment, it'll look something like this:
+
+    call  _get_time
+    sub   rsp, 8
     movsd [rsp], xmm0
 
-All of the functions in the JPL runtime use this calling convention.
+    ; Run the wrapped command, say it allocates 24 bytes on the stack
+
+    call  _get_time
+    sub   rsp, 8
+    movsd [rsp], xmm0
+
+    movsd xmm0, [rsp]
+    add   rsp, 8
+    movsd xmm1, [rsp + 24]
+    subsd xmm0, xmm1
+    call  _print_time
+
+Note that pushing the result of the second call, and then immediately
+popping it, is pretty wasteful, but our compiler will do it in order
+to save code.
+
+# Function definitions
+
+Function definitions always start with the preamble:
+
+    push rbp
+    mov  rbp, rsp
+
+If the function returns a struct, push the address to write the return
+value into on the stack:
+
+    push rdi
+
+Then, for each argument:
+
+- If it's a stack argument, just record its offset, which will be a
+  positive offset to `rbp` because it was pushed on the stack by our
+  caller, before the start of this function's stack frame.
+- If it's a register argument, push it on the stack and record its
+  offset, which will be a negative offset to `rbp`.
+
+Then compute each statement in the function. `let` and `assert`
+statements behave the same as their commands, but return statements
+are tricky:
+
+- If you're returning an integer or a boolean, pop it into `rax`
+- If you're returning a floating-point value, pop it into `xmm0`
+- If you're returning a struct, move the saved address into RAX and
+  then copy the relevant number of bytes from the stack to RAX
+- If you're returning nothing, do nothing.
+
+Then, free all of the local variables from the stack:
+
+    add rsp, SIZE
+
+Then add the postamble:
+
+    pop rbp
+    ret
+
+Note that you should do this for every `return` statement. If there's
+more than one, then you'll end up with multiple postambles and `ret`
+instructions, but that's OK. (Later ones won't be executed).
+
+If there's no `return` instruction at all, you'll need to add assembly
+corresponding to `return {}` at the end of the function.
