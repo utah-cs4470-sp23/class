@@ -59,7 +59,8 @@ quite a bit of difficult debugging.
 That said, learning to read and understand assembly *is* a goal of
 this assignment. We've written an [Assembly Handbook](../assembly.md),
 which describes all of the assembly syntax and instructions you need
-to know. You should read it first. However, the Assembly Handbook
+to know. It also has lots of other information, like how to link and
+run assembly code. You should read it. However, the Assembly Handbook
 doesn't fully spell out how every single JPL expression should be
 compiled---to determine that, you will need to use the provided JPL
 compiler, examine and understand its output, and replicate the way it
@@ -72,6 +73,10 @@ the assembly by hand. For example, as you start working on integer
 constants, you might compile a program like this:
 
     show 73
+    
+By running:
+
+    $ ./jplc -s test.jpl
 
 This will produce the following assembly (linking and constants
 elided):
@@ -113,6 +118,7 @@ command. You can add comments to help yourself keep track of this:
     	call _show
     	add rsp, 8 ; Remove alignment
 
+        ; pop the "73" off the stack
     	add rsp, 8
 
         ; Epilogue
@@ -253,6 +259,13 @@ your checkout of the auto-grader repository and running:
 Where the `<os>` should be one of `windows`, `linux`, or `macos`.
 Naturally, this JPL compiler is a program and can have bugs. If you
 think you've found one, contact the instructors on Discord.
+
+Note that the auto-grader normalizes initial whitespace, newlines, and
+comments before comparing assembly files. This means you probably want
+to run the provided compiler on your own instead of just using the
+auto-grader to figure out what assembly you're supposed to produce.
+When run directly, the provided compiler prints some comments, indents
+some stuff, and in general is easier to read.
 
 You can find the tests and expected outputs [in the auto-grader
 repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw9).

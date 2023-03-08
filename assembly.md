@@ -55,11 +55,11 @@ This puts you in the debugger console. Debuggers have a *lot* of
 features, but here are the most important ones for navigating through
 a program's execution:
 
-- The `b main` command sets a "breakpoint" at the start of the `main`
-  method. This means your process will stop right before it executes
-  the first instruction in `main`, and let you examine the state. You
-  can likewise put in a different function name if you want to pause
-  there.
+- The `b jpl_main` command sets a "breakpoint" at the start of the
+  `jpl_main` function. This means your process will stop right before
+  it executes the first instruction in `main`, and let you examine the
+  state. You can likewise put in a different function name if you want
+  to pause there.
 - The `run` command runs the program, stopping at the first
   breakpoint. The `continue` command is similar, it unpauses the
   program and runs until the next breakpoint.
