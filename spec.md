@@ -535,7 +535,7 @@ that are not 64-bit signed integer values.
 At run time, a JPL implementation must detect erroneous conditions. If
 any such condition occurs, the JPL program must be cleanly terminated
 (no segfaults or other OS-level traps!) and a brief, appropriate error
-message must be displayed that includes the text "Fatal error:".
+message must be displayed that begins with the text `[abort]`.
 Run-time errors include:
 
 - an integer division or modulus operation by zero[^1]
@@ -559,6 +559,8 @@ Or they may be *external* errors:
 
 - any other I/O function failing
 
+- out of memory
+
 When an internal or external error occurs, the process running the
 compiled JPL program should exit with non-zero status code.
 
@@ -579,11 +581,10 @@ hard, because only the top-level commands have I/O effects.
 JPL compilers also need not preserve the type of internal or external
 error (for example, bounds checks could be implemented as assertions).
 
-There are some rarer exceptional conditions, like stack overflow or
-failure to allocate memory, where JPL programs are allowed to segfault
-or otherwise terminate uncleanly, and need not be preserved. As long
-as the compiler doesn't go out of its way to mess with this things
-should be fine.
+There are some rarer exceptional conditions, like stack overflow,
+where JPL programs are allowed to segfault or otherwise terminate
+uncleanly, and need not be preserved. As long as the compiler doesn't
+go out of its way to mess with this things should be fine.
 
 Elaboration
 -----------
