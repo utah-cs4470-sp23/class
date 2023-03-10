@@ -446,14 +446,15 @@ Dividing and modulus is harder. You divide and modulus integers like
 so:
 
     ; Numerator RAX
-    mov  rdx, 0
+    cqo
     idiv r10
 
 This is a bit confusing. The left operand is expected in RAX. However,
-`idiv` considers its input RDX:RAX, a 128-bit number, so we zero out
-RDX. Then, we divide by the denominator, R10; note that RAX is not
-mentioned. The result of the division is stored in RAX, while the
-modulus is stored in RDX, so in a modulus operation, you may need to:
+`idiv` considers its input RDX:RAX, a 128-bit number; the `cqo`
+instruction zeros out RDX (or makes it -1 if RAX is -1). Then, we
+divide by the denominator, R10; note that RAX is not mentioned. The
+result of the division is stored in RAX, while the modulus is stored
+in RDX, so in a modulus operation, you may need to:
 
     mov rax, rdx
 

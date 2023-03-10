@@ -153,8 +153,11 @@ expr : <expr> + <expr>
 
 Precedence is described below. Within a precedence class, evaluation
 is left to right. Integer overflows wrap around in two's complement
-fashion. There are no unsigned types or operators. Integer modulus is
-defined so that `0 <= a % b < abs(b)`, and modulo zero is an error.
+fashion. There are no unsigned types or operators.
+
+Integer division is defined to wrap to zero. Integer modulus is
+defined so that `a` and `a % b` have the same sign. Division by or
+modulo zero is an error. (This matches the x86\_64 `idiv` instruction.)
 
 Don't implement your own version of the modulus operator on floats!
 Use the C standard library's `fmod` operation, or your chosen
