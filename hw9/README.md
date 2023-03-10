@@ -254,18 +254,17 @@ need to update your compiler, since earlier versions did not have
 compilation enabled. You can update your compiler by navigating to
 your checkout of the auto-grader repository and running:
 
-    make -C <auto-grader directory> -B jplc OS=<os>
+    make -C <auto-grader directory> upgrade
     
-Where the `<os>` should be one of `windows`, `linux`, or `macos`.
 Naturally, this JPL compiler is a program and can have bugs. If you
 think you've found one, contact the instructors on Discord.
 
-Note that the auto-grader normalizes initial whitespace, newlines, and
-comments before comparing assembly files. This means you probably want
-to run the provided compiler on your own instead of just using the
-auto-grader to figure out what assembly you're supposed to produce.
-When run directly, the provided compiler prints some comments, indents
-some stuff, and in general is easier to read.
+Note that the auto-grader normalizes initial whitespace, newlines,
+comments, and math before comparing assembly files. This means you
+probably want to run the provided compiler on your own instead of just
+using the auto-grader to figure out what assembly you're supposed to
+produce. When run directly, the provided compiler prints some
+comments, indents some stuff, and in general is easier to read.
 
 You can find the tests and expected outputs [in the auto-grader
 repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw9).

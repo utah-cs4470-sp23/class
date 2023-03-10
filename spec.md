@@ -166,9 +166,9 @@ language's equivalent.[1]
 
 Keep in mind that a number of interesting floating point values exist,
 such as -0, inf, and NaN. Operations on these values should follow
-standard IEEE 754 semantics. For example, `inf + 1 = inf`, and `x / 0
-= NaN`. Floating point instructions should generally give you the
-desired behavior for free, it is built into the FP hardware unit.
+standard IEEE 754 semantics: `inf + 1.0 = inf`, and `0.0 / 0.0 = NaN`.
+Floating point instructions should generally give you the desired
+behavior for free, it is built into the FP hardware unit.
 
 Comparisons, which take either two integer subexpressions or two
 float subexpressions, and yield Booleans:
