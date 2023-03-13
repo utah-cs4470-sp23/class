@@ -127,9 +127,6 @@ command. You can add comments to help yourself keep track of this:
         ; pop the "73" off the stack
     	add rsp, 8
 
-        ; Reset the stack to have R12 on top
-    	add rsp, 0
-        
         ; Restore R12 from before the call
         pop r12
 
