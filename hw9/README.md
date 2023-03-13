@@ -312,10 +312,10 @@ The rubrik is:
 
 | Weight | Function |
 |--------|----------|
-| 20%    | Part 1   |
-| 30%    | Part 2   |
-| 30%    | Part 3   |
-| 20%    | Part 4   |
+| 15%    | Part 1   |
+| 20%    | Part 2   |
+| 15%    | Part 3   |
+| 50%    | Part 4   |
 
 Your solutions will be auto-graded. The auto-grader will use Github
 Actions and runs on Ubuntu using the tests described above.
