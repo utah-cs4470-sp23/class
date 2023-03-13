@@ -81,17 +81,21 @@ By running:
 This will produce the following assembly (linking and constants
 elided):
 
+
+    jpl_main:
     _jpl_main:
     	push rbp
     	mov rbp, rsp
+    	push r12
+    	mov r12, rbp
     	mov rax, [rel const0] ; 73
     	push rax
     	lea rdi, [rel const1] ; (IntType)
     	lea rsi, [rsp]
-    	sub rsp, 8 ; Align stack
     	call _show
-    	add rsp, 8 ; Remove alignment
     	add rsp, 8
+    	add rsp, 0
+    	pop r12
     	pop rbp
     	ret
 
@@ -107,6 +111,10 @@ command. You can add comments to help yourself keep track of this:
     	push rbp
     	mov rbp, rsp
 
+        ; Set up R12 to point to global variables
+    	push r12
+    	mov r12, rbp
+
         ; (IntExpr 73)
     	mov rax, [rel const0] ; 73
     	push rax
@@ -114,12 +122,16 @@ command. You can add comments to help yourself keep track of this:
         ; (ShowCmd (IntType) ...)
     	lea rdi, [rel const1] ; (IntType)
     	lea rsi, [rsp]
-    	sub rsp, 8 ; Align stack
     	call _show
-    	add rsp, 8 ; Remove alignment
 
         ; pop the "73" off the stack
     	add rsp, 8
+
+        ; Reset the stack to have R12 on top
+    	add rsp, 0
+        
+        ; Restore R12 from before the call
+        pop r12
 
         ; Epilogue
     	pop rbp
