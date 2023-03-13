@@ -6,9 +6,9 @@ with basic expressions.
  
 ## Function and type definitions
 
-In this assignment, you will finish your type checker by adding
-support for function and type definitions. Specifically, you will add 
-support for the following syntactic constructs:
+In this assignment, you will begin generating x86\_64 assembly code
+from JPL. Specifically, you will add generate code for the following
+syntactic constructs:
 
 ```
 cmd : show <expr>
