@@ -94,7 +94,6 @@ elided):
     	lea rsi, [rsp]
     	call _show
     	add rsp, 8
-    	add rsp, 0
     	pop r12
     	pop rbp
     	ret
