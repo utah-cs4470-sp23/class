@@ -230,27 +230,30 @@ hand, do cause errors.
 Much like your type checker or your parser, your code generator will
 consist of a collection of functions that call each other recursively.
 It's recommended that you organize these functions under a
-`CodeGenerator` class, and define one function for every AST class
+`Function` class, and define one function for every AST class
 (functions called `cg_expr`, `cg_cmd`, and so on, where `cg` stands
 for "code generate") and another one for every AST node type
 (functions called `cg_intexpr`, `cg_binopexpr`, and so on).
 
 Each of these functions should take two inputs---the AST node in
 question, and a description of the stack (which you can think of as
-similar to the symbol table in your type checker)---and produce a
-single output---a sequence of assembly instructions. They should start
-by recursively calling `cg_expr` on each subexpression in reverse
-order (so that the first subexpression is on top of the stack, meaning
-earlier in memory), and then combine those assembly blocks, tacking on
-the function-specific assembly to the end.
+similar to the symbol table in your type checker)---and produce a two
+outputs---a sequence of assembly instructions, and a new description
+of the stack. They should start by recursively calling `cg_expr` on
+each subexpression in reverse order (so that the first subexpression
+is on top of the stack, meaning earlier in memory), and then combine
+those assembly blocks, tacking on the function-specific assembly to
+the end.
 
 As you generate code for various expressions, you will also need to
 add constants, labels, and linkage commands. These go in a different
 part of the assembly code, so we recommend storing the constants and
-linkage commands in separate fields of `CodeGenerator` and writing
-helper methods like `add_extern` or `add_float` to add to those
-fields. These helper methods will need to also increment counters so
-that you can give a unique name to each constant or label.
+linkage commands in separate fields of a separate `Assembly` and
+writing helper methods like `add_extern` or `add_float` to add to
+those fields. These helper methods will need to also increment
+counters so that you can give a unique name to each constant or label.
+The `Assembly` would also store a list of `Function`s and convert all
+of this data into an assembly source code string.
 
 You will need to write a recursive function that computes the size, in
 bytes, of a given `ResolvedType`. (For example, you'll need to know
