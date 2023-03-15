@@ -271,10 +271,12 @@ Naturally, this JPL compiler is a program and can have bugs. If you
 think you've found one, contact the instructors on Discord.
 
 Note that the auto-grader normalizes initial whitespace, newlines,
-comments, and math before comparing assembly files. This means you
-probably want to run the provided compiler on your own instead of just
-using the auto-grader to figure out what assembly you're supposed to
-produce. When run directly, the provided compiler prints some
+comments, and math before comparing assembly files. It also truncates
+floating-point numbers to the integer part, in an attempt to ensure
+that float printing doesn't affect whether or not you pass. This means
+you probably want to run the provided compiler on your own instead of
+just using the auto-grader to figure out what assembly you're supposed
+to produce. When run directly, the provided compiler prints some
 comments, indents some stuff, and in general is easier to read.
 
 You can find the tests and expected outputs [in the auto-grader
