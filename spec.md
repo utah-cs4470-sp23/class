@@ -509,7 +509,9 @@ math functions:
 + Of two `float` arguments, returning a `float`:
   `pow` and `atan2`
 + The `to_float` function, which converts an `int` to a `float`
-+ The `to_int` function, which converts a `float` to an `int`
++ The `to_int` function, which converts a `float` to an `int`, with
+  positive and negative infinity converting into the maximum and
+  minimum integers, and NaN converting to 0.
 
 They can also provide builtin functions whose name contains a dot,
 which the compiler can use during compilation.

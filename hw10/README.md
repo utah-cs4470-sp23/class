@@ -10,7 +10,8 @@ In this assignment, you will add x86\_64 assembly code generation
 for the following syntactic constructs:
 
 ```
-cmd  | let <lvalue> = <expr>
+cmd  : let <lvalue> = <expr>
+expr : <variable>
 
 cmd  : print <string>
      | read image <string> to <argument>
@@ -176,6 +177,15 @@ total size of 40 bytes.
 If the offset of this value is `RBP - 64`, then `x` has an offset of
 -64, `y` an offset of -56, `z` an offset of -48, `W` offset of -48,
 and `H` an offset of -40.
+
+The `jpl_main` function takes `args` and `argnum` as arguments, as if
+it were defined like so:
+
+```
+fn jpl_main(args[argnum] : int[]) : {} {
+    ...
+}
+```
 
 Before returning from a function, you need to drop all of the local
 variables off the stack, via an `add rsp, N` instruction. However, if
