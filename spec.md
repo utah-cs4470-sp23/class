@@ -225,12 +225,9 @@ expressions yield an integer or a float, depending on the body
 expression. If the list of bindings is empty for either `array` or
 `sum`, the program is type-invalid.
 
-If any expression in the list of bindings returns negative number,
-that is a runtime error. On the other hand, it is valid to create an
-`array` of zero elements (of any rank) or to `sum` sums zero elements
-(which returns `0` or `0.0`). Furthermore note that it's valid to
-create, say, a `0 * 10` array, which is a 2D array with 0 rows of 10
-columns each.
+If any expression in the list of bindings returns non-positive number,
+that is a runtime error. It is invalid to create an `array` of zero
+elements (of any rank) or to `sum` sums zero elements.
 
 Function calls:
 
@@ -547,7 +544,7 @@ Run-time errors include:
 
 - out-of-bounds array access
 
-- `sum` or `array` with negative bounds
+- `sum` or `array` with non-positive bounds
 
 - any failing assertion
 
