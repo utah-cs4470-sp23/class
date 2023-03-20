@@ -24,7 +24,7 @@ stmt : let <lvalue> = <expr>
      | return <expr>
 ```
 
-As in the previous assignment, these constructos are organized into
+As in the previous assignment, these constructors are organized into
 four groups, from easiest to hardest. Consult the [JPL
 specification](../spec.md) for the expected behavior of these
 constructs.
@@ -207,12 +207,10 @@ methods should receive an `Argument`/`LValue`, a type, and a stack
 offset, and update the `StackDescription` with the right offset for
 each bound variable.
 
-When a `Function` is asked to generate code for a `type` command, it
-should output no instructions and do nothing. Your type checker should
-have already resolved type definitions. When a `Function` is asked to
-generate code for a `fn` command, it should output no instructions,
-but it should ask the `Assembly` to create a new `Function` object and
-generate code for the function body inside *that* `Function`.
+When a `Function` is asked to generate code for a `fn` command, it
+should output no instructions, but it should ask the `Assembly` to
+create a new `Function` object and generate code for the function body
+inside *that* `Function`.
 
 We recommend writing a `CallingConvention` class that stores
 information about where the arguments and return values are stored for
@@ -333,10 +331,10 @@ This assignment is due Friday March 24.
 We are happy to discuss problems and solutions with you on Discord, in
 office hours, or by appointment.
 
-Your compiler must be runnable as described in the [Testing your
-code][Testing your code] section. If the auto-grader cannot run your
-code, you will not receive credit. The auto-grader output is available
-to you at any time, as many times as you want. Make use of it.
+Your compiler must be runnable as described in the Testing your code
+section. If the auto-grader cannot run your code, you will not receive
+credit. The auto-grader output is available to you at any time, as
+many times as you want. Make use of it.
 
 The rubrik is:
 
