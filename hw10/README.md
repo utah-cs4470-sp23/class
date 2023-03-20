@@ -13,22 +13,15 @@ for the following syntactic constructs:
 cmd  : let <lvalue> = <expr>
 expr : <variable>
 
-cmd  : print <string>
-     | read image <string> to <argument>
-     | assert <expr> , <string>
-     | type <variable> = <type>
-     | write image <expr> to <string>
-     | time <cmd>
+cmd  : read image <string> to <argument>
 
 expr : <variable> ( <expr> , ... )
 
 cmd  : fn <variable> ( <binding> , ... ) : <type> { ;
            <stmt> ; ... ;
        }
-stmt : assert <expr> , <string>
-     | let <lvalue> = <expr>
+stmt : let <lvalue> = <expr>
      | return <expr>
-
 ```
 
 As in the previous assignment, these constructos are organized into
@@ -120,14 +113,6 @@ Inside a function definition, register arguments are pushed on the
 stack in order, starting with the address of the space allocated for a
 struct return value, if any.
 
-Most commands involve calls to the [JPL runtime][runtime]. Read that
-documentation carefully before calling a function in it. The
-documentation gives the function arguments and return types (as a C
-function declaration) and any other assumptions made about the
-arguments, like whether strings are null-terminated.
-
-[runtime]:https://github.com/utah-cs4470-sp23/runtime 
-
 ## Local variables
 
 In this assignment we'll be adding support for `let` and other local
@@ -175,8 +160,8 @@ total size of 40 bytes.
     |----- x -----|---- y ----|------------------- z ---------------|
     
 If the offset of this value is `RBP - 64`, then `x` has an offset of
--64, `y` an offset of -56, `z` an offset of -48, `W` offset of -48,
-and `H` an offset of -40.
+`RBP - 64`, `y` an offset of `RBP - 56`, `z` an offset of `RBP - 48`,
+`W` offset of `RBP - 48`, and `H` an offset of `RBP - 40`.
 
 The `jpl_main` function takes `args` and `argnum` as arguments, as if
 it were defined like so:
@@ -235,10 +220,30 @@ a particular function call. The constructor for a `CallingConvention`
 should take a list of `ResolvedType`s for the arguments and a
 `ResolvedType` for the return value. A `CallingConvention` should
 store a list of `Location`s for each argument and a `Location` for the
-return value; a `Location` should be either a `Register` (which should
-have a field indicating the register name) or a `StackValue` (which
-should have a field containing a stack offset). You'll use
-`CallingConvention`s both when calling and when defining functions.
+return value; a `Location` should be either a `RegisterValue` (which
+should have a field indicating the register name) or a `StackValue`.
+You'll use `CallingConvention`s both when calling and when defining
+functions.
+
+For example, to call a function with three arguments (of types `int`,
+`{int, int[,,]}`, and `float`) and a return value of type `float[]`,
+you'd create a `CallingConvention` like so:
+
+    cc = CallingConvention([
+      IntRType(),
+      TupleRType([IntRType(), ArrayRType(IntRType(), 3)])
+      FloatRType()
+    ],
+      ArrayRType(FloatRType(), 1))
+      
+Then its fields to indicate where the arguments go:
+
+    >>> cc.ret
+    StackArgument()
+    >>> cc.args
+    [ RegisterValue("rsi")
+    , StackValue()
+    , RegisterValue("xmm0") ]
 
 ## Stages of function support
 
@@ -247,37 +252,41 @@ We recommend you approach this assignment in four stages.
 First, add support for `let` commands. You'll need to implement
 `StackDescription` to store the offsets of function arguments. You'll
 also need to write `add_argument` and `add_lvalue` to handle complex
-arguments.
+arguments; these will be similar to the same-named functions in your
+type checker.
 
-Second, add support for function calls. There should be plenty of
+Second, add support for the `read` commands. Like `let` commands,
+`read` command bind variables, but `read` also calls the JPL runtime
+`read_image` function. Read the [documentation][runtime] carefully and
+work out what the stack should look like to call it; compare your
+stack with the sequence of steps in the [Assembly
+Handbook](../assembly.md) to make sure you got it right.
+
+[runtime]:https://github.com/utah-cs4470-sp23/runtime 
+
+Third, add support for function calls. There should be plenty of
 built-in functions to call. At this stage you would write the
 `CallingConvention` class, though because the builtin functions don't
 take aggregate arguments, you don't need to support that yet. Make
 sure to test nested function calls like `sin(atan2(1.0, 2.0))`.
-
-Third, add support for the other JPL commands. Most of these commands
-call JPL runtime functions. Read the [documentation][runtime]
-carefully and work out what the stack should look like to call each
-one. Compare with the sequence of steps in the [Assembly
-Handbook](../assembly.md) to make sure you got it right. This will
-give you a good sense of how to call functions with aggregate
-arguments and return values. Note that `read` commands are like `let`
-commands in that they also bind variables. With `time` commands, make
-sure to support constructs like `time time assert ...` correctly.
 
 Finally, add support for function definitions. You'll need to improve
 `CallingConvention` to handle of aggregate arguments and also
 arguments with too many integer or floating-point arguments, because
 user-defined functions can have any number of arguments in JPL. You
 can use the `FunctionInfo` in the global symbol table to look up the
-types of each argument. For aggregate return values, we recommend
-saving its location to the `StackDescription`, perhaps as the location
-of a variable named `$return` or similar. (Note that this is not a
-valid JPL variable name, so you're guaranteed it won't be overwritten
-by a user variable). You'll also need to implement code generation for
-statements. The `assert` and `let` statements are identical to the
-same-name commands, but the `return` statement is new. Also make sure
-to handle implicit returns at the end of a void function.
+types of each argument.
+
+When the return value is an aggregate type (array or tuple), we
+recommend saving its location to the `StackDescription`, perhaps as
+the location of a variable named `$return` or similar. (Note that this
+is not a valid JPL variable name, so you're guaranteed it won't be
+overwritten by a user variable). You'll also need to implement code
+generation for the `let` and `return` statements. `let` is identical
+to the `let` commands, but the `return` statement is new. Make sure to
+add an implicit returns at the end of any void function that doesn't
+have an explicit `return` command.
+
 
 # Testing your code
 
@@ -302,8 +311,8 @@ general is easier to read.
 You can find the tests and expected outputs [in the auto-grader
 repository](https://github.com/utah-cs4470-sp23/grader/tree/main/hw10).
 
-The directories `ok1` (Part 1, `let`), `ok2` (Part 2, calls), `ok3`
-(Part 3, commands), and `ok4` (Part 4, definitions) contain valid
+The directories `ok1` (Part 1, `let`), `ok2` (Part 2, `read`), `ok3`
+(Part 3, calls), and `ok4` (Part 4, definitions) contain valid
 hand-written JPL programs to guide you through this assignment.
 
 The `ok-fuzzer` (Part 5) directory contains valid, auto-generated JPL
