@@ -4,7 +4,7 @@ Assignment 10: Calling Conventions
 For this assignment you will generate assembly code for function calls
 and function definitions.
  
-## Function and type definitions
+## Local variables and functions
 
 In this assignment, you will add x86\_64 assembly code generation
 for the following syntactic constructs:
