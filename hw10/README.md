@@ -237,7 +237,7 @@ you'd create a `CallingConvention` like so:
 Then its fields to indicate where the arguments go:
 
     >>> cc.ret
-    StackArgument()
+    StackValue()
     >>> cc.args
     [ RegisterValue("rsi")
     , StackValue()
