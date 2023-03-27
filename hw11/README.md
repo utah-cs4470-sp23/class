@@ -3,6 +3,10 @@ Assignment 11: Control Flow
 
 For this assignment you will generate assembly code for conditionals
 and loops.
+
+**Note:** Except for the extra credit, none of the exercises in this
+homework rely on support for function definitions or function calls,
+parts 3 & 4 of HW10.
  
 ## Conditionals and loops
 
@@ -292,7 +296,9 @@ math instructions do), so you can follow it with:
 
 Here, `jno` stands for Jump-if-No-Overflow, so we only call
 `fail_assertion` if there's an overflow, similar to the zero
-denominator case for integer division and modulus.
+denominator case for integer division and modulus. (Testing for
+overflow is a common example of something that's really easy in
+assembly, and quite difficult in C/C++.)
 
 Once you've multiplied all of the bounds (and the size of each
 element), call `jpl_alloc` to allocate memory for the array and store
