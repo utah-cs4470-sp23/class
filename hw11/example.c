@@ -1,12 +1,10 @@
 #include <stdio.h>
 
-const int X = 17;
-const int Y = 23;
-const int Z = 31;
+const int X = 2;
+const int Y = 3;
+const int Z = 5;
 
 int main() {
-  int sum = 0;
-  
   int i = 0;
   int j = 0;
   int k = 0;
@@ -17,8 +15,8 @@ int main() {
   // for (int k = 0; k < Z; k++) {
   start:
 
-      // This part is the loop body
-      sum++;
+  // This part is the loop body
+  printf("i = %d, j = %d, k = %d\n", i, j, k);
 
   k++;
   if (k < Z) goto start;
@@ -32,7 +30,6 @@ int main() {
   // }
   // }
   
-  // This should print X * Y * Z = 12121
-  printf("%d\n", sum);
+  // This should loop X * Y * Z = 30 times
   return 0;
 }
