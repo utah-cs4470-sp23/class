@@ -589,7 +589,78 @@ The `add` instruction pops the 24 bytes of arguments off the stack;
 then we push the heap pointer on the stack, followed by the array
 size, because that is how a JPL array is laid out.
 
-... indexing arrays not yet written
+To index into an array, you must put the array on the stack first,
+followed by the indices in reverse order, like so:
+
+![Stack organization for indexing into an array](hw11/index-stack.png)
+
+Note that in this arrangement, the indices (like `j`) are in the same
+order as the array lengths (like `Y`) and are therefore fixed number
+of bytes apart (here, 24 bytes). You can thus test each index (in
+order) for being in range like so:
+
+        mov rax, [rsp + A]
+        cmp rax, 0
+        jge .jump1
+        lea rdi, [rel ERROR_MESSAGE_1]
+        call _fail_assertion
+    .jump1:
+        cmp rax, [rsp + A + GAP]
+        jl .jump2
+        lea rdi, [rel ERROR_MESSAGE_2]
+        call _fail_assertion
+    .jump2:
+
+Here, `A` starts at 0 for the first index and increases by 8 for each
+index, while `GAP` is the gap between the first index and the array,
+which should be `8` times the array rank. Also note that the calls to
+`fail_assertion` may require padding.
+
+Once all of the array indices are known to be valid, a pointer to that
+index is constructed like so:
+
+    mov rax, 0
+    imul rax, [rsp + GAP + 0]
+    add rax, [rsp + 0]
+    imul rax, [rsp + GAP + 8]
+    add rax, [rsp + 8]
+    imul rax, [rsp + GAP + 16]
+    add rax, [rsp + 16]
+    ...
+    imul rax, S
+    add rax, [rsp + GAP + N]
+
+Here, there is one `imul`/`add` pair for each array index, `S` is the
+size of each array element, and `N` is the rank of the array. Array
+indices are also be computed inside `array` loops.
+
+After this code, the RAX register contains a pointer to the specific
+array element. To read out that element, one simply needs allocate `S`
+bytes on the stack and then copy `S` bytes from `[rax]` to `[rsp]`.
+
+Alternatively, in the body of an `array` loop, one can store a value
+to that index by copying from `[rsp]` to `[rax]`. In this case,
+there's typically something on the stack before the indices and the
+array:
+
+![Stack organization for an array loop](hw11/array-stack.png)
+
+In that case, the computation of the pointer into the array involves
+an additional offset:
+
+    mov rax, 0
+    imul rax, [rsp + T + GAP + 0]
+    add rax, [rsp + T + 0]
+    imul rax, [rsp + T + GAP + 8]
+    add rax, [rsp + T + 8]
+    imul rax, [rsp + T + GAP + 16]
+    add rax, [rsp + T + 16]
+    ...
+    imul rax, S
+    add rax, [rsp + T + GAP + N]
+
+Here the offset `T` is the offset to the first index; in an `array`
+loop, this will be equal to size of the loop body.
 
 # Calling functions
 
@@ -653,21 +724,269 @@ arguments plus the size of the padding.
 
 Conditionals are pretty simple, with a pattern that looks like this:
 
-    cmp rax, 0
-    jz .ELSE
-    ; true branch goes here
-    jmp .END
+        ; Compute condition
+        pop rax
+        cmp rax, 0
+        jz .ELSE
+        ; Compute true branch
+        jmp .END
     .ELSE:
-    ; else branch goes here
+        ; Compute else branch
     .END:
 
 If RAX is 1, we "fall through" to the `then` branch and jump over the
 `else` branch; if RAX is 2, we jump over the `then` branch and fall
 through to whatever comes after.
 
+The short-circuiting boolean operators `||` and `&&` are a kind of
+conditional. They look like so, for `&&`:
+
+        ; Compute left hand side
+        pop rax
+        cmp rax, 0
+        je .END
+        ; Compute right hand side
+        pop rax
+    .END:
+        push rax
+
+And for `||`:
+
+        ; Compute left hand side
+        pop rax
+        cmp rax, 0
+        jne .END
+        ; Compute right hand side
+        pop rax
+    .END:
+        push rax
+
+Note that the only difference is using `je` or `jne` in the test.
+
 ## Loops
 
-... this section is not yet written
+Loops involve a sequence of steps that need to be followed carefully
+to generate correct code. Each loop has three parts: a prologue, a
+body, and an epilogue. Both `array` and `sum` loop are pretty similar,
+so in this section we describe both, noting differences.
+
+Throughout this section, when discussing a loop like:
+
+    array[i : X, j : Y, k : Z] body
+
+we refer to `i`, `j`, and `k` as *loop indices*, `X`, `Y` and `Z` as
+*loop bounds*, and `body` as the *loop body*.
+
+### Loop prologue
+
+Both `array` and `sum` loop begin by allocating 8 bytes on the stack,
+and then evaluating all of the loop bounds in reverse order. For an
+`array` loop, the extra 8 bytes will eventually hold a pointer to heap
+data; for the `sum` loop, they will hold the running sum. Note that
+for an `array` loop, the stack ends up holding, in order, the bounds
+followed by a pointer, which is exactly how arrays are supposed to end
+up in memory.
+
+As each bound is computed, you must test that it is positive, like so:
+
+    mov rax, [rsp]
+    cmp rax, 0
+    jg .NEXT
+    lea rdi, [rel ERROR_MESSAGE]
+    call _fail_assertion
+    .NEXT:
+
+As always, the `call` may require padding before and after.
+
+Once all of the indices are computed, `[rsp + 8N]`, where `N` is the
+number of indices, is the extra 8 bytes at the end of the stack. This
+now has to be initialized.
+
+For `sum` loops, initialization is easy; it just involves storing a
+`0` to that location:
+
+    mov rax, 0
+    mov [rsp + 8N], rax
+
+However, for `array` loops, initializing that value requires
+allocating memory by calling `jpl_alloc`. To do that, we must first
+compute how much memory to allocate. At a high level, this involves
+multiplying together all of the loop bounds, which are located in
+`[rsp + 0]`, `[rsp + 8]`, and so on. We also have to multiply by the
+size of each array element. You might expect this code:
+
+    mov rdi, S
+    imul rdi, [rsp + 0]
+    imul rdi, [rsp + 8]
+    imul rdi, [rsp + 16]
+    imul rdi, [rsp + 24]
+    ...
+    call _jpl_alloc
+    mov [rsp + 8N], rax
+
+Here, `S` is the size of each array element, and there's one `imul`
+instruction for each array index. Note that we keep the running sum in
+RDI, because it is intended to be used as an argument to `jpl_alloc`.
+As usual, the `call` may require alignment.
+
+_However_, this snippet is incorrect because it doesn't handle the
+possibility of overflowing a 64-bit integer when computing the array
+size. To handle this, each `imul` instruction needs to be be followed
+by an overflow test using `jno` (Jump-if-No-Overflow):
+
+        mov rdi, S
+        imul rdi, [rsp + 0]
+        jno .NEXT1
+        lea rdi, [rel ERROR_MESSAGE]
+        call _fail_assertion
+    .NEXT1:
+        imul rdi, [rsp + 0]
+        jno .NEXT2
+        lea rdi, [rel ERROR_MESSAGE]
+        call _fail_assertion
+    .NEXT2:
+        ...
+        call _jpl_alloc
+        mov [rsp + 8N], rax
+
+Basically, each `imul` is followed by an `jno` and an error handling
+case, but the overall approach is still the same as in the simpler
+snippet above.
+
+Finally, once we've set up the running sum or array pointer, we are
+almost ready to begin the loop. We need only set the loop indices to
+start at 0:
+
+    mov rax, 0
+    push rax
+    mov rax, 0
+    push rax
+    ...
+
+Make sure to record the location of each index, in reverse order, in
+your stack description so that later code can refer to the loop indices.
+
+The result will be a stack that looks like this:
+
+![Stack organization for a sum loop](hw11/sum-stack.png)
+
+or this:
+
+![Stack organization for a array loop](hw11/array-stack.png)
+
+but without the body. We can now enter the loop body.
+
+### Loop body
+
+The loop body begins with a label, so that we can jump back to this
+code at the end of the loop:
+
+    .LOOP:
+
+Next, we need to test that the loop indices are in range. This happens
+for each index, in reverse order. For index `I`, the code looks like:
+
+    mov rax, [rsp + 8I]
+    cmp rax, [rsp + 8I + 8N]
+    jl .NEXT1
+    mov qword [rsp + 8I], 0
+    add qword [rsp + 8I - 8)], 1
+    .NEXT1:
+
+Basically, the loop index is located at `[rsp + 8I]`, while the
+corresponding loop bound is at `[rsp + 8I + 8N]`. If the loop index is
+greater than or equal to the loop bound, we set the loop index to 0
+and increment the next loop index, which is located at `[rsp + 8I -
+8]`. The `qword` annotation on `mov` and `add` is necessary, because
+these instructions have a memory location and an immediate as
+arguments.
+
+Recall that we are testing the indices in reverse order, so `I`
+decreased with each loop iteration. So `[rsp + 8I - 8]`, the next loop
+index, is tested next. 
+
+When `I` is zero, meaning we are on the outermost loop index, the code
+looks slightly different, because there's no next index to increment:
+
+    mov rax, [rsp + 8I]
+    cmp rax, [rsp + 8I + 8N]
+    jg .END
+    
+Here, if the outermost loop index reached its loop bound, the loop has
+ended and we jump to the loop epilogue.
+
+Once we've finished this sequence of tests, the loop indices have all
+been updated, so we can compute the loop body. After this is done, the
+stack looks like so:
+
+![Stack organization for a sum loop](hw11/sum-stack.png)
+
+or this:
+
+![Stack organization for a array loop](hw11/array-stack.png)
+
+including the loop body on top of the loop.
+
+Now we need to do something with the loop body.
+
+For `array` loops, we need to store it into the array. To do so,
+compute the pointer to the correct array index as described in the
+array indexing section, and then move `S` bytes from `[rsp]` to
+`[rax]`, where `S` is the size of the loop body. Make sure to free
+the loop body from the stack.
+
+For `sum` loops that are summing integers, we simply pop the body into
+`rax` and add it to the counter:
+
+    pop rax
+    add [rsp + 8N + 8N], rax
+
+Note that `[rsp + 8N + 8N]` steps over the indices and the bounds and
+therefore points to the running sum.
+
+For `sum` loops that are summing floats, there's a little more moving
+data back and forth:
+
+    movsd xmm0, [rsp]
+    add rsp, 8
+    addsd xmm0, [rsp + 8N + 8N]
+    movsd [rsp + 8N + 8N], xmm0
+
+This is more verbose because the destination of an `addsd` instruction
+cannot be a memory location.
+
+Finally, once we've stored / added the loop body, the only thing we
+must do is increment the innermost loop variable and jump back to the
+start of the loop body:
+
+    add qword [rsp + 8N - 8], 1
+    jmp .LOOP
+
+### Loop Epilogue
+
+The loop epilogue also starts with a label:
+
+    .END:
+    
+This label was used earlier when incrementing loop indices.
+
+Now we free all of the loop indices:
+
+    add rsp, 8N
+
+The stack now contains the loop bounds and the extra 8 bytes
+containing either the heap pointer (`array` loops) or the running sum
+(`sum` loops).
+
+For an `array` loop, the loop bounds plus the heap pointer are the
+representation of an array, so we are done.
+
+For a `sum` loop, we only need the running sum, not the loop bounds,
+so we free the loop bounds:
+
+    add rsp, 8N
+
+That's it!
 
 # Commands and Statements
 
