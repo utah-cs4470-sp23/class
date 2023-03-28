@@ -213,38 +213,41 @@ indices on the stack in reverse order.)
 You are now ready to start the loop body. (It needs a label so you can
 jump back to it.
 
-At the top of the loop body, we need to test whether all of the loop
-indices are in bounds, and adjust them if not. In the `sum [i : X, j :
-Y, k : Z] body` example above, this section of the generated code
-should be equivalent to the following C code:
-
-    if (k >= Z) {
-        k = 0;
-        j++;
-    }
-    if (j >= Y) {
-        j = 0;
-        i++;
-    }
-    if (i >= X) {
-        break;
-    }
-
-You can see the specific assembly code you'll need in the [Assembly
-Handbook](../assembly.md). Note that the variables here show up in
-reverse order.
-
-After you've corrected all of the indices, compute the body of the
-loop. It will have the correct values of the loop indices to work
-with.
+First, compute the body of the loop.
 
 Once the body is computed, you'll need to add it to the loop counter.
 This will require different instructions for integer versus
 floating-point sums; again, details are in the [Assembly
 Handbook](../assembly.md)
 
-Finally, at the end of the loop, increment the innermost loop variable
-(in our running example, `k++`).
+Finally, we need to increment the loop variables. We'll start with the
+innermost loop variable, but if we increment it past the loop bound,
+we'll reset it to 0 and increment the next loop variable. In the `sum
+[i : X, j : Y, k : Z] body` example above, this section of the
+generated code should be equivalent to the following C code:
+
+    k ++
+    if (k < Z) continue;
+    k = 0;
+    j++;
+    if (j < Y) continue;
+    j = 0;
+    i++;
+    if (i < X) continue;
+    break;
+
+Note that the variables here show up in reverse order. As long as
+you're not at the end of the loop, one of `continue` statements should
+trigger and bring you back to the start of the loop. Otherwise, the
+`break` statement exits the loop.
+    
+If you don't understant how this code snippet works, do not start
+coding! This is the part that makes it a loop! For example, make sure
+you understand how the loop in [example.c](example.c) works. Feel free
+to ask questions about `example.c` on Discord if it's not clear.
+
+You can see the specific assembly code you'll need in the [Assembly
+Handbook](../assembly.md).
 
 After the loop, restore the stack by freeing all of the loop indices
 and loop bounds. The counter should end up at the top of the stack.

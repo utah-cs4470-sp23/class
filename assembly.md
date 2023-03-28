@@ -883,41 +883,7 @@ code at the end of the loop:
 
     .LOOP:
 
-Next, we need to test that the loop indices are in range. This happens
-for each index, in reverse order. For index `I`, the code looks like:
-
-    mov rax, [rsp + 8I]
-    cmp rax, [rsp + 8I + 8N]
-    jl .NEXT1
-    mov qword [rsp + 8I], 0
-    add qword [rsp + 8I - 8)], 1
-    .NEXT1:
-
-Basically, the loop index is located at `[rsp + 8I]`, while the
-corresponding loop bound is at `[rsp + 8I + 8N]`. If the loop index is
-greater than or equal to the loop bound, we set the loop index to 0
-and increment the next loop index, which is located at `[rsp + 8I -
-8]`. The `qword` annotation on `mov` and `add` is necessary, because
-these instructions have a memory location and an immediate as
-arguments.
-
-Recall that we are testing the indices in reverse order, so `I`
-decreased with each loop iteration. So `[rsp + 8I - 8]`, the next loop
-index, is tested next. 
-
-When `I` is zero, meaning we are on the outermost loop index, the code
-looks slightly different, because there's no next index to increment:
-
-    mov rax, [rsp + 8I]
-    cmp rax, [rsp + 8I + 8N]
-    jg .END
-    
-Here, if the outermost loop index reached its loop bound, the loop has
-ended and we jump to the loop epilogue.
-
-Once we've finished this sequence of tests, the loop indices have all
-been updated, so we can compute the loop body. After this is done, the
-stack looks like so:
+We start by computing the loop body, so that the stack looks like so:
 
 ![Stack organization for a sum loop](hw11/sum-stack.png)
 
@@ -927,7 +893,8 @@ or this:
 
 including the loop body on top of the loop.
 
-Now we need to do something with the loop body.
+Now we need to do something with the loop body---store it in the array
+for an `array` loop, or add it to the running sum in a `sum` loop.
 
 For `array` loops, we need to store it into the array. To do so,
 compute the pointer to the correct array index as described in the
@@ -955,22 +922,42 @@ data back and forth:
 This is more verbose because the destination of an `addsd` instruction
 cannot be a memory location.
 
-Finally, once we've stored / added the loop body, the only thing we
-must do is increment the innermost loop variable and jump back to the
-start of the loop body:
+Finally, once we've stored / added the loop body, we have the
+increment the loop indices. To do so, first increment the innermost
+loop index:
 
     add qword [rsp + 8N - 8], 1
-    jmp .LOOP
+
+Next, we need to test that this loop index is in range. If it's not in
+range, we need to set it to zero and increment the next loop index:
+
+    mov rax, [rsp + 8I]
+    cmp rax, [rsp + 8I + 8N]
+    jl .LOOP
+    mov qword [rsp + 8I], 0
+    add qword [rsp + 8I - 8)], 1
+
+Here `I` starts at `N` and decreases by `8` over and over again to go
+through the loop indices in reverse order. The first two instructions
+check the current loop index `[rsp + 8I]` against its loop bounds
+`[rsp + 8I + 8N]`. If it is less than the loop bound, we can move on
+to the next iteration. If it is greater, we need to reset it to zero
+and increment the next loop index `[rsp + 8I - I]`. We then repeat the
+process with the next loop index, and the next one, and so on.
+
+When `I` is zero, meaning we are on the outermost loop index, there's
+no next index to increment:
+
+    mov rax, [rsp + 0]
+    cmp rax, [rsp + 0 + 8N]
+    jl .LOOP
+    
+Note that if the `jl` doesn't fire, meaning the outermost loop index
+has reached its maximum, we simply fall through to the loop epilogue.
 
 ### Loop Epilogue
 
-The loop epilogue also starts with a label:
-
-    .END:
-    
-This label was used earlier when incrementing loop indices.
-
-Now we free all of the loop indices:
+Now that the loop is over, we free all of the loop indices:
 
     add rsp, 8N
 
