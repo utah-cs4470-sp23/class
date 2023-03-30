@@ -28,6 +28,9 @@ You will add the following optimizations to your compiler:
  - Multiplications by powers of 2 as shifts, tested in `ok4`
  - Reducing array copies for indexing, tested in `ok5`
 
+There is no fuzzer test. This means that, if you'd like, you're free
+to implement additional peephole optimizations beyond these.
+
 Like in the prior two assignments, you are tested for matching the
 assembly produced by the [provided compiler][releases], though you
 don't need to match comments, whitespace, or exactly how you do
@@ -35,7 +38,7 @@ address arithmetic. The grading rubrik is:
 
 | Tests | `ok1` | `ok2` | `ok3` | `ok4` | `ok5` |
 |-------|-------|-------|-------|-------|-------|
-| Grade | 15%   | 15%   | 20%   | 25%   | 25%   |
+| Grade | 10%   | 15%   | 20%   | 25%   | 30%   |
 
 We recommending completing each part in order---that is, finishing
 `ok1` before you move on to `ok2`, and so on.
@@ -249,7 +252,7 @@ Make sure you handle all multiplications; you can probably search your
    overflow flag in the expected way.
 
 Probably the most important one of these is optimizing multiplications
-in array indexing.
+in array indexing, because those happens inside loops.
 
 ## Reducing array copies
 
@@ -309,7 +312,10 @@ the array has size 24 bytes, then the `GAP` should be the array offset
 should be 48 - (-16) + 24 = 88.
 
 When this optimization is enabled, since you don't copy the array to
-the top of the stack, make sure you also don't free it!
+the top of the stack, make sure you also don't free it! Also make sure
+this optimization works together with all earlier optimizations, such
+as the better array indexing and the multiplication-to-shifts
+optimization.
 
 The upshot of this optimization is that we read the array bounds and
 pointer out of whereever the array is located on the stack, even if
@@ -335,10 +341,55 @@ or a graphics kernel, to index into arrays inside a tight loop.
 Moreover, arrays are pretty big, so copying them needlessly is a
 waste.
 
-(Let me add: we could take this optimization further, doing something
-similar for tuple indexing like `i{0}`, nested tuple indexing like
-`i{0}{1}` or even indexing into an array index like `a[10, 12]{0}`.
-All of these operations just move it in and out of containers, so if
-we track addresses carefully, we can avoid most copies. You're free to
-try implementing it if you'd like; it's an important optimization in
-many compilers, called SROA in LLVM.)
+# Extra challenges
+
+There's no extra credit on this assignment, but if you found it
+interesting, here are some more fun optimizations we decided not to
+assign.
+
+It's not too hard to replace a sequence of RSP changes with a single
+one. For example, you might fold this:
+
+    add rsp, 8
+    add rsp, 8
+    add rsp, 24
+    sub rsp, 24
+    
+into just this:
+
+    add rsp, 16
+
+This should lead to speedups of 5% on code that does a lot of array
+indexing or function calls, and general speedups of about 1% on most
+code.
+
+You can also detect the pattern `x % 2 == 0` and optimize that
+specifically into something like `! (x & 1)`. Real compilers have
+hundreds of patterns like this that address specific common code
+patterns.
+
+A more complicated version of the above optimization is to replace
+integer division and modulus by powers of two with shifts right and
+bitwise ands. What's hard about this is that integer division rounds
+*to zero* while shifts right rounds *down*. So for negative numbers,
+they round in opposite directions. You can do some bit tricks to
+correct for this, and it's totally worth it because divison and
+modulus are very slow (20-30 cycles!). But if you try this, be very
+careful to test negative numbers, powers of two, `INT_MIN` and `0`.
+
+Finally, we could take the array indexing optimization much further,
+extending it to opimize tuple indexing like `i{0}`, nested tuple
+indexing like `i{0}{1}` or even tuple indexing into an array index
+like `a[10, 12]{0}`. All of these operations just move it in and out
+of containers, so in all these cases, instead of copying data to the
+stop of the stack, we can just carefullly track where it actually is.
+
+One place to start implementing this is modify each of your
+`cg_xxx_expr` functions to return the amount of bytes allocated and
+the offset from `rsp` where the result is located. To begin with, all
+existing functions should return the size of the return type as the
+number of bytes allocated and `0` as the offset from RSP. Then local
+variable references can output no instructions and just return a new
+offset from RSP, and tuple indexes can adjust the offset instead of
+outputing instructions. In general, this optimization can be taken
+very far; in LLVM, the SROA pass does something like this.
