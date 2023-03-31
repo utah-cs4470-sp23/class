@@ -108,7 +108,7 @@ immediates for constants that fit in 32 bits. If the constant does not
 fit in 32 bits, continue to use the slower load-from-constant code.
 
 With optimizations on, the data portion of your assembly file should
-have any integer constants that fit into 32 bits.
+not have any integer constants that fit into 32 bits.
 
 ## Shorter boolean casts
 
@@ -190,7 +190,8 @@ that to simplify the code further:
     add rax, [rsp + OFFSET_ptr]
 
 This reduces the use of address arithmetic ports, which can allow
-these instructions to execute with more parallelism.
+these instructions to execute with more parallelism. Make sure to only
+apply this optimization when the bound fits in 32 bits.
 
 Implement this optimization in `cg_array_loop_expr`. Only apply this
 optimization if the loop bounds are integer constants.
