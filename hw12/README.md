@@ -105,7 +105,12 @@ This is invalid because this number does not fit in 32 bits.
 
 Modify your `cg_int_expr` and `cg_bool_expr` functions to use
 immediates for constants that fit in 32 bits. If the constant does not
-fit in 32 bits, continue to use the slower load-from-constant code.
+fit in 32 bits, continue to use the slower load-from-constant code. In
+many languages, you can test if a value fits into 32 bits like this:
+
+    x & ((1 << 31) - 1) == x
+   
+Be very careful to make sure this computation happens with 64-bit integers.
 
 With optimizations on, the data portion of your assembly file should
 not have any integer constants that fit into 32 bits.
