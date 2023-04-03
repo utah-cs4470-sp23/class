@@ -9,9 +9,9 @@ compiler.
 This assignment is due Friday April 14.
 
 Your compiler must implement the `-s` flag and the `-O` flag. Your
-compiler will be called with both `-s -O1` and `-s -O2`. When called
-with `-s -O1`, it should generate the same assembly code expected for
-Assignments 12. When called with `-s -O2`, it should generate assembly
+compiler will be called with both `-s` and `-s -O2`. When called with
+`-s`, it should generate the same assembly code expected for
+Assignment 11. When called with `-s -O2`, it should generate assembly
 code with constant propagation, explained below. The [provided
 compiler][releases] supports this flag, so you can use it for testing.
 
@@ -128,6 +128,17 @@ indexing, and multiplications by powers of two. Until now, all of
 those optimizations depend on an AST node being an `IntegerConstant`;
 update them to instead depend on the AST node having an `IntValue`.
 
+Specifically, the following optimizations are tested:
+
+- Short immediates for small-enough integer constants
+- Casts from boolean to integer
+- Faster index expressions in `array` loops
+- Multiplication by powers of two
+
+Each of these optimizations should now apply to all expressions with
+appropriate `IntValue`, even if those expressions are variable
+references, not literal integers.
+
 With this change, you should see the peephole optimizations apply in
 more cases; for example, in this example:
 
@@ -158,24 +169,25 @@ unknown length in another dimension, like this:
 Make sure this is representable by making an `ArrayValue` contain a
 list of `CPValue`s.
 
-Arrays are constructed in two ways: by array literals, and by `array`
-loops. Array literals always have a known, constant length, while
-`array` loops have a known, constant length if the loop bounds are
-known integer constants. Make sure your create `ArrayValue`s in both
-cases.
+Arrays are constructed in three ways: by array literals, by `array`
+loops, and by `read` commands. Array literals always have a known,
+constant length, while `array` loops have a known, constant length if
+the loop bounds are known integer constants. Make sure your create
+`ArrayValue`s in both cases. The `read` command reads a file on disk,
+so the arrays it produces don't have known sizes.
 
-Also make sure that an `ArrayArgument` binding like this:
+Also make sure that an `ArrayArgument` binding like this also updates
+the context with `IntValue`s for `H` and `W`:
 
     let a[H, W] = array[i : 16, j : 32] i + j
 
-Also updates the context with `IntValue`s for `H` and `W`. Binding an
-array with known sizes in this way should produce known integers.
+Binding an array with known sizes in this way should produce known
+integers.
 
 Finally, update the code generation for array indexing to use the
 shorter, faster peephole optimization from Part 5 of Assignment 12, if
 the array that it's indexing into has known, constant size. For
 example, consider this code:
-
 
     let N = 2048
     let m1 = array[i : N, j : N] to_float(i+j)
@@ -193,16 +205,27 @@ There's no extra credit on this assignment, but if you found it
 interesting, here are some more fun optimizations we decided not to
 assign.
 
-It's not too hard to extend the known integer value tracking to handle
-more data structures, like tuples. This is helpful in JPL, because
-it's convenient to define constants like this:
+You can extend the constant propagator to do some constant folding.
+For example, if you add two known constants, you can do that addition
+in your compiler. If you implement this, be especially careful with
+how JPL treats integer division and modulus operations.
+
+You can also compile out some of JPL's checks when all of the inputs
+are known constants. For example, if you are indexing into an array
+with known size, and the indices are also known, you should be able to
+skip all of the bounds checks. Similarly, you could remove the
+division by zero check.
+
+All of this would be even more powerful if you added a range analysis.
+In particular, JPL loop indices have a known range if the loop bound
+is fixed. The range analysis would let you eliminate a lot of bounds
+checks, leading to a substantial speedup.
+
+In another direction, it's not too hard to extend the known integer
+value tracking to handle more data structures, like tuples. This is
+helpful in JPL, because it's convenient to define constants like this:
 
     let {H, W, N} = {800, 600, 12}
-
-You can also extend the constant propagator to do some constant
-folding. For example, if you add two known constants, you can do that
-addition in your compiler. If you implement this, be especially
-careful with how JPL treats integer division and modulus operations.
 
 One interesting thing you can do is use `assert`s in a flow-sensitive
 way to improve constant propagation. For example, a common JPL idiom
