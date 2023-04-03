@@ -94,11 +94,11 @@ First, define `visit_int_expr`. These expressions are integer
 constants, so their `cp` field needs to be set to an `IntValue`
 containing the constant value.
 
-Second, define `visit_let_cmd` and `visit_let_stmt`. This command /
-statement should visit the right hand side and then check if the right
-hand side has a non-null `CPValue`. If it does, extract the variable
-name from the `let` and update the `context` to map that variable name
-to that `CPValue`.
+Second, define `visit_let_cmd` (and `visit_let_stmt`, if you've
+implemented it). This command should visit the right hand side and
+then check if the right hand side has a non-null `CPValue`. If it
+does, extract the variable name from the `let` and update the
+`context` to map that variable name to that `CPValue`.
 
 Finally, define `visit_var_expr`. This command shold look up the
 variable name in the `context` and update the `VarExpr`'s `CPValue` if
@@ -114,7 +114,7 @@ like this:
     show array[i : N] i
 
 Then it will first determine that the `IntExpr(32)` has an
-`IntValue(12)`; then, save that `IntValue` in the `context` for the
+`IntValue(32)`; then, save that `IntValue` in the `context` for the
 variable `N`; and finally, save the same `IntValue` on the
 `VarExpr(N)` where the variable is used in the second line.
 
