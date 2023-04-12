@@ -125,7 +125,7 @@ Now that some of the expressions in your AST have `cp` fields with
 Assignment 12, you added several peephole optimizations that work when
 something is an integer literal---short immediates, better array
 indexing, and multiplications by powers of two. Until now, all of
-those optimizations depend on an AST node being an `IntegerConstant`;
+those optimizations depend on an AST node being an `IntExpr`;
 update them to instead depend on the AST node having an `IntValue`.
 
 Specifically, the following optimizations are tested:
