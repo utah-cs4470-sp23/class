@@ -184,7 +184,7 @@ Course Schedule
 | 13   | 3 April  | Dataflow                |     |
 | 14   | 10 April | The memory hierarchy    | Mon |
 | 15   | 17 April | Vectorization & layout  |     |
-| 16   | 24 April | The future of compilers |     |
+| 16   | 24 April | The future of compilers | Wed |
 
 Note: This schedule is aspirational---a guide for our course, not a
 promise that will be kept no matter what. It will be updated and
