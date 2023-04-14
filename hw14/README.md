@@ -26,17 +26,21 @@ In this assignment, your compiler will be evaluated on only 5 programs
 total:
 
 - A columnar sum routine
-- A convolution routine
+- A cross product computed via Levi-Civita symbols
 - A matrix multiply routine
 - A softmax neural network layer inference
 - A dense feed-forward neural network layer inference
+
+It's not important to understand what these computations are used for;
+each of them loads data from images, converts them into integer or
+float arrays, and then runs a tensor contraction operation on them.
 
 Like in the prior two assignments, you are tested for matching the
 assembly produced by the [provided compiler][releases], though you
 don't need to match comments, whitespace, or exactly how you do
 address arithmetic. The grading rubrik is:
 
-| Tests | ok1 | ok2 | ok3 | ok4 | ok5 |
+| Tests | col | crs | mat | sft | dns |
 |-------|-----|-----|-----|-----|-----|
 | Grade | 10% | 20% | 20% | 20% | 30% |
 
