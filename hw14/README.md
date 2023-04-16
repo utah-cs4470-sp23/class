@@ -297,7 +297,7 @@ italics indicate where it should differ from the existing `array` or
 - Add the body *to the computed pointer*
 - Finally, increment the loop indices. *Here, use the topological
   order.*
-- One outside the loop, free all the *array and sum* indices and also
+- Once outside the loop, free all the *array and sum* indices and also
   the sum bounds, but not the array bounds.
 
 We recommend going step by step through these modifications and
