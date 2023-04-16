@@ -1,95 +1,188 @@
-JohnPavelLang Specification
-======================
+JPL Specification
+=================
+
+JPL is a simple array-oriented language mainly meant for graphics
+code. This specification describes the 2025 edition of the language.
 
 Lexical Syntax
 --------------
 
-Every byte of a valid JPL program has integer value 10 or 32-126
-inclusive. Note that this means that space (32) and newline (10) are
-the only valid whitespace characters (tabs are illegal, and only Unix
-newlines are allowed).
+JPL contains 7 kinds of tokens: keywords, punctuation, variables,
+integer literals, float literals, strings, and newlines. There can
+also be whitespace between the tokens.
 
-An integer literal is a sequence of one or more digits. An integer
+The *keywords* are: `array`, `assert`, `bool`, `else`, `false`, `float`,
+`fn`, `if`, `image`, `int`, `let`, `print`, `read`, `return`, `show`,
+`struct`, `sum`, `then`, `time`, `to`, `true`, `type`, `void`, `write`.
+
+The *punctuation* characters are: `:`, `{`, `}`, `(`, `)`, `[`, `]`,
+`,`, `=`, `+`, `-`, `*`, `/`, `%`, `<`, `>`, `&&`, `||`, `==`, `!=`,
+`<=`, `>=`.
+
+*Variables* are a letter (upper case A-Z or lower case a-z) followed
+by any number of letters or digits, underscores, *except* when the
+sequence of letters and digits is a keyword.
+
+An *integer* literal is a sequence of one or more digits. An integer
 literal that does not map to a 64-bit two's complement value
 (e.g. 9999999999999999999999) is a compile-time error; in other words
 the minimum integer value is `-2^63` and the maximum integer value is
 `2^63 - 1`.
 
-A float literal is a sequence of digits, a dot, and another sequence
+A *float* literal is a sequence of digits, a dot, and another sequence
 of digits; one of the two sequences must be non-empty. The dot is
 required. Scientific notation is not supported. Literals mapping to
 infinity are not supported. Do not write your own code to convert
-float syntax to float values. It is much harder and subtler than you
-probably think! Use the C library function `strtod` or its binding in
+float syntax to float values! (It is much harder and subtler than you
+probably think!) Use the C library function `strtod` or its binding in
 your language of choice (ex. Python's `float`) to perform the
 conversion. If this conversion is error-free, then the literal is
 legal, otherwise the JPL compiler must signal a compile-time error.
 
-Strings are a double quote, any sequence of legal characters except
+*Strings* are a double quote, any sequence of legal characters except
 double quote and newline, and then another double quote. Character
 escapes like `\n` aren't supported (you're not going to need them).
 Multi-line string literals are not supported.
 
-Variables are a letter (upper case A-Z or lower case a-z) followed by
-any number of letters or digits, underscores, or dots, *except* when
-the sequence of letters and digits is a keyword. By convention,
-variables that contain dots are reserved for compiler intermediates
-and should not be written in source code.
-
-The keywords are: `array`, `assert`, `bool`, `else`, `false`, `float`,
-`fn`, `if`, `image`, `int`, `let`, `print`, `read`, `return`, `show`,
-`sum`, `then`, `time`, `to`, `true`, `type`, `write`.
-
-Whitespace is allowed between any two tokens and consists of any
+*Whitespace* is allowed between any two tokens and consists of any
 sequence of spaces, line comments, block comments, and newline
 escapes. Line comments are a `//`, followed by any sequence of
 non-newline characters. Block comments are a `/*`, followed by
 any sequence of characters not including `*/`, followed by `*/`.
 Newline escapes are a backslash followed immediately by a newline.
 
-A single-line comment nevers contain a newline character, so the
-newline character at the end of a single-line comment generates a
-distinct newline token. Conversely, a multi-line comment may contain
-newline characters, and those contained newline characters do not
-generate distinct newline tokens.
+A *newline* is any sequence of newline characters (ASCII 10) and
+whitespace containing at least one newline, except at the beginning of
+the program. This means multiple consecutive newline tokens should
+never occur (they should be squashed into one newline token). Note
+that the newline at the end of a line comment still generates a
+newline token, but newlines inside a block comment do not. However, if
+a program starts with whitespace or newlines, no newline token should
+be generated.
 
-Multiple consecutive newline tokens must be squashed into one.
+All other characters are illegal, and an appropriate lexer error
+should be raised if any occur in a JPL program. That includes tabs and
+carriage returns (part of a Windows newline). More generally, only
+ASII character 10 and characters 32-127 are valid in a JPL program.
+
 
 Syntax
 ------
 
-There are four syntax classes: types, expressions, statements, and
-commands. A program is a sequence of commands, each of which must
-be terminated by a newline.
-
-There are also auxiliary syntax classes for lvalues, arguments, and
-bindings.
-
-In the grammar below, semicolons represent newline tokens.
+There are five syntax classes: types, expressions, statements,
+lvalues, and commands. A program is a sequence of commands terminated
+by newlines. A valid program must end with a newline. In the grammar
+below, semicolons represent newline tokens.
 
 Ellipses represent repetition with a separator. For example, `( <expr>
 , ... )`means any sequence of left parenthesis, expression, comma,
 expression, comma, and so on until a final expression, and then a
-right parenthesis. Repetition always allows zero repetitions. Each
-comma must be followed by a repetend: a final trailing comma is not
-allowed.
+right parenthesis. Likewise, `( <variable> : <expr> , ... )` repeats a
+sequence of `<variable> : <expr>` constructions. Repetition never
+allows zero repetitions. Each comma must be followed by a repetend: a
+final trailing comma is not allowed.
 
-### Type Syntax
+### Primitive Values
 
-The base types are Booleans, 64-bit signed integers, and 64-bit
-(double precision) floats, of which you can form arrays and tuples:
+The promitrive types are Booleans, 64-bit signed integers, and 64-bit
+(double precision) floats:
 
 ```
 type : int
      | bool
      | float
-     | <variable>
-     | <type> [ , ... ]
-     | { <type> , ... }
 ```
 
-The `<variable>` branch refers to type variables introduced with
-the `type` command; see below.
+JPL does not have any implicit conversions between types. This means
+only one of `x / 2` or `x / 2.` will typecheck, for any given `x`.
+
+Values of these types can be written directly:
+
+```
+expr : <integer>
+     | <float>
+     | true
+     | false
+```
+
+Mathematical operators expect both operands to have the same type
+(either integer or float) and yield a result of the same type as the
+input:
+
+```
+expr : <expr> + <expr>
+     | <expr> - <expr>
+     | <expr> * <expr>
+     | <expr> / <expr>
+     | <expr> % <expr>
+```
+
+Comparisons likewise expect both operands to have the same type
+(integer, boolean, or float), and yield Booleans:
+
+```
+expr : <expr> < <expr>
+     | <expr> > <expr>
+     | <expr> == <expr>
+     | <expr> != <expr>
+     | <expr> <= <expr>
+     | <expr> >= <expr>
+```
+
+Booleans are compared with `false` less than `true`.
+
+Boolean operators, where `&&` and `||` are short-circuiting:
+
+```
+expr : <expr> && <expr>
+     | <expr> || <expr>
+```
+
+Note that unary negation isn't included. While inconvenient for
+programming, this makes the parser easier to write. Unary negation
+`-x` can always be replaced with `0 - x` or `0. - x`, while unary
+negation `!c` can be replaced with `c == false`.
+
+Finally, there is a conditional operator, which only evaluates the
+relevant branch. Both branches have to yield the same type.
+
+```
+expr : if <expr> then <expr> else <expr>
+```
+
+Precedence is necessary to disambiguate certain constructs. The
+binding strength is:
+
+- Postfix `[]` and `.` have the highest precedence
+- Multiplicative binary operators `*`, `/`, and `%` have third highest
+- Additive binary operators `+` and `-` are next
+- Binary comparisons `<`, `>`, `<=`, `>=`, `==`, and `!=` are next
+- Boolean binary operators `&&` and `||` are next
+- Prefix `array`, `sum`, and `if` expressions have the lowest precedence
+
+All operators associate to the left. Explicit parentheses can be used
+to override precedence:
+
+```
+expr : ( <expr> )
+```
+
+> For example,
+>
+>    array[i : N] if ! y[i] then 0 else 1 + 2 * x[i]
+>
+> is equivalent to
+>
+>    (array[i : N] (if (! (y[i])) then (0) else (1 + (2 * > (x[i])))))
+
+### Arrays
+
+JPL supports multidimensional arrays:
+
+```
+type : <type> [ ]
+     | <type> [ , ... ]
+```
 
 The array syntax allows any number of commas between the square
 brackets; for example, `int[,,,]` means a four-dimensional array of
@@ -99,61 +192,205 @@ and `int[][]` (a one-dimensional or rank-1 array of one-dimensional or
 rank-1 arrays). The difference is that the first is guaranteed to be
 rectangular, while the second is not.
 
-JPL does not have any implicit conversions between types.
-
-### Expressions
-
-The constructors for each basic type, where `true` and `false` are the
-two Boolean values:
+You can index into an array, as long as the number of indices matches
+the array's rank:
 
 ```
-expr : <integer>
-     | <float>
-     | true
-     | false
+expr : <expr> [ <expr> , ... ]
 ```
 
-Variables, which always have a static type from the environment.
+Array indices are zero-based, and empty arrays (with a dimension of
+length zero) are not allowed.
+
+One-dimensional arrays can be constructed directly:
+
+```
+expr : [ <expr> , ... ]
+```
+
+However, higher-dimensional arrays *can't* be constructed directly.
+Instead, you need to use JPL's `array` and `sum` constructs:
+
+```
+expr : array [ <variable> : <expr> , ... ] <expr>
+     | sum [ <variable> : <expr> , ... ] <expr>
+```
+
+Each expression in the list of bindings (between the square brackets)
+must produce an integer, and in the body of the loop (after the square
+brackets) those variables are bound to integers. `array` expressions
+yield an array, whose rank is given by the number of bindings. `sum`
+expressions yield an integer or a float, depending on the body
+expression.
+
+### Structures
+
+JPL also has structure definitions:
+
+```
+cmd : struct <variable> { ;
+          <variable> : <type> ;
+          ... ;
+      }
+```
+
+Once defined, the structure becomes a type:
+
+```
+type : void
+     | <variable>
+```
+
+Here, `void` is a built-in zero-size structure, as if it were defined
+like so:
+
+    struct void {
+    }
+
+However, note that a real `struct` definition has to have at least one
+field, so this definition isn't actually valid JPL. That's why `void`
+is built-in.
+
+To construct a structure, you need to give a value for each field:
+
+```
+expr : <variable> { <variable> : <expr> , ... }
+```
+
+The special `void` structure has just one value:
+
+```
+expr : void
+```
+
+You can then get a particular field's value with the dot operator:
+
+```
+expr : <expr> . <variable>
+```
+
+Naturally, when constructing or accessing a structure, all of the
+field names have to be valid and be constructed with the right type.
+
+### Input/Output
+
+Commands are only available at the top level (not inside functions)
+and are the only way side effects occur. Commands deal largely with
+input and output.
+
+PNG images are the main input/output format. PNG files read as
+`rgba[H,W]`, where the `rgba` structure is defined like so:
+
+    struct rgba {
+        r : float
+        g : float
+        b : float
+        a : float
+    }
+
+Color values should be between 0.0 and 1.0. Values below 0.0
+are clipped to 0.0 and values above 1.0 are clipped to 1.0.
+NaN and negative zero map to 0.0.
+
+While text I/O is not JPL's main input/output facility, it is useful
+for debugging and in a few other cases. You can print any JPL value
+with `show`, or print a literal string with `print`:
+
+```
+cmd  : print <string>
+     | show <expr>
+```
+
+Printing outputs the string followed by a newline. Showing outputs the
+expression in a form similar to how it could be constructed in JPL.
+However, multi-dimensional arrays are output using a format containing
+semicolons to indicate the end of rows, which can't be parsed by JPL.
+
+You can also time an expression with `time`:
+
+```
+expr : time <expr>
+```
+
+This evaluates the expression and then prints the word `[time]`
+followed by the time (in milliseconds) and the expression to the
+console. The format of the expression is not defined.
+
+### Functions
+
+Functions are defined like so:
+
+```
+cmd : fn <variable> ( <lvalue> : <type> , ... ) : <type> { ; 
+          <stmt> ;
+          ... ;
+          return <expr> ;
+      }
+```
+
+Note that each function has a single `return`, which must be
+explicitly written.
+
+They can then be called like so:
+
+```
+expr : <variable> ( <expr> , ... )
+```
+
+Zero-argument functions can't be defined or called. This makes parsing
+a bit more convenient, and doesn't impact usability much.
+
+Variables are defined with `let` commands/statements. (They are also
+introduced by function arguments and `read` commands.)
+
+```
+stmt : let <lvalue> = <expr>
+cmd : stmt
+```
+
+The LValue on the left hand side of the equal sign could bind just a
+variable:
+
+```
+lvalue : <variable>
+```
+
+However, it can also bind an array variable and also integer variables
+for the length of that array (in each dimension) at the same time:
+
+```
+lvalue : <variable> [ <variable> , ... ]
+```
+
+Once a variable is defined, it can be used:
 
 ```
 expr : <variable>
 ```
 
-Tuple and array constructors:
+Assertions evaluate the expression and abort the program (after
+printing the user's error message) if it is false. The expression must
+return a boolean:
 
 ```
-expr : { <expr> , ... }
-     | [ <expr> , ... ]
+stmt : assert <expr> , <string>
 ```
 
-For tuples, each expression can have its own type, but for array
-constructors, each expression must have the same type. Array
-constructors always produce rank-1 arrays; there's no way to directly
-construct a higher-rank array. However, an empty array constructor,
-`[]`, is considered type invalid.
+Semantics
+---------
 
-Parentheses can be used to override precedence:
+### Values
 
-```
-expr : ( <expr> )
-```
+Integers behave like 64-bit two's-complement signed integers. Integer
+overflows wrap around in two's complement fashion. There are no
+unsigned types or operators.
 
-Mathematical operators, which expect both operands to have the same
-type (either integer or float) and yield a result of the same type
-as the input:
-
-```
-expr : <expr> + <expr>
-     | <expr> - <expr>
-     | <expr> * <expr>
-     | <expr> / <expr>
-     | <expr> % <expr>
-     | - <expr>
-```
-
-Precedence is described below. Within a precedence class, evaluation
-is left to right. Integer overflows wrap around in two's complement
-fashion. There are no unsigned types or operators.
+Floats behave like by 64-bit IEEE-754 floating point values. Keep in
+mind that a number of interesting floating point values exist, such as
+-0, inf, and NaN. Operations on these values should follow standard
+IEEE 754 semantics: `inf + 1.0 = inf`, and `0.0 / 0.0 = NaN`. Floating
+point instructions should generally give you the desired behavior for
+free, it is built into the FP hardware unit.
 
 Integer division is defined to wrap to zero. Integer modulus is
 defined so that `a` and `a % b` have the same sign. Division by or
@@ -167,351 +404,11 @@ language's equivalent.[1]
     `math.fmod` is closer, but you must check for a zero right-hand
     side and return `NaN` instead of throwing an exception.
 
-Keep in mind that a number of interesting floating point values exist,
-such as -0, inf, and NaN. Operations on these values should follow
-standard IEEE 754 semantics: `inf + 1.0 = inf`, and `0.0 / 0.0 = NaN`.
-Floating point instructions should generally give you the desired
-behavior for free, it is built into the FP hardware unit.
-
-Comparisons, which take either two integer subexpressions or two
-float subexpressions, and yield Booleans:
-
-```
-expr : <expr> < <expr>
-     | <expr> > <expr>
-     | <expr> == <expr>
-     | <expr> != <expr>
-     | <expr> <= <expr>
-     | <expr> >= <expr>
-```
-
-Boolean operators, where `&&` and `||` are short-circuiting:
-
-```
-expr : <expr> && <expr>
-     | <expr> || <expr>
-     | ! <expr>
-```
-
-Array and tuple operations. Both arrays and tuples are indexed by
-integers and are zero-based. Tuple indices must be integer literals,
-to support static typing. For arrays, the number of indexing
-expressions must equal the array's rank.
-
-```
-expr : <expr> { <integer> }
-     | <expr> [ <expr> , ... ]
-```
-
-A conditional operator, which only evaluates the relevant branch.
-Both branches have to yield the same type.
-
-```
-expr : if <expr> then <expr> else <expr>
-```
-
-Implicit loops. `sum` operates on integers and floats.
-
-```
-expr : array [ <variable> : <expr> , ... ] <expr>
-     | sum [ <variable> : <expr> , ... ] <expr>
-```
-
-Each expression in the list of bindings (between the square brackets)
-must produce an integer, and in the body of the loop (after the square
-brackets) those variables are bound to integers. `array` expressions
-yield an array, whose rank is given by the number of bindings. `sum`
-expressions yield an integer or a float, depending on the body
-expression. If the list of bindings is empty for either `array` or
-`sum`, the program is type-invalid.
-
-If any expression in the list of bindings returns non-positive number,
-that is a runtime error. It is invalid to create an `array` of zero
-elements (of any rank) or to `sum` sums zero elements.
-
-Function calls:
-
-```
-expr : <variable> ( <expr> , ... )
-```
-
-The type of a function call expression is the return type of the
-function. Function calls can refer to either other functions defined
-in the same file, or to builtin functions.
-
-Precedence is necessary to disambiguate certain constructs. The
-binding strength is:
-
-- Postfix `[]` and `{}` have the highest precedence
-- Unary prefix `!` and `-` have the next-highest precedence
-- Multiplicative binary operators `*`, `/`, and `%` have third highest
-- Additive binary operators `+` and `-` are next
-- Binary comparisons `<`, `>`, `<=`, `>=`, `==`, and `!=` are next
-- Boolean binary operators `&&` and `||` are next
-- Prefix `array`, `sum`, and `if` expressions have the lowest
-  precedence
-
-> For example,
->
->    array[i : N] if ! y[i] then 0 else 1 + 2 * x[i]
->
-> is equivalent to
->
->    (array[i : N] (if (! (y[i])) then (0) else (1 + (2 * > (x[i])))))
-
-### Statements
-
-Statements begin with keywords so they cannot be confused with
-expressions. Statements are pure but not total.
-
-Let statements bind new variable names.
-
-```
-stmt : let <lvalue> = <expr>
-```
-
-A `let` statement's lvalue ("left value") is so called because it is
-the left-hand argument to an assignment operator. These have multiple
-formats, described below; the format of the lvalue must match the type
-of the expression. Note that while this code is correctly typed:
-
-```
-let { { x, y }, { z, w } } = { { 32, 48 }, { 1, 2 } }
-```
-
-this code is not, and must be rejected by a JPL compiler:
-
-```
-let { { x, y }, { z, w } } = { { 32, 48, 1 }, { 2 } }
-```
-
-In other words, it is not only the contents of tuples that are
-typechecked, but also the tuple structure.
-
-Assertions evaluate the expression and abort the program (after
-printing the user's error message) if it is false. The expression must
-return a boolean:
-
-```
-stmt : assert <expr> , <string>
-```
-
-A return statement inside a function ends execution of that function;
-the type of the returned expression must match the function's return
-type. If there is not explicit return statement in a function, that is
-the same as returning `{}` (the empty tuple). Naturally, this is only
-legal if the function return type is `{}` (the type of empty tuples).
-
-```
-stmt : return <expr>
-```
-
-### Commands
-
-Commands are only available at the top level (not inside functions)
-and are the only way side effects occur. Commands deal largely with
-input and output.
-
-PNG images are the main input/output format. PNG files read as
-`{float,float,float,float}[H,W]`, with the tuple representing RGBA
-colors. Color values should be between 0.0 and 1.0. Values below 0.0
-are clipped to 0.0 and values above 1.0 are clipped to 1.0.
-NaN and negative zero map to 0.0.
-
-```
-cmd  : read image <string> to <argument>
-     | write image <expr> to <string>
-```
-
-The `type` command introduces a type alias:
-
-```
-cmd  : type <variable> = <type>
-```
-
-The `let` command is like a `let` statement but defines a global:
-
-```
-cmd  : let <lvalue> = <expr>
-```
-
-The `assert` command is like an `assert` statement:
-
-```
-cmd  : assert <expr> , <string>
-```
-
-There are no `return` commands.
-
-Printing and timing statements are available for debugging purposes.
-
-```
-cmd  : print <string>
-     | show <expr>
-     | time <cmd>
-```
-
-Printing outputs the string followed by a newline. Showing outputs the
-expression, a space, an equal sign, another space, and then the
-expression's value. When outputting the expression, `show` need not
-preserve parentheses or whitespace, as long as the output expression
-parses to the same parse tree as the expression in the source code.
-Times should be as precise as possible (at least millisecond
-accuracy).
-
-Functions are pretty standard:
-
-```
-cmd  : fn <variable> ( <binding> , ... ) : <type> { ;
-           <stmt> ; ... ;
-       }
-```
-
-Function definitions are interpreted in file order, and may not use
-the same name as either another function or a builtin. Recursive calls
-are allowed.
-
-### Arguments, Lvalues, and Bindings
-
-Binding forms in JPL allow binding a single value, or simultaneously
-binding an array and its dimensions, or simultaneously binding
-elements of a tuple. Lvalues are used in `let` statements while
-bindings are used in argument definitions and include types. Both
-share the "argument" syntax for binding variables and arrays,
-
-Arguments can be raw variable bindings:
-
-```
-argument : <variable>
-```
-
-Or arguments can bind an array and its dimensions:
-
-```
-argument : <variable> [ <variable> , ... ]
-```
-
-It is a compile-time error if the number of dimension variables does
-not equal the rank of the array. Also, only the outermost of a nested
-array can have its dimensions bound in this fashion (since nested
-arrays are not guaranteed to be rectangular).
-
-Lvalues can bind the parts of a tuple:
-
-```
-lvalue : <argument>
-       | { <lvalue> , ... }
-```
-
-Bindings are the same as lvalues but also include types:
-
-```
-binding : <argument> : <type>
-        | { <binding> , ... }
-```
-
-> Here are some example arguments, and then the bindings they introduce:
-> 
-> `x : int` takes an `int` argument
-> and binds `x : int`.
-> 
-> `x : int[]` takes an `int[]` argument
-> and binds `x : int[]`.
-> 
-> `x[L] : int[]` takes an `int[]` argument
-> and binds `x : int[]` and `L : int`.
-> 
-> `x[H, W] : int[,]` takes an `int[,]` argument
-> and binds `x : int[,]`, `W : int`, `H : int`.
-> 
-> `x[H, W] : {int, float}[][,]` takes an `{int, float}[][,]` argument
-> and binds `x : {int, float}[][,]`, `W : int`, `H : int`.
-> 
-> `{ x[H, W] : int[,], { y : int, z[T] : float[] } }`
-> takes an `{int[,], {int, float[]}}`
-> and binds `x : int[,]`, `W : int`, `H : int`,
-> `y : int`, `z : float[]`, `T : int`.
-
-Semantics
----------
-
-A JPL program has a compilation phase and an execution phase. It is
-possible that a JPL implementation will want to blur the distinction
-between these phases (e.g. because it is an interpreter or a JIT
-compiler), but conceptually they must exist.
-
-At compile time, a JPL implementation must reject syntactically
-malformed inputs (those that are not accepted by the JPL grammar) as
-well as inputs that are accepted by the grammar, but that fail to type
-check. For example, a program containing the expression `a < b` where
-`a` has boolean type, must be rejected at compile time. Note that
-array sizes are not part of the type system. Compile-time error
-messages should mention the line number where the problem was first
-detected and also a brief description of the problem.
-
-### Values
-
-Integers behave like 64-bit two's-complement signed integers.
-
-Floats behave like by 64-bit IEEE-754 floating point values.
-
-Tuples are laid out contiguously in memory, with all values 32-bit
-aligned.
-
-Arrays are a list of 64-bit dimension sizes and a 64-bit data pointer.
-
-Everything is passed by value, by which we mean that the data pointer
-inside an array is a reference but the rest of the array data (the
-list of dimension sizes) is copied.
-
-By splitting array sizes from their data, it makes it easy to
-rematerialize that info.
-
-### Binding
-
-Variable bindings are lexical, meaning that every time a function is
-invoked it introduces a new variable scope.
-
-Type aliases are merely aliases, interchangable with their definition.
-
-It is always a compile-time error for a JPL program to refer to a name
-that has not yet been bound. So, for example, while this program looks
-like it should typecheck, it is not legal JPL because the body of `f()`
-refers to function `g()` which has not yet been bound:
-
-```
-fn f(x : int) : int {
-   return g(x)
-}
-
-let y = f(3)
-
-fn g(x : int) : int {
-   return y
-}
-```
-
-Shadowing is always illegal in JPL: it is a compile time error to bind
-a name that is already visible from the current scope, including a
-type alias. Thus, no JPL program can contain two functions with the
-same name, and it is always an error to introduce a function with the
-same name as a built-in function. It is not even legal to have a
-function-scoped variable with the same name as a global.
-
-JPL compilers must provide builtin functions including the following
-math functions:
-
-+ Of one `float` argument, returning a `float`:
-  `sqrt`, `exp`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, and `log`
-+ Of two `float` arguments, returning a `float`:
-  `pow` and `atan2`
-+ The `to_float` function, which converts an `int` to a `float`
-+ The `to_int` function, which converts a `float` to an `int`, with
-  positive and negative infinity converting into the maximum and
-  minimum integers, and NaN converting to 0.
-
-They can also provide builtin functions whose name contains a dot,
-which the compiler can use during compilation.
+The compiler does not have to preserve the contents, count, or order
+of `time` expressions. That said, times should be as precise as
+possible---at least millisecond accuracy.
+
+### Builtins
 
 JPL must provide a global `args` variable of type `int[]` containing
 integers provided in the command line program's command line, and a
@@ -532,7 +429,69 @@ that are not 64-bit signed integer values.
 >
 > It must print `args = [1, 2, 3, 4]`.
 
+JPL compilers must provide builtin functions including the following
+math functions:
+
++ Of one `float` argument, returning a `float`:
+  `sqrt`, `exp`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, and `log`
++ Of two `float` arguments, returning a `float`:
+  `pow` and `atan2`
++ The `to_float` function, which converts an `int` to a `float`
++ The `to_int` function, which converts a `float` to an `int`, with
+  positive and negative infinity converting into the maximum and
+  minimum integers, and NaN converting to 0.
+JPL compilers must also provide the builtin `rgba` type, defined as
+described above.
+
+### Binding
+
+Variable bindings are lexical, meaning that every time a function is
+invoked it introduces a new variable scope. It is always a
+compile-time error for a JPL program to refer to a name that has not
+yet been bound. Function definitions are interpreted in file order,
+and may not use the same name as either another function or a builtin.
+
+Recursive calls are allowed. However, mutual recursion is not (because
+one of the functions would have to refer to a function defined later
+in that file). So, for example, while this program looks like it
+should typecheck, it is not legal JPL because the body of `f()` refers
+to function `g()` which has not yet been bound:
+
+```
+fn f(x : int) : int {
+   return g(x)
+}
+
+let y = f(3)
+
+fn g(x : int) : int {
+   return y
+}
+```
+
+Shadowing is always illegal in JPL: it is a compile time error to bind
+a name that is already visible from the current scope, including a
+type alias. Thus, no JPL program can contain two functions with the
+same name, and it is always an error to introduce a function with the
+same name as a built-in function. It is not even legal to have a
+function-scoped variable with the same name as a global.
+
 ### Errors
+
+A JPL program has a compilation phase and an execution phase. It is
+possible that a JPL implementation will want to blur the distinction
+between these phases (e.g. because it is an interpreter or a JIT
+compiler), but conceptually they must exist.
+
+At compile time, a JPL implementation must reject syntactically
+malformed inputs (those that are not accepted by the JPL grammar) as
+well as inputs that are accepted by the grammar, but that fail to type
+check. For example, a program containing the expression `a < b` where
+`a` and `b` have different types, must be rejected at compile time.
+Note that array sizes are not part of the type system (though array
+rank is). Compile-time error messages should mention the line number
+where the problem was first detected and also a brief description of
+the problem.
 
 At run time, a JPL implementation must detect erroneous conditions. If
 any such condition occurs, the JPL program must be cleanly terminated
@@ -577,116 +536,60 @@ non-termination.
 JPL compilers need not strictly preserve external errors---that's
 impossible without a strict contract from the operating system---but
 should preserve the order and arguments of system calls, except for
-the time information in `time` commands. In practice, this is not
+the time information in `time` expressions. In practice, this is not
 hard, because only the top-level commands have I/O effects.
 
 JPL compilers also need not preserve the type of internal or external
 error (for example, bounds checks could be implemented as assertions).
 
-There are some rarer exceptional conditions, like stack overflow,
-where JPL programs are allowed to segfault or otherwise terminate
-uncleanly, and need not be preserved. As long as the compiler doesn't
-go out of its way to mess with this things should be fine.
+There are some rarer exceptional conditions, like stack overflow or
+signal handling, where JPL programs are allowed to segfault or
+otherwise terminate uncleanly, and need not be preserved. As long as
+the compiler doesn't go out of its way to mess with this things should
+be fine.
 
-Elaboration
------------
-
-Compiler implementors may want to make their jobs easier by
-elaborating certain JPL constructs into other ones that need to be
-implemented anyway.
-
-### Short-circuiting
-
-It is convenient to elaborate short-circuting `&&` and `||` via `if`
-statements:
-
-    A && B -> if A then B else false
-    A || B -> if A then true else B
-
-### Errors
-
-A JPL implementation could implement error checks by inserting
-assertions into the program as it is being compiled. For example, a
-function like this:
-
-    fn example(i : int, j : int) : int {
-      return i / j
-    }
-
-can be transformed into:
-
-    fn example(i : int, j : int) : int {
-        return JPL.divide(i, j)
-    }
-
-where `JPL.divide` is provided by the JPL implementation and looks like:
-
-    fn JPL.divide(i : int, j : int) : int {
-        assert j != 0, "Error: Division by zero"
-        return i / j
-    }
-
-### Arrays
-
-It's helpful to introduce a type, `data`, for a pointer to data.
-Then an array like `int[,]` can be represented in memory by the tuple
-`{int, int, data}`, where the first two integers are the dimension.
-Since arrays are immutable, it doesn't matter whether the tuple is
-passed by reference or by value (though `data` should always be passed
-by reference!) and in many cases it won't need to be, since the array
-size going to be computable from other sources.
-
-### Commands
-
-It is convenient to convert commands into calls to builtin functions.
-
-Since commands often deal with strings it's convenient to convert
-strings to arrays of integers. For example, in the command
-
-```
-read image "test.png" to a
-```
-
-the string `"test.png"` could be converted to the array
-
-```
-let filename = [ 116, 101, 115, 116, 46, 112, 110, 103, 0 ]
-```
-
-where a null terminator is inserted for compatibility with C-style
-strings. Then the `read` statement itself might be converted to a call
-to a `read.image` function (note the dot, marking it as a compiler
-internal):
-
-```
-let a = read.image(filename)
-```
-
-Once all commands have been converted to builtin functions, the top
-level contains only statements and can be converted to a function.
-
-Implementation Limits
----------------------
+### Implementation Limits
 
 A JPL compiler is not obligated to support a nesting depth (as
 measured by the height of the program AST following the grammar in
 this specification) larger than 64, nor is it required to support
-arrays of rank larger than 64, tuples wider than 64 elements, or
-functions that take more than 64 arguments.  Basically, almost any
+arrays of rank larger than 64, structures wider than 64 elements, or
+functions that take more than 64 arguments. Basically, almost any
 occurrence of `...` in this specification only needs to be expanded 64
-times by a JPL compiler. An exception is the `...` indicating the
-repetition of statements in a function body: this should be limited
-only by the amount of memory on the machine running the JPL compiler.
-Similarly, the number of elements in an array should be limited only
-by memory size.
+times by a JPL compiler.
+
+However, the number of elements in an array constructed via an `array`
+loop should be limited only by available memory.
+
+Runtime Representation
+----------------------
+
+The special `void` structures has zero size.
+
+Integers, floats, and booleans all take up 64 bits. For booleans, this
+might seem wasteful, but it avoids having to deal with padding or
+alignment.
+
+Structures are laid out contiguously in memory with no padding.
+
+Arrays are a list of 64-bit dimension sizes and a 64-bit data pointer.
+The actual contents of the array are stored on the heap, in
+row-contiguous order.
+
+All values are always 64-bit aligned.
+
+Everything is passed by value, by which we mean that the data pointer
+inside an array is a reference but the rest of the array data (the
+list of dimension sizes) is copied.
 
 JPL Compiler Command Line Interface
 -----------------------------------
 
 Every execution of a JPL compiler should print either `Compilation
 succeeded\n` or else `Compilation failed\n` to the standard output
-stream (stdout). Nothing should be printed to the standard error
-stream (stderr).
+stream (stdout). The contents of the standard error stream (stderr)
+are unspecified---a compiler can use this for debug output, error
+tracebacks, or any other information it wants.
 
 The compilation should succeed if the input program is legal JPL, and
 in this case the compiler should not print anything else to stdout.
@@ -723,6 +626,15 @@ which may occur in any order:
     successful if the input program is fully legal JPL; otherwise
     the compilation fails.
 
+  - `-s`: Perform lexical analysis, parsing, type checking,
+    optimization (if any), and code generation. This must succeed for
+    any legal JPL program and output NASM-formatted assembly code to
+    the standard output.
+
+  - `-O<n>`: Set the optimization level. The value `n` must be a
+    number, and indicates the optimization level to perform. This flag
+    only does anything when combined with `-s`.
+
 If the command line options to the JPL compiler do not meet these
 requirements, or if the specified file does not exist or cannot be
 accessed, neither `Compilation successful` nor `Compilation failed`
@@ -730,9 +642,10 @@ should be printed, but rather a terse error message should be printed
 before the compiler exits.
 
 It is permissible for a JPL compiler to accept additional
-single-letter command line flags. For example, `-d` might be used to
-ask the JPL compiler to produce debugging output. When such a flag is
-specified, it is understood that the JPL compiler is operating outside
-of this spec. Thus, violating the "should produce no other output"
-clause above is acceptable. However, these extra flags must be off by
-default.
+single-letter command line flags. For example, the `-o <filename>`
+flag might cause the compiler to output to a file instead of to the
+standard output stream, or `-r` might ask the compiler to assemble,
+link, and run a JPL program. When such a flag is specified, it is
+understood that the JPL compiler is operating outside of this spec.
+Thus, violating the "should produce no other output" clause above is
+acceptable. However, these extra flags must be off by default.
