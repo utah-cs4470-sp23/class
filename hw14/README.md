@@ -49,6 +49,38 @@ benchmarks, so we instead recommend you follow the sections of this
 assignment and test each of them, as described in that section, on all
 five programs.
 
+# If you didn't do HW12 or HW13
+
+If you didn't do HW12 or HW13, you can still pass this assignment.
+However, the grader won't be quite as helpful to you.
+
+Basically, the provided compiler implements a special mode when you
+pass the flag `-O4`. In this mode, the provided compiler applies the
+loop permutation optimization described here, but *not* any of the
+optimizations described in HW12 or HW13.
+
+If you produce the same output as the provided compiler at `-O4`, the
+grader will pass you. *However*, the diffs printed by the autograder
+only compare your compiler's output to the normal `-O3` mode where
+HW12 and HW13 optimizations are turned on. This means the diffs will
+not be useful to you.
+
+If you did not complete HW12 and HW13, but still intend to complete
+this homework assignment, we recommend you manually compare your
+compiler's output to `*.jpl.expected.opt3only` in the auto-grader's
+`hw14` directory. You would want to run something like this in the
+auto-grader directory:
+
+    make -C <your-repo> run TEST="hw14/$BENCH.jpl" FLAGS="-s -O3" |
+    python3 normalize-asm.py > yours.s
+    python3 normalize-asm.py < hw14/$BENCH.jpl.expected.opt3only > profs.s
+    diff yours.s profs.s
+
+This script runs your compiler (line 1), normalizes the assembly, and
+saves it to `yours.s` (line 2). Then it normalizes the expected
+assembly with only this assignment's optimizations, and saves that to
+`profs.s` (line 3). Finally it uses `diff` to compare the two files.
+
 # Overview
 
 In this assignment, we are focused on expressions like the following:
