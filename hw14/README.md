@@ -169,7 +169,10 @@ to make sure to run the `TensorContraction` after you run the
 `ConstantPropagation`.
 
 To debug this step, we recommend adding a print statement in all of
-the `TensorContraction` methods that set the various fields.
+the `TensorContraction` methods that set the various fields. Once it
+works, you should be able to detect 1 tensor contraction in each of
+the five benchmarks. That tensor contraction should come from the last
+line of each benchmark.
 
 # Building the traversal graph
 
@@ -198,7 +201,17 @@ Pay attention to the following important rules:
   probably need to passed the `tc_nodes` list to check this.
 
 To debug this step, we recommend printing the nodes and edges after
-they're computed.
+they're computed. The provided compiler prints the list of nodes and
+edges as a comment in the assembly code, which you can compare your
+list of nodes and edges to. Here's the size of each graph:
+
+| Benchmark | Nodes | Edges |
+|-----------|-------|-------|
+| `col`     | 2     | 1     |
+| `crs`     | 3     | 2     |
+| `mat`     | 3     | 3     |
+| `sft`     | 3     | 2     |
+| `dns`     | 4     | 3     |
 
 # Computing the topological order
 
@@ -239,14 +252,25 @@ This algorithm is O(V^2 E), since it has three nested loops. In our
 case, E can be as large as V^2, so overall this algorithm is O(V^4).
 This definitely isn't ideal, but would really only become a problem
 once you had hundreds of variables, and hundred-dimensional tensors
-are rare. There are faster, O(E) algorithms for topological sort. They
-are variations of this algorithm that use hash tables to avoid having
-to traverse the list of variables repeatedly.
+are rare. Our benchmarks have four variables at most. There are
+faster, O(E) algorithms for topological sort. Those algorithms are
+variations of this one, but use hash tables to avoid having to
+traverse the list of variables repeatedly.
 
 We recommend debugging this step by printing the topological order,
 the list of nodes, and the list of edges at every iteration of the
 outer loop. All of the graphs we will be compiling are pretty small,
-so it should be easy to work out by hand what went wrong.
+so it should be easy to work out by hand what went wrong. Here are the
+initial orders and topological orders for each benchmark; these can
+also be found in a comment in the generated assembly code:
+
+| Benchmark | Initial Order | Topological Order |
+|-----------|---------------|-------------------|
+| `col`     | j, i          | i, j              |
+| `crs`     | i, k, j       | i, j, k           |
+| `mat`     | i, j, k       | i, k, j           |
+| `sft`     | n, i, j       | i, j, n           |
+| `dns`     | i, j, i2, j2  | i2, j2, i, j      |
 
 Once you've constructed the topological order, save it on a new field
 of `ArrayLoopExpr`s, perhaps called `tc_order`.
@@ -300,8 +324,10 @@ italics indicate where it should differ from the existing `array` or
 - Once outside the loop, free all the *array and sum* indices and also
   the sum bounds, but not the array bounds.
 
-We recommend going step by step through these modifications and
-testing each of them against all five of our example programs.
+We recommend going step by step through these modifications. Each one
+modifies a distinct part of the assembly code, so you should be able
+to see your progress by watching the diff get shorter, for the five
+benchmarks, as you implement each modification.
 
 # Extra challenges
 
