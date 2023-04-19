@@ -240,10 +240,10 @@ list of nodes and edges to. Here's the size of each graph:
 | Benchmark | Nodes | Edges |
 |-----------|-------|-------|
 | `col`     | 2     | 1     |
-| `crs`     | 3     | 2     |
+| `crs`     | 3     | 3     |
 | `mat`     | 3     | 3     |
-| `sft`     | 3     | 2     |
-| `dns`     | 4     | 3     |
+| `sft`     | 3     | 3     |
+| `dns`     | 4     | 6     |
 
 # Computing the topological order
 
